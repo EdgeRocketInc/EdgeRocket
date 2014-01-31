@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-SharpApp::Application.load_tasks
+EdgeApp::Application.load_tasks
