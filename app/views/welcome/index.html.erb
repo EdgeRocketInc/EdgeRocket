@@ -1,2 +1,8 @@
 <h1>EdgeRocket</h1>
-<p>Login:</p>
+<div class="topcorner">
+<%= form_tag("products#index", method: "get") do %>
+  <%= text_field_tag('user',"User") %>
+  <%= text_field_tag('password',"Password") %>
+  <%= submit_tag("Login") %>
+<% end %>
+</div>
