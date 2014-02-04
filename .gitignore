@@ -14,3 +14,29 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Rails
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.rvmrc
+/.bundle
+/web/edge_app/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/web/edge_app/tmp/*
+/web/edge_app/log/*
+/db/*.sqlite3
+/web/edge_app/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
+.project
+config/initializers/secret_token.rb
+
