@@ -22,5 +22,7 @@ module EdgeApp
     
     # need for Twitter bootstrap
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.compile = true
+    
   end
 end
