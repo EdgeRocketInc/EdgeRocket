@@ -4,5 +4,7 @@ EdgeRocket
 EdgeRocket source
 
 Branches:
-master - everything
-split - for pushing to Heroku
+* master - everything
+* split - do not use!
+* heroku - for pushing to Heroku
+
