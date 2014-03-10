@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class PlaylistTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "Read record" do
+  	pl = Playlist.first
+    assert pl.title.length > 1, 'title length'
+  end
 end

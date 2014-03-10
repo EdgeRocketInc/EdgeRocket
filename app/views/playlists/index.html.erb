@@ -1,7 +1,7 @@
 <table class="table-bordered">
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Playlist</th>
       <th>Mandatory</th>
       <th></th>
       <th></th>
@@ -14,9 +14,9 @@
       <tr>
         <td><%= playlist.title %></td>
         <td><%= playlist.mandatory %></td>
-        <td><%= link_to 'Show', playlist %></td>
-        <td><%= link_to 'Edit', edit_playlist_path(playlist) %></td>
-        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Courses', playlist %></td>
+        <td><%= link_to 'Modify', edit_playlist_path(playlist) %></td>
+        <td><%= link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
