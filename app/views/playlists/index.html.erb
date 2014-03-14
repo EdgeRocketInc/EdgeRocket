@@ -1,27 +1,16 @@
-<table class="table-bordered">
-  <thead>
-    <tr>
-      <th>Playlist</th>
-      <th>Mandatory</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @playlists.each do |playlist| %>
-      <tr>
-        <td><%= playlist.title %></td>
-        <td><%= playlist.mandatory %></td>
-        <td><%= link_to 'Courses', playlist %></td>
-        <td><%= link_to 'Modify', edit_playlist_path(playlist) %></td>
-        <td><%= link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Playlist', new_playlist_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-2"><%= link_to 'Create', new_playlist_path %></div>
+  </div>
+  <% @playlists.each do |playlist| %>
+  <div class="row">
+        <div class="col-lg-3"><%= playlist.title %></div>
+        <div class="col-lg-2">
+          <%= link_to 'Courses', playlist %>
+          <%= link_to 'Modify', edit_playlist_path(playlist) %>
+          <%= link_to 'Delete', playlist, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+  </div>
+  <% end %>
+</div>

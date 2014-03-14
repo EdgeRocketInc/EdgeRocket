@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Course One
-  vendor_id: 1
+  id: 1
+  name: Coursera
 
 two:
-  name: Class Two
-  vendor_id: 1
+  id: 2
+  name: Yutube
