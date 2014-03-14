@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
-  name: Coursera
+  id: 1000
+  name: Test Vendor One
 
 two:
-  id: 2
-  name: Yutube
+  id: 2000
+  name: Test Vendor Two

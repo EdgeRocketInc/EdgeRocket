@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :courses]
 
   # GET /playlists
   # GET /playlists.json
@@ -59,6 +59,14 @@ class PlaylistsController < ApplicationController
       format.html { redirect_to playlists_url }
       format.json { head :no_content }
     end
+  end
+
+  # GET /playlists/1/courses
+  # GET /playlists/1/courses.json
+  #
+  # List courses in the playlist
+  def courses
+  
   end
 
   private

@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1001
   title: Marketing One
   mandatory: false
 
 two:
+  id: 1002
   title: Finance 2
   mandatory: true

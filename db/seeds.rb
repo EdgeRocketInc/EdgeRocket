@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# Vendors should be populated by DBA/developers
+Vendor.create(id: 1, name: 'Coursera')
+Vendor.create(id: 2, name: 'Youtube')
+Vendor.create(id: 3, name: 'Udemy')

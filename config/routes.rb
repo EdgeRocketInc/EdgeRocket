@@ -1,5 +1,4 @@
 EdgeApp::Application.routes.draw do
-  resources :playlists
 
   get "welcome/index"
  
@@ -15,9 +14,11 @@ EdgeApp::Application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get 'playlists/:id/courses' => 'playlists#courses'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :products
+  resources :playlists
 
   # Example resource route with options:
   #   resources :products do
