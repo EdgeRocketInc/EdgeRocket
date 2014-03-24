@@ -14,8 +14,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Dashboard</a></li>
-        <li><%= link_to("Playlists", controller: "playlists", action: "index") =%></li>
+        <li class="<%= 'active' if params[:controller] == 'dashboards' %>">
+          <%= link_to("Dashboard", controller: "dashboards", action: "show") =%>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'playlists' %>">
+          <%= link_to("Playlists", controller: "playlists", action: "index") =%>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
           <ul class="dropdown-menu">

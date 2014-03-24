@@ -23,6 +23,9 @@ module EdgeApp
     # need for Twitter bootstrap
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.compile = true
+
+    # need for Devise
+    config.assets.initialize_on_precompile = false
     
   end
 end
