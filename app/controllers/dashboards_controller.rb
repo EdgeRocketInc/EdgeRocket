@@ -5,6 +5,11 @@ class DashboardsController < ApplicationController
   # GET /dashboards/1
   # GET /dashboards/1.json
   def show
+	@users = { 
+		:total_count => User.count, 
+		:num_admins => 0, # TODO
+		:num_standard => User.count
+	}
   end
 
   private

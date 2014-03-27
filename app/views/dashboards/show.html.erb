@@ -1,6 +1,32 @@
 <!-- DASH -->
 <div class="col-lg-6">
 	<div class="panel panel-default">
+  		<div class="panel-heading">Users</div>
+  		<div class="panel-body">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Total Users</th>
+						<th><%= @users[:total_count] =%></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Admin Users</td>
+						<td><%= @users[:num_admins] =%></td>
+					</tr>
+					<tr>
+						<td>Standard Users</td>
+						<td><%= @users[:num_standard] =%></td>
+					</tr>
+				</tbody>
+
+			</table>
+	</div>
+	</div>
+</div>
+<div class="col-lg-6">
+	<div class="panel panel-default">
   		<div class="panel-heading">Budget</div>
   		<div class="panel-body">Panel content</div>
 	</div>
@@ -14,12 +40,6 @@
 <div class="col-lg-6">
 	<div class="panel panel-default">
   		<div class="panel-heading">Number of Classes by Topic</div>
-  		<div class="panel-body">Panel content</div>
-	</div>
-</div>
-<div class="col-lg-6">
-	<div class="panel panel-default">
-  		<div class="panel-heading">Users</div>
   		<div class="panel-body">Panel content</div>
 	</div>
 </div>
