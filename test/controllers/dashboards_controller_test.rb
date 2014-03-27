@@ -6,7 +6,7 @@ class DashboardsControllerTest < ActionController::TestCase
 
   test "should show dashboard" do
     get :show
-    assert_response :success
+    assert_response :redirect
   end
 
 end

@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
   before_action :set_dashboard, only: [:show]
+  before_filter :authenticate_user!
 
   # GET /dashboards/1
   # GET /dashboards/1.json
