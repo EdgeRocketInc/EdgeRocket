@@ -10,3 +10,5 @@
 Vendor.create(id: 1, name: 'Coursera')
 Vendor.create(id: 2, name: 'Youtube')
 Vendor.create(id: 3, name: 'Udemy')
+
+User.create(id: 0, email: 'admin@edgerocket.co', password: 'ER0cket!')
