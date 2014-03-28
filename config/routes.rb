@@ -1,5 +1,6 @@
 EdgeApp::Application.routes.draw do
 
+  get "user_home" => 'user_home#index'
   devise_for :users
   get "welcome/index"
  
@@ -28,6 +29,7 @@ EdgeApp::Application.routes.draw do
   get 'teams' => 'teams#index'
   get 'corp_home' => 'corp_home#index'
   get 'employees' => 'employees#index'
+
 
   # Example resource route with options:
   #   resources :products do
