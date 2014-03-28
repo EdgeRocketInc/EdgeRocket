@@ -5,7 +5,9 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 101
   email: test1@edgerocket.co
 
 two: 
+  id: 102
   email: test2@edgerocket.co

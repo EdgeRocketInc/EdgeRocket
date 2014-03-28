@@ -10,6 +10,8 @@ class DashboardsController < ApplicationController
 		:num_admins => 0, # TODO
 		:num_standard => User.count
 	}
+
+	authorize! :manage, :all
   end
 
   private

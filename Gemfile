@@ -62,5 +62,6 @@ gem 'twitter-bootswatch-rails', '~> 3.1.1'
 gem 'twitter-bootswatch-rails-helpers', '~> 3.1'
 gem 'therubyracer', '~> 0.12'		
 
-# Authentication 
+# Authentication and Authorization 
 gem 'devise', '3.2.4'
+gem 'cancancan', '~> 1.7'
