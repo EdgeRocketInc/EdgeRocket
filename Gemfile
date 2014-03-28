@@ -54,5 +54,13 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Bootstrap 
 gem 'bootstrap-sass', '3.1.0'
+
+# Bootswatch & JS engine for it
+gem 'twitter-bootswatch-rails', '~> 3.1.1'
+gem 'twitter-bootswatch-rails-helpers', '~> 3.1'
+gem 'therubyracer', '~> 0.12'		
+
+# Authentication 
 gem 'devise', '3.2.4'

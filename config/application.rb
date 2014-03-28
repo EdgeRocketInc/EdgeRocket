@@ -27,5 +27,8 @@ module EdgeApp
     # need for Devise
     config.assets.initialize_on_precompile = false
     
+    # less-rails gem (default all generators)
+    config.app_generators.stylesheet_engine :less
+
   end
 end
