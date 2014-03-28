@@ -17,14 +17,14 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="<%= 'active' if params[:controller] == 'playlists' %>">
-          <%= link_to("My Courses", controller: "playlists", action: "index") =%>
+        <li class="<%= 'active' if params[:controller] == 'my_courses' %>">
+          <%= link_to("My Courses", controller: "my_courses", action: "index") =%>
         </li>
-        <li class="<%= 'active' if params[:controller] == 'playlists' %>">
-          <%= link_to("Search", controller: "dashboards", action: "show") =%>
+        <li class="<%= 'active' if params[:controller] == 'search' %>">
+          <%= link_to("Search", controller: "search", action: "index") =%>
         </li>
-        <li class="<%= 'active' if params[:controller] == 'playlists' %>">
-          <%= link_to("Plan", controller: "dashboards", action: "show") =%>
+        <li class="<%= 'active' if params[:controller] == 'plans' %>">
+          <%= link_to("Plan", controller: "plans", action: "index") =%>
         </li>
         <li class="<%= 'active' if params[:controller] == 'dashboards' %>">
           <%= link_to("Company Dashboard", controller: "dashboards", action: "show") =%>
@@ -32,11 +32,19 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
           <ul class="dropdown-menu">
-             <li><a href="#">My Team</a></li>
-             <li><a href="#">Edit Home</a></li>
-             <li><a href="#">Playlists</a></li>
-             <li><a href="#">Users</a></li>
-         </ul>
+        	<li class="<%= 'active' if params[:controller] == 'teams' %>">
+          		<%= link_to("My Team", controller: "teams", action: "index") =%>
+        	</li>
+        	<li class="<%= 'active' if params[:controller] == 'corp_home' %>">
+          		<%= link_to("Edit Home", controller: "corp_home", action: "index") =%>
+        	</li>
+        	<li class="<%= 'active' if params[:controller] == 'playlists' %>">
+          		<%= link_to("Playlists", controller: "playlists", action: "index") =%>
+        	</li>
+        	<li class="<%= 'active' if params[:controller] == 'employees' %>">
+          		<%= link_to("Users", controller: "employees", action: "index") =%>
+        	</li>
+          </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

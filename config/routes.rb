@@ -21,6 +21,14 @@ EdgeApp::Application.routes.draw do
   resources :products
   resources :playlists
 
+  # STUBS FOR FUTURE ROUTES
+  get 'my_courses' => 'my_courses#index'
+  get 'search' => 'search#index'
+  get 'plans' => 'plans#index'
+  get 'teams' => 'teams#index'
+  get 'corp_home' => 'corp_home#index'
+  get 'employees' => 'employees#index'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
