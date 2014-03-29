@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.1.1'
 #ruby-gemset=EdgeRocket
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.4'
 
 group :development do
   # Use sqlite3 as the database for Active Record
