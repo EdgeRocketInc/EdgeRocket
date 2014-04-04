@@ -13,4 +13,5 @@ Vendor.create(id: 3, name: 'Udemy')
 
 User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!')
 User.create(id: 1, email: 'admin@edgerocket.co', password: 'ER0cket!')
-User.create(id: 2, email: 'user@edgerocket.co', password: 'ER0cket!')
+User.create(id: 2, email: 'peter@edgerocket.co', password: 'ER0cket!')
+User.create(id: 3, email: 'alexey@edgerocket.co', password: 'ER0cket!')

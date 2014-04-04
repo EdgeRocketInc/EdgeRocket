@@ -43,3 +43,4 @@ config/initializers/secret_token.rb
 #ignore vim
 
 **.swp
+**.DS_store
