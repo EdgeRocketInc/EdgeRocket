@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "user roles" do
+    u = User.find(101)
+    assert u.roles.length > 0
+  end
 end

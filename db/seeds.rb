@@ -15,3 +15,6 @@ User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!')
 User.create(id: 1, email: 'admin@edgerocket.co', password: 'ER0cket!')
 User.create(id: 2, email: 'peter@edgerocket.co', password: 'ER0cket!')
 User.create(id: 3, email: 'alexey@edgerocket.co', password: 'ER0cket!')
+
+Role.create(id: 1, name: 'SA', user_id: 0)
+Role.create(id: 2, name: 'Admin', user_id: 1)
