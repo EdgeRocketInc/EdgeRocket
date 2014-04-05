@@ -30,8 +30,8 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     if user 
-      case user.role 
-      when :superadmin, :admin
+      case user.best_role 
+      when :SA, :admin
         can :manage, :all
       else
         can :read, :all

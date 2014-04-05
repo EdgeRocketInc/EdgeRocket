@@ -6,11 +6,11 @@
 #
 one:
   id: 101
-  email: test1-admin@edgerocket.co
+  email: test1-sa@edgerocket.co
 
 two: 
   id: 102
-  email: test2-sa@edgerocket.co
+  email: test2-admin@edgerocket.co
 
 three: 
   id: 103
