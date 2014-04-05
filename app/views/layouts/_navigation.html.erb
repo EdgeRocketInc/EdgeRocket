@@ -26,31 +26,33 @@
         <li class="<%= 'active' if params[:controller] == 'plans' %>">
           <%= link_to("Plan", controller: "plans", action: "index") =%>
         </li>
-        <li class="<%= 'active' if params[:controller] == 'dashboards' %>">
-          <%= link_to("Company Dashboard", controller: "dashboards", action: "show") =%>
-        </li>
 	<% if can? :manage, :all %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-        	<li class="<%= 'active' if params[:controller] == 'teams' %>">
-          		<%= link_to("My Team", controller: "teams", action: "index") =%>
-        	</li>
-        	<li class="<%= 'active' if params[:controller] == 'corp_home' %>">
-          		<%= link_to("Edit Home", controller: "corp_home", action: "index") =%>
-        	</li>
-        	<li class="<%= 'active' if params[:controller] == 'playlists' %>">
-          		<%= link_to("Playlists", controller: "playlists", action: "index") =%>
-        	</li>
-        	<li class="<%= 'active' if params[:controller] == 'employees' %>">
-          		<%= link_to("Users", controller: "employees", action: "index") =%>
-        	</li>
-          </ul>
-        </li>
+	       <li class="<%= 'active' if params[:controller] == 'dashboards' %>">
+        	  <%= link_to("Company Dashboard", controller: "dashboards", action: "show") =%>
+	       </li>
+	       <li class="dropdown">
+        	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+        		<li class="<%= 'active' if params[:controller] == 'teams' %>">
+         			<%= link_to("My Team", controller: "teams", action: "index") =%>
+	       		</li>
+        		<li class="<%= 'active' if params[:controller] == 'corp_home' %>">
+          			<%= link_to("Edit Home", controller: "corp_home", action: "index") =%>
+	        	</li>
+        		<li class="<%= 'active' if params[:controller] == 'playlists' %>">
+          			<%= link_to("Playlists", controller: "playlists", action: "index") =%>
+	        	</li>
+        		<li class="<%= 'active' if params[:controller] == 'employees' %>">
+          			<%= link_to("Users", controller: "employees", action: "index") =%>
+	        	</li>
+        	  </ul>
+	       </li>
 	<% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></a></li>
+	<% if user_signed_in? %>
+        	<li><a href="#"><span class="glyphicon glyphicon-user"/> <%= current_user.email =%></a></li>
+	<% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
