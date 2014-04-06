@@ -1,5 +1,6 @@
 EdgeApp::Application.routes.draw do
 
+  get "my_courses/index"
   get "user_home" => 'user_home#index'
   devise_for :users
   get "welcome/index"
@@ -23,7 +24,6 @@ EdgeApp::Application.routes.draw do
   resources :playlists
 
   # STUBS FOR FUTURE ROUTES
-  get 'my_courses' => 'my_courses#index'
   get 'search' => 'search#index'
   get 'plans' => 'plans#index'
   get 'teams' => 'teams#index'

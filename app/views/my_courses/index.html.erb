@@ -1,0 +1,16 @@
+<div class="col-lg-12">
+	<div class="panel panel-info">
+  		<div class="panel-heading">My Courses</div>
+  		<div class="panel-body">
+			<% @my_courses.each { |c| %>
+				<div class="col-lg-4">
+				<%= c.name =%>
+				</div>
+				<div class="col-lg-8">
+				<%= c.vendor.name if c.vendor =%>
+				</div>
+
+			<% } %>
+		</div>
+	</div>
+</div>

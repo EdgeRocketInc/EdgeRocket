@@ -9,3 +9,8 @@ two:
   id: 2002
   name: Class Two
   vendor_id: 1000
+
+three:
+  id: 2003
+  name: Just a course without vendor
+
