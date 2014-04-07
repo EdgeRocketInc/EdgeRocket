@@ -2,15 +2,29 @@
 	<div class="panel panel-info">
   		<div class="panel-heading">My Courses</div>
   		<div class="panel-body">
-			<% @my_courses.each { |c| %>
-				<div class="col-lg-4">
-				<%= c.name =%>
-				</div>
-				<div class="col-lg-8">
-				<%= c.vendor.name if c.vendor =%>
-				</div>
 
-			<% } %>
+			<table class="table table-condensed">
+				<thead>
+					<tr>
+						<th><span class="label label-success">Completed Courses</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @my_courses.each { |c| %>
+						<tr>
+						<td><%= c.product.name if c.product =%></td>
+						<td><%= c.product.vendor.name if c.product && c.product.vendor =%></td>
+						</tr>
+					<% } %>
+				</tbody>
+
+			</table>
+
+				<div class="col-lg-4">
+								</div>
+				<div class="col-lg-8">
+							</div>
+
 		</div>
 	</div>
 </div>

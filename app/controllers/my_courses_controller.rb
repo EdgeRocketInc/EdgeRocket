@@ -3,6 +3,6 @@ class MyCoursesController < ApplicationController
 
   def index
     u = User.find_by_email(current_user.email)
-    @my_courses = u.products
+    @my_courses = MyCourses.where("user_id=?",u.id)
   end
 end

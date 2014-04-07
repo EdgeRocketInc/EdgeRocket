@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407003105) do
+ActiveRecord::Schema.define(version: 20140407181337) do
+
+  create_table "my_courses", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "playlists", force: true do |t|
     t.string   "title"
@@ -37,14 +44,6 @@ ActiveRecord::Schema.define(version: 20140407003105) do
     t.string   "origin"
     t.decimal  "price",      precision: 8, scale: 2
   end
-
-  create_table "products_users", id: false, force: true do |t|
-    t.integer "user_id",    null: false
-    t.integer "product_id", null: false
-  end
-
-  add_index "products_users", ["product_id", "user_id"], name: "index_products_users_on_product_id_and_user_id"
-  add_index "products_users", ["user_id", "product_id"], name: "index_products_users_on_user_id_and_product_id"
 
   create_table "roles", force: true do |t|
     t.string   "name",       limit: 5

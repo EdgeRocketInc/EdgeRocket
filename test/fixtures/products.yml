@@ -2,15 +2,21 @@
 
 one:
   id: 2001
-  name: Course One
+  name: Introduction to Java Course
   vendor_id: 1000
+  authors: Adam Smith, Jimmy Carter
 
 two:
   id: 2002
   name: Class Two
   vendor_id: 1000
+  authors: Tolstoy, Dostoyevsky
 
 three:
   id: 2003
   name: Just a course without vendor
+
+four:
+  id: 2004
+  name: Project Management
 
