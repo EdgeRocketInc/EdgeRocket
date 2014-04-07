@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :roles
+  has_and_belongs_to_many :products
+
 
   # returns the role with the highest level of access
   def best_role

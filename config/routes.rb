@@ -1,10 +1,9 @@
 EdgeApp::Application.routes.draw do
 
-  get "my_courses/index"
+  get "my_courses" => 'my_courses#index'
   get "user_home" => 'user_home#index'
   devise_for :users
-  get "welcome/index"
- 
+   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

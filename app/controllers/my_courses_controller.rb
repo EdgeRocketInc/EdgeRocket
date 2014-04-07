@@ -1,5 +1,8 @@
 class MyCoursesController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
-    @my_courses = Product.all
+    u = User.find_by_email(current_user.email)
+    @my_courses = u.products
   end
 end
