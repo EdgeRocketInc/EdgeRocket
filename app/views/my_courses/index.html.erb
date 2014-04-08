@@ -18,6 +18,13 @@
 						<tr>
 						<td><%= c.product.name if c.product =%></td>
 						<td><%= c.product.vendor.name if c.product && c.product.vendor =%></td>
+						<td>Assigned by <%= c.assigned_by =%></td>
+						<td><div class="course-progress progress">
+						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= c.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= c.percent_complete.to_i =%>%;">
+						    <span class="sr-only"><%= c.percent_complete.to_i =%>% Complete</span>
+						  </div>
+						</div></td>
+						<td><%= c.completion_date.strftime("%F") if c.completion_date =%></td>
 						</tr>
 					<% } %>
 				</tbody>

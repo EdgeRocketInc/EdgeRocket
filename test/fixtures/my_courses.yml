@@ -25,14 +25,44 @@ seed_alexey_1:
   user_id: 3
   product_id: 2002
   status: Completed
+  percent_complete: 100.00
+  completion_date: 2014-01-08
+  assigned_by: Self
 
 seed_alexey_2:
   user_id: 3
   product_id: 2003
   status: WIP
+  percent_complete: 70.00
+  assigned_by: Manager
+
+seed_alexey_3:
+  user_id: 3
+  product_id: 2001
+  status: WIP
+  percent_complete: 10.00
+  assigned_by: Manager
+
+seed_alexey_4:
+  user_id: 3
+  product_id: 2005
+  status: WIP
+  percent_complete: 0.00
+  assigned_by: Manager
+
+seed_alexey_5:
+  user_id: 3
+  product_id: 2006
+  status: Registered
+  percent_complete: 70.00
+  assigned_by: Manager
+
+
 
 sseed_peter_1:
   user_id: 2
   product_id: 2001
   status: Registered
+  percent_complete: 0
+
 

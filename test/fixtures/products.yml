@@ -26,3 +26,9 @@ five:
   vendor_id: 1000
   authors: Joe Doe
 
+six:
+  id: 2006
+  name: Explaratory Data Science
+  vendor_id: 1000
+  authors: Andy Brewer
+
