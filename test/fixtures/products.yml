@@ -20,3 +20,9 @@ four:
   id: 2004
   name: Project Management
 
+five:
+  id: 2005
+  name: The Analytics Edge
+  vendor_id: 1000
+  authors: Joe Doe
+

@@ -3,21 +3,36 @@
 one:
   user_id: 101
   product_id: 2001
+  status: WIP
 
 two:
   user_id: 101
   product_id: 2002
+  status: Completed
+
+three:
+  user_id: 101
+  product_id: 2003
+  status: Registered
+
+three:
+  user_id: 101
+  product_id: 2004
+  status: Wishlist
 
 # these recordws rely on the user records created in seed.rb
 seed_alexey_1:
   user_id: 3
   product_id: 2002
+  status: Completed
 
 seed_alexey_2:
   user_id: 3
   product_id: 2003
+  status: WIP
 
 sseed_peter_1:
   user_id: 2
   product_id: 2001
+  status: Registered
 

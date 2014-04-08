@@ -2,15 +2,19 @@
 	<div class="panel panel-info">
   		<div class="panel-heading">My Courses</div>
   		<div class="panel-body">
-
+			<% if @course_groups.length <= 0 %>
+				<span class="label label-warning">No Courses</span>
+			<% else 
+			     @course_groups.each { |status,cg|
+			%>
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th><span class="label label-success">Completed Courses</span></th>
+						<th><span class="label label-success"><%= status =%></span></th>
 					</tr>
 				</thead>
 				<tbody>
-					<% @my_courses.each { |c| %>
+					<% cg.each { |c| %>
 						<tr>
 						<td><%= c.product.name if c.product =%></td>
 						<td><%= c.product.vendor.name if c.product && c.product.vendor =%></td>
@@ -19,12 +23,7 @@
 				</tbody>
 
 			</table>
-
-				<div class="col-lg-4">
-								</div>
-				<div class="col-lg-8">
-							</div>
-
+			<% } end %>
 		</div>
 	</div>
 </div>
