@@ -23,3 +23,10 @@ Nothing yet
 * Deployment instructions
 git push heroku heroku:master
 
+### Database structure
+
+The tables used as an interface between Rails app and Data Acquisition service
+
+* products table - contains metadata for courses and other materials. It's populated by the Data Acquisition service and used by Rails App
+
+* vendors table - contains list of course providers and other meta data for sources of educational materials. It's populated manually by developers to describe the data sources for courses
