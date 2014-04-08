@@ -2,12 +2,12 @@
 
 one:
   id: 1000
-  name: Test Vendor One
+  name: Khan Academy
 
 two:
   id: 2000
-  name: Test Vendor Two
+  name: Udacity
 
 three:
   id: 3000
-  name: Course Provider Three
+  name: Course Provider
