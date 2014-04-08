@@ -1,5 +1,15 @@
 <div class="col-lg-12">
 	<div class="panel panel-info">
+  		<div class="panel-body">My Budget
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">$600
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="col-lg-12">
+	<div class="panel panel-info">
   		<div class="panel-heading">My Courses</div>
   		<div class="panel-body">
 			<% if @course_groups.length <= 0 %>
@@ -34,3 +44,24 @@
 		</div>
 	</div>
 </div>
+<div class="col-lg-12">
+	<div class="panel panel-info">
+  		<div class="panel-heading">My Playlists</div>
+  		<div class="panel-body">
+			<% if @my_playlists.length <= 0 %>
+				<span class="label label-warning">No Playlists</span>
+			<% else %> 
+				<table class="table table-condensed table-hover">
+				<tbody>
+			     	<% @my_playlists.each { |pl| %>
+					<tr>
+						<td width="40%"><%= pl.title =%></td>
+					</tr>
+			     	<% } %>
+				</tbody>
+			</table>
+			<% end %>
+		</div>
+	</div>
+</div>
+

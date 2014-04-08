@@ -8,13 +8,13 @@ one:
 
 two:
   id: 2002
-  name: Class Two
+  name: Presentation Skills Training
   vendor_id: 1000
   authors: Tolstoy, Dostoyevsky
 
 three:
   id: 2003
-  name: Just a course without vendor
+  name: Intro to Cloud Computing
 
 four:
   id: 2004

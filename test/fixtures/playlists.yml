@@ -2,10 +2,15 @@
 
 one:
   id: 1001
-  title: Marketing One
+  title: Marketing 101
   mandatory: false
 
 two:
   id: 1002
-  title: Finance 2
+  title: Finance 101
+  mandatory: true
+
+three:
+  id: 1003
+  title: Advanced Cloud for IT
   mandatory: true

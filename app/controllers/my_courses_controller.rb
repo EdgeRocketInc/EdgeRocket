@@ -21,10 +21,12 @@ class MyCoursesController < ApplicationController
       @course_groups['Registered'] = my_courses
     end
 
-     my_courses = MyCourses.all_wishlist(u.id)
+    my_courses = MyCourses.all_wishlist(u.id)
     if my_courses && my_courses.length > 0
       @course_groups['Wishlist'] = my_courses
     end
+
+    @my_playlists = Playlist.all
 
    end
 end
