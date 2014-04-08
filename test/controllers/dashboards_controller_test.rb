@@ -5,9 +5,10 @@ class DashboardsControllerTest < ActionController::TestCase
   end
 
   test "should show dashboard" do
+    sign_in User.first
     get :show
     # TODO test  @users[:total_count] > 0, "user count"
-    assert_response :redirect
+    assert_response :success
   end
 
 end
