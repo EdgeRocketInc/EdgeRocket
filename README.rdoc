@@ -1,28 +1,25 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+NOTE: this app is under root in the admitriyev's heroku branch in github, and it should be used from that branch only
 
-Things you may want to cover:
-
-* Ruby version
+* Ruby version 
+Developed and tested with 2.1.x
 
 * System dependencies
-
-* Configuration
+Developed on Mac OS X, and deployed on Heroku. No other dependencies yet
 
 * Database creation
-
-* Database initialization
+Developed using sqlite3 and deployed on PostgreSQL
+Use seed.rb (command rake db:seed) to initlize the data.
+Also, the fxitures can be loaded before seeding by using rake db:fixtures:load
 
 * How to run the test suite
+rake
+check the coverage folder after that
 
 * Services (job queues, cache servers, search engines, etc.)
+Nothing yet
 
 * Deployment instructions
+git push heroku heroku:master
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
