@@ -23,7 +23,7 @@ Nothing yet
 * Deployment instructions
 git push heroku heroku:master
 
-### Database structure
+== Database structure
 
 The tables used as an interface between Rails app and Data Acquisition service
 
