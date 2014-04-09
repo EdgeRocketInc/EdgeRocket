@@ -37,3 +37,10 @@ six:
   authors: Andy Brewer
   origin: https://www.khanacademy.org/
 
+# ==== REAL: Eating our own dog food =====
+angular_1:
+  id: 3001
+  name: Dan Wahlin - AngularJS in 20ish Minutes - NG-Conf 2014
+  authors: Dan Wahlin
+  vendor_id: 2
+  origin: http://youtu.be/tnXO-i7944M

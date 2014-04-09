@@ -17,3 +17,10 @@ three:
   title: Advanced Cloud for IT
   description: A good list of reources in anyone in IT department
   mandatory: false
+
+# ==== REAL: Eating our own dog food =====
+angular:
+  id: 2001
+  title: Learn AngularJS
+  description: Practical sources for learning AngularJS framework
+  mandatory: false

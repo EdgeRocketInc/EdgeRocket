@@ -94,4 +94,13 @@ seed_peter_5:
   percent_complete: 70.00
   assigned_by: Manager
 
+# ==== REAL: Eating our own dog food =====2
 
+alexey_angular_1:
+  user_id: 3
+  product_id: 3001
+  status: Registered
+  percent_complete: 0.00
+  assigned_by: Self
+
+ 
