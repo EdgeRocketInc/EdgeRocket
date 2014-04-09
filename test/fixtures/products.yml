@@ -28,7 +28,7 @@ five:
 
 six:
   id: 2006
-  name: Explaratory Data Science
+  name: Exploratory Data Science
   vendor_id: 1000
   authors: Andy Brewer
 

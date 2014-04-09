@@ -3,6 +3,7 @@
 one:
   id: 1000
   name: Khan Academy
+  logo_file_name: khan-logo.png
 
 two:
   id: 2000

@@ -26,8 +26,8 @@
 				<tbody>
 					<% cg.each { |c| %>
 						<tr>
-						<td width="40%"><%= c.product.name if c.product =%></td>
-						<td width="20%"><%= c.product.vendor.name if c.product && c.product.vendor =%></td>
+						<td width="40%"><%= link_to c.product.name if c.product =%></td>
+            <td width="20%"><%= image_tag(c.product.vendor.logo_file_name, width: '20px') if c.product && c.product.vendor =%></td>
 						<td width="10%">Assigned by <%= c.assigned_by =%></td>
 						<td width="10%"><div class="course-progress progress">
 						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= c.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= c.percent_complete.to_i =%>%;">
@@ -55,7 +55,15 @@
 				<tbody>
 			     	<% @my_playlists.each { |pl| %>
 					<tr>
-						<td width="40%"><%= pl.title =%></td>
+						<td width="40%">
+							<div><%= link_to pl.title =%></div>
+							<%= pl.description =%>
+						</td>
+						<td width="10%"><div class="course-progress progress">
+						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= pl.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= pl.percent_complete.to_i =%>%;">
+						    <span class="sr-only"><%= pl.percent_complete.to_i =%>% Complete</span>
+						  </div>
+						</div></td>
 					</tr>
 			     	<% } %>
 				</tbody>
