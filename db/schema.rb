@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409155329) do
+ActiveRecord::Schema.define(version: 20140409162722) do
+
+  create_table "budgets", force: true do |t|
+    t.integer  "user_id"
+    t.decimal  "amount_allocated", precision: 8, scale: 2
+    t.decimal  "amount_used",      precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "my_courses", force: true do |t|
     t.integer  "user_id"

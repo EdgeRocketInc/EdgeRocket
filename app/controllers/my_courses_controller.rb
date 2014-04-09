@@ -5,6 +5,7 @@ class MyCoursesController < ApplicationController
     @course_groups = Hash.new  
     u = User.find_by_email(current_user.email)
 
+    # --- Courses section
     # TODO this can be more DRY and pushed to the view
     my_courses = MyCourses.all_completed(u.id)
     if my_courses && my_courses.length > 0
@@ -26,10 +27,14 @@ class MyCoursesController < ApplicationController
       @course_groups['Wishlist'] = my_courses
     end
 
+    # --- Playlists section
     @my_playlists = u.playlists
     @my_playlists.each { |pl|
       pl.calc_fields
     }
+
+    # --- Budget section
+    @budget = u.budgets
 
    end
 end
