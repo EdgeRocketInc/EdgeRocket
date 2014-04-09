@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  playlist_id: 1001
+  user_id: 3
+
+two:
+  playlist_id: 1002
+  user_id: 3
+
+three:
+  playlist_id: 1001
+  user_id: 2
+

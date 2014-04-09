@@ -26,7 +26,10 @@ class MyCoursesController < ApplicationController
       @course_groups['Wishlist'] = my_courses
     end
 
-    @my_playlists = Playlist.all
+    @my_playlists = u.playlists
+    @my_playlists.each { |pl|
+      pl.calc_fields
+    }
 
    end
 end

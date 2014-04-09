@@ -14,4 +14,10 @@ class PlaylistTest < ActiveSupport::TestCase
   	product.save
   	assert pl.products.length > l1, 'more linked products'
   end
+
+  test "calculate internal fields" do
+    pl = Playlist.first
+    pl.calc_fields
+    assert pl.percent_complete.to_i > 0, 'wrong calculation'
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409045033) do
+ActiveRecord::Schema.define(version: 20140409155329) do
 
   create_table "my_courses", force: true do |t|
     t.integer  "user_id"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 20140409045033) do
 
   add_index "playlists_products", ["playlist_id", "product_id"], name: "index_playlists_products_on_playlist_id_and_product_id"
   add_index "playlists_products", ["product_id", "playlist_id"], name: "index_playlists_products_on_product_id_and_playlist_id"
+
+  create_table "playlists_users", id: false, force: true do |t|
+    t.integer "user_id",     null: false
+    t.integer "playlist_id", null: false
+  end
+
+  add_index "playlists_users", ["playlist_id", "user_id"], name: "index_playlists_users_on_playlist_id_and_user_id"
+  add_index "playlists_users", ["user_id", "playlist_id"], name: "index_playlists_users_on_user_id_and_playlist_id"
 
   create_table "products", force: true do |t|
     t.string   "name"
