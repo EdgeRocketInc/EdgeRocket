@@ -1,4 +1,4 @@
-class Budgets < ActiveRecord::Base
+class Budget < ActiveRecord::Base
   belongs_to :user
 
   def percent_used

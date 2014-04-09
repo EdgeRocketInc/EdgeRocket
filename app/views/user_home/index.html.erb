@@ -1,6 +1,6 @@
 <div class="col-lg-6">
 	<div class="panel panel-info">
- 		<div class="panel-heading">CompanyABC - Home page</div>
+    <div class="panel-heading"><%= @account ? @account.company_name : 'Unknown Company' =%> - Home page</div>
  		<div class="panel-body">Panel content</div>
 	</div>
 </div>
@@ -14,7 +14,7 @@
 	<div class="panel panel-info">
  		<div class="panel-heading">Playlists</div>
     <div class="panel-body">
-			<% if @my_playlists.length <= 0 %>
+			<% if @my_playlists == nil || @my_playlists.length <= 0 %>
 				<span class="label label-warning">No Playlists</span>
 			<% else %> 
 				<table class="table table-condensed table-hover">

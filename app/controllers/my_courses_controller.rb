@@ -34,7 +34,7 @@ class MyCoursesController < ApplicationController
     }
 
     # --- Budget section
-    @budget = u.budgets
+    @budget = u.budget
 
    end
 end

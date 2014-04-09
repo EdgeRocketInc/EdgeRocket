@@ -99,8 +99,9 @@ seed_peter_5:
 alexey_angular_1:
   user_id: 3
   product_id: 3001
-  status: Registered
-  percent_complete: 0.00
+  status: Completed
+  percent_complete: 100.00
+  completion_date: 2014-04-09
   assigned_by: Self
 
  
