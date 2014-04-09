@@ -2,12 +2,14 @@
 
 one:
   id: 1001
+  account_id: 1
   title: Marketing 101
   description: Marketing classes, guides, tutorials, tips and tricks
   mandatory: false
 
 two:
   id: 1002
+  account_id: 1
   title: Finance Department New Hires
   description: Mandatory materials for all new employees in finanice department
   mandatory: true
@@ -21,6 +23,7 @@ three:
 # ==== REAL: Eating our own dog food =====
 angular:
   id: 2001
+  account_id: 1
   title: Learn AngularJS
   description: Practical sources for learning AngularJS framework
   mandatory: false

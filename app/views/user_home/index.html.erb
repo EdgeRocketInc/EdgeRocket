@@ -1,7 +1,7 @@
 <div class="col-lg-6">
 	<div class="panel panel-info">
     <div class="panel-heading"><%= @account ? @account.company_name : 'Unknown Company' =%> - Home page</div>
- 		<div class="panel-body">Panel content</div>
+ 		<div class="panel-body">Welcome!</div>
 	</div>
 </div>
 <div class="col-lg-6">
@@ -14,18 +14,18 @@
 	<div class="panel panel-info">
  		<div class="panel-heading">Playlists</div>
     <div class="panel-body">
-			<% if @my_playlists == nil || @my_playlists.length <= 0 %>
+			<% if @playlists == nil || @playlists.length <= 0 %>
 				<span class="label label-warning">No Playlists</span>
 			<% else %> 
 				<table class="table table-condensed table-hover">
 				<tbody>
-			     	<% @my_playlists.each { |pl| %>
+			     	<% @playlists.each { |pl| %>
 					<tr>
 						<td width="40%">
 							<div><%= link_to pl.title =%></div>
 							<%= pl.description =%>
 						</td>
-            <td width="10%"><!-- TODO --></td>
+            <td width="10%"><%= pl.subscribed ? 'Subscribed' : 'Subscribe' =%></td>
 					</tr>
 			     	<% } %>
 				</tbody>

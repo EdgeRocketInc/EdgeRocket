@@ -8,6 +8,10 @@ class UserHomeController < ApplicationController
     @account = u.account
 
     # --- Playlists section
-    @my_playlists = u.account ? Playlist.all_for_company(u.account.id) : nil
+    @playlists = @account ? @account.playlists : nil
+    @playlists.each { |pl|
+      pl.calc_fields
+    }
+
   end
 end
