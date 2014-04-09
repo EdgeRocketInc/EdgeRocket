@@ -8,6 +8,7 @@ one:
 two:
   id: 2000
   name: Udacity
+  logo_file_name: udacity.png
 
 three:
   id: 3000
