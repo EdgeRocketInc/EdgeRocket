@@ -9,9 +9,9 @@
 Account.create(id: 1, company_name: 'EdgeRocket, Inc.')
 
 # Vendors should be populated by DBA/developers
-Vendor.create(id: 1, name: 'Coursera')
-Vendor.create(id: 2, name: 'Youtube')
-Vendor.create(id: 3, name: 'Udemy')
+Vendor.create(id: 1, name: 'Coursera', logo_file_name: 'coursera-logo.png' )
+Vendor.create(id: 2, name: 'Youtube', logo_file_name: 'you_tube.png' )
+Vendor.create(id: 3, name: 'Udemy', logo_file_name: 'logo_udemy.png' )
 Vendor.create(id: 4, name: 'Blog')
 
 User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: 1)

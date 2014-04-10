@@ -3,14 +3,14 @@
 one:
   id: 2001
   name: Introduction to Java Course
-  vendor_id: 1000
+  vendor_id: 3
   authors: Adam Smith, Jimmy Carter
   origin: https://www.khanacademy.org/
 
 two:
   id: 2002
   name: Presentation Skills Training
-  vendor_id: 2000
+  vendor_id: 1
   authors: Tolstoy, Dostoyevsky
   origin: https://www.udacity.org/
 
@@ -18,6 +18,7 @@ two:
 three:
   id: 2003
   name: Intro to Cloud Computing
+  vendor_id: 2000
 
 four:
   id: 2004
@@ -26,14 +27,14 @@ four:
 five:
   id: 2005
   name: The Analytics Edge
-  vendor_id: 2000
+  vendor_id: 1
   authors: Joe Doe
   origin: https://www.udacity.org/
 
 six:
   id: 2006
   name: Exploratory Data Science
-  vendor_id: 1000
+  vendor_id: 1
   authors: Andy Brewer
   origin: https://www.khanacademy.org/
 
