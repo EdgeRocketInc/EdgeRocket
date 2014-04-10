@@ -1,7 +1,7 @@
-<div class="col-lg-6">
+<div class="col-lg-6" ng-controller="IndexCtrl">
 	<div class="panel panel-info">
     <div class="panel-heading"><%= @account ? @account.company_name : 'Unknown Company' =%> - Home page</div>
- 		<div class="panel-body">Welcome!</div>
+    <div class="panel-body">Welcome!</div>
 	</div>
 </div>
 <div class="col-lg-6">
@@ -22,7 +22,9 @@
 			     	<% @playlists.each { |pl| %>
 					<tr>
             <td width="5%">
-              <button type="button" class="btn btn-xs <%= pl.subscribed ? 'btn-danger' : 'btn-success' =%>">
+              <button type="button" 
+                class="btn btn-xs <%= pl.subscribed ? 'btn-danger' : 'btn-success' =%>"
+                ng-click="togglePlaylistSubsciption()">
                 <span class="glyphicon glyphicon-<%= pl.subscribed ? 'minus' : 'plus' =%>"></span>
               </button>
             </td>
