@@ -4,7 +4,7 @@ class UserHomeController < ApplicationController
   def index
     u = User.find_by_email(current_user.email)
 
-    # --- Compnay section
+    # --- Company section
     @account = u.account
 
     # --- Playlists section
