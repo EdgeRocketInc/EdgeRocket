@@ -21,11 +21,15 @@
 				<tbody>
 			     	<% @playlists.each { |pl| %>
 					<tr>
-						<td width="40%">
+            <td width="5%">
+              <button type="button" class="btn btn-xs <%= pl.subscribed ? 'btn-danger' : 'btn-success' =%>">
+                <span class="glyphicon glyphicon-<%= pl.subscribed ? 'minus' : 'plus' =%>"></span>
+              </button>
+            </td>
+						<td width="60%">
 							<div><%= link_to pl.title =%></div>
 							<%= pl.description =%>
 						</td>
-            <td width="10%"><%= pl.subscribed ? 'Subscribed' : 'Subscribe' =%></td>
 					</tr>
 			     	<% } %>
 				</tbody>

@@ -7,10 +7,22 @@ class Playlist < ActiveRecord::Base
   attr_accessor :percent_complete
   attr_accessor :subscribed
 
-  def calc_fields
+  def calc_percent_complete
     # TODO make it right
     self.percent_complete = 33.0
-    self.subscribed = true
+  end
+
+  # figure out if this playlist is sibscibed by a given user
+  def calc_subscribed(user_id)
+    self.subscribed = false
+    if self.users
+      for u in self.users
+        if u.id == user_id 
+          self.subscribed = true
+          break
+        end
+      end
+    end
   end
 
   def self.all_for_company(company_id)

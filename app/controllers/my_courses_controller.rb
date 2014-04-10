@@ -30,7 +30,7 @@ class MyCoursesController < ApplicationController
     # --- Playlists section
     @my_playlists = u.playlists
     @my_playlists.each { |pl|
-      pl.calc_fields
+      pl.calc_percent_complete
     }
 
     # --- Budget section

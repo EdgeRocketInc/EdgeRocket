@@ -12,6 +12,14 @@ three:
   playlist_id: 1001
   user_id: 2
 
+four:
+  playlist_id: 2001
+  user_id: 102
+
+five:
+  playlist_id: 1001
+  user_id: 101
+
 # ==== REAL: Eating our own dog food =====
 
 angular_alexey_1:

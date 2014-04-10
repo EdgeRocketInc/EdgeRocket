@@ -9,9 +9,12 @@ class UserHomeController < ApplicationController
 
     # --- Playlists section
     @playlists = @account ? @account.playlists : nil
-    if @playlist
+
+    if @playlists
+      # find out if each playlist is subscribed by this user, and store that
+      # inside the playlist
       @playlists.each { |pl|
-        pl.calc_fields
+        pl.calc_subscribed(u.id)
       }
     end
 

@@ -16,8 +16,16 @@ two:
 
 three:
   id: 1003
+  account_id: 2
   title: Advanced Cloud for IT
-  description: A good list of reources in anyone in IT department
+  description: A good list of resources in anyone in IT department
+  mandatory: false
+
+four:
+  id: 1004
+  account_id: 1
+  title: Advanced Java 8
+  description: A good list of the latest Java version for developers
   mandatory: false
 
 # ==== REAL: Eating our own dog food =====

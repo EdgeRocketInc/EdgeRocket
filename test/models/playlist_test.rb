@@ -17,7 +17,21 @@ class PlaylistTest < ActiveSupport::TestCase
 
   test "calculate internal fields" do
     pl = Playlist.first
-    pl.calc_fields
+    pl.calc_percent_complete
     assert pl.percent_complete.to_i > 0, 'wrong calculation'
   end
+
+  test "calculate subscriptions" do
+    pl1 = Playlist.find(2001)
+    assert pl1.subscribed == nil, 'scubsciption should be unknown'
+    pl1.calc_subscribed(101)
+    assert pl1.subscribed == false, 'wrong subscription 1'
+    pl1.calc_subscribed(102)
+    assert pl1.subscribed == true, 'wrong subscription 2'
+
+    pl2 = Playlist.find(1001)
+    pl2.calc_subscribed(101)
+    assert pl2.subscribed == true, 'wrong subscription 3'
+ end
+
 end
