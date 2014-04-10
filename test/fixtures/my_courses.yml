@@ -104,4 +104,10 @@ alexey_angular_1:
   completion_date: 2014-04-09
   assigned_by: Self
 
- 
+alexey_angular_2:
+  user_id: 3
+  product_id: 3002
+  status: WIP
+  percent_complete: 1.00
+  assigned_by: Self
+

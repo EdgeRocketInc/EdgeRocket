@@ -44,3 +44,10 @@ angular_1:
   authors: Dan Wahlin
   vendor_id: 2
   origin: http://youtu.be/tnXO-i7944M
+
+angular_2:
+  id: 3002
+  name: Getting Started with AngularJS and Rails 4
+  authors: Jason Swett
+  vendor_id: 4
+  origin: http://www.honeybadger.io/blog/2013/12/11/beginners-guide-to-angular-js-rails

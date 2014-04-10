@@ -12,6 +12,7 @@ Account.create(id: 1, company_name: 'EdgeRocket, Inc.')
 Vendor.create(id: 1, name: 'Coursera')
 Vendor.create(id: 2, name: 'Youtube')
 Vendor.create(id: 3, name: 'Udemy')
+Vendor.create(id: 4, name: 'Blog')
 
 User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: 1)
 User.create(id: 1, email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: 1)

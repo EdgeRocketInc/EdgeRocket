@@ -9,9 +9,11 @@ class UserHomeController < ApplicationController
 
     # --- Playlists section
     @playlists = @account ? @account.playlists : nil
-    @playlists.each { |pl|
-      pl.calc_fields
-    }
+    if @playlist
+      @playlists.each { |pl|
+        pl.calc_fields
+      }
+    end
 
   end
 end

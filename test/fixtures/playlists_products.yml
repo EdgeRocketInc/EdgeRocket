@@ -8,9 +8,13 @@ two:
   playlist_id: 1001
   product_id: 200
   
-# ==== REAL: Eating our own dog food =====2
+# ==== REAL: Eating our own dog food =====
 
 angular_1:
-  playlist_id: 3001
-  product_id: 2001
- 
+  playlist_id: 2001
+  product_id: 3001
+    
+angular_2:
+  playlist_id: 2001
+  product_id: 3002
+  
