@@ -35,7 +35,12 @@
                 <%= image_tag(c.product.vendor.logo_file_name, width: '20px') if c.product && c.product.vendor =%>
                 <%= c.product.vendor.name if c.product && c.product.vendor =%>
               </td>
-		  				<td width="10%">Assigned by <%= c.assigned_by =%></td>
+              <td width="5%">
+                <% if c.assigned_by.casecmp('Self') != 0 %>
+                  <span class="glyphicon glyphicon-exclamation-sign" 
+                    data-toggle="tooltip" title="Assigned by <%= c.assigned_by =%>"></span>
+                <% end %>
+              </td>
               <td width="10%">
                 <div class="course-progress progress">
                   <div class="progress-bar progress-bar-success" role="progressbar" 
