@@ -36,7 +36,7 @@
                 <%= c.product.vendor.name if c.product && c.product.vendor =%>
               </td>
               <td width="5%">
-                <% if c.assigned_by.casecmp('Self') != 0 %>
+                <% if !c.assigned_by.blank? && c.assigned_by.casecmp('Self') != 0 %>
                   <span class="glyphicon glyphicon-exclamation-sign" 
                     data-toggle="tooltip" title="Assigned by <%= c.assigned_by =%>"></span>
                 <% end %>
