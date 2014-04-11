@@ -3,5 +3,7 @@
   <div class="row" ng-repeat="post in data.posts">
       <h2>{{ post.title }}</h2>
       <p>{{ post.contents }}</p>
-  </div>
+    </div>
+
+    <button input="button" style="font-size:{{ fsize }}" ng-click="myToggle($event)">Toggle</button>
 </div>
