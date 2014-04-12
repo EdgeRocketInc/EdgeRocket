@@ -23,15 +23,11 @@ class PlaylistTest < ActiveSupport::TestCase
 
   test "calculate subscriptions" do
     pl1 = Playlist.find(2001)
-    assert pl1.subscribed == nil, 'scubsciption should be unknown'
-    pl1.calc_subscribed(101)
-    assert pl1.subscribed == false, 'wrong subscription 1'
-    pl1.calc_subscribed(102)
-    assert pl1.subscribed == true, 'wrong subscription 2'
+    assert pl1.subscribed?(101) == false, 'wrong subscription 1'
+    assert pl1.subscribed?(102) == true, 'wrong subscription 2'
 
     pl2 = Playlist.find(1001)
-    pl2.calc_subscribed(101)
-    assert pl2.subscribed == true, 'wrong subscription 3'
+    assert pl2.subscribed?(101) == true, 'wrong subscription 3'
  end
 
 end

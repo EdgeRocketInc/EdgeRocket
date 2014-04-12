@@ -10,13 +10,30 @@ class UserHomeController < ApplicationController
     # --- Playlists section
     @playlists = @account ? @account.playlists : nil
 
+    @subscribed_playlists = Hash.new()
+
     if @playlists
       # find out if each playlist is subscribed by this user, and store that
-      # inside the playlist
+      # inside a hash
       @playlists.each { |pl|
-        pl.calc_subscribed(u.id)
+        if pl.subscribed?(u.id)
+          @subscribed_playlists[pl.id] = true
+        end
+      }
+    end
+
+    respond_to do |format|
+      format.html 
+      format.json { 
+        # combine all aobject into one JSON result
+        json_result = Hash.new()
+        json_result['account'] = @account
+        json_result['playlists'] = @playlists
+        json_result['subscribed_playlists'] = @subscribed_playlists
+        render json: json_result.as_json 
       }
     end
 
   end
+
 end

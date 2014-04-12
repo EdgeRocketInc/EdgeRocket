@@ -1,6 +1,7 @@
-<div class="col-lg-6" ng-controller="IndexCtrl">
+<div ng-controller="IndexCtrl">
+<div class="col-lg-6">
 	<div class="panel panel-info">
-    <div class="panel-heading"><%= @account ? @account.company_name : 'Unknown Company' =%> - Home page</div>
+    <div class="panel-heading">{{ data.account['company_name'] }} - Home page</div>
     <div class="panel-body">Welcome!</div>
 	</div>
 </div>
@@ -13,31 +14,29 @@
 <div class="col-lg-6">
 	<div class="panel panel-info">
  		<div class="panel-heading">Playlists</div>
-    <div class="panel-body">
-			<% if @playlists == nil || @playlists.length <= 0 %>
-				<span class="label label-warning">No Playlists</span>
-			<% else %> 
-				<table class="table table-condensed table-hover">
+    <div class="panel-body"> 
+      <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
+			<table class="table table-condensed table-hover">
 				<tbody>
-			     	<% @playlists.each { |pl| %>
-					<tr>
-            <td width="5%">
-              <button type="button" 
-                class="btn btn-xs <%= pl.subscribed ? 'btn-danger' : 'btn-success' =%>"
-                ng-click="togglePlaylistSubsciption()">
-                <span class="glyphicon glyphicon-<%= pl.subscribed ? 'minus' : 'plus' =%>"></span>
-              </button>
+  				<tr ng-repeat="pl in data.playlists">
+            <td width="5%"">
+              <span class="glyphicon glyphicon-{{ glyphSubscribed[$index] }}"></span>
             </td>
 						<td width="60%">
-							<div><%= link_to pl.title =%></div>
-							<%= pl.description =%>
+              <div>{{ pl.title }}</div>
+              {{ pl.description }}
 						</td>
+            <td width="5%">
+              <button id="{{ pl.id }}" type="button" 
+                class="btn btn-xs {{ btnSubscribedClass[$index] }}"
+                ng-click="togglePlaylistSubsciption($index)">
+                <span class="glyphicon glyphicon-{{ glyphAction[$index] }}"></span>
+              </button>
+            </td>
 					</tr>
-			     	<% } %>
-				</tbody>
+  			</tbody>
 			</table>
-			<% end %>
-    </div>
+   </div>
 	</div>
 </div>
 <div class="col-lg-6">
@@ -48,4 +47,4 @@
 		</div>
 	</div>
 </div>
-
+</div>

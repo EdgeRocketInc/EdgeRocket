@@ -23,6 +23,15 @@ textarea {
   margin-bottom: 10px;
 }
 
+.red {
+  color: red;
+}
+
+.green {
+  color: rgb(40, 184, 40);
+}
+
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
