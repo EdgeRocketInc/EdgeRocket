@@ -36,7 +36,7 @@ class MyCoursesController < ApplicationController
     # --- Budget section
     @account = u.account
     if @account && @account.budget_management == true
-      @budget = u.budget
+     @budget = u.budget
     end
   end
 end

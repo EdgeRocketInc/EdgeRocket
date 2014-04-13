@@ -2,6 +2,8 @@ EdgeApp::Application.routes.draw do
 
   get "my_courses" => 'my_courses#index'
   get "user_home" => 'user_home#index'
+  post "course_subscription" => 'user_home#subscribe'
+  delete "course_subscription/:id" => 'user_home#unsubscribe'
   devise_for :users
    
   # The priority is based upon order of creation: first created -> highest priority.

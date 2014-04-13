@@ -29,4 +29,7 @@ EdgeApp::Application.configure do
 
   # this is for Devise
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  # Disable request forgery protection in development environment.
+  config.action_controller.allow_forgery_protection = false
 end

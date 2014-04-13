@@ -32,13 +32,34 @@
     console.log('click index ' + index + ' subscirbed[i] = ' + $scope.isSubscribed[index] )
     if $scope.isSubscribed[index] == true
       $scope.isSubscribed[index] = false
+      deleteSubscription($scope.data.playlists[index].id)
       console.log('changed to false' )
     else      
       $scope.isSubscribed[index] = true
-      console.log('changed to true' )
+      createSubscription($scope.data.playlists[index].id)
+      console.log('changed pl.id=' + $scope.data.playlists[index].id + ' to true' )
     # TODO this is crazy but I can't make it work otherwise
     $scope.glyphAction[index] = if $scope.glyphAction[index] == 'remove-sign red' then 'plus-sign green' else 'remove-sign red'
     $scope.glyphSubscribed[index] = if $scope.glyphSubscribed[index] == 'ok-sign' then '' else 'ok-sign'
 
  
+  createSubscription = (playlistId) ->
+    # Create data object to POST and send a request
+    data =
+      playlist_id: playlistId
+
+    $http.post('/course_subscription.json', data).success( (data) ->
+      console.log('Successfully created subscription')
+    ).error( ->
+      console.error('Failed to create new subscription')
+    )
+    return true
+
+  deleteSubscription = (playlistId) ->
+    $http.delete('/course_subscription/' + playlistId + '.json').success( (data) ->
+      console.log('Successfully deleted subscription')
+    ).error( ->
+      console.error('Failed to delete new subscription')
+    )
+    return true
 
