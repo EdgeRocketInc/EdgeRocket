@@ -1,6 +1,7 @@
 @IndexCtrl = ($scope, $location, $http) ->
   $scope.data = 
     posts: [{title: 'Loading posts...', contents: ''}]
+  $scope.btnToggle = 'True'
 
   loadPosts = ->
     $http.get('/posts.json').success( (data) ->
@@ -17,6 +18,6 @@
 
   $scope.fsize = '12px'
 
-  $scope.myToggle = ($event) ->
-    $scope.fsize = if $scope.fsize == '12px' then '16px' else '12px'
+  $scope.myToggle = () ->
+    $scope.btnToggle = if $scope.btnToggle == 'True' then 'False' else 'True'
  
