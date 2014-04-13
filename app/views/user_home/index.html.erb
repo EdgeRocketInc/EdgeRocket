@@ -16,22 +16,21 @@
  		<div class="panel-heading">Playlists</div>
     <div class="panel-body"> 
       <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
-			<table class="table table-condensed table-hover">
+			<table class="table table-condensed">
 				<tbody>
   				<tr ng-repeat="pl in data.playlists">
             <td width="5%"">
               <span class="glyphicon glyphicon-{{ glyphSubscribed[$index] }}"></span>
             </td>
 						<td width="60%">
-              <div>{{ pl.title }}</div>
+              <div class="text-warning">{{ pl.title }}</div>
               {{ pl.description }}
 						</td>
             <td width="5%">
-              <button id="{{ pl.id }}" type="button" 
-                class="btn btn-xs {{ btnSubscribedClass[$index] }}"
+              <a id="{{ pl.id }}" href 
                 ng-click="togglePlaylistSubsciption($index)">
                 <span class="glyphicon glyphicon-{{ glyphAction[$index] }}"></span>
-              </button>
+              </a>
             </td>
 					</tr>
   			</tbody>

@@ -29,14 +29,16 @@
   loadPlaylists()  
 
   $scope.togglePlaylistSubsciption = (index) ->
+    console.log('click index ' + index + ' subscirbed[i] = ' + $scope.isSubscribed[index] )
     if $scope.isSubscribed[index] == true
       $scope.isSubscribed[index] = false
-      $scope.glyphAction[index] = 'remove-sign red'
-      $scope.glyphSubscribed[index] = 'ok-sign'
+      console.log('changed to false' )
     else      
       $scope.isSubscribed[index] = true
-      $scope.glyphAction[index] = 'plus-sign green'
-      $scope.glyphSubscribed[index] = ''
+      console.log('changed to true' )
+    # TODO this is crazy but I can't make it work otherwise
+    $scope.glyphAction[index] = if $scope.glyphAction[index] == 'remove-sign red' then 'plus-sign green' else 'remove-sign red'
+    $scope.glyphSubscribed[index] = if $scope.glyphSubscribed[index] == 'ok-sign' then '' else 'ok-sign'
 
  
 
