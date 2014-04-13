@@ -1,7 +1,19 @@
-@IndexCtrl = ($scope) ->
+@IndexCtrl = ($scope, $location, $http) ->
   $scope.data = 
-    posts: [{title: 'My first post', contents: 'Lorem ipsum dolor sit amet'}, 
-    {title: 'A walk down memory lane', contents: 'consectetur adipiscing elit'}]
+    posts: [{title: 'Loading posts...', contents: ''}]
+
+  loadPosts = ->
+    $http.get('/posts.json').success( (data) ->
+      $scope.data.posts = data
+      console.log('successfull loaded posts')
+    ).error( ->
+      console.log('error loading posts')
+    )
+
+  loadPosts()
+
+  $scope.viewPost = (postId) ->
+    $location.url('/post/'+postId)
 
   $scope.fsize = '12px'
 
