@@ -20,8 +20,8 @@ module EdgeApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     
-    # need for Twitter bootstrap
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif superhero.js superhero.css)
+    # need for Twitter bootstrap and AngularJS
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif superhero.js superhero.css main.js)
     config.assets.compile = true
 
     # need for Devise
