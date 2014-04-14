@@ -69,3 +69,4 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     )
     return true
 
+@IndexCtrl.$inject = ['$scope', '$http']
