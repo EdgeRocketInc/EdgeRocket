@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-lg-3" ng-repeat="crs in courses | filter:searchText">
       <div class="well well-sm">
-        <!-- TODO <img src="" width='30px'> -->
+        <img src="{{ crs.logo_asset_url }}" width='30px'>
         <div class="text-warning">{{ crs.pname }}</div>
         <div class="">{{ crs.authors }}</div>
         <div class=""><!-- school --></div>
