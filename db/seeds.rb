@@ -12,7 +12,7 @@ Account.create(id: 1, company_name: 'EdgeRocket, Inc.')
 Vendor.create(id: 1, name: 'Coursera', logo_file_name: 'coursera-logo.png' )
 Vendor.create(id: 2, name: 'Youtube', logo_file_name: 'you_tube.png' )
 Vendor.create(id: 3, name: 'Udemy', logo_file_name: 'logo_udemy.png' )
-Vendor.create(id: 4, name: 'Blog')
+Vendor.create(id: 4, name: 'Blog', logo_file_name: 'universal-blog-icon.png' )
 
 User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: 1)
 User.create(id: 1, email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: 1)

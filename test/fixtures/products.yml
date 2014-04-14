@@ -23,6 +23,7 @@ three:
 four:
   id: 2004
   name: Project Management
+  vendor_id: 1
 
 five:
   id: 2005

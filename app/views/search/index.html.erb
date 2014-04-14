@@ -1,0 +1,23 @@
+<div class="container-fluid" ng-controller="SearchCtrl">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group well well-sm">
+        <span class="input-group-addon">Filter: </span>
+        <input type="text" class="form-control" placeholder="" ng-model="searchText.pname" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3" ng-repeat="crs in courses | filter:searchText">
+      <div class="well well-sm">
+        <img src="/assets/{{ crs.logo_file_name }}" width='20px'>
+        <div class="text-warning">{{ crs.pname }}</div>
+        <div class="">{{ crs.authors }}</div>
+        <div class=""><!-- school --></div>
+        <div class="">{{ crs.price }}</div>
+        <div class=""><!-- Rating --></div>
+      </div>
+    </div>
+  </div>
+</div>
+

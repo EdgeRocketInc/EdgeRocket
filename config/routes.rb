@@ -1,5 +1,6 @@
 EdgeApp::Application.routes.draw do
 
+  get 'search' => 'search#index'
   get "my_courses" => 'my_courses#index'
   get "user_home" => 'user_home#index'
   post "course_subscription" => 'user_home#subscribe'
@@ -25,7 +26,6 @@ EdgeApp::Application.routes.draw do
   resources :playlists
 
   # STUBS FOR FUTURE ROUTES
-  get 'search' => 'search#index'
   get 'plans' => 'plans#index'
   get 'teams' => 'teams#index'
   get 'corp_home' => 'corp_home#index'
