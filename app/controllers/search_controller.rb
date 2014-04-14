@@ -5,6 +5,11 @@ class SearchController < ApplicationController
   def index
     prd = Product.search_courses(nil)
 
+    # TODO
+    #prd.each { |p|
+    #  p['logo_asset_url'] = image_path(p['logo_file_name'])
+    #}
+
     respond_to do |format|
       format.html 
       format.json { 
