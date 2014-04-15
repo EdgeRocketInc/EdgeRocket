@@ -12,6 +12,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   loadCourses =  ->
     $http.get('/search.json').success( (data) ->
+      # chunk data into rows for iterating on the page
       r = 0
       c = 0
       for item in data
