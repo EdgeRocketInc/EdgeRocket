@@ -24,6 +24,10 @@ textarea {
   color: red;
 }
 
+.yellow {
+  color: yellow;
+}
+
 .green {
   color: rgb(40, 184, 40);
 }
@@ -66,11 +70,11 @@ div.progress {
   background-color: white;
 }
 
-// Links inside tables
+// Links for courses
 // TODO: figure how not to use !important
 
-table a {
-  color: #F5C879 !important;
+.course-link {
+  color: #FFD58B !important;
   text-decoration: none !important;
 }
 

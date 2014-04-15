@@ -1,90 +1,107 @@
-<div class="col-lg-12">
+<div class="container-fluid">
+
   <% if @account && @account.budget_management == true %>
-    <div class="panel panel-info">
-  		<div class="panel-body">My Budget
-			  <div class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="<%= @budget ? @budget.percent_used : 0 =%>" 
-            aria-valuemin="0" aria-valuemax="100" style="width: <%= @budget ? @budget.percent_used : 0 =%>%;">0
-				  </div>
-			  </div>
-	    </div>
-	  </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-info">
+      		<div class="panel-body">My Budget
+			      <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="<%= @budget ? @budget.percent_used : 0 =%>" 
+                aria-valuemin="0" aria-valuemax="100" style="width: <%= @budget ? @budget.percent_used : 0 =%>%;">0
+				      </div>
+			      </div>
+	        </div>
+	      </div>
+      </div>
+    </div>
   <% end %>
-</div>
-<div class="col-lg-12">
-	<div class="panel panel-info">
-  		<div class="panel-heading">My Courses</div>
-  		<div class="panel-body">
-			<% if @course_groups.length <= 0 %>
-				<span class="label label-warning">No Courses</span>
-			<% else 
-			     @course_groups.each { |status,cg|
-			%>
-			<table class="table table-condensed table-hover">
-				<thead>
-					<tr>
-						<th class="<%= (status == 'Completed') ? 'success' : 'info' =%>" colspan="5"><%= status =%></th>
-					</tr>
-				</thead>
-				<tbody>
-					<% cg.each { |c| %>
-						<tr>
-              <td width="40%">
-                <%= link_to(c.product.name, c.product.origin, :target => '_blank') if c.product =%></td>
-              <td width="20%">
-                <%= image_tag(c.product.vendor.logo_file_name, width: '20px') if c.product && c.product.vendor =%>
-                <%= c.product.vendor.name if c.product && c.product.vendor =%>
-              </td>
-              <td width="5%">
-                <% if !c.assigned_by.blank? && c.assigned_by.casecmp('Self') != 0 %>
-                  <span class="glyphicon glyphicon-exclamation-sign" 
-                    data-toggle="tooltip" title="Assigned by <%= c.assigned_by =%>"></span>
-                <% end %>
-              </td>
-              <td width="10%">
-                <div class="course-progress progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" 
-                      aria-valuenow="<%= c.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= c.percent_complete.to_i =%>%;">
-						          <span class="sr-only"><%= c.percent_complete.to_i =%>% Complete</span>
-    					    </div>
+
+  <!-- SECTION -->
+
+  <div class="row">
+    <div class="col-lg-12">
+	    <div class="panel panel-info">
+  		  <div class="panel-heading">My Courses</div>
+        <div class="panel-body">
+
+			    <% if @course_groups.length <= 0 %>
+				    <span class="label label-warning">No Courses</span>
+          <% else 
+			      @course_groups.each { |status,cg| %>
+			        <div class="row voffset2">
+                <div class="col-md-12 bg-<%= (status == 'Completed') ? 'success' : 'info' =%>"><%= status =%></div>
+              </div>
+
+		          <% cg.each { |c| %>
+                <div class="row voffset2">
+                  <div class="col-md-5">
+                    <%= link_to(c.product.name, c.product.origin, :class => "course-link", :target => '_blank') if c.product =%>
+                  </div>
+                  <div class="col-md-2">
+                    <%= image_tag(c.product.vendor.logo_file_name, width: '20px') if c.product && c.product.vendor =%>
+                    <%= c.product.vendor.name if c.product && c.product.vendor =%>
+                  </div>
+                  <div class="col-md-1">
+                    <% if !c.assigned_by.blank? && c.assigned_by.casecmp('Self') != 0 %>
+                      <span class="glyphicon glyphicon-exclamation-sign yellow" 
+                        data-toggle="tooltip" title="Assigned by <%= c.assigned_by =%>">
+                      </span>
+                    <% end %>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="course-progress progress">
+                      <div class="progress-bar progress-bar-success" role="progressbar" 
+                        aria-valuenow="<%= c.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" 
+                        style="width: <%= c.percent_complete.to_i =%>%;">
+						            <span class="sr-only"><%= c.percent_complete.to_i =%>% Complete</span>
+    					        </div>
+                    </div>
+                  </div>
+						      <div class="col-md-2">
+                    <%= c.completion_date.strftime("%F") if c.completion_date =%>
+                  </div>
                 </div>
-              </td>
-						  <td><%= c.completion_date.strftime("%F") if c.completion_date =%></td>
-						</tr>
-					<% } %>
-				</tbody>
+					    <% } %>
+  			  <% } end %>
 
-			</table>
-			<% } end %>
-		</div>
-	</div>
-</div>
-<div class="col-lg-12">
-	<div class="panel panel-info">
-  		<div class="panel-heading">My Playlists</div>
-  		<div class="panel-body">
-			<% if @my_playlists.length <= 0 %>
-				<span class="label label-warning">No Playlists</span>
-			<% else %> 
-				<table class="table table-condensed table-hover">
-				<tbody>
-			     	<% @my_playlists.each { |pl| %>
-					<tr>
-						<td width="40%">
-							<div><%= link_to pl.title =%></div>
-							<%= pl.description =%>
-						</td>
-						<td width="10%"><div class="course-progress progress">
-						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= pl.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" style="width: <%= pl.percent_complete.to_i =%>%;">
-						    <span class="sr-only"><%= pl.percent_complete.to_i =%>% Complete</span>
-						  </div>
-						</div></td>
-					</tr>
-			     	<% } %>
-				</tbody>
-			</table>
-			<% end %>
-		</div>
-	</div>
-</div>
+		    </div>
+	    </div>
+    </div>
+  </div>
 
+  <!-- SECTION -->
+
+  <div class="row">
+    <div class="col-lg-12">
+	    <div class="panel panel-info">
+  		  <div class="panel-heading">My Playlists</div>
+  		  <div class="panel-body">
+			    <% if @my_playlists.length <= 0 %>
+				    <span class="label label-warning">No Playlists</span>
+			    <% else %> 
+		     	  <% @my_playlists.each { |pl| %>
+					    <div class="row voffset2">
+						    <div class="col-md-5">
+							    <div><%= link_to(pl.title, '#', :class => "course-link") =%></div>
+							    <%= pl.description =%>
+						    </div>
+  						  <div class="col-md-2">
+                  <div class="course-progress progress voffset3">
+                    <div class="progress-bar progress-bar-success" role="progressbar" 
+                      aria-valuenow="<%= pl.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" 
+                      style="width: <%= pl.percent_complete.to_i =%>%;">
+						          <span class="sr-only"><%= pl.percent_complete.to_i =%>% Complete</span>
+						        </div>
+                  </div>
+                </div>
+					    </div>
+			      <% } %>
+			    <% end %>
+		    </div>
+	    </div>
+    </div>
+  </div>
+
+  <!-- SECTION -->
+
+</div>
