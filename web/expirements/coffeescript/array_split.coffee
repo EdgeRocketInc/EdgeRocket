@@ -1,13 +1,15 @@
-items = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+# chunking an array for Angular client side
+
+items = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j']
 rows = [0]
 rowItems = []
 rowItems[0] = []
 r = 0
 c = 0
 
-for item, i in items
+for item in items
     rowItems[r][c] = item
-    if (i % 4 == 0) 
+    if (c >= 3) 
         r++
         rowItems[r] = []
         rows[r] = r
