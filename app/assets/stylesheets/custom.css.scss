@@ -4,9 +4,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-}
-
 section {
   overflow: auto;
 }
@@ -31,6 +28,9 @@ textarea {
   color: rgb(40, 184, 40);
 }
 
+.bottom0 {
+  margin-bottom: 0px;
+}
 
 // make all images responsive by default
 img {
