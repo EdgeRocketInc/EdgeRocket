@@ -12,4 +12,5 @@
 #= require_tree ./directives/global
 #= require_tree ./directives/main
 
-Blog = angular.module('Blog', [])
+Blog = angular.module('Blog', ['angularCharts'])
+#Blog = angular.module('Blog', [])
