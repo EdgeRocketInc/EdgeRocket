@@ -4,3 +4,6 @@
 #
 #= require_self
 #= require_tree ./ng
+
+# later if needed include 
+# require d3
