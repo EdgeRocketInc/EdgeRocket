@@ -13,4 +13,3 @@
 #= require_tree ./directives/main
 
 Blog = angular.module('Blog', ['angularCharts'])
-#Blog = angular.module('Blog', [])
