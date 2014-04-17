@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 #= require_self
-#= require_tree ./ng/search
-
-# later if needed include 
-# require d3
+#= require_tree ./ng/dashboards
+#= require d3
+#= require angular-charts
