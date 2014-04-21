@@ -7,8 +7,7 @@ class DashboardsController < ApplicationController
   def show
 	@users = { 
 		:total_count => User.count, 
-		:num_admins => 0, # TODO
-		:num_standard => User.count
+		:num_admins => Role.count("name in ('Admin', 'SA')")
 	}
 
 	authorize! :manage, :all
