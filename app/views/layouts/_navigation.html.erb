@@ -10,13 +10,15 @@
         <span class="icon-bar"></span>
       </button>
       <%= link_to image_tag('ER_final_logo-crop-224x43.png', alt: 'My EdgeRocket homepage', width: '100px'), 'user_home', class: 'navbar-brand' =%>
-      <a href="user_home" class="navbar-brand"><span class="glyphicon glyphicon-home"></span></a>
 	
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li class="<%= 'active' if params[:controller] == 'user_home' %>">
+          <%= link_to("Home", controller: "user_home", action: "index") =%>
+        </li>
         <li class="<%= 'active' if params[:controller] == 'my_courses' %>">
           <%= link_to("My Courses", controller: "my_courses", action: "index") =%>
         </li>

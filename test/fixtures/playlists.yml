@@ -24,14 +24,53 @@ three:
 four:
   id: 1004
   account_id: 1
-  title: Advanced Java 8
-  description: A good list of the latest Java version for developers
+  title: Advanced Ruby on Rails
+  description: A good list of Ruby on Rails classes for developers
   mandatory: false
+
+# ==== Persona: TechCorp
+
+TechCorp101:
+  id: 101
+  account_id: 2
+  title: New Hire Training
+  description: Required learning resources for all new hires.
+  mandatory: true
+
+TechCorp102:
+  id: 102
+  account_id: 2
+  title: Advanced Java 8
+  description: A good list of resources about the latest version of Java.
+
+TechCorp103:
+  id: 103
+  account_id: 2
+  title: Learn Angular JS
+  description: Practical resources for learning Angular JS framework.
+
+TechCorp104:
+  id: 104
+  account_id: 2
+  title: User Experience courses
+  description: A collection of expert videos and courses about UX.
+
+TechCorp105:
+  id: 105
+  account_id: 2
+  title: Improve Your Financial Literacy!
+  description: This list of courses provides a solid foundation in finance and accounting. 
+
+TechCorp106:
+  id: 106
+  account_id: 2
+  title: Innovation
+  description: Terrific group of materials on the topic of innovation.
 
 # ==== REAL: Eating our own dog food =====
 angular:
   id: 2001
   account_id: 1
-  title: Learn AngularJS
-  description: Practical sources for learning AngularJS framework
+  title: Angular JS for EdgeRocket developers
+  description: A collection of materials for learning AngularJS framework
   mandatory: false

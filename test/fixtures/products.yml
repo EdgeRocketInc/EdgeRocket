@@ -39,6 +39,91 @@ six:
   authors: Andy Brewer
   origin: https://www.khanacademy.org/
 
+# ==== DEMO: TechCorp 
+
+TechCorp101:
+  id: 101
+  name: Lean Product Management   
+  vendor_id: 5 #Google Ventures
+
+TechCorp102:
+  id: 102
+  name: Presentation Skills Training    
+  vendor_id: 6 #Lynda
+
+TechCorp103:
+  id: 103
+  name: Intro to Cloud Computing    
+  vendor_id: 7 #VTC
+
+TechCorp104:
+  id: 104
+  name: Modern Marketing Workshop   
+  vendor_id: 8 # Skillshare
+
+TechCorp105:
+  id: 105
+  name: Programming for Non-Programmers 
+  vendor_id: 9 # General Assembly
+
+# for demo search 
+
+TechCorp106:
+  id: 106
+  name: Exploratory Data Analysis
+  vendor_id: 2000
+  authors: Dean Eckles
+  keywords: data analysis
+
+TechCorp107:
+  id: 107
+  name: Data Analysis
+  vendor_id: 1
+  authors: Jeff Leek
+  keywords: data analysis
+
+TechCorp108:
+  id: 108
+  name: The Analytics Edge 
+  vendor_id: 10
+  authors: D. Bertsimas
+  keywords: data analysis
+
+TechCorp109:
+  id: 109
+  name: Try R
+  vendor_id: 11
+  authors: Jay McGavren
+  keywords: data analysis
+
+TechCorp110:
+  id: 110
+  name: Core Concepts in Data Analysis
+  vendor_id: 1
+  authors: Boris Mirkin
+  keywords: data analysis
+
+TechCorp111:
+  id: 111
+  name: "David McCandless: The beauty of data visualization"
+  vendor_id: 12
+  authors: David McCandless
+  keywords: data analysis
+
+TechCorp112:
+  id: 112
+  name: Business Analytics 
+  vendor_id: 13
+  authors: Janice Hammond
+  keywords: data analysis
+
+TechCorp113:
+  id: 113
+  name: Introduction to Data Science and Analysis 
+  vendor_id: 9
+  authors: Thomas Nguyen
+  keywords: data analysis
+
 # ==== REAL: Eating our own dog food =====
 angular_1:
   id: 3001

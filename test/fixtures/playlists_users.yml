@@ -20,6 +20,16 @@ five:
   playlist_id: 1001
   user_id: 101
 
+# === DEMO TechCorp
+
+TechCorp101:
+  playlist_id: 101
+  user_id: 10
+
+TechCorp102:
+  playlist_id: 105
+  user_id: 10
+
 # ==== REAL: Eating our own dog food =====
 
 angular_alexey_1:

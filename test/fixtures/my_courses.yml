@@ -20,7 +20,7 @@ three:
   product_id: 2004
   status: Wishlist
 
-# these recordws rely on the user records created in seed.rb
+# these records rely on the user records created in seed.rb
 seed_alexey_1:
   user_id: 3
   product_id: 2002
@@ -93,6 +93,46 @@ seed_peter_5:
   status: Registered
   percent_complete: 70.00
   assigned_by: Manager
+
+# ==== DEMO TechCorp
+
+TechCorp101:
+  user_id: 10
+  product_id: 101
+  status: Completed
+  percent_complete: 100
+  completion_date: 2014-03-26
+  assigned_by: Self
+
+TechCorp102:
+  user_id: 10
+  product_id: 102
+  status: Completed
+  percent_complete: 100
+  completion_date: 2014-04-08
+  assigned_by: Self
+
+TechCorp103:
+  user_id: 10
+  product_id: 103
+  status: WIP
+  percent_complete: 20
+  assigned_by: Self
+
+TechCorp104:
+  user_id: 10
+  product_id: 104
+  status: WIP
+  percent_complete: 70
+  assigned_by: Self
+
+TechCorp105:
+  user_id: 10
+  product_id: 105
+  status: Wishlist
+  percent_complete: 0
+  assigned_by: Self
+
 
 # ==== REAL: Eating our own dog food =====2
 

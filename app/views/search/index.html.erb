@@ -5,7 +5,7 @@
     <div class="col-lg-8">
       <div class="input-group well well-sm">
         <span class="input-group-addon">Filter: </span>
-        <input type="text" class="input-sm form-control" placeholder="" ng-model="searchText.pname" />
+        <input type="text" class="input-sm form-control" placeholder="" ng-model="searchText.$" />
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Select All</span>
           <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Courses</span>
@@ -75,7 +75,7 @@
       <div class="row" ng-repeat="rowNum in rows">
         <div class="col-sm-3" ng-repeat="crs in rowItems[rowNum] | filter:searchText">
           <div class="well well-sm">
-            <img src="{{ crs.logo_asset_url }}" width='30px'>
+            <img src="{{ crs.logo_asset_url }}" class="img-provider-logo">
             <div class="text-warning">{{ crs.pname }}</div>
             <div class="">{{ crs.authors }}</div>
             <div class=""><!-- school --></div>
