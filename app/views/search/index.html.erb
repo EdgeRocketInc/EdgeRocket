@@ -75,12 +75,14 @@
       <div class="row" ng-repeat="rowNum in rows">
         <div class="col-sm-3" ng-repeat="crs in rowItems[rowNum] | filter:searchText">
           <div class="well well-sm">
-            <img src="{{ crs.logo_asset_url }}" class="img-provider-logo">
+            <div class="rating-right"><span class="glyphicon glyphicon-star rating-unknown"></span><!-- Rating --></div>
+            <img src="{{ crs.logo_asset_url }}" class="img-provider-logo"></img>
             <div class="text-warning">{{ crs.pname }}</div>
             <div class="">{{ crs.authors }}</div>
-            <div class=""><!-- school --></div>
-            <div class="">{{ crs.price }}</div>
-            <div class=""><!-- Rating --></div>
+            <div class="">{{ crs.school }}</div>
+            <div class="text-right">
+              <span>{{ crs.price_fmt }}</span></div>
+            <div class=""></div>
           </div>
         </div>
       </div>

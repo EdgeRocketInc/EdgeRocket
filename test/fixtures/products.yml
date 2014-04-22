@@ -6,6 +6,7 @@ one:
   vendor_id: 3
   authors: Adam Smith, Jimmy Carter
   origin: https://www.khanacademy.org/
+  price: 49.99
 
 two:
   id: 2002
@@ -13,7 +14,8 @@ two:
   vendor_id: 1
   authors: Tolstoy, Dostoyevsky
   origin: https://www.udacity.org/
-
+  price: 39.95
+  school: UCLA
 
 three:
   id: 2003
