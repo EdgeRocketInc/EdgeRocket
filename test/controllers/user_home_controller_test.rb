@@ -1,15 +1,33 @@
 require 'test_helper'
 
 class UserHomeControllerTest < ActionController::TestCase
-  test "should get index" do
+  test "should get index html" do
     sign_in User.find(101)
     get :index
+    assert_response :success
+  end
+
+  test "should get index json" do
+    sign_in User.find(101)
+    get :index, :format => 'json'
     assert_response :success
   end
 
   test "should have playlists" do
     sign_in User.find(102)
     get :index
+    assert_response :success
+  end
+
+  test "course subscription" do
+    sign_in User.find(101)
+    post(:subscribe, {playlist_id: '1003', format: 'json'})  
+    assert_response :success
+  end
+
+  test "course unsubscribe" do
+    sign_in User.find(101)
+    delete(:unsubscribe, {id: '1003', format: 'json'})  
     assert_response :success
   end
 
