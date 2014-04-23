@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 #= require_self
+#= require ui-bootstrap-tpls-0.10.0.min
 #= require_tree ./ng/search
 
 # later if needed include 

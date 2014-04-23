@@ -1,3 +1,22 @@
+<!-- Modal Details window -->
+<script type="text/ng-template" id="searchModalDetails.html">
+  <div class="modal-header">
+      <h4>{{ course.pname }}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="rating-right"><span class="glyphicon glyphicon-star rating-unknown"></span><!-- Rating --></div>
+    <img src="{{ course.logo_asset_url }}" class="img-provider-logo"></img>
+    <div class="">{{ course.authors }}</div>
+    <div class="">{{ course.school }}</div>
+    <div class="text-right">
+      <span>{{ course.price_fmt }}</span></div>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="enroll()">Enroll</button>
+      <button class="btn btn-warning" ng-click="cancel()">Close</button>
+  </div>
+</script>
+
 <div class="container-fluid" ng-controller="SearchCtrl">
 
   <div class="row">
@@ -77,7 +96,7 @@
           <div class="well well-sm">
             <div class="rating-right"><span class="glyphicon glyphicon-star rating-unknown"></span><!-- Rating --></div>
             <img src="{{ crs.logo_asset_url }}" class="img-provider-logo"></img>
-            <div class="text-warning">{{ crs.pname }}</div>
+            <div><a class="course-link" href="#" ng-click="openModal(crs)">{{ crs.pname }}</a></div>
             <div class="">{{ crs.authors }}</div>
             <div class="">{{ crs.school }}</div>
             <div class="text-right">

@@ -1,10 +1,10 @@
-EdgeRocket = angular.module('EdgeRocket', [])
+EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap'])
 
 EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-@SearchCtrl = ($scope, $http) ->
+@SearchCtrl = ($scope, $http, $modal) ->
 
   $scope.rows = [0]
   $scope.rowItems = []
@@ -29,6 +29,26 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('Error loading search data')
     )
 
-  loadCourses()  
+  loadCourses()
 
-@SearchCtrl.$inject = ['$scope', '$http']
+  # modal window with course details
+  $scope.openModal = (selectedCourse) ->
+    modalInstance = $modal.open({
+      templateUrl: 'searchModalDetails.html',
+      controller: ModalInstanceCtrl,
+      resolve: 
+        course: -> 
+          selectedCourse
+    })
+
+# controller for modal window
+@ModalInstanceCtrl = ($scope, $modalInstance, course) ->
+  $scope.course = course
+  
+  $scope.enroll = -> 
+    $modalInstance.close('enroll')
+  
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
+
+@SearchCtrl.$inject = ['$scope', '$http', '$modal']
