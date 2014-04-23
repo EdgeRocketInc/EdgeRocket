@@ -21,7 +21,7 @@ module EdgeApp
     # config.i18n.default_locale = :de
     
     # need for Twitter bootstrap and AngularJS
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif superhero.js superhero.css user_home.js angular.js angular-charts.js d3.js search.js dashboards.js ui-bootstrap*.js)
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif superhero.js superhero.css user_home.js angular.js angular-charts.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.10.0.min.js)
     config.assets.compile = true
 
     # need for Devise
