@@ -15,3 +15,4 @@
 //= require superhero/loader
 //= require superhero/bootswatch
 //= require angular
+//= require ui-bootstrap-tpls-0.10.0.min
