@@ -15,3 +15,5 @@
 //= require angular
 //= require d3
 //= require angular-charts
+//= require bootstrap
+//= require ui-bootstrap-tpls
