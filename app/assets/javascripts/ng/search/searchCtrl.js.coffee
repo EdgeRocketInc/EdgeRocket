@@ -33,18 +33,19 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   # modal window with course details
   $scope.openModal = (selectedCourse) ->
+    $scope.course = selectedCourse
     modalInstance = $modal.open({
       templateUrl: 'searchModalDetails.html',
-      controller: ModalInstanceCtrl,
+      controller: ModalInstanceCtrl
       resolve: 
-        course: -> 
-          selectedCourse
+        course: () ->
+          return $scope.course
     })
 
 # controller for modal window
 @ModalInstanceCtrl = ($scope, $modalInstance, course) ->
   $scope.course = course
-  
+
   $scope.enroll = -> 
     $modalInstance.close('enroll')
   
@@ -52,3 +53,4 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $modalInstance.dismiss('cancel')
 
 @SearchCtrl.$inject = ['$scope', '$http', '$modal']
+@ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', 'course']
