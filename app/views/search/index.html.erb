@@ -8,11 +8,12 @@
     <img src="{{ course.logo_asset_url }}" class="img-provider-logo"></img>
     <div class="">{{ course.authors }}</div>
     <div class="">{{ course.school }}</div>
+    <div class="well well-sm">{{ course_description }}</div>
     <div class="text-right">
       <span>{{ course.price_fmt }}</span></div>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-primary" ng-click="enroll()">Enroll</button>
+      <button class="btn btn-success" ng-click="enroll()">Go to course</button>
       <button class="btn btn-warning" ng-click="cancel()">Close</button>
   </div>
 </script>

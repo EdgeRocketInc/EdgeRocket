@@ -43,14 +43,23 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     })
 
 # controller for modal window
-@ModalInstanceCtrl = ($scope, $modalInstance, course) ->
+@ModalInstanceCtrl = ($scope, $modalInstance, $window, $http, course) ->
   $scope.course = course
 
+  $http.get('/products/' + course.id + '.json').success( (data) ->
+    $scope.course_description = data.description
+    console.log('Successfully loaded product details')
+  ).error( ->       
+    console.log('Error loading search product details')
+  )
+
   $scope.enroll = -> 
+    #alert($scope.course.origin)
+    $window.open($scope.course.origin)
     $modalInstance.close('enroll')
   
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
 
 @SearchCtrl.$inject = ['$scope', '$http', '$modal']
-@ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', 'course']
+@ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'course']

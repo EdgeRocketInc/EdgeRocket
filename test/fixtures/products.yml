@@ -47,6 +47,9 @@ TechCorp101:
   id: 101
   name: Lean Product Management   
   vendor_id: 5 #Google Ventures
+  origin: http://gv.com/1527
+  authors: Dan Olsen
+  price: #free
 
 TechCorp102:
   id: 102
@@ -62,6 +65,8 @@ TechCorp104:
   id: 104
   name: Modern Marketing Workshop   
   vendor_id: 8 # Skillshare
+  origin: http://skl.sh/1dYFPL5
+  price: 19.00
 
 TechCorp105:
   id: 105
@@ -74,8 +79,10 @@ TechCorp106:
   id: 106
   name: Exploratory Data Analysis
   vendor_id: 2000
+  origin: https://www.udacity.com/course/ud651
   authors: Dean Eckles
   keywords: data analysis
+  price: 150 #per month
 
 TechCorp107:
   id: 107
@@ -109,6 +116,7 @@ TechCorp111:
   id: 111
   name: "David McCandless: The beauty of data visualization"
   vendor_id: 12
+  origin: http://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization
   authors: David McCandless
   keywords: data analysis
 
@@ -116,8 +124,10 @@ TechCorp112:
   id: 112
   name: Business Analytics 
   vendor_id: 13
+  origin: http://hbx.hbs.edu/hbx-core/
   authors: Janice Hammond
   keywords: data analysis
+  description: Did you know that a staggering 15 petabytes of new data are generated every day? If you're trying to visualize this, that's equivalent to about 300 million four-drawer filing cabinets of paper. What in the world do businesses do with all of this data? The answer may surprise you. Today's businesses are discovering new ways to collect and use data every day, which means that developing an ability to interpret data can lead to smarter decisions across just about every business dimension imaginable.
 
 TechCorp113:
   id: 113
