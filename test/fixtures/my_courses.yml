@@ -20,9 +20,9 @@ three:
   product_id: 2004
   status: Wishlist
 
-# these records rely on the user records created in seed.rb
+# these records may rely on the user records created in seed.rb
 seed_alexey_1:
-  user_id: 3
+  user_id: 103
   product_id: 2002
   status: Completed
   percent_complete: 100.00
@@ -30,28 +30,28 @@ seed_alexey_1:
   assigned_by: Self
 
 seed_alexey_2:
-  user_id: 3
+  user_id: 103
   product_id: 2003
   status: WIP
   percent_complete: 70.00
   assigned_by: Manager
 
 seed_alexey_3:
-  user_id: 3
+  user_id: 103
   product_id: 2001
   status: WIP
   percent_complete: 10.00
   assigned_by: Manager
 
 seed_alexey_4:
-  user_id: 3
+  user_id: 103
   product_id: 2005
   status: WIP
   percent_complete: 0.00
   assigned_by: Manager
 
 seed_alexey_5:
-  user_id: 3
+  user_id: 103
   product_id: 2006
   status: Registered
   percent_complete: 70.00
@@ -147,7 +147,15 @@ alexey_angular_1:
 alexey_angular_2:
   user_id: 3
   product_id: 3002
-  status: WIP
-  percent_complete: 1.00
+  status: Completed
+  percent_complete: 100.00
   assigned_by: Self
+  completion_date: 2014-04-18
 
+alexey_angular_3:
+  user_id: 3
+  product_id: 3003
+  status: Completed
+  percent_complete: 100.00
+  assigned_by: Self
+  completion_date: 2014-04-21

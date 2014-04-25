@@ -22,4 +22,8 @@ class MyCourses < ActiveRecord::Base
     where("user_id = ? and status = ?", user_id, status)
   end
 
+  def self.find_courses(user_id, product_id)
+    where("user_id = ? and product_id = ?", user_id, product_id)
+  end
+
 end

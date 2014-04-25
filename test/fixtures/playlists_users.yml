@@ -2,15 +2,15 @@
 
 one:
   playlist_id: 1001
-  user_id: 3
+  user_id: 103
 
 two:
   playlist_id: 1002
-  user_id: 3
+  user_id: 103
 
 three:
   playlist_id: 1001
-  user_id: 2
+  user_id: 102
 
 four:
   playlist_id: 2001

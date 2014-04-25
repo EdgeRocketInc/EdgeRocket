@@ -39,4 +39,35 @@ class MyCoursesController < ApplicationController
      @budget = u.budget
     end
   end
+
+  # POST
+  # subscribe currently authenitcated user to the course
+  # JSON: {"course_id":"1003"}
+  def subscribe
+    u = User.find_by_email(current_user.email)
+    prd_id = params[:course_id]
+    my_crs = MyCourses.find_courses(u.id, prd_id)
+    # TODO handle exceptions
+    if my_crs.nil? || my_crs.length == 0
+      my_crs = MyCourses.new()
+      my_crs.user_id = u.id
+      my_crs.product_id = prd_id
+      my_crs.status = params[:status]
+      my_crs.save
+    end
+    result = { 'user_ud' => u.id, 'course_id' => prd_id }
+
+    respond_to do |format|
+        format.json { render json: result.as_json }
+    end
+    
+  end
+
+  # DELETE :id
+  # unsubscribe currently authenitcated user from the course
+  # JSON: empty
+  def unsubscribe
+    # TODO implement
+  end
+    
 end

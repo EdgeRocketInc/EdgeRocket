@@ -4,7 +4,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-@SearchCtrl = ($scope, $http, $modal) ->
+@SearchCtrl = ($scope, $http, $modal, $log) ->
 
   $scope.rows = [0]
   $scope.rowItems = []
@@ -42,6 +42,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           return $scope.course
     })
 
+    modalInstance.result.then (crs) ->  
+      $log.info('Adding course...' + crs.id)
+      # Create data object to POST and send a request
+      data =
+        course_id: crs.id
+        status: 'Wishlist'
+      $http.post('/course_subscription.json', data).success( (data) ->
+        console.log('Successfully created subscription')
+      ).error( ->
+        console.error('Failed to create new subscription')
+      )
+
 # controller for modal window
 @ModalInstanceCtrl = ($scope, $modalInstance, $window, $http, course) ->
   $scope.course = course
@@ -54,12 +66,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   )
 
   $scope.enroll = -> 
-    #alert($scope.course.origin)
+    #alert('enroll')
+    $modalInstance.close($scope.course)
+  
+  $scope.goto = -> 
     $window.open($scope.course.origin)
-    $modalInstance.close('enroll')
+    $modalInstance.dismiss('goto')
   
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
 
-@SearchCtrl.$inject = ['$scope', '$http', '$modal']
+@SearchCtrl.$inject = ['$scope', '$http', '$modal', '$log']
 @ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'course']

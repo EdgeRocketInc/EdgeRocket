@@ -54,18 +54,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     data =
       playlist_id: playlistId
 
-    $http.post('/course_subscription.json', data).success( (data) ->
-      console.log('Successfully created subscription')
+    $http.post('/playlist_subscription.json', data).success( (data) ->
+      console.log('Successfully subscribed to playlist')
     ).error( ->
-      console.error('Failed to create new subscription')
+      console.error('Failed to subscribe to playlist')
     )
     return true
 
   deleteSubscription = (playlistId) ->
-    $http.delete('/course_subscription/' + playlistId + '.json').success( (data) ->
-      console.log('Successfully deleted subscription')
+    $http.delete('/playlist_subscription/' + playlistId + '.json').success( (data) ->
+      console.log('Successfully unsubscribed to playlist')
     ).error( ->
-      console.error('Failed to delete new subscription')
+      console.error('Failed to unsubscribe to playlist')
     )
     return true
 

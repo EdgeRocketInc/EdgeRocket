@@ -2,14 +2,14 @@
 
 one:
   id: 1001
-  account_id: 1
+  account_id: 101
   title: Marketing 101
   description: Marketing classes, guides, tutorials, tips and tricks
   mandatory: false
 
 two:
   id: 1002
-  account_id: 1
+  account_id: 101
   title: Finance Department New Hires
   description: Mandatory materials for all new employees in finanice department
   mandatory: true
@@ -23,7 +23,7 @@ three:
 
 four:
   id: 1004
-  account_id: 1
+  account_id: 101
   title: Advanced Ruby on Rails
   description: A good list of Ruby on Rails classes for developers
   mandatory: false

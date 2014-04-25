@@ -150,3 +150,18 @@ angular_2:
   authors: Jason Swett
   vendor_id: 4
   origin: http://www.honeybadger.io/blog/2013/12/11/beginners-guide-to-angular-js-rails
+
+angular_3:
+  id: 3003
+  name: Bootstrapping an AngularJS app in Rails 4.0
+  authors: Adam Anderson
+  vendor_id: 4
+  origin: https://github.com/asanderson15/rails-angular-tutorial
+
+newtech_1:
+  id: 3020
+  name: ReactJS Tutorial
+  authors: Facebook
+  vendor_id: 4
+  origin: http://facebook.github.io/react/docs/tutorial.html
+  description: We'll be building a simple, but realistic comments box that you can drop into a blog, a basic version of the realtime comments offered by Disqus, LiveFyre or Facebook comments.
