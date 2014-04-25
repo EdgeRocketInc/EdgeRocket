@@ -23,6 +23,11 @@ class UserHomeController < ApplicationController
       }
     end
 
+    #TODO make it async
+    Keen.publish(:ui_actions, { 
+      :user_email => u.email, :action => 'UserHome#index', :request_format => request.format.symbol 
+    })
+
     respond_to do |format|
       format.html 
       format.json { 

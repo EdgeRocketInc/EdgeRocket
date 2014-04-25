@@ -70,3 +70,7 @@ gem 'therubyracer', '~> 0.12'
 # Authentication and Authorization 
 gem 'devise', '3.2.4'
 gem 'cancancan', '~> 1.7'
+
+# Logging and analytics
+#gem 'em-http-request', '~> 1.1' #for async Keen IO events
+gem 'keen', '~> 0.8'
