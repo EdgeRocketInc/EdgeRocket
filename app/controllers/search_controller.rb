@@ -3,6 +3,17 @@ class SearchController < ApplicationController
   
   # GET
   def index
+
+    #TODO make it async
+    if request.format.symbol == :html
+      Keen.publish(:ui_actions, { 
+        :user_email => current_user.email, 
+        :action => controller_path, 
+        :method => action_name, 
+        :request_format => request.format.symbol 
+      })
+    end
+
     prd = Product.search_courses(nil)
 
     # format some of the fields in the resultset
