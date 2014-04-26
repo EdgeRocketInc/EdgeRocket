@@ -40,7 +40,7 @@ class MyCoursesController < ApplicationController
     end
   
     #TODO make it async
-    if request.format.symbol == :html
+    if !Rails.env.test? && request.format.symbol == :html
       Keen.publish(:ui_actions, { 
         :user_email => current_user.email, 
         :action => controller_path, 

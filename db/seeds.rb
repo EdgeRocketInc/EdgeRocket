@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Account.create(id: 1, company_name: 'EdgeRocket, Inc.')
-Account.create(id: 2, company_name: 'TechCorp')
+Account.create(id: 1, company_name: 'EdgeRocket, Inc.', overview: 'EdgeRocket ecnourages employees to take as many classes as possible')
+Account.create(id: 2, company_name: 'TechCorp', overview: 'TechCorp will reimburse you for up to $200 of online courses per calendar year, subject to your manager’s approval. Questions about EdgeRocket usage can be addressed to your manager, or to Linda Kim in HR.') 
 
 # Vendors should be populated by DBA/developers
 Vendor.create(id: 1, name: 'Coursera', logo_file_name: 'coursera-logo.png' )

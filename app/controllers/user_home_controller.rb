@@ -24,7 +24,7 @@ class UserHomeController < ApplicationController
     end
 
     #TODO make it async
-    if request.format.symbol == :html
+    if !Rails.env.test? && request.format.symbol == :html
       Keen.publish(:ui_actions, { 
         :user_email => u.email, 
         :action => controller_path, 
