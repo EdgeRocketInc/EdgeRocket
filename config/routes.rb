@@ -1,5 +1,6 @@
 EdgeApp::Application.routes.draw do
 
+  get "plans/index"
   get 'search' => 'search#index'
   get "my_courses" => 'my_courses#index'
   get "user_home" => 'user_home#index'
