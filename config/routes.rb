@@ -8,8 +8,9 @@ EdgeApp::Application.routes.draw do
   delete "playlist_subscription/:id" => 'user_home#unsubscribe'
   post "course_subscription" => 'my_courses#subscribe'
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
+  post "users/preferences" => 'user_home#create_preferences'
   devise_for :users
-   
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

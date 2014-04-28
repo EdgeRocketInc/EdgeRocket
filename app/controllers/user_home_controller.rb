@@ -25,23 +25,25 @@ class UserHomeController < ApplicationController
 
     #TODO make it async
     if !Rails.env.test? && request.format.symbol == :html
-      Keen.publish(:ui_actions, { 
-        :user_email => u.email, 
-        :action => controller_path, 
-        :method => action_name, 
-        :request_format => request.format.symbol 
+      Keen.publish(:ui_actions, {
+        :user_email => u.email,
+        :action => controller_path,
+        :method => action_name,
+        :request_format => request.format.symbol
       })
     end
 
     respond_to do |format|
-      format.html 
-      format.json { 
+      format.html
+      format.json {
         # combine all aobject into one JSON result
         json_result = Hash.new()
         json_result['account'] = @account
         json_result['playlists'] = @playlists
         json_result['subscribed_playlists'] = @subscribed_playlists
-        render json: json_result.as_json 
+        json_result['sign_in_count'] = u.sign_in_count #ugly but works
+        json_result['user_preferences'] = u.preferences #ugly but works
+        render json: json_result.as_json
       }
     end
   end
@@ -59,7 +61,7 @@ class UserHomeController < ApplicationController
     respond_to do |format|
         format.json { render json: result.as_json }
     end
-    
+
   end
 
   # DELETE :id
@@ -75,8 +77,22 @@ class UserHomeController < ApplicationController
     respond_to do |format|
         format.json { render json: result.as_json }
     end
-    
+
   end
 
+  # POST
+  # create new set of user preferences
+  # JSON: {anything}
+  def create_preferences
+    u = User.find_by_email(current_user.email)
+    u.preferences = { id: 1 }.to_json # TODO make it real
+    u.save
+
+    result = { 'user_ud' => u.id }
+
+    respond_to do |format|
+        format.json { render json: result.as_json }
+    end
+  end
 
 end

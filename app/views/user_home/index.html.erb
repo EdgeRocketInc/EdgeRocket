@@ -1,3 +1,26 @@
+<!-- Modal Survey window -->
+<script type="text/ng-template" id="userSurvey.html">
+  <div class="modal-header">
+    <h4>Preferences</h4>
+  </div>
+  <div class="modal-body">
+    It&#39;s the first time you logged in. Please answer several questions. What is your education?
+    <div class="radio" ng-repeat="ed in education">
+      <label>
+        <input type="radio" name="education" id="{{ed.id}}" value="{{ed.id}}"/>
+          {{ ed.name }}
+      </label>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-success" ng-click="done()">Done</button>
+  </div>
+</script>
+
+
+<!-- Main content area -->
+
 <div class="container-fluid" ng-controller="IndexCtrl">
   <div class="row">
     <div class="col-lg-7">
@@ -10,7 +33,7 @@
 
 	    <div class="panel panel-info">
  		    <div class="panel-heading">Playlists</div>
-        <div class="panel-body"> 
+        <div class="panel-body">
           <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
           <div class="row" ng-repeat="pl in data.playlists">
             <div class="col-xs-1 voffset2">
@@ -21,7 +44,7 @@
               {{ pl.description }}
 					  </div>
             <div class="col-xs-1 voffset2">
-              <a id="{{ pl.id }}" href 
+              <a id="{{ pl.id }}" href
                 ng-click="togglePlaylistSubsciption($index)">
                 <span class="glyphicon glyphicon-{{ glyphAction[$index] }}"></span>
               </a>
@@ -63,7 +86,7 @@
               <footer>Steve Johnson, Engineering Manager</footer>
             </blockquote>
           </div>
-          
+
           <div>
             <h4 class="text-warning bottom0">Computer Science (CS50)</h4>
             / edX / 12-week course / self-paced
