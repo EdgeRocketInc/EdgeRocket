@@ -41,11 +41,11 @@ six:
   authors: Andy Brewer
   origin: https://www.khanacademy.org/
 
-# ==== DEMO: TechCorp 
+# ==== DEMO: TechCorp
 
 TechCorp101:
   id: 101
-  name: Lean Product Management   
+  name: Lean Product Management
   vendor_id: 5 #Google Ventures
   origin: http://gv.com/1527
   authors: Dan Olsen
@@ -53,27 +53,27 @@ TechCorp101:
 
 TechCorp102:
   id: 102
-  name: Presentation Skills Training    
+  name: Presentation Skills Training
   vendor_id: 6 #Lynda
 
 TechCorp103:
   id: 103
-  name: Intro to Cloud Computing    
+  name: Intro to Cloud Computing
   vendor_id: 7 #VTC
 
 TechCorp104:
   id: 104
-  name: Modern Marketing Workshop   
+  name: Modern Marketing Workshop
   vendor_id: 8 # Skillshare
   origin: http://skl.sh/1dYFPL5
   price: 19.00
 
 TechCorp105:
   id: 105
-  name: Programming for Non-Programmers 
+  name: Programming for Non-Programmers
   vendor_id: 9 # General Assembly
 
-# for demo search 
+# for demo search
 
 TechCorp106:
   id: 106
@@ -93,7 +93,7 @@ TechCorp107:
 
 TechCorp108:
   id: 108
-  name: The Analytics Edge 
+  name: The Analytics Edge
   vendor_id: 10
   authors: D. Bertsimas
   keywords: data analysis
@@ -122,7 +122,7 @@ TechCorp111:
 
 TechCorp112:
   id: 112
-  name: Business Analytics 
+  name: Business Analytics
   vendor_id: 13
   origin: http://hbx.hbs.edu/hbx-core/
   authors: Janice Hammond
@@ -131,7 +131,7 @@ TechCorp112:
 
 TechCorp113:
   id: 113
-  name: Introduction to Data Science and Analysis 
+  name: Introduction to Data Science and Analysis
   vendor_id: 9
   authors: Thomas Nguyen
   keywords: data analysis
@@ -165,3 +165,11 @@ newtech_1:
   vendor_id: 4
   origin: http://facebook.github.io/react/docs/tutorial.html
   description: We'll be building a simple, but realistic comments box that you can drop into a blog, a basic version of the realtime comments offered by Disqus, LiveFyre or Facebook comments.
+
+ux_1:
+  id: 3040
+  name: The Science and Art of User Experience at Google
+  authors: GoogleTechTalks
+  vendor_id: 4
+  origin: http://www.noodle.org/learn/details/243064/the-science-and-art-of-user
+  description: Google TechTalksJune 7, 2006Jen Fitzpatrick is an Engineering Director at Google. She currently manages Google's user experience team, which is responsible for the user interface design and usability analysis of Google's many products. A founding member of Google's UI team, Jen has also led the UI design, testing and implementation of numerous features and changes to the Google.com site. In the past, Jen has also served as Engineering Director for Google Adwords and Google's Internal Systems engineering group. Jen joined Google in June 1999 as a software engineer. She is a graduate of Stanford University where she received a B.S. in Symbolic Systems and an M.S. in Computer...

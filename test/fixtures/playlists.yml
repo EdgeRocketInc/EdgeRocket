@@ -59,7 +59,7 @@ TechCorp105:
   id: 105
   account_id: 2
   title: Improve Your Financial Literacy!
-  description: This list of courses provides a solid foundation in finance and accounting. 
+  description: This list of courses provides a solid foundation in finance and accounting.
 
 TechCorp106:
   id: 106
@@ -73,4 +73,11 @@ angular:
   account_id: 1
   title: Angular JS for EdgeRocket developers
   description: A collection of materials for learning AngularJS framework
+  mandatory: false
+
+user_interface:
+  id: 2002
+  account_id: 1
+  title: UI and UX for EdgeRocket
+  description: A collection of materials for learning UI/UX
   mandatory: false

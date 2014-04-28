@@ -7,4 +7,10 @@ class MyCoursesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "course subscription" do
+    sign_in User.find(101)
+    post(:subscribe, {course_id: '2006', format: 'json'})
+    assert_response :success
+  end
+
 end

@@ -159,3 +159,19 @@ alexey_angular_3:
   percent_complete: 100.00
   assigned_by: Self
   completion_date: 2014-04-21
+
+alexey_newtech_1:
+  user_id: 3
+  product_id: 3020
+  status: Completed
+  percent_complete: 100.00
+  assigned_by: Self
+  completion_date: 2014-04-27
+
+alexey_ui_1:
+  user_id: 3
+  product_id: 3040
+  status: Wishlist
+  percent_complete: 100.00
+  assigned_by: Self
+  completion_date: 2014-04-28

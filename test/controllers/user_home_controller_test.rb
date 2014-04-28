@@ -19,15 +19,15 @@ class UserHomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "course subscription" do
+  test "playlits subscription" do
     sign_in User.find(101)
-    post(:subscribe, {playlist_id: '1003', format: 'json'})  
+    post(:subscribe, {playlist_id: '1003', format: 'json'})
     assert_response :success
   end
 
-  test "course unsubscribe" do
+  test "playlist unsubscribe" do
     sign_in User.find(101)
-    delete(:unsubscribe, {id: '1003', format: 'json'})  
+    delete(:unsubscribe, {id: '1003', format: 'json'})
     assert_response :success
   end
 
