@@ -77,16 +77,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     modalInstance = $modal.open({
       templateUrl: 'userSurvey.html',
       controller: SurveyModalCtrl
-      resolve:
-        course: () ->
-          return $scope.course
     })
 
-    modalInstance.result.then () ->
+    modalInstance.result.then (ed_id) ->
+      console.log('result ' + ed_id)
       # Create data object to POST and send a request
       data =
         education:
-          id: 1
+          id: ed_id
       $http.post('/users/preferences.json', data).success( (data) ->
         console.log('Successfully set preferences')
       ).error( ->
@@ -97,15 +95,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->
   console.log('modal ctrl')
   $scope.education = [
-    { id: 1, name: 'High School' },
-    { id: 2, name: 'BS' },
-    { id: 3, name: 'MS' },
-    { id: 4, name: 'Ph.D.' },
-    { id: 5, name: 'Other' },
+    { id: 'high', name: 'High School' },
+    { id: 'bs', name: 'BS' },
+    { id: 'ms', name: 'MS' },
+    { id: 'phd', name: 'Ph.D.' },
+    { id: 'etc', name: 'Other' },
   ]
-  $scope.done = ->
-    #alert('done')
-    $modalInstance.close($scope.course)
+  $scope.selected = ''
+
+  $scope.done = (s) ->
+    console.log('selected = ' + s)
+    $modalInstance.close(s)
 
 @IndexCtrl.$inject = ['$scope', '$http', '$modal']
 @SurveyModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']

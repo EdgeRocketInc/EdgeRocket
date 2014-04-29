@@ -85,7 +85,8 @@ class UserHomeController < ApplicationController
   # JSON: {anything}
   def create_preferences
     u = User.find_by_email(current_user.email)
-    u.preferences = { id: 1 }.to_json # TODO make it real
+    #debugger
+    u.preferences = params[:education].to_json # TODO make it real
     u.save
 
     result = { 'user_ud' => u.id }

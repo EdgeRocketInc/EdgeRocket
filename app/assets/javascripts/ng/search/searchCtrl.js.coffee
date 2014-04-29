@@ -17,7 +17,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       c = 0
       for item in data
         $scope.rowItems[r][c] = item
-        if (c >= 3) 
+        if (c >= 3)
           r++
           $scope.rowItems[r] = []
           $scope.rows[r] = r
@@ -25,7 +25,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         else
           c++
       console.log('Successfully loaded search data')
-    ).error( ->       
+    ).error( ->
       console.log('Error loading search data')
     )
 
@@ -37,13 +37,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     modalInstance = $modal.open({
       templateUrl: 'searchModalDetails.html',
       controller: ModalInstanceCtrl
-      resolve: 
+      resolve:
         course: () ->
           return $scope.course
     })
 
-    modalInstance.result.then (crs) ->  
-      $log.info('Adding course...' + crs.id)
+    modalInstance.result.then (crs) ->
+      console.log('Adding course...' + crs.id)
       # Create data object to POST and send a request
       data =
         course_id: crs.id
@@ -61,18 +61,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $http.get('/products/' + course.id + '.json').success( (data) ->
     $scope.course_description = data.description
     console.log('Successfully loaded product details')
-  ).error( ->       
+  ).error( ->
     console.log('Error loading search product details')
   )
 
-  $scope.enroll = -> 
+  $scope.enroll = ->
     #alert('enroll')
     $modalInstance.close($scope.course)
-  
-  $scope.goto = -> 
+
+  $scope.goto = ->
     $window.open($scope.course.origin)
     $modalInstance.dismiss('goto')
-  
+
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
 

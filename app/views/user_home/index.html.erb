@@ -5,16 +5,15 @@
   </div>
   <div class="modal-body">
     It&#39;s the first time you logged in. Please answer several questions. What is your education?
-    <div class="radio" ng-repeat="ed in education">
-      <label>
-        <input type="radio" name="education" id="{{ed.id}}" value="{{ed.id}}"/>
-          {{ ed.name }}
-      </label>
-    </div>
-
+    <ul>
+      <li class="list-leaf" ng-repeat="thing in education">
+        <input type="radio" value="{{thing.id}}" ng-model="$parent.selected" name="stuff"/>
+          {{thing.name}}
+      </li>
+    </ul>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-success" ng-click="done()">Done</button>
+      <button class="btn btn-success" ng-click="done(selected)">Done  </button>
   </div>
 </script>
 
