@@ -166,6 +166,13 @@ newtech_1:
   origin: http://facebook.github.io/react/docs/tutorial.html
   description: We'll be building a simple, but realistic comments box that you can drop into a blog, a basic version of the realtime comments offered by Disqus, LiveFyre or Facebook comments.
 
+newtech_2:
+  id: 3021
+  name: "Rails 4: Zombie Outlaws"
+  authors: Gregg Pollack
+  vendor_id: 11
+  origin: https://www.codeschool.com/courses/rails-4-zombie-outlaws/
+
 ux_1:
   id: 3040
   name: The Science and Art of User Experience at Google

@@ -17,7 +17,6 @@ class PlaylistTest < ActiveSupport::TestCase
 
   test "calculate internal fields" do
     pl = Playlist.first
-    pl.calc_percent_complete
     assert pl.percent_complete.to_i > 0, 'wrong calculation'
   end
 

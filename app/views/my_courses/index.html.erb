@@ -1,12 +1,12 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="MyCoursesCtrl">
 
-  <% if @account && @account.budget_management == true %>
+    <% if @account && @account.budget_management == true %>
     <div class="row">
       <div class="col-lg-12">
         <div class="panel panel-info">
       		<div class="panel-body">My Budget
 			      <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="<%= @budget ? @budget.percent_used : 0 =%>" 
+              <div class="progress-bar" role="progressbar" aria-valuenow="<%= @budget ? @budget.percent_used : 0 =%>"
                 aria-valuemin="0" aria-valuemax="100" style="width: <%= @budget ? @budget.percent_used : 0 =%>%;">0
 				      </div>
 			      </div>
@@ -26,43 +26,37 @@
 
 			    <% if @course_groups.length <= 0 %>
 				    <span class="label label-warning">No Courses</span>
-          <% else 
-			      @course_groups.each { |status,cg| %>
-			        <div class="row voffset2">
-                <div class="col-md-12 bg-<%= (status == 'Completed') ? 'success' : 'info' =%>"><%= status =%></div>
-              </div>
-
-		          <% cg.each { |c| %>
-                <div class="row voffset2">
+          <% else %>
+			      <div class="row voffset2" ng-repeat="(status,cg) in data.course_groups">
+                <div class="col-md-12 {{cg.statusClass}}">{{ status }}</div>
+                <div class="row voffset2" ng-repeat="c in cg">
                   <div class="col-md-5">
-                    <%= link_to(c.product.name, c.product.origin, :class => "course-link", :target => '_blank') if c.product =%>
+                    <a href="{{c.product.origin}}" class="course-link" target="_blank">{{c.product.name}}</a>
                   </div>
                   <div class="col-md-2">
-                    <%= image_tag(c.product.vendor.logo_file_name, width: '20px') if c.product && c.product.vendor =%>
-                    <%= c.product.vendor.name if c.product && c.product.vendor =%>
+                    <img src="{{c.product.vendor.logo_asset_url}}" width="25px" />
+                    {{c.product.vendor.name}}
                   </div>
                   <div class="col-md-1">
-                    <% if !c.assigned_by.blank? && c.assigned_by.casecmp('Self') != 0 %>
-                      <span class="glyphicon glyphicon-exclamation-sign yellow" 
-                        data-toggle="tooltip" title="Assigned by <%= c.assigned_by =%>">
+                      <span ng-if="c.assigned_by != 'Self'" class="glyphicon glyphicon-exclamation-sign yellow"
+                        data-toggle="tooltip" title="Assigned by {{c.assigned_by}}">
                       </span>
-                    <% end %>
                   </div>
                   <div class="col-md-2">
                     <div class="course-progress progress">
-                      <div class="progress-bar progress-bar-success" role="progressbar" 
-                        aria-valuenow="<%= c.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" 
-                        style="width: <%= c.percent_complete.to_i =%>%;">
-						            <span class="sr-only"><%= c.percent_complete.to_i =%>% Complete</span>
+                      <div class="progress-bar progress-bar-success" role="progressbar"
+                        aria-valuenow="{{c.percent_complete}}" aria-valuemin="0" aria-valuemax="100"
+                        style="width: {{c.percent_complete}}%">
+						            <span class="sr-only">{{c.percent_complete}}% Complete</span>
     					        </div>
                     </div>
                   </div>
 						      <div class="col-md-2">
-                    <%= c.completion_date.strftime("%F") if c.completion_date =%>
+                    {{c.completion_date | date:'yyyy-MM-dd'}}
                   </div>
                 </div>
-					    <% } %>
-  			  <% } end %>
+            </div>
+  			  <% end %>
 
 		    </div>
 	    </div>
@@ -78,24 +72,22 @@
   		  <div class="panel-body">
 			    <% if @my_playlists.length <= 0 %>
 				    <span class="label label-warning">No Playlists</span>
-			    <% else %> 
-		     	  <% @my_playlists.each { |pl| %>
-					    <div class="row voffset2">
+			    <% else %>
+					    <div class="row voffset2" ng-repeat="pl in data.my_playlists">
 						    <div class="col-md-5">
-							    <div><%= link_to(pl.title, '#', :class => "course-link") =%></div>
-							    <%= pl.description =%>
+                  <div><a href="#" class="course-link">{{pl.title}}</a></div>
+							    {{pl.description}}
 						    </div>
   						  <div class="col-md-2">
                   <div class="course-progress progress voffset3">
-                    <div class="progress-bar progress-bar-success" role="progressbar" 
-                      aria-valuenow="<%= pl.percent_complete.to_i =%>" aria-valuemin="0" aria-valuemax="100" 
-                      style="width: <%= pl.percent_complete.to_i =%>%;">
-						          <span class="sr-only"><%= pl.percent_complete.to_i =%>% Complete</span>
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                      aria-valuenow="{{pl.percent_complete}}" aria-valuemin="0" aria-valuemax="100"
+                      style="width: {{pl.percent_complete}}%">
+						          <span class="sr-only">{{pl.percent_complete}}% Complete</span>
 						        </div>
                   </div>
                 </div>
 					    </div>
-			      <% } %>
 			    <% end %>
 		    </div>
 	    </div>

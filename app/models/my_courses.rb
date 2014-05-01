@@ -1,6 +1,9 @@
 class MyCourses < ActiveRecord::Base
   belongs_to :user
   belongs_to :product
+  scope :with_products, lambda { includes(:product) }
+
+  # TODO this is ugly, need to change to scopes/etc
 
   def self.all_completed(user_id)
     self.all_with_status(user_id, 'Completed')

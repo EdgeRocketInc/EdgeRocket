@@ -2,51 +2,66 @@ class MyCoursesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @course_groups = Hash.new  
+    @course_groups = Hash.new
     u = User.find_by_email(current_user.email)
 
     # --- Courses section
     # TODO this can be more DRY and pushed to the view
     my_courses = MyCourses.all_completed(u.id)
     if my_courses && my_courses.length > 0
-      @course_groups['Completed'] = my_courses
+      @course_groups['Completed'] = my_courses.as_json(:include => :product)
     end
 
     my_courses = MyCourses.all_wip(u.id)
     if my_courses && my_courses.length > 0
-      @course_groups['In Progress'] = my_courses
+      @course_groups['In Progress'] = my_courses.as_json(:include => :product)
     end
 
     my_courses = MyCourses.all_registered(u.id)
     if my_courses && my_courses.length > 0
-      @course_groups['Registered'] = my_courses
+      @course_groups['Registered'] = my_courses.as_json(:include => :product)
     end
 
     my_courses = MyCourses.all_wishlist(u.id)
     if my_courses && my_courses.length > 0
-      @course_groups['Wishlist'] = my_courses
+      @course_groups['Wishlist'] = my_courses.as_json(:include => :product)
     end
+
+    vendors = Vendor.all.as_json
+    vendors.each { |v|
+      v['logo_asset_url'] = view_context.image_path(v['logo_file_name'])
+    }
 
     # --- Playlists section
     @my_playlists = u.playlists
-    @my_playlists.each { |pl|
-      pl.calc_percent_complete
-    }
 
     # --- Budget section
     @account = u.account
     if @account && @account.budget_management == true
      @budget = u.budget
     end
-  
+
     #TODO make it async
     if !Rails.env.test? && request.format.symbol == :html
-      Keen.publish(:ui_actions, { 
-        :user_email => current_user.email, 
-        :action => controller_path, 
-        :method => action_name, 
-        :request_format => request.format.symbol 
+      Keen.publish(:ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name,
+        :request_format => request.format.symbol
       })
+    end
+
+    respond_to do |format|
+      format.html
+      format.json {
+        # combine all aobject into one JSON result
+        json_result = Hash.new()
+        json_result['account'] = @account
+        json_result['my_playlists'] = @my_playlists.as_json(methods: :percent_complete)
+        json_result['course_groups'] = @course_groups
+        json_result['vendors'] = vendors
+        render json: json_result.as_json
+      }
     end
 
   end
@@ -71,7 +86,7 @@ class MyCoursesController < ApplicationController
     respond_to do |format|
         format.json { render json: result.as_json }
     end
-    
+
   end
 
   # DELETE :id
@@ -80,5 +95,5 @@ class MyCoursesController < ApplicationController
   def unsubscribe
     # TODO implement
   end
-    
+
 end
