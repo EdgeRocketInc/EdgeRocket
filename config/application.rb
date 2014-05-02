@@ -19,14 +19,14 @@ module EdgeApp
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    
+
     # need for Twitter bootstrap and AngularJS
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif superhero.js superhero.css user_home.js angular.js angular-charts.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.10.0.min.js)
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif superhero.js superhero.css user_home.js angular.js angular-charts.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.10.0.min.js my_courses.js)
     config.assets.compile = true
 
     # need for Devise
     config.assets.initialize_on_precompile = false
-    
+
     # less-rails gem (default all generators)
     config.app_generators.stylesheet_engine :less
 
