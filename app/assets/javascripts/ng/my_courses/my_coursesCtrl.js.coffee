@@ -8,13 +8,22 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   loadMyCourses =  ->
     $http.get('/my_courses.json').success( (data) ->
-      for status,cg of data.course_groups
-        cg.statusClass = if status=='Completed' then 'bg-success' else 'bg-info'
+      # massage groups and courses insde
+      for cg in data.course_groups
+        if cg.status=='Completed'
+          cg.statusClass = 'text-success'
+          cg.section_open = false
+        else
+          cg.statusClass = 'text-warning'
+          cg.section_open = true
         #console.log('status=' + status + ' Class=' + cg.statusClass)
-        for c in cg
+        for c in cg.my_courses
           # TODO make it less ugly by refactoring the whole JSON structure
           c.product.vendor = (v for v in data.vendors when v.id is c.product.vendor_id)[0]
           #console.log('vendor=' + c.product.vendor.name)
+      # massage playlists
+      for pl in data.my_playlists
+        pl.checked = 'expand'
       $scope.data = data
       console.log('Successfully loaded user_home')
      ).error( ->
