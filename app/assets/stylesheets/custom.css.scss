@@ -25,7 +25,11 @@ textarea {
 }
 
 .yellow {
-  color: yellow;
+  color: rgb(255, 255, 108);
+}
+
+.blue {
+  color: #5bc0de;
 }
 
 .green {
@@ -94,7 +98,7 @@ div.panel-body .well-sm {
 }
 
 // Bigger glyphs
-.glyphicon-remove-sign, .glyphicon-plus-sign, .glyphicon-ok-sign, .glyphicon-exclamation-sign {
+.glyphicon-remove-sign, .glyphicon-plus-sign, .glyphicon-ok-sign {
   font-size: 1.4em;
 }
 
@@ -144,7 +148,7 @@ div.panel-body .well-sm {
 // Accordion
 
 .panel-default > .panel-heading {
-  padding-bottom: 1px;
+  // padding-bottom: 1px;
 }
 
 .panel-group .panel-heading + .panel-collapse .panel-body {
@@ -161,4 +165,12 @@ div.panel-body .well-sm {
 .accordion-course {
   padding-left: 25px;
   padding-bottom: 5px;
+}
+
+h4.panel-title {
+  font-weight: bolder;
+}
+
+h4.panel-title a:hover {
+  text-decoration: none;
 }
