@@ -3,28 +3,28 @@
 one:
   user_id: 101
   product_id: 2001
-  status: WIP
+  status: wip
 
 two:
   user_id: 101
   product_id: 2002
-  status: Completed
+  status: compl
 
 three:
   user_id: 101
   product_id: 2003
-  status: Registered
+  status: reg
 
 three:
   user_id: 101
   product_id: 2004
-  status: Wishlist
+  status: wish
 
 # these records may rely on the user records created in seed.rb
 seed_alexey_1:
   user_id: 103
   product_id: 2002
-  status: Completed
+  status: compl
   percent_complete: 100.00
   completion_date: 2014-01-08
   assigned_by: Self
@@ -32,35 +32,35 @@ seed_alexey_1:
 seed_alexey_2:
   user_id: 103
   product_id: 2003
-  status: WIP
+  status: wip
   percent_complete: 70.00
   assigned_by: Manager
 
 seed_alexey_3:
   user_id: 103
   product_id: 2001
-  status: WIP
+  status: wip
   percent_complete: 10.00
   assigned_by: Manager
 
 seed_alexey_4:
   user_id: 103
   product_id: 2005
-  status: WIP
+  status: wip
   percent_complete: 0.00
   assigned_by: Manager
 
 seed_alexey_5:
   user_id: 103
   product_id: 2006
-  status: Registered
+  status: reg
   percent_complete: 70.00
   assigned_by: Manager
 
 seed_peter_1:
   user_id: 2
   product_id: 2002
-  status: Completed
+  status: compl
   percent_complete: 100.00
   completion_date: 2014-01-08
   assigned_by: Self
@@ -68,7 +68,7 @@ seed_peter_1:
 seed_peter_2:
   user_id: 2
   product_id: 2003
-  status: Completed
+  status: compl
   percent_complete: 100.00
   completion_date: 2014-04-01
   assigned_by: Manager
@@ -76,21 +76,21 @@ seed_peter_2:
 seed_peter_3:
   user_id: 2
   product_id: 2001
-  status: WIP
+  status: wip
   percent_complete: 20.00
   assigned_by: Manager
 
 seed_peter_4:
   user_id: 2
   product_id: 2005
-  status: WIP
+  status: wip
   percent_complete: 0.00
   assigned_by: Manager
 
 seed_peter_5:
   user_id: 2
   product_id: 2006
-  status: Registered
+  status: reg
   percent_complete: 70.00
   assigned_by: Manager
 
@@ -99,7 +99,7 @@ seed_peter_5:
 TechCorp101:
   user_id: 10
   product_id: 101
-  status: Completed
+  status: compl
   percent_complete: 100
   completion_date: 2014-03-26
   assigned_by: Self
@@ -107,7 +107,7 @@ TechCorp101:
 TechCorp102:
   user_id: 10
   product_id: 102
-  status: Completed
+  status: compl
   percent_complete: 100
   completion_date: 2014-04-08
   assigned_by: Self
@@ -115,21 +115,21 @@ TechCorp102:
 TechCorp103:
   user_id: 10
   product_id: 103
-  status: WIP
+  status: wip
   percent_complete: 20
   assigned_by: Self
 
 TechCorp104:
   user_id: 10
   product_id: 104
-  status: WIP
+  status: wip
   percent_complete: 70
   assigned_by: Self
 
 TechCorp105:
   user_id: 10
   product_id: 105
-  status: Wishlist
+  status: wish
   percent_complete: 0
   assigned_by: Self
 
@@ -139,7 +139,7 @@ TechCorp105:
 alexey_angular_1:
   user_id: 3
   product_id: 3001
-  status: Completed
+  status: compl
   percent_complete: 100.00
   completion_date: 2014-04-09
   assigned_by: Self
@@ -147,7 +147,7 @@ alexey_angular_1:
 alexey_angular_2:
   user_id: 3
   product_id: 3002
-  status: Completed
+  status: compl
   percent_complete: 100.00
   assigned_by: Self
   completion_date: 2014-04-18
@@ -155,7 +155,7 @@ alexey_angular_2:
 alexey_angular_3:
   user_id: 3
   product_id: 3003
-  status: Completed
+  status: compl
   percent_complete: 100.00
   assigned_by: Self
   completion_date: 2014-04-21
@@ -163,7 +163,7 @@ alexey_angular_3:
 alexey_newtech_1:
   user_id: 3
   product_id: 3020
-  status: Completed
+  status: compl
   percent_complete: 100.00
   assigned_by: Self
   completion_date: 2014-04-27
@@ -171,7 +171,7 @@ alexey_newtech_1:
 alexey_ui_1:
   user_id: 3
   product_id: 3040
-  status: Wishlist
+  status: wish
   percent_complete: 100.00
   assigned_by: Self
   completion_date: 2014-04-28

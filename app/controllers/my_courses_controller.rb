@@ -8,36 +8,28 @@ class MyCoursesController < ApplicationController
     # --- Courses section
     # TODO this can be more DRY and pushed to the view
     my_courses = MyCourses.all_completed(u.id)
-    if my_courses && my_courses.length > 0
-      @course_groups << {
-        :status => 'Completed',
-        :my_courses => my_courses.as_json(:include => :product)
-      }
-    end
+    @course_groups << {
+      :status => 'compl',
+      :my_courses => my_courses.as_json(:include => :product)
+    }
 
     my_courses = MyCourses.all_wip(u.id)
-    if my_courses && my_courses.length > 0
-      @course_groups << {
-        :status => 'In Progress',
-        :my_courses => my_courses.as_json(:include => :product)
-      }
-    end
+    @course_groups << {
+      :status => 'wip',
+      :my_courses => my_courses.as_json(:include => :product)
+    }
 
     my_courses = MyCourses.all_registered(u.id)
-    if my_courses && my_courses.length > 0
-      @course_groups << {
-        :status => 'Registered',
-        :my_courses => my_courses.as_json(:include => :product)
-      }
-    end
+    @course_groups << {
+      :status => 'reg',
+      :my_courses => my_courses.as_json(:include => :product)
+    }
 
     my_courses = MyCourses.all_wishlist(u.id)
-    if my_courses && my_courses.length > 0
-      @course_groups << {
-        :status => 'Wishlist',
-        :my_courses => my_courses.as_json(:include => :product)
+    @course_groups << {
+      :status => 'wish',
+      :my_courses => my_courses.as_json(:include => :product)
       }
-    end
 
     vendors = Vendor.all.as_json
     vendors.each { |v|
@@ -94,6 +86,20 @@ class MyCoursesController < ApplicationController
       my_crs.save
     end
     result = { 'user_ud' => u.id, 'course_id' => prd_id }
+
+    respond_to do |format|
+        format.json { render json: result.as_json }
+    end
+
+  end
+
+  # PUT
+  # change the subscribtion status for the given subscription
+  # JSON: {"id":"1003"}
+  def update_subscribtion
+    mc_id = params[:id]
+    MyCourses.update(mc_id, :status => params[:status])
+    result = { 'id' => mc_id }
 
     respond_to do |format|
         format.json { render json: result.as_json }

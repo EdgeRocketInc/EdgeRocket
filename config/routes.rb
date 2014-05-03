@@ -7,6 +7,7 @@ EdgeApp::Application.routes.draw do
   post "playlist_subscription" => 'user_home#subscribe'
   delete "playlist_subscription/:id" => 'user_home#unsubscribe'
   post "course_subscription" => 'my_courses#subscribe'
+  put "course_subscription/:id" => 'my_courses#update_subscribtion'
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
   post "users/preferences" => 'user_home#create_preferences'
   devise_for :users

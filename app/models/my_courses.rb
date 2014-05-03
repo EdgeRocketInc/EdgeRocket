@@ -6,19 +6,19 @@ class MyCourses < ActiveRecord::Base
   # TODO this is ugly, need to change to scopes/etc
 
   def self.all_completed(user_id)
-    self.all_with_status(user_id, 'Completed')
+    self.all_with_status(user_id, 'compl')
   end
 
   def self.all_wip(user_id)
-    self.all_with_status(user_id, 'WIP')
+    self.all_with_status(user_id, 'wip')
   end
 
   def self.all_registered(user_id)
-    self.all_with_status(user_id, 'Registered')
+    self.all_with_status(user_id, 'reg')
   end
 
   def self.all_wishlist(user_id)
-    self.all_with_status(user_id, 'Wishlist')
+    self.all_with_status(user_id, 'wish')
   end
 
   def self.all_with_status(user_id, status)
