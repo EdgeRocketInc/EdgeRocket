@@ -23,12 +23,27 @@
 <div class="container-fluid" ng-controller="IndexCtrl">
   <div class="row">
     <div class="col-lg-7">
+
+      <div class="panel panel-info">
+        <div class="panel-heading">Propel Your Learning and Success
+          <i class="pull-right glyphicon" ng-click="isCollapsed = !isCollapsed"
+            ng-class="{'glyphicon-chevron-down': !isCollapsed, 'glyphicon-chevron-right': isCollapsed}">
+          </i>
+        </div>
+        <div class="panel-body" collapse="isCollapsed">
+          EdgeRocket helps you find great online classes and resources to help you build skills and advance your career.
+          <p>{{ data.account['overview'] }}</p>
+        </div>
+      </div>
+
+      <!--
       <div class="alert alert-info fade in">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <h4>Propel Your Learning and Success</h4>
         EdgeRocket helps you find great online classes and resources to help you build skills and advance your career.
         <p>{{ data.account['overview'] }}</p>
       </div>
+      -->
 
 	    <div class="panel panel-info">
  		    <div class="panel-heading">Playlists</div>

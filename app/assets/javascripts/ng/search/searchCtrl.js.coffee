@@ -47,7 +47,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       # Create data object to POST and send a request
       data =
         course_id: crs.id
-        status: 'reg'
+        status: 'wish'
+        assigned_by: 'Self'
       $http.post('/course_subscription.json', data).success( (data) ->
         console.log('Successfully created subscription')
       ).error( ->

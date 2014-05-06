@@ -31,7 +31,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       # check if it's the first login
       if $scope.data.sign_in_count <= 1 && !$scope.data.user_preferences?
         console.log('Starting survey...')
-        startSurvey()
+        # TODO this should be enabled with a configruable option when we are ready
+        #startSurvey()
      ).error( ->
       console.log('Error loading user_home')
     )

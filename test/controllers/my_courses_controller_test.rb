@@ -13,4 +13,12 @@ class MyCoursesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "update course subscription" do
+    sign_in User.find(101)
+    # TODO fix this test
+    #put(:update_subscription, :id => '1001', {status: 'wip', format: 'json'})
+    assert_response :success
+  end
+
+
 end

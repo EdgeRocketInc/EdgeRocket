@@ -13,7 +13,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         if cg.status=='compl'
           cg.statusClass = 'text-success'
           cg.statusText = 'Completed'
-          cg.section_open = false
+          cg.section_open = true
         else if cg.status=='reg'
           cg.statusClass = 'text-warning'
           cg.statusText = 'Assigned'

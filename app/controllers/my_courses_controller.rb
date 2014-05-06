@@ -83,6 +83,7 @@ class MyCoursesController < ApplicationController
       my_crs.user_id = u.id
       my_crs.product_id = prd_id
       my_crs.status = params[:status]
+      my_crs.assigned_by = params[:assigned_by]
       my_crs.percent_complete = MyCourses.calc_percent_complete(my_crs.status)
       my_crs.save
     end
