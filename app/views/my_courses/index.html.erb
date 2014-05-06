@@ -41,13 +41,13 @@
                     <a href="{{c.product.origin}}" class="course-link" target="_blank">{{c.product.name}}</a>
                   </div>
                   <div class="col-md-2">
-                    <img src="{{c.product.vendor.logo_asset_url}}" class="img-provider-logo" />
-                    <!-- {{c.product.vendor.name}} -->
+                    <img src="{{c.product.vendor.logo_asset_url}}" class="img-provider-logo" 
+                      tooltip="{{c.product.vendor.name}}" />
                   </div>
                   <div class="col-md-1">
                       <span class="glyphicon"
                         ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
-                        data-toggle="tooltip" title="Assigned by {{c.assigned_by}}">
+                        tooltip="Assigned by {{c.assigned_by}}">
                       </span>
                   </div>
                   <div class="col-md-2" ng-if="cg.status != 'compl'">
@@ -63,13 +63,13 @@
 
                   <div class="col-md-2">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-success btn-xs" 
+                      <button type="button" class="btn btn-success btn-xs" tooltip="Move to Completed"
                         ng-click="courseComplete(cg,$index)" ng-if="cg.status != 'compl'">C</button>
-                      <button type="button" class="btn btn-primary btn-xs" 
+                      <button type="button" class="btn btn-primary btn-xs" tooltip="Move to In Progress"
                         ng-click="courseWip(cg,$index)" ng-if="cg.status != 'wip'">I</button>
-                      <button type="button" class="btn btn-warning btn-xs" 
+                      <button type="button" class="btn btn-warning btn-xs" tooltip="Move to Assigned"
                         ng-click="courseRegister(cg,$index)" ng-if="cg.status != 'reg'">A</button>
-                      <button type="button" class="btn btn-info btn-xs" 
+                      <button type="button" class="btn btn-info btn-xs" tooltip="Move to Wishlist"
                         ng-click="courseWishlist(cg,$index)" ng-if="cg.status != 'wish'">W</button>
                     </div>                  
                   </div>
