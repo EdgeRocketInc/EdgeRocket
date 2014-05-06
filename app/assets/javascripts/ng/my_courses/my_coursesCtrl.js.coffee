@@ -6,6 +6,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 @MyCoursesCtrl = ($scope, $http, $modal, $log) ->
 
+  $scope.mediaTypes = {
+    'video': {
+      'glyph' : 'glyphicon-facetime-video',
+      'text' : 'Video'
+    }
+    'mooc': {
+      'glyph' : 'glyphicon-cloud',
+      'text' : 'MOOC'
+    }
+  }
+
   loadMyCourses =  ->
     $http.get('/my_courses.json').success( (data) ->
       # massage groups and courses insde

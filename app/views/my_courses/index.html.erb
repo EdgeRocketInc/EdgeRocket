@@ -37,7 +37,12 @@
                 </accordion-heading>
 
                 <div class="row voffset2" ng-repeat="c in cg.my_courses">
-                  <div class="col-md-4 col-md-offset-1">
+                  <div class="col-md-1">
+                    <span class="pull-right glyphicon {{mediaTypes[c.product.media_type].glyph}}"
+                      tooltip="{{mediaTypes[c.product.media_type].text}}">
+                    </span>
+                  </div>
+                  <div class="col-md-4">
                     <a href="{{c.product.origin}}" class="course-link" target="_blank">{{c.product.name}}</a>
                   </div>
                   <div class="col-md-2">
@@ -49,6 +54,7 @@
                         ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
                         tooltip="Assigned by {{c.assigned_by}}">
                       </span>
+                      <span class="label-duration" ng-if="c.product.duration">{{c.product.duration}}h</span>
                   </div>
                   <div class="col-md-2" ng-if="cg.status != 'compl'">
 

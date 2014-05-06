@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140428175341) do
+ActiveRecord::Schema.define(version: 20140506191203) do
 
   create_table "accounts", force: true do |t|
     t.string   "company_name"
@@ -74,10 +74,12 @@ ActiveRecord::Schema.define(version: 20140428175341) do
     t.integer  "vendor_id"
     t.string   "authors"
     t.string   "origin"
-    t.decimal  "price",       precision: 8, scale: 2
+    t.decimal  "price",                  precision: 8, scale: 2
     t.text     "keywords"
     t.string   "school"
     t.text     "description"
+    t.string   "media_type",  limit: 10
+    t.decimal  "duration",               precision: 8, scale: 2
   end
 
   create_table "roles", force: true do |t|

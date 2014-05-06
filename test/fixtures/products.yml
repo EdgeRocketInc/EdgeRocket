@@ -7,6 +7,8 @@ one:
   authors: Adam Smith, Jimmy Carter
   origin: https://www.khanacademy.org/
   price: 49.99
+  duration: 10.5
+  media_type: mooc
 
 two:
   id: 2002
@@ -21,6 +23,7 @@ three:
   id: 2003
   name: Intro to Cloud Computing
   vendor_id: 2000
+  media_type: video
 
 four:
   id: 2004
@@ -50,16 +53,20 @@ TechCorp101:
   origin: http://gv.com/1527
   authors: Dan Olsen
   price: #free
+  media_type: video
+  duration: 1.5
 
 TechCorp102:
   id: 102
   name: Presentation Skills Training
   vendor_id: 6 #Lynda
+  media_type: mooc
 
 TechCorp103:
   id: 103
   name: Intro to Cloud Computing
   vendor_id: 7 #VTC
+  media_type: mooc
 
 TechCorp104:
   id: 104
@@ -67,6 +74,7 @@ TechCorp104:
   vendor_id: 8 # Skillshare
   origin: http://skl.sh/1dYFPL5
   price: 19.00
+  duration: 8
 
 TechCorp105:
   id: 105
