@@ -4,8 +4,10 @@ class Playlist < ActiveRecord::Base
   belongs_to :account
 
   def percent_complete
-    # TODO make it right
-    33.0
+    # TODO do we need to sanitize SQL here?
+    sql = "select avg(mc.percent_complete) percent_avg from playlists_products pp inner join my_courses mc on pp.product_id=mc.product_id where playlist_id=" + id.to_s
+    pc = ActiveRecord::Base.connection.execute(sql)
+    pc[0]['percent_avg']
   end
 
   # figure out if this playlist is sibscibed by a given user

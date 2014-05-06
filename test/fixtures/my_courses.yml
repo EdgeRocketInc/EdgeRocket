@@ -116,14 +116,14 @@ TechCorp103:
   user_id: 10
   product_id: 103
   status: wip
-  percent_complete: 20
+  percent_complete: 50
   assigned_by: Self
 
 TechCorp104:
   user_id: 10
   product_id: 104
   status: wip
-  percent_complete: 70
+  percent_complete: 50
   assigned_by: Self
 
 TechCorp105:
@@ -171,7 +171,7 @@ alexey_newtech_1:
 alexey_ui_1:
   user_id: 3
   product_id: 3040
-  status: wish
+  status: compl
   percent_complete: 100.00
   assigned_by: Self
   completion_date: 2014-04-28

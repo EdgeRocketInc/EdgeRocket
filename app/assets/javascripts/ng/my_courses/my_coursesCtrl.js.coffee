@@ -16,7 +16,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           cg.section_open = false
         else if cg.status=='reg'
           cg.statusClass = 'text-warning'
-          cg.statusText = 'Registered'
+          cg.statusText = 'Assigned'
           cg.section_open = true
         else if cg.status=='wish'
           cg.statusClass = 'text-info'
@@ -60,15 +60,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     # Create data object to PUT and send a request
     data =
       status: target
-    $http.put('/course_subscription/' + mc_id + '.json', data).success( (data) ->
-      console.log('Successfully created subscription')
+    $scope.cgroup = cgroup
+    $scope.crs_index = crs_index
+    $http.put('/course_subscription/' + mc_id + '.json', data).success( (result_data) ->
+      # remove this course from its current group
+      mc = $scope.cgroup.my_courses.splice($scope.crs_index,1)
+      mc[0].percent_complete = result_data.percent_complete
+      # add this course to the new group
+      new_group = (g for g in $scope.data.course_groups when g.status is target)[0]
+      new_group.my_courses.push(mc[0])
+      console.log('Successfully updated subscription')
     ).error( ->
-      console.error('Failed to create new subscription')
+      console.error('Failed to update subscription')
     )
-    # remove this course from its current group
-    mc = cgroup.my_courses.splice(crs_index,1)
-    # add this course to the new group
-    new_group = (g for g in $scope.data.course_groups when g.status is target)[0]
-    new_group.my_courses.push(mc[0])
 
 @MyCoursesCtrl.$inject = ['$scope', '$http', '$modal', '$log']

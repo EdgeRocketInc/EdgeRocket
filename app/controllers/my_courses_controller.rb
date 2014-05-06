@@ -83,6 +83,7 @@ class MyCoursesController < ApplicationController
       my_crs.user_id = u.id
       my_crs.product_id = prd_id
       my_crs.status = params[:status]
+      my_crs.percent_complete = MyCourses.calc_percent_complete(my_crs.status)
       my_crs.save
     end
     result = { 'user_ud' => u.id, 'course_id' => prd_id }
@@ -98,8 +99,13 @@ class MyCoursesController < ApplicationController
   # JSON: {"id":"1003"}
   def update_subscribtion
     mc_id = params[:id]
-    MyCourses.update(mc_id, :status => params[:status])
-    result = { 'id' => mc_id }
+
+    # when subscription changes, we need to set the date and %complete
+    new_status = params[:status]
+    pcompl = MyCourses.calc_percent_complete(new_status)
+    d = DateTime.now
+    MyCourses.update(mc_id, :status => new_status, :percent_complete => pcompl, :completion_date => d)
+    result = { 'id' => mc_id, 'percent_complete' => pcompl, 'completion_date' => d }
 
     respond_to do |format|
         format.json { render json: result.as_json }

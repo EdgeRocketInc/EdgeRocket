@@ -29,4 +29,18 @@ class MyCourses < ActiveRecord::Base
     where("user_id = ? and product_id = ?", user_id, product_id)
   end
 
+  # set the percent complete member varibale value depending on the status
+  def self.calc_percent_complete(status)
+    pcomplete = 0
+
+    case status
+    when 'compl'
+      pcomplete = 100
+    when 'wip'
+      pcomplete = 50
+    end
+
+    return pcomplete
+  end
+
 end
