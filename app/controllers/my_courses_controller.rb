@@ -41,8 +41,11 @@ class MyCoursesController < ApplicationController
 
     # --- Budget section
     @account = u.account
-    if @account && @account.budget_management == true
-     @budget = u.budget
+    if !@account.blank? && !@account.options.blank? 
+      options = ActiveSupport::JSON.decode(@account.options)
+      if options['budget_management'] == true
+        @budget = u.budget
+      end
     end
 
     #TODO make it async

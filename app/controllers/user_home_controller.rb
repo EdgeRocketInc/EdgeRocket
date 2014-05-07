@@ -38,7 +38,7 @@ class UserHomeController < ApplicationController
       format.json {
         # combine all aobject into one JSON result
         json_result = Hash.new()
-        json_result['account'] = @account
+        json_result['account'] = @account.as_json(methods: :options)
         json_result['playlists'] = @playlists
         json_result['subscribed_playlists'] = @subscribed_playlists
         json_result['sign_in_count'] = u.sign_in_count #ugly but works

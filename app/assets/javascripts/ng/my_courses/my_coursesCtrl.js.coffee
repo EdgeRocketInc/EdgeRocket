@@ -46,6 +46,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       for pl in data.my_playlists
         pl.checked = 'expand'
       $scope.data = data
+      $scope.options_json = angular.fromJson($scope.data.account.options)
       console.log('Successfully loaded user_home')
      ).error( ->
       console.log('Error loading user_home')

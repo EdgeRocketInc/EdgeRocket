@@ -36,15 +36,6 @@
         </div>
       </div>
 
-      <!--
-      <div class="alert alert-info fade in">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>Propel Your Learning and Success</h4>
-        EdgeRocket helps you find great online classes and resources to help you build skills and advance your career.
-        <p>{{ data.account['overview'] }}</p>
-      </div>
-      -->
-
 	    <div class="panel panel-info">
  		    <div class="panel-heading">Playlists</div>
         <div class="panel-body">
@@ -69,7 +60,7 @@
 
     </div>
     <div class="col-lg-5">
-	    <div class="panel panel-info">
+	    <div class="panel panel-info" ng-if="options_json.discussions">
 		    <div class="panel-heading">Discussions</div>
         <div class="panel-body">
           <div class="well">
@@ -89,7 +80,7 @@
         </div>
 	    </div>
 
-      <div class="panel panel-info">
+      <div class="panel panel-info" ng-if="options_json.recommendations">
  		    <div class="panel-heading">Recommended Courses</div>
  		    <div class="panel-body">
           <div>

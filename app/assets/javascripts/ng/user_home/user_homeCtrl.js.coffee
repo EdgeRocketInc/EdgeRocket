@@ -28,11 +28,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           $scope.btnSubscribedClass[i] = 'btn-default'
           $scope.glyphAction[i] = 'plus-sign green'
           $scope.glyphSubscribed[i] = ''
-      # check if it's the first login
-      if $scope.data.sign_in_count <= 1 && !$scope.data.user_preferences?
+      # check if the option is enabled and it's the first login
+      $scope.options_json = angular.fromJson($scope.data.account.options)
+      if $scope.options_json.survey && $scope.data.sign_in_count <= 1 && !$scope.data.user_preferences?
         console.log('Starting survey...')
-        # TODO this should be enabled with a configruable option when we are ready
-        #startSurvey()
+        startSurvey()
      ).error( ->
       console.log('Error loading user_home')
     )

@@ -7,10 +7,10 @@ one:
 two:
   id: 102
   company_name: My ACME LLC
-  budget_management: false
+  options: '{"budget_management":false}'
 
 three:
   id: 103
   company_name: Huge Company, Inc
-  budget_management: true
+  options: '{"budget_management":true}'
 
