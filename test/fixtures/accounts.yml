@@ -12,5 +12,5 @@ two:
 three:
   id: 103
   company_name: Huge Company, Inc
-  options: '{"budget_management":true}'
+  options: '{"budget_management":true,"disable_plans":false}'
 

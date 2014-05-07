@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MyCoursesControllerTest < ActionController::TestCase
   test "should get index" do
-    sign_in User.first
+    sign_in User.find(101)
     get :index
     assert_response :success
   end
