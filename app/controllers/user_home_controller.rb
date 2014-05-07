@@ -3,7 +3,9 @@ class UserHomeController < ApplicationController
 
   # GET
   def index
-    u = User.find_by_email(current_user.email)
+
+
+    u = current_user
 
     # --- Company section
     @account = u.account
@@ -52,7 +54,7 @@ class UserHomeController < ApplicationController
   # subscribe currently authenitcated user to the playlist
   # JSON: {"playlist_id":"1003"}
   def subscribe
-    u = User.find_by_email(current_user.email)
+    u = current_user
     pl = Playlist.find(params[:playlist_id])
     # TODO handle exceptions
     u.playlists << pl
@@ -68,7 +70,7 @@ class UserHomeController < ApplicationController
   # unsubscribe currently authenitcated user from the playlist
   # JSON: empty
   def unsubscribe
-    u = User.find_by_email(current_user.email)
+    u = current_user
     pl = Playlist.find(params[:id])
     # TODO handle exceptions
     u.playlists.delete(pl)
@@ -84,7 +86,7 @@ class UserHomeController < ApplicationController
   # create new set of user preferences
   # JSON: {anything}
   def create_preferences
-    u = User.find_by_email(current_user.email)
+    u = current_user.email
     #debugger
     u.preferences = params[:education].to_json # TODO make it real
     u.save

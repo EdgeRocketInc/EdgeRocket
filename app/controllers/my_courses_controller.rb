@@ -3,7 +3,7 @@ class MyCoursesController < ApplicationController
 
   def index
     @course_groups = Array.new
-    u = User.find_by_email(current_user.email)
+    u = current_user
 
     # --- Courses section
     # TODO this can be more DRY and pushed to the view
@@ -77,7 +77,7 @@ class MyCoursesController < ApplicationController
   # subscribe currently authenitcated user to the course
   # JSON: {"course_id":"1003"}
   def subscribe
-    u = User.find_by_email(current_user.email)
+    u = current_user
     prd_id = params[:course_id]
     my_crs = MyCourses.find_courses(u.id, prd_id)
     # TODO handle exceptions
