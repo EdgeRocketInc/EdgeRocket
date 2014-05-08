@@ -31,7 +31,7 @@ four:
   vendor_id: 3 #Udemy
   authors: Natalie Disque
   origin: https://www.udemy.com/project-management-training/
-  price: $85
+  price: 85
   description: "At the end of this course, you will have the essential knowledge of the fundamental concepts of Project Management."
 
 five:
