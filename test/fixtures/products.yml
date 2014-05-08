@@ -6,7 +6,7 @@ one:
   vendor_id: 3
   authors: Patrick Hankinson
   origin: https://www.udemy.com/intro-to-java-programming/
-  price: free
+  price: # free
   description: This course is an introduction to Java.  Java is one of the most widely used computer programming language and has the highest paying jobs for new hires in the programming industry.  Java powers Android smartphones and is behind the widely popular Minecraft.
 
 two:
