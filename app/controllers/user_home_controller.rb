@@ -58,6 +58,12 @@ class UserHomeController < ApplicationController
     pl = Playlist.find(params[:playlist_id])
     # TODO handle exceptions
     u.playlists << pl
+
+    # subscribe for all courses in this playlists
+    for product in pl.products
+      MyCourses.subscribe(u.id, product.id, 'reg', 'Self')
+    end
+
     result = { 'user_ud' => u.id, 'playlist_id' => params[:playlist_id] }
 
     respond_to do |format|
@@ -72,6 +78,13 @@ class UserHomeController < ApplicationController
   def unsubscribe
     u = current_user
     pl = Playlist.find(params[:id])
+
+    # unsubscribe for all courses in this playlists
+    for product in pl.products
+      # TODO
+      #MyCourses.unsubscribe(u.id, product.id)
+    end
+
     # TODO handle exceptions
     u.playlists.delete(pl)
     result = { 'user_ud' => u.id, 'playlist_id' => pl.id }

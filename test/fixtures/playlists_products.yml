@@ -18,6 +18,49 @@ jane_02:
   playlist_id: 101
   product_id: 104
 
+tech_ux__1:
+  playlist_id: 3001
+  product_id: 3040
+
+tech_ux__2:
+  playlist_id: 104
+  product_id: 3041
+
+tech_ux__3:
+  playlist_id: 104
+  product_id: 3042
+
+tech_ux__4:
+  playlist_id: 104
+  product_id: 3043
+
+tech_ux__5:
+  playlist_id: 104
+  product_id: 3044
+
+tech_ux__6:
+  playlist_id: 104
+  product_id: 3045
+
+tech_ux__7:
+  playlist_id: 104
+  product_id: 3046
+
+tech_ux__8:
+  playlist_id: 104
+  product_id: 3047
+
+tech_ux__9:
+  playlist_id: 104
+  product_id: 3048
+
+tech_ux__10:
+  playlist_id: 104
+  product_id: 3049
+
+
+
+
 # ==== REAL: Eating our own dog food =====
 
 angular_1:

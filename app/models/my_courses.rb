@@ -43,4 +43,18 @@ class MyCourses < ActiveRecord::Base
     return pcomplete
   end
 
+  def self.subscribe(user_id, prd_id, status, assigned_by)
+    my_crs = MyCourses.find_courses(user_id, prd_id)
+    # TODO handle exceptions
+    if my_crs.nil? || my_crs.length == 0
+      my_crs = MyCourses.new()
+      my_crs.user_id = user_id
+      my_crs.product_id = prd_id
+      my_crs.status = status #params[:status]
+      my_crs.assigned_by = assigned_by #params[:assigned_by]
+      my_crs.percent_complete = MyCourses.calc_percent_complete(my_crs.status)
+      my_crs.save
+    end
+  end
+
 end

@@ -79,17 +79,9 @@ class MyCoursesController < ApplicationController
   def subscribe
     u = current_user
     prd_id = params[:course_id]
-    my_crs = MyCourses.find_courses(u.id, prd_id)
-    # TODO handle exceptions
-    if my_crs.nil? || my_crs.length == 0
-      my_crs = MyCourses.new()
-      my_crs.user_id = u.id
-      my_crs.product_id = prd_id
-      my_crs.status = params[:status]
-      my_crs.assigned_by = params[:assigned_by]
-      my_crs.percent_complete = MyCourses.calc_percent_complete(my_crs.status)
-      my_crs.save
-    end
+
+    MyCourses.subscribe(u.id, prd_id, params[:status], params[:assigned_by])
+
     result = { 'user_ud' => u.id, 'course_id' => prd_id }
 
     respond_to do |format|
