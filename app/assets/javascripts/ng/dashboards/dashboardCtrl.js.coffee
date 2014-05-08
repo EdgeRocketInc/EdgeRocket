@@ -9,24 +9,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # CHARTS - activity
 
   $scope.activityChartData = {
-    series: ['Completed', 'In Progress'],
-    data : [{
-      x : "Jan",
-      y: [3, 5],
-      tooltip:"this is tooltip"
-    },
-    {
-      x : "Feb",
-      y: [4, 10]
-    },
-    {
-      x : "Mar",
-      y: [2, 11]
-    },
-    {
-      x : "Apr",
-      y: [2, 1]
-    }]     
+    series: [],
+    data : []
   }
 
   $scope.activityChartType = 'bar'
@@ -39,6 +23,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       position:'left'
     }
   }
+
+  loadActivity =  ->
+    $http.get('/dashboard.json').success( (data) ->
+      $scope.activityChartData = data.activityChartData
+      $scope.options_json = angular.fromJson(data.account.options)
+      console.log('Successfully loaded dashboards')
+     ).error( ->
+      console.log('Error loading user_home')
+    )
+
+  loadActivity()
+
 
   # CHARTS - topics
 
@@ -72,7 +68,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     {
       x : "Other",
       y: [7, 11]
-    }] 
+    }]
 
   }
 
@@ -111,7 +107,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     {
       x : "Other",
       y: [2, 1]
-    }]     
+    }]
   }
 
   $scope.deptChartType = 'bar'
@@ -145,7 +141,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     {
       x : "7+",
       y: [1]
-    }]     
+    }]
   }
 
   $scope.usersChartType = 'pie'

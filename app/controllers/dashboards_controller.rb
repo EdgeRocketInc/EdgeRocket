@@ -2,15 +2,20 @@ class DashboardsController < ApplicationController
   before_action :set_dashboard, only: [:show]
   before_filter :authenticate_user!
 
-  # GET /dashboards/1
-  # GET /dashboards/1.json
+  # GET /dashboard
+  # GET /dashboard.json
+  # NOTE: it uses a jbuilder view
   def show
-	@users = { 
-		:total_count => User.count, 
-		:num_admins => Role.count("name in ('Admin', 'SA')")
-	}
+  	@users = { 
+  		:total_count => User.count, 
+  		:num_admins => Role.count("name in ('Admin', 'SA')")
+  	}
 
-	authorize! :manage, :all
+  	authorize! :manage, :all
+
+    @account = current_user.account
+    @group_count = MyCourses.group(:status).count
+
   end
 
   private

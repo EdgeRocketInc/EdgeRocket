@@ -1,15 +1,5 @@
 EdgeApp::Application.routes.draw do
 
-  get "plans/index"
-  get 'search' => 'search#index'
-  get "my_courses" => 'my_courses#index'
-  get "user_home" => 'user_home#index'
-  post "playlist_subscription" => 'user_home#subscribe'
-  delete "playlist_subscription/:id" => 'user_home#unsubscribe'
-  post "course_subscription" => 'my_courses#subscribe'
-  put "course_subscription/:id" => 'my_courses#update_subscribtion'
-  delete "course_subscription/:id" => 'my_courses#unsubscribe'
-  post "users/preferences" => 'user_home#create_preferences'
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -20,11 +10,24 @@ EdgeApp::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get 'dashboard' => 'dashboards#show'
+  get "search" => 'search#index'
+  get "my_courses" => 'my_courses#index'
+  get "user_home" => 'user_home#index'
+  get "dashboard" => 'dashboards#show'
+  get 'playlists/:id/courses' => 'playlists#courses'
+  get "plans/index"
+
+  post "playlist_subscription" => 'user_home#subscribe'
+  post "course_subscription" => 'my_courses#subscribe'
+  post "users/preferences" => 'user_home#create_preferences'
+
+  put "course_subscription/:id" => 'my_courses#update_subscribtion'
+
+  delete "course_subscription/:id" => 'my_courses#unsubscribe'
+  delete "playlist_subscription/:id" => 'user_home#unsubscribe'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-  get 'playlists/:id/courses' => 'playlists#courses'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :products
