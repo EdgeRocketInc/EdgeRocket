@@ -31,3 +31,46 @@ angular_2:
 angular_3:
   playlist_id: 2001
   product_id: 3003
+
+# ===== Account TrackVia
+
+trackvia_1:
+  playlist_id: 3001
+  product_id: 3040
+
+trackvia_2:
+  playlist_id: 3001
+  product_id: 3041
+
+trackvia_3:
+  playlist_id: 3001
+  product_id: 3042
+
+trackvia_4:
+  playlist_id: 3001
+  product_id: 3043
+
+trackvia_5:
+  playlist_id: 3001
+  product_id: 3044
+
+trackvia_6:
+  playlist_id: 3001
+  product_id: 3045
+
+trackvia_7:
+  playlist_id: 3001
+  product_id: 3046
+
+trackvia_8:
+  playlist_id: 3001
+  product_id: 3047
+
+trackvia_9:
+  playlist_id: 3001
+  product_id: 3048
+
+trackvia_10:
+  playlist_id: 3001
+  product_id: 3049
+

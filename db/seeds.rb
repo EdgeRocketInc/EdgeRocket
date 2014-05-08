@@ -10,7 +10,7 @@ Account.create(id: 1, company_name: 'EdgeRocket, Inc.',
 	options: '{"budget_management":true,"survey":true,"discussions":true,"recommendations":true}',
 	overview: 'EdgeRocket ecnourages employees to take as many classes as possible')
 Account.create(id: 2, company_name: 'TechCorp', 
-	options: '{"budget_management":true,"survey":true,"discussions":true,"recommendations":true}',
+	options: '{"budget_management":true,"survey":false,"discussions":true,"recommendations":true}',
 	overview: 'TechCorp will reimburse you for up to $200 of online courses per calendar year, subject to your manager’s approval. Questions about EdgeRocket usage can be addressed to your manager, or to Linda Kim in HR.') 
 Account.create(id: 3, company_name: 'TrackVia', 
 	options: '{"budget_management":false,"survey":false,"discussions":true,"recommendations":false,"disable_search":true,"disable_plans":true}',
@@ -30,6 +30,12 @@ Vendor.create(id: 10, name: 'edX', logo_file_name: 'edx-logo-header.png' )
 Vendor.create(id: 11, name: 'Code School', logo_file_name: 'code-school-logo-brackets.png' )
 Vendor.create(id: 12, name: 'TED', logo_file_name: 'ted-logo.png' )
 Vendor.create(id: 13, name: 'HBX', logo_file_name: 'hbx-logo.png' )
+Vendor.create(id: 14, name: 'Treehouse' )
+Vendor.create(id: 15, name: 'UserZoom' )
+Vendor.create(id: 16, name: 'HubSpot' )
+Vendor.create(id: 17, name: 'Moz' )
+Vendor.create(id: 18, name: 'Eduson' )
+Vendor.create(id: 19, name: 'Usability Professionals Association')
 
 User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: 1)
 User.create(id: 1, email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: 1)

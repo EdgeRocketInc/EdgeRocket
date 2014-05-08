@@ -176,3 +176,146 @@ alexey_ui_1:
   percent_complete: 100.00
   assigned_by: Self
   completion_date: 2014-04-28
+
+# ==== Account TrackVia
+
+trackvia_ux_1:
+  user_id: 21
+  product_id: 3040
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_2:
+  user_id: 21
+  product_id: 3041
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_3:
+  user_id: 21
+  product_id: 3042
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_4:
+  user_id: 21
+  product_id: 3043
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_5:
+  user_id: 21
+  product_id: 3044
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_6:
+  user_id: 21
+  product_id: 3045
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_7:
+  user_id: 21
+  product_id: 3046
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_8:
+  user_id: 21
+  product_id: 3047
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_9:
+  user_id: 21
+  product_id: 3048
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_10:
+  user_id: 21
+  product_id: 3049
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_1:
+  user_id: 20
+  product_id: 3040
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_2:
+  user_id: 20
+  product_id: 3041
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_3:
+  user_id: 20
+  product_id: 3042
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_4:
+  user_id: 20
+  product_id: 3043
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_5:
+  user_id: 20
+  product_id: 3044
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_6:
+  user_id: 20
+  product_id: 3045
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_7:
+  user_id: 20
+  product_id: 3046
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_8:
+  user_id: 20
+  product_id: 3047
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_9:
+  user_id: 20
+  product_id: 3048
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+
+trackvia_ux_admin_10:
+  user_id: 20
+  product_id: 3049
+  status: reg
+  percent_complete: 0.00
+  assigned_by: Manager
+

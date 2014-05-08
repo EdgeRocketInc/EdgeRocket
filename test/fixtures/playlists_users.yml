@@ -39,3 +39,14 @@ angular_alexey_1:
 angular_alexey_2:
   playlist_id: 2002
   user_id: 3
+
+# === Account TrackVia
+
+trackvia_employee_1:
+  playlist_id: 3001
+  user_id: 20
+
+trackvia_employee_2:
+  playlist_id: 3001
+  user_id: 21
+

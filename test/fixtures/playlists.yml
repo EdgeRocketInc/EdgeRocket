@@ -52,8 +52,9 @@ TechCorp103:
 TechCorp104:
   id: 104
   account_id: 2
-  title: User Experience courses
+  title: User Experience Essentials
   description: A collection of expert videos and courses about UX.
+  mandatory: false
 
 TechCorp105:
   id: 105
@@ -66,6 +67,15 @@ TechCorp106:
   account_id: 2
   title: Innovation
   description: Terrific group of materials on the topic of innovation.
+
+
+TechCorp107:
+  id: 107
+  account_id: 2
+  title: Leadership Development
+  description: A collection of materials for emerging leaders
+  mandatory: false
+
 
 # ==== REAL: Eating our own dog food =====
 angular:
@@ -80,4 +90,34 @@ user_interface:
   account_id: 1
   title: UI and UX for EdgeRocket
   description: A collection of materials for learning UI/UX
+  mandatory: false
+
+er_leadership:
+  id: 2003
+  account_id: 1
+  title: Leadership Development
+  description: A collection of materials for emerging leaders
+  mandatory: false
+
+# ==== Account: TrackVia
+
+trackvia_ux:
+  id: 3001
+  account_id: 3
+  title: User Experience Essentials
+  description: A collection of materials for learning UI/UX
+  mandatory: false
+
+trackvia_newhire:
+  id: 3002
+  account_id: 3
+  title: New Hire Training
+  description: Recommended for new hires
+  mandatory: true
+
+trackvia_leadership:
+  id: 3003
+  account_id: 3
+  title: Leadership Development
+  description: A collection of materials for emerging leaders
   mandatory: false

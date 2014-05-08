@@ -2,47 +2,52 @@
 
 one:
   id: 2001
-  name: Introduction to Java Course
+  name: Intro to Java Programming
   vendor_id: 3
-  authors: Adam Smith, Jimmy Carter
-  origin: https://www.khanacademy.org/
-  price: 49.99
-  duration: 10.5
-  media_type: mooc
+  authors: Patrick Hankinson
+  origin: https://www.udemy.com/intro-to-java-programming/
+  price: free
+  description: This course is an introduction to Java.  Java is one of the most widely used computer programming language and has the highest paying jobs for new hires in the programming industry.  Java powers Android smartphones and is behind the widely popular Minecraft.
 
 two:
   id: 2002
-  name: Presentation Skills Training
+  name: An Introduction to Corporate Finance
   vendor_id: 1
-  authors: Tolstoy, Dostoyevsky
-  origin: https://www.udacity.org/
+  authors: Franklin Allen
+  origin: https://www.coursera.org/course/finance
   price: 39.95
-  school: UCLA
+  school: Wharton
 
 three:
   id: 2003
   name: Intro to Cloud Computing
   vendor_id: 2000
   media_type: video
+  duration: 8.5
 
 four:
   id: 2004
   name: Project Management
-  vendor_id: 1
+  vendor_id: 3 #Udemy
+  authors: Natalie Disque
+  origin: https://www.udemy.com/project-management-training/
+  price: $85
+  description: "At the end of this course, you will have the essential knowledge of the fundamental concepts of Project Management."
 
 five:
   id: 2005
-  name: The Analytics Edge
-  vendor_id: 1
-  authors: Joe Doe
-  origin: https://www.udacity.org/
+  name: Design Foundations
+  vendor_id: 14 #Treehouse
+  authors: Mat Helme
+  origin: http://teamtreehouse.com/library/design-foundations-2
+  description: Have you ever wanted to understand and create aesthetic designs for the web? In this Deep Dive we will learn what design is and how to harness its power. Breakdown the components that conjure the perfect aesthetic. Also create and fix a design of your own.
 
 six:
   id: 2006
   name: Exploratory Data Science
   vendor_id: 1
-  authors: Andy Brewer
-  origin: https://www.khanacademy.org/
+  authors: Roger Peng, Jeff Leek, Brian Caffo
+  origin: https://www.coursera.org/course/exdata
 
 # ==== DEMO: TechCorp
 
@@ -51,10 +56,9 @@ TechCorp101:
   name: Lean Product Management
   vendor_id: 5 #Google Ventures
   origin: http://gv.com/1527
-  authors: Dan Olsen
+  authors: Dan Olsen, Product Manager at Google, Intuit
   price: #free
-  media_type: video
-  duration: 1.5
+  description: What is Lean Product Management? Dan Olsen, a startup veteran and leading PM voice, discusses how to apply Lean Startup principles as a product person. Dan covers best practices in understanding customer needs, prioritization, UX design, user testing, and analytics that can be used to optimize your product.
 
 TechCorp102:
   id: 102
@@ -72,9 +76,10 @@ TechCorp104:
   id: 104
   name: Modern Marketing Workshop
   vendor_id: 8 # Skillshare
+  authors: Seth Godin
   origin: http://skl.sh/1dYFPL5
   price: 19.00
-  duration: 8
+  description: Marketing has changed more in the last 20 years than any other business discipline. Far more than accounting, manufacturing, or management. Why are we relying on the same-old traditional textbooks? I’ve built this Modern Marketing Workshop for the team of today. Learn how to spot opportunities, avoid pitfalls, and grow relevant metrics into meaningful action. It’s a fast, powerful, and hands-on course that will transform you and your business.
 
 TechCorp105:
   id: 105
@@ -88,9 +93,10 @@ TechCorp106:
   name: Exploratory Data Analysis
   vendor_id: 2000
   origin: https://www.udacity.com/course/ud651
-  authors: Dean Eckles
+  authors: Dean Eckles, Moira Burke
   keywords: data analysis
   price: 150 #per month
+  description: Exploratory Data Analysis (EDA) is an approach to data analysis for summarizing and visualizing the important characteristics of a data set. Promoted by John Tukey, EDA focuses on exploring data to understand the data’s underlying structure and variables, to develop intuition about the data set, consider how that data set came into existence, and decide how it can be investigated with more formal statistical methods.
 
 TechCorp107:
   id: 107
@@ -103,7 +109,7 @@ TechCorp108:
   id: 108
   name: The Analytics Edge
   vendor_id: 10
-  authors: D. Bertsimas
+  authors: Dimitris Bertsimas
   keywords: data analysis
 
 TechCorp109:
@@ -127,6 +133,7 @@ TechCorp111:
   origin: http://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization
   authors: David McCandless
   keywords: data analysis
+  description: David McCandless turns complex data sets (like worldwide military spending, media buzz, Facebook status updates) into beautiful, simple diagrams that tease out unseen patterns and connections. Good design, he suggests, is the best way to navigate information glut — and it may just change the way we see the world.
 
 TechCorp112:
   id: 112
@@ -187,4 +194,157 @@ ux_1:
   authors: GoogleTechTalks
   vendor_id: 4
   origin: http://www.noodle.org/learn/details/243064/the-science-and-art-of-user
-  description: Google TechTalksJune 7, 2006Jen Fitzpatrick is an Engineering Director at Google. She currently manages Google's user experience team, which is responsible for the user interface design and usability analysis of Google's many products. A founding member of Google's UI team, Jen has also led the UI design, testing and implementation of numerous features and changes to the Google.com site. In the past, Jen has also served as Engineering Director for Google Adwords and Google's Internal Systems engineering group. Jen joined Google in June 1999 as a software engineer. She is a graduate of Stanford University where she received a B.S. in Symbolic Systems and an M.S. in Computer...
+  description: Google TechTalksJune 7, 2006.  Jen Fitzpatrick is an Engineering Director at Google. She currently manages Google's user experience team, which is responsible for the user interface design and usability analysis of Google's many products. A founding member of Google's UI team, Jen has also led the UI design, testing and implementation of numerous features and changes to the Google.com site. In the past, Jen has also served as Engineering Director for Google Adwords and Google's Internal Systems engineering group. Jen joined Google in June 1999 as a software engineer. She is a graduate of Stanford University where she received a B.S. in Symbolic Systems and an M.S. in Computer...
+
+ux_2:
+  id: 3041
+  name: User Centered Design
+  authors: "Jesse James Garrett, et al"
+  vendor_id: # none
+  origin: http://paznow.s3.amazonaws.com/User-Centred-Design.pdf
+  description: "Graphic about User Centred Design, offering overview of UCD and its main components. Excellent summary."
+
+ux_3:
+  id: 3042
+  name: Designing the User Experience
+  authors: Usability Professionals Association
+  vendor_id: 19 #Usability Professionals Association
+  origin: http://www.mprove.de/script/00/upa/_media/upaposter_11x17.pdf
+  description: Graphic displaying the steps and sequence of designing the user experience. Graphic is modeled after “chutes and ladders” board game. 
+
+ux_4:
+  id: 3043
+  name: "Google Ventures: The Product Design Sprint: A Five-Day Recipe for Startups"
+  authors: Jake Knapp
+  vendor_id: 5 #Google Ventures
+  origin: http://www.gv.com/lib/the-product-design-sprint-a-five-day-recipe-for-startups
+  description: At Google Ventures, we do product design work with startups all the time. Since we want to move fast and they want to move fast, we’ve optimized a process that gets us predictably good results in five days or less. We call it a product design sprint, and it’s great for getting unstuck or accelerating projects that are already in motion.
+
+ux_5:
+  id: 3044
+  name: UX Basics
+  authors: Lis Hupert
+  vendor_id: 14 #Treehouse
+  origin: http://teamtreehouse.com/library/ux-basics
+  description: Before you can become a User Experience (UX) designer, you need to understand the importance of UX, the reason it exists, what the goal of the UX designer is and how they think. In this course, you’ll learn all about UX Design, what it is, what UX designers do, how UX designers think, what tools UX designers use, and how to move forward in the field of UX.
+
+ux_6:
+  id: 3045
+  name: How to Scale Your UX Research
+  authors: Deborah Torres
+  vendor_id: 15 #UserZoom
+  origin: http://info.userzoom.com/scaling-ux-research.html 
+  description: UX researcher at PayPal, discusses real-world UX research strategies and tactics. 
+
+ux_7:
+  id: 3046
+  name: How to Measure Usability and User Experience
+  authors: Jeff Sauro
+  vendor_id: 15 #UserZoom
+  origin: http://www.slideshare.net/UserZoom_UK/webinar-with-ux-pioneer-jeff-sauro-measuring-ux-and-usability
+  description: A slideshare presentation detailing top methods for measuring usability. 
+
+ux_8:
+  id: 3047
+  name: Mobile UX for Non-Designers
+  authors: Rudd Taylor
+  vendor_id: 9 ##General Assembly
+  origin: https://generalassemb.ly/online/livestreams/mobile-ux-for-non-designers
+  description: You’re building an iOS app – what kinds of user interface tools do you have in your toolkit? What kinds of applications typically take advantage of each? This class will go over common navigation paradigms, widgets, gestures and UX best practices seen in iOS apps. This class is designed for designers and product managers without tech backgrounds.
+
+ux_9:
+  id: 3048
+  name: "Foundations of UX: Prototyping"
+  authors: James Williamson
+  vendor_id: 6 #Lynda
+  origin: http://www.lynda.com/Web-Interaction-Design-tutorials/Foundations-UX-Prototyping/133349-2.html
+  description: 2-hour video on prototyping.
+
+ux_10:
+  id: 3049
+  name: Usability Foundations
+  authors: Dan Gorgone
+  vendor_id: 14 #Treehouse
+  origin: http://teamtreehouse.com/library/usability-foundations
+  description: 1-hour video covering usability foundations. 
+
+extra_01:
+  id: 4001
+  name: SQL for Marketers
+  authors: Justin Mares
+  vendor_id: 3 #Udemy
+  origin: https://www.udemy.com/sql-for-marketers/?dtcode=nk49pcpw
+  description: Technical marketers are in high demand and low supply. Being able to dive into data on your own, with no help from engineering, makes you a much better marketer. This is why SQL is so powerful - it allows you to see any data you want about anything your customers do. Knowing how to use SQL is literally a marketing superpower.
+
+extra_02:
+  id: 4002
+  name: How data will transform business
+  authors: Philip Evans
+  vendor_id: 12 #TED
+  origin: http://www.ted.com/talks/philip_evans_how_data_will_transform_business
+  description: What does the future of business look like? In an informative talk, Philip Evans gives a quick primer on two long-standing theories in strategy — and explains why he thinks they are essentially invalid.
+
+extra_03:
+  id: 4003
+  name: UX Basics
+  authors: Lis Hubert
+  vendor_id: 14 #Treehouse
+  origin: http://teamtreehouse.com/library/ux-basics
+  description: Before you can become a User Experience (UX) designer, you need to understand the importance of UX, the reason it exists, what the goal of the UX designer is and how they think. In this course, you’ll learn all about UX Design, what it is, what UX designers do, how UX designers think, what tools UX designers use, and how to move forward in the field of UX.
+
+extra_04:
+  id: 4004
+  name: "Art of Presentation: an Unforgettable Motivating Story"
+  authors: Alexei Kapterev
+  vendor_id: 18 #Eduson
+  origin: https://www.eduson.tv/courses/77
+  description:  3 hours.  This course will teach you how to create the perfect presentation. The author will help you perfect structure, excitement, infographics, design, and techniques of speaking. Wherever you speak, at an office meeting, a conference, in front of investors or clients, your presentation will clearly convey your message. Creating an effective presentation is a must-have skill for consultants, investment bankers, and analysts.
+
+extra_05:
+  id: 4005
+  name: "Sales Skills: 10 Effective Techniques for Success"
+  authors: Elinor Stutz
+  vendor_id: 18 #Eduson
+  origin: https://www.eduson.tv/courses/107
+  description: A successful sales specialist will teach you proven techniques. From the course you will learn how to attract new customers and make your customers loyal, how to make cold calls and personal meetings with the clients, how to get an access to the people who take decisions and softly make them arrange to see you again.
+
+extra_06:
+  id: 4006
+  name: Keyword Strategy
+  authors: Rand Fishkin
+  vendor_id: 17 #Moz
+  origin: http://moz.com/academy/keyword-strategy
+  description: In this lesson we're talking about the basics of keyword strategy. The whole goal of SEO is to get in front of searchers who are making queries that match the intent of people that you would like to reach. If someone does a search for “yellow Pumas,” you sell shoes, Pumas (yellow ones), on your website, and you want to be in front of those folks.
+
+extra_07:
+  id: 4007
+  name: How to Create Remarkable Content
+  authors: HubSpot
+  vendor_id: 16 #HubSpot
+  origin: http://academy.hubspot.com/webinars/creating-irresistible-content-series/
+  description: Map your content to the buying process. Brainstorm & analyze the data in HubSpot to determine your next pieces of content. Leverage existing content to help you create the content. Create a consistent design experience for all of your content.
+
+extra_08:
+  id: 4008
+  name: How to Measure Usability & User Experience
+  authors: Jeff Sauro
+  vendor_id: 15 #UserZoom
+  origin: http://www.slideshare.net/UserZoom_UK/webinar-with-ux-pioneer-jeff-sauro-measuring-ux-and-usability
+  description: Learn the most popular measures of usability and user experience.
+
+extra_09:
+  id: 4009
+  name: Photoshop CC Essential Training
+  authors: Julieanne Kost
+  vendor_id: 6 #Lynda
+  origin: http://www.lynda.com/Photoshop-tutorials/Photoshop-CC-Essential-Training/122999-2.html
+  description: Learning how to use Adobe Photoshop efficiently and effectively is the best way to get the most out of your pixels and create stunning imagery. Master the fundamentals of this program with Julieanne Kost, and discover how to achieve the results you want with Photoshop and its companion programs, Bridge and Camera Raw.
+
+extra_10:
+  id: 4010
+  name: Inspiring Leadership through Emotional Intelligence
+  authors: Richard Boyatzis
+  vendor_id: 1 #Coursera
+  origin: https://www.coursera.org/course/lead-ei
+  description: "Emotional intelligence, hope, mindfulness, and compassion help a person reverse the damage of chronic stress and build great leadership relationships. The Positive and Negative Emotional Attractors inspire sustained, desired change and learning at many levels."
+
