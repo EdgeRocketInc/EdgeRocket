@@ -1,0 +1,9 @@
+source 'https://rubygems.org'
+
+ruby '2.1.1'
+#ruby-gemset=EdgeRocket
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+gem 'activeresource', '~> 4.0'
