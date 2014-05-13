@@ -8,6 +8,14 @@ Developed and tested with 2.1.x
 * System dependencies
 Developed on Mac OS X, and deployed on Heroku. No other dependencies yet
 
+* How to start:
+- go to https://github.com/admitriyev/EdgeRocket and make sure it’s available to you, copy the link to git clone
+- clone the git repo to your local machine by running this command 
+  git clone https://github.com/admitriyev/EdgeRocket.git
+- run bundler to install gems like this
+  bundle install --without=production
+ - the rails server command should work now
+
 * Database creation
 Developed using sqlite3 and deployed on PostgreSQL
 Use seed.rb (command rake db:seed) to initlize the data.
@@ -20,8 +28,9 @@ check the coverage folder after that
 * Services (job queues, cache servers, search engines, etc.)
 Nothing yet
 
-* Deployment instructions
+* Deployment instructions to Heroku
 git push heroku heroku:master
+There is also deploy.sh script that pushes to git repos, deploys andrefreshes test database. 
 
 == Database structure
 
