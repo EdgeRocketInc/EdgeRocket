@@ -5,3 +5,4 @@ heroku run rake db:fixtures:load
 heroku run rake db:seed
 echo 'done'
  
+ 
