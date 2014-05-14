@@ -75,6 +75,10 @@ angular_3:
   playlist_id: 2001
   product_id: 3003
 
+angular_4:
+  playlist_id: 2001
+  product_id: 3004
+
 # ===== Account TrackVia
 
 trackvia_1:

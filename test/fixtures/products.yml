@@ -173,6 +173,13 @@ angular_3:
   vendor_id: 4
   origin: https://github.com/asanderson15/rails-angular-tutorial
 
+angular_4:
+  id: 3004
+  name: Shaping up with Angular.js
+  authors: Code school
+  vendor_id: 11
+  origin: http://campus.codeschool.com/courses/shaping-up-with-angular-js/intro
+
 newtech_1:
   id: 3020
   name: ReactJS Tutorial
