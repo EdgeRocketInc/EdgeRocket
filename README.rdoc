@@ -38,7 +38,8 @@ Nothing yet
 
 There is also deploy.sh script that pushes to git repos, deploys andrefreshes test database. 
 
-== Database structure
+Database structure
+======
 
 The tables used as an interface between Rails app and Data Acquisition service
 
