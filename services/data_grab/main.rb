@@ -19,7 +19,7 @@ end
 # Establish our DB connection 
 ActiveRecord::Base.establish_connection\
 	:adapter => 'sqlite3',\
-	:database => '../../web/edge_app/db/development.sqlite3'
+	:database => '../../../heroku/db/development.sqlite3'
 
 
 
@@ -27,6 +27,6 @@ courses_json = CourseraClient.courses
 
 for crs in courses_json
 	prd = Product.new
+	prd.name = crs['name']
 	prd.save
-	puts crs['name']
 end
