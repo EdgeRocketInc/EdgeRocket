@@ -6,3 +6,4 @@ heroku run rake db:seed
 echo 'done'
  
  
+ 
