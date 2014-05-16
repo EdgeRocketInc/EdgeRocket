@@ -57,4 +57,9 @@ class MyCourses < ActiveRecord::Base
     end
   end
 
+  def self.unsubscribe(user_id, prd_id)
+    # TODO what do we do if a course is in the progress? Also, need to handle exceptions
+    MyCourses.where(:user_id => user_id, :product_id => prd_id).destroy_all
+  end
+
 end

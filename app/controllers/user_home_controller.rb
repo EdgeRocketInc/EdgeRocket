@@ -81,8 +81,7 @@ class UserHomeController < ApplicationController
 
     # unsubscribe for all courses in this playlists
     for product in pl.products
-      # TODO
-      #MyCourses.unsubscribe(u.id, product.id)
+      MyCourses.unsubscribe(u.id, product.id)
     end
 
     # TODO handle exceptions

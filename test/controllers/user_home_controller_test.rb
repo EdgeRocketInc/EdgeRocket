@@ -27,7 +27,7 @@ class UserHomeControllerTest < ActionController::TestCase
 
   test "playlist unsubscribe" do
     sign_in User.find(101)
-    delete(:unsubscribe, {id: '1003', format: 'json'})
+    delete(:unsubscribe, {id: '1001', format: 'json'})
     assert_response :success
   end
 
