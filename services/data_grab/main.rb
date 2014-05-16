@@ -9,7 +9,7 @@ require 'yaml'
 
 class CourseraClient
  	def self.courses
-		courses = RestClient.get "https://api.coursera.org/api/catalog.v1/courses", {:accept => :json}
+		courses = RestClient.get "https://api.coursera.org/api/catalog.v1/courses?fields=instructor", {:accept => :json}
 		courses_json = JSON.parse(courses)
 		courses_json['elements']		
  	end
@@ -42,12 +42,21 @@ config = YAML.load_file(options[:config])
 
 # Establish our DB connection 
 ActiveRecord::Base.establish_connection\
-	:adapter => config['database']['adapter'], :database => config['database']['database']
+	:adapter => config['database']['adapter'],\
+	:database => config['database']['database'],\
+	:host => config['database']['host'],\
+	:port => config['database']['port'],\
+	:username => config['database']['username'],\
+	:password => config['database']['password']
+
 
 courses_json = CourseraClient.courses
 
 for crs in courses_json
 	prd = Product.new
+	prd.vendor_id = 1 # Coursera
 	prd.name = crs['name']
+	prd.authors = crs['instructor']
+	prd.origin = 'https://www.coursera.org/course/' + crs['shortName']
 	prd.save
 end
