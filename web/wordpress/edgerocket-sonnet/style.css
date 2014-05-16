@@ -134,3 +134,7 @@ a.btn-tour:hover, a.btn-tour:focus {
 	padding: 5px;
 	border: 0;
 }
+
+.team-list, .team-description {
+	width: 100% !important;
+}
