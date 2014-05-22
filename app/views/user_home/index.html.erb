@@ -63,13 +63,9 @@
 	    <div class="panel panel-info" ng-if="options_json.discussions">
 		    <div class="panel-heading">Discussions</div>
         <div class="panel-body">
-          <div class="well">
-          Data Science fans - Hey a group of us are signing up for the Udacity class on Data Science.  It’s a 6-week course, estimated 4 hours/week of work, starts mid-April. Our group is planning to have some lunch meetings to discuss course information and ideas.  Join us!  Hit me by email if interested.
-            <div class="text-warning text-right">Jose Calderon</div>
-          </div>
-          <div class="well">
-             Sounds great, count me in!
-            <div class="text-warning text-right">Susan Cunningham</div>
+          <div class="well" ng-repeat="disc_post in discussions">
+          {{ disc_post.title }}
+            <div class="text-warning text-right">{{disc_post.actor.displayName}}</div>
           </div>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Post a comment"></input>

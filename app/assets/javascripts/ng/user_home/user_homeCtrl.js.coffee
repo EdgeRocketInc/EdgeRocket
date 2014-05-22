@@ -11,6 +11,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.btnSubscribedClass = []
   $scope.glyphSubscribed = []
   $scope.glyphAction = []
+  $scope.discussions = []
 
   loadPlaylists =  ->
     $http.get('/user_home.json').success( (data) ->
@@ -30,10 +31,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           $scope.glyphSubscribed[i] = ''
       # check if the option is enabled and it's the first login
       $scope.options_json = angular.fromJson($scope.data.account.options)
+      if $scope.options_json.discussions
+        loadDiscussions()
       if $scope.options_json.survey && $scope.data.sign_in_count <= 1 && !$scope.data.user_preferences?
         console.log('Starting survey...')
         startSurvey()
-     ).error( ->
+    ).error( ->
       console.log('Error loading user_home')
     )
 
@@ -91,6 +94,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       ).error( ->
         console.error('Failed to set preferences')
       )
+
+  loadDiscussions = () ->
+    $http.get('/discussion/list.json').success( (data) ->
+      console.log('loading discussions ... ')
+      $scope.discussions = data.discussions
+    ).error( ->
+      console.log('Error loading discussions')
+    )
 
 # controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->
