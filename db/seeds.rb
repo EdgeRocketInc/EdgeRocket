@@ -41,6 +41,8 @@ User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!', acco
 User.create(id: 1, email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: 1)
 User.create(id: 2, email: 'peter@edgerocket.co', password: 'ER0cket!', account_id: 1)
 User.create(id: 3, email: 'alexey@edgerocket.co', password: 'ER0cket!', account_id: 1)
+User.create(id: 4, email: 'aleksey@dmitriyev.name', password: 'ER0cket!', account_id: 1)
+User.create(id: 5, email: 'peter@dmitriyev.name', password: 'ER0cket!', account_id: 1)
 User.create(id: 10, email: 'Jane.Smith@TechCorp.com', password: 'TechCorp!', account_id: 2)
 User.create(id: 11, email: 'Jose.Calderon@TechCorp.com', password: 'TechCorp!', account_id: 2)
 User.create(id: 20, email: 'admin@TrackVia.com', password: 'TrackVia!', account_id: 3)

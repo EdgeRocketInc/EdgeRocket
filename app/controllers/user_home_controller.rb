@@ -9,7 +9,9 @@ PLUS_LOGIN_SCOPE =
   'https://www.googleapis.com/auth/plus.media.upload', 
   'https://www.googleapis.com/auth/plus.stream.read', 
   'https://www.googleapis.com/auth/plus.stream.write']
-#CREDENTIAL_STORE_FILE = "gplus-oauth2.json"
+KEY_FILE = 'privatekey-gplus.p12'
+KEY_SECRET = 'notasecret'
+CLIENT_EMAIL = '185907991513-pdaqveuql5ia5il5q2mspscnkq4393f2@developer.gserviceaccount.com'
 
 class UserHomeController < ApplicationController
   before_filter :authenticate_user!
@@ -125,20 +127,6 @@ class UserHomeController < ApplicationController
     end
   end
 
-  # Google+ API authorization redirect
-  def oauth2authorize
-    # Request authorization
-    redirect_to user_credentials.authorization_uri.to_s, status: 303
-  end
-
-  # Google+ API authorization callback
-  def oauth2callback
-    # Exchange token
-    user_credentials.code = params[:code] if params[:code]
-    user_credentials.fetch_access_token!
-    redirect_to(action: 'index')
-  end
-
   def list_discussions
 
     @discussions = []
@@ -178,23 +166,20 @@ private
 
         # TODO use proper version constants
         gplus_client = Google::APIClient.new(:application_name => 'EdgeRocket', :application_version => '0.1.0')
+        
+        # Load private key
+        private_key = Google::APIClient::KeyUtils.load_from_pkcs12(KEY_FILE, KEY_SECRET)
 
-        #file_storage = Google::APIClient::FileStorage.new(CREDENTIAL_STORE_FILE)
-        #if file_storage.authorization.nil?
-          gplus_client_secrets = Google::APIClient::ClientSecrets.load
-          gplus_client.authorization = gplus_client_secrets.to_authorization
-          gplus_client.authorization.scope = PLUS_LOGIN_SCOPE
-        #else
-        #  gplus_client.authorization = file_storage.authorization
-        #end
+        client_asserter = Google::APIClient::JWTAsserter.new(
+            CLIENT_EMAIL,
+            PLUS_LOGIN_SCOPE,
+            private_key
+        )
+        gplus_client.authorization = client_asserter.authorize(current_user.email)
 
         @gplus_domain_api = gplus_client.discovered_api('plusDomains')
 
         @gplus_client = gplus_client
-
-        unless user_credentials.access_token || request.path_info =~ /^\/oauth2/
-          redirect_to(action: 'oauth2authorize')
-        end
       end
     end
 
@@ -208,7 +193,6 @@ private
 
       gplus_client = @gplus_client
       auth = gplus_client.authorization.dup
-      auth.redirect_uri = url_for(:action => 'oauth2callback')
       auth.update_token!( 
         :access_token => session[:access_token],
         :refresh_token => session[:refresh_token]
@@ -228,8 +212,6 @@ private
     session[:expires_in] = user_credentials.expires_in
     session[:issued_at] = user_credentials.issued_at
 
-    #file_storage = Google::APIClient::FileStorage.new(CREDENTIAL_STORE_FILE)
-    #file_storage.write_credentials(user_credentials)
   end
 
 end

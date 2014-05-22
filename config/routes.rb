@@ -17,9 +17,7 @@ EdgeApp::Application.routes.draw do
   get 'playlists/:id/courses' => 'playlists#courses'
   get "plans/index"
   get "discussion/list" => 'user_home#list_discussions'
-  get "oauth2authorize" => 'user_home#oauth2authorize'
-  get "oauth2callback" => 'user_home#oauth2callback'
-
+  
   post "playlist_subscription" => 'user_home#subscribe'
   post "course_subscription" => 'my_courses#subscribe'
   post "users/preferences" => 'user_home#create_preferences'
