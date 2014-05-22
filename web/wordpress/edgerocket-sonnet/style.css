@@ -31,22 +31,23 @@ Orange: F08A2C
 /* EdgeRockety color scheme */
 .er-color-white { color: #FFF; }
 .er-color-purple { color: #A62283; }
-.er-color-blue { color: #1C198E; }
-.er-color-gray { color: #6d6e70; }
+.er-color-blue { color: #444292; }
+.er-color-gray { color: #B4B4B4; }
 .er-color-darkgray { color: #595959 }
 .er-color-tan { color: #A59481; }
 .er-color-orange { color: #F08A2C; }
 
 .er-bg-white { background-color: #FFF; }
-.er-bg-purple { background-color: #A62283; }
-.er-bg-blue { background-color: #1C198E; }
+.er-bg-purple { background-color: #678EA8; }
+.er-bg-blue { background-color: #4D5C97; }
 .er-bg-darkgray { background-color: #595959; }
-.er-bg-charcoal { background-color: #272727; }
+.er-bg-charcoal { background-color: #3F3F3F; }
 .er-bg-tan { background-color: #A59481; }
-.er-bg-orange { background-color: #F08A2C; }
+.er-bg-orange { background-color: #DF9B5D; }
+
 
 .ernew-color-white { color: #FFF; }
-.ernew-color-purple { color: #FF00BB; }
+.ernew-color-purple { color: #A62283; }
 .ernew-color-blue { color: #444292; }
 .ernew-color-gray { color: #B4B4B4; }
 .ernew-color-darkgray { color: #595959 }
@@ -54,11 +55,11 @@ Orange: F08A2C
 .ernew-color-orange { color: #F08A2C; }
 
 .ernew-bg-white { background-color: #FFF; }
-.ernew-bg-purple { background-color: #678EA8; }
+.ernew-bg-purple { background-color: #D1D1D1; }
 .ernew-bg-blue { background-color: #4D5C97; }
-.ernew-bg-darkgray { background-color: #595959; }
+.ernew-bg-darkgray { background-color: #FFF; }
 .ernew-bg-charcoal { background-color: #3F3F3F; }
-.ernew-bg-tan { background-color: #A59481; }
+.ernew-bg-tan { background-color: #A0A0A0; }
 .ernew-bg-orange { background-color: #DF9B5D; }
 
 
@@ -71,12 +72,17 @@ Orange: F08A2C
 Overrides css/style.css
 */
 
-#top-bar .nav > li > a:hover, #top-bar .nav > li.active a {
-		color: #FF0000 !important; /* color-purple */
+#top-bar .nav > li > a:hover {
+		color: #FF0000 !important;
+}
+
+#top-bar .nav > li.active a {
+		color: #F08A2C !important; /* color-orange */
 }
 
 #top-bar .nav > li > a {
 		color: #F08A2C !important; /* color-orange */
+		text-shadow: none;
 }
 
 #top-bar {
@@ -137,4 +143,13 @@ a.btn-tour:hover, a.btn-tour:focus {
 
 .team-list, .team-description {
 	width: 100% !important;
+	color: black !important;
+}
+
+.common-heading h1 {
+	color: black;
+}
+
+.blog-head {
+	background: white !important;
 }

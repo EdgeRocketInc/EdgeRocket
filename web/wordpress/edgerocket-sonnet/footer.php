@@ -30,6 +30,9 @@ global $sonnetwp;
                             if($sonnetwp['social_googleplus']) echo "<a href='{$sonnetwp['social_googleplus']}'><i class='fa fa-google-plus'></i></a>";
                         ?>
 
+                        <a href='https://www.linkedin.com/company/edgerocket'><i class='fa fa-linkedin'></i></a>
+
+
                     </div>
                 </a>
             </div>

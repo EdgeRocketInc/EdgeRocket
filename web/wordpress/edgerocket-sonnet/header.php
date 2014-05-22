@@ -62,6 +62,7 @@ foreach($sections as $section){
     }
 }
 $blog_page_url = get_permalink(get_option("page_for_posts"));
+$menus1[] = '<li class=""><a href="http://edgerocket.co/?page_id=103" title="Jobs">Jobs</a></li>';
 $menus1[] = '<li class=""><a href="'.$blog_page_url.'" title="Blog">Blog</a></li>';
 $menus1[] = '<li class=""><a href="https://edgerocket.herokuapp.com" title="Log in">Log in</a></li>';
 //$menus2[] = '<div class="link link-dot-position-'. ($i+1) .'">
@@ -110,7 +111,7 @@ wp_reset_query();
                 <?php if(!$blogmenu){?>
 				<ul class="nav navbar-nav pull-right topmenu">
                     <?php
-                        echo join('<li class="seperator">/</li>',$menus1);
+                        echo join('<li class="seperator"> </li>',$menus1);
                     ?>
 				</ul>
                 <?php } else {
