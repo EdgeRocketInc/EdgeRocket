@@ -15,8 +15,8 @@ CLIENT_EMAIL = '185907991513-pdaqveuql5ia5il5q2mspscnkq4393f2@developer.gservice
 
 class UserHomeController < ApplicationController
   before_filter :authenticate_user!
-  before_action :gplus_login
-  after_action :after_do
+  before_action :gplus_login, only: [:index, :list_discussions]
+  after_action :after_do, only: [:index, :list_discussions]
 
   # GET
   def index
@@ -160,8 +160,8 @@ private
 
     @account = current_user.account
     if !@account.blank? && !@account.options.blank? 
-      options = ActiveSupport::JSON.decode(@account.options)
-      if options['discussions'] == true
+      @options = ActiveSupport::JSON.decode(@account.options)
+      if @options['discussions'] == 'gplus'
         Google::APIClient.logger.level = Logger::DEBUG
 
         # TODO use proper version constants
@@ -206,11 +206,13 @@ private
   def after_do
     # Serialize the access/refresh token to the session and credential store.
 
-    #debugger
-    session[:access_token] = user_credentials.access_token
-    session[:refresh_token] = user_credentials.refresh_token
-    session[:expires_in] = user_credentials.expires_in
-    session[:issued_at] = user_credentials.issued_at
+    if !@options.blank? && @options['discussions'] == 'gplus'
+      #debugger
+      session[:access_token] = user_credentials.access_token
+      session[:refresh_token] = user_credentials.refresh_token
+      session[:expires_in] = user_credentials.expires_in
+      session[:issued_at] = user_credentials.issued_at
+    end
 
   end
 
