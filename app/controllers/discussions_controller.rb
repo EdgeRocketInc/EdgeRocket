@@ -23,7 +23,8 @@ class DiscussionsController < ApplicationController
   # GET
   # NOTE: using jbuilder 
   def index
-  	@discussions = Discussion.whole_company(current_user.id)
+  	discussions = Discussion.whole_company(current_user.account_id)
+    @discussions = discussions.as_json(:include => :user)
   end
 
   # GET
@@ -33,7 +34,7 @@ class DiscussionsController < ApplicationController
   # POST
   def create
     new_discussion = Discussion.new
-    #TODO: new_discussion.title = params[:discussion][:title]
+    new_discussion.title = params[:title]
     current_user.discussions << new_discussion
     @result = {}
   end

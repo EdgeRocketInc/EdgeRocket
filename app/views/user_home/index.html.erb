@@ -22,7 +22,7 @@
 
 <div class="container-fluid" ng-controller="IndexCtrl">
   <div class="row">
-    <div class="col-lg-7">
+    <div class="col-md-8">
 
       <div class="panel panel-info">
         <div class="panel-heading">Propel Your Learning and Success
@@ -59,13 +59,13 @@
 	    </div>
 
     </div>
-    <div class="col-lg-5">
+    <div class="col-md-4">
 	    <div class="panel panel-info" ng-if="options_json.discussions">
 		    <div class="panel-heading">Discussions</div>
-        <div class="panel-body">
+        <div class="panel-body panel-discussions">
           <div class="well" ng-repeat="disc_post in discussions">
           {{ disc_post.title }}
-            <div class="text-warning text-right">{{disc_post.actor_name}}</div>
+            <div class="text-warning text-right">{{disc_post.user.email}}</div>
           </div>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Post a comment" ng-model="newDiscussion.title"></input>

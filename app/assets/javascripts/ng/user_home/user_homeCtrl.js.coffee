@@ -112,8 +112,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     data = $scope.newDiscussion
 
     $http.post('/discussions.json', data).success( (data) ->
-      saved_discussion = { title : $scope.newDiscussion.title, actor_name : 'me' }
-      $scope.discussions.push(saved_discussion)
+      saved_discussion = { 
+        title : $scope.newDiscussion.title, 
+        user : { email : '<me>' }
+      }
+      $scope.discussions.splice(0,0,saved_discussion)
       $scope.newDiscussion.title = ''
       console.log('Successfully created discussion')
     ).error( ->
