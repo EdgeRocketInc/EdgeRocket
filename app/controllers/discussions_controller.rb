@@ -17,8 +17,10 @@ CLIENT_EMAIL = '185907991513-pdaqveuql5ia5il5q2mspscnkq4393f2@developer.gservice
 class DiscussionsController < ApplicationController
 
   before_filter :authenticate_user!
-  before_action :gplus_login, only: [:create]
-  after_action :after_do, only: [:create]
+  
+  # Using the logic inside method instead
+  #before_action :gplus_login, only: [:create]
+  #after_action :after_do, only: [:create]
 
   # GET
   # NOTE: using jbuilder 
@@ -32,41 +34,75 @@ class DiscussionsController < ApplicationController
   end
 
   # POST
+  # it posts into internal DB, and then if such option is enabled also posts to Google+ Domain
   def create
+    
+    # Post internally
     new_discussion = Discussion.new
     new_discussion.title = params[:title]
     current_user.discussions << new_discussion
+
+    #Post to Google+ if enabled
+    @account = current_user.account
+    if !@account.blank? && !@account.options.blank? 
+      @options = ActiveSupport::JSON.decode(@account.options)
+      if @options['discussions'] == 'gplus'
+        gplus_login
+        if !@gplus_client.nil?
+          json_payload = { 
+            "object" => {
+                "originalContent" => new_discussion.title
+              },
+            "access" => {
+              "items" => [{ "type" => "domain" }],
+              "domainRestricted" => true
+            }
+          }
+          result = @gplus_client.execute(
+            :api_method => @gplus_domain_api.activities.insert, 
+            :headers => {'Content-Type' => 'application/json'},
+            :parameters => { 'userId' => 'me' },
+            :body_object => json_payload
+          )
+        end
+      end
+    end
+  
+    # Return result
     @result = {}
   end
 
 
 private
 
+  # Gplus+ login uses service account authentication
   def gplus_login
 
-    @account = current_user.account
-    if !@account.blank? && !@account.options.blank? 
-      @options = ActiveSupport::JSON.decode(@account.options)
-      if @options['discussions'] == 'gplus'
-        Google::APIClient.logger.level = Logger::DEBUG
+    @gplus_client = nil
 
-        # TODO use proper version constants
-        gplus_client = Google::APIClient.new(:application_name => 'EdgeRocket', :application_version => '0.1.0')
-        
-        # Load private key
-        private_key = Google::APIClient::KeyUtils.load_from_pkcs12(KEY_FILE, KEY_SECRET)
+    begin
+      Google::APIClient.logger.level = Logger::DEBUG
 
-        client_asserter = Google::APIClient::JWTAsserter.new(
-            CLIENT_EMAIL,
-            PLUS_LOGIN_SCOPE,
-            private_key
-        )
-        gplus_client.authorization = client_asserter.authorize(current_user.email)
+      # TODO use proper version constants
+      gplus_client = Google::APIClient.new(:application_name => 'EdgeRocket', :application_version => '0.1.0')
+      
+      # Load private key
+      private_key = Google::APIClient::KeyUtils.load_from_pkcs12(KEY_FILE, KEY_SECRET)
 
-        @gplus_domain_api = gplus_client.discovered_api('plusDomains')
+      client_asserter = Google::APIClient::JWTAsserter.new(
+          CLIENT_EMAIL,
+          PLUS_LOGIN_SCOPE,
+          private_key
+      )
+      gplus_client.authorization = client_asserter.authorize(current_user.email)
 
-        @gplus_client = gplus_client
-      end
+      @gplus_domain_api = gplus_client.discovered_api('plusDomains')
+
+      @gplus_client = gplus_client
+    rescue Signet::AuthorizationError => err
+      logger.debug('Gplus result: status: ' + err.to_s)
+    ensure
+      Google::APIClient.logger.level = Logger::INFO
     end
 
   end
@@ -75,17 +111,19 @@ private
     # Build a per-request oauth credential based on token stored in session
     # which allows us to use a shared API client.
 
-    @authorization ||= (
+    if !@gplus_client.nil?
+      @authorization ||= (
 
-      gplus_client = @gplus_client
-      auth = gplus_client.authorization.dup
-      auth.update_token!( 
-        :access_token => session[:access_token],
-        :refresh_token => session[:refresh_token]
+        gplus_client = @gplus_client
+        auth = gplus_client.authorization.dup
+        auth.update_token!( 
+          :access_token => session[:access_token],
+          :refresh_token => session[:refresh_token]
+        )
+        #debugger
+        auth
       )
-      #debugger
-      auth
-    )
+    end
 
   end
 
@@ -102,7 +140,7 @@ private
 
   end
 
-  # THis method retrieves G+ discussions
+  # This method retrieves G+ discussions
   def gplus_discussions
 
     @discussions = []
