@@ -65,12 +65,12 @@
         <div class="panel-body">
           <div class="well" ng-repeat="disc_post in discussions">
           {{ disc_post.title }}
-            <div class="text-warning text-right">{{disc_post.actor.displayName}}</div>
+            <div class="text-warning text-right">{{disc_post.actor_name}}</div>
           </div>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Post a comment"></input>
+            <input type="text" class="form-control" placeholder="Post a comment" ng-model="newDiscussion.title"></input>
             <span class="input-group-btn">
-              <button class="btn btn-warning" type="button">Post</button>
+              <button class="btn btn-warning" type="button" ng-click="createDiscussion()">Post</button>
             </span>
           </div> <!-- /input-group -->
         </div>

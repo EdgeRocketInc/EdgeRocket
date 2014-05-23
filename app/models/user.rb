@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :playlists
   has_one :budget
   belongs_to :account
+  has_many :discussions
 
   # returns the role with the highest level of access
   def best_role

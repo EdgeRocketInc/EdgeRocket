@@ -14,7 +14,7 @@ class DashboardsController < ApplicationController
   	authorize! :manage, :all
 
     @account = current_user.account
-    @group_count = MyCourses.group(:status).count
+    @group_count = MyCourse.group(:status).count
 
   end
 

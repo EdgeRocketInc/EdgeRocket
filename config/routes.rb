@@ -14,14 +14,16 @@ EdgeApp::Application.routes.draw do
   get "my_courses" => 'my_courses#index'
   get "user_home" => 'user_home#index'
   get "dashboard" => 'dashboards#show'
-  get 'playlists/:id/courses' => 'playlists#courses'
-  get "plans/index"
-  get "discussion/list" => 'user_home#list_discussions'
+  get "plans" => 'plans#index'
+  get "playlists/:id/courses" => 'playlists#courses'
+  get "discussions" => 'discussions#index'
+  get "discussions/:id" => 'discussions#show'
   
   post "playlist_subscription" => 'user_home#subscribe'
   post "course_subscription" => 'my_courses#subscribe'
   post "users/preferences" => 'user_home#create_preferences'
-
+  post "discussions" => 'discussions#create'
+  
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
@@ -35,7 +37,6 @@ EdgeApp::Application.routes.draw do
   resources :playlists
 
   # STUBS FOR FUTURE ROUTES
-  get 'plans' => 'plans#index'
   get 'teams' => 'teams#index'
   get 'corp_home' => 'corp_home#index'
   get 'employees' => 'employees#index'

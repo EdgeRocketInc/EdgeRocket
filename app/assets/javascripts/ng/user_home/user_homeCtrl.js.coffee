@@ -7,11 +7,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 @IndexCtrl = ($scope, $http, $modal) ->
 
   $scope.playlistsExist = true # TODO make dynamic
+  # TODO: move 4 arrays below into one array of structures $scope.plStyle = []
   $scope.isSubscribed = []
   $scope.btnSubscribedClass = []
   $scope.glyphSubscribed = []
   $scope.glyphAction = []
+  # discussions
   $scope.discussions = []
+  $scope.newDiscussion = { title : '', actor_name : 'me' }
 
   loadPlaylists =  ->
     $http.get('/user_home.json').success( (data) ->
@@ -96,12 +99,28 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       )
 
   loadDiscussions = () ->
-    $http.get('/discussion/list.json').success( (data) ->
+    $http.get('/discussions.json').success( (data) ->
       console.log('loading discussions ... ')
       $scope.discussions = data.discussions
     ).error( ->
       console.log('Error loading discussions')
     )
+
+  $scope.createDiscussion = () ->
+    # Create data object to POST and send a request
+    console.log('new title=' + $scope.newDiscussion.title)
+    data = $scope.newDiscussion
+
+    $http.post('/discussions.json', data).success( (data) ->
+      saved_discussion = { title : $scope.newDiscussion.title, actor_name : 'me' }
+      $scope.discussions.push(saved_discussion)
+      $scope.newDiscussion.title = ''
+      console.log('Successfully created discussion')
+    ).error( ->
+      console.error('Failed to create discussion')
+    )
+    return true
+
 
 # controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->

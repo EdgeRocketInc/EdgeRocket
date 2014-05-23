@@ -1,4 +1,4 @@
-class MyCourses < ActiveRecord::Base
+class MyCourse < ActiveRecord::Base
   belongs_to :user
   belongs_to :product
   scope :with_products, lambda { includes(:product) }
@@ -44,22 +44,22 @@ class MyCourses < ActiveRecord::Base
   end
 
   def self.subscribe(user_id, prd_id, status, assigned_by)
-    my_crs = MyCourses.find_courses(user_id, prd_id)
+    my_crs = MyCourse.find_courses(user_id, prd_id)
     # TODO handle exceptions
     if my_crs.nil? || my_crs.length == 0
-      my_crs = MyCourses.new()
+      my_crs = MyCourse.new()
       my_crs.user_id = user_id
       my_crs.product_id = prd_id
       my_crs.status = status #params[:status]
       my_crs.assigned_by = assigned_by #params[:assigned_by]
-      my_crs.percent_complete = MyCourses.calc_percent_complete(my_crs.status)
+      my_crs.percent_complete = MyCourse.calc_percent_complete(my_crs.status)
       my_crs.save
     end
   end
 
   def self.unsubscribe(user_id, prd_id)
     # TODO what do we do if a course is in the progress? Also, need to handle exceptions
-    MyCourses.where(:user_id => user_id, :product_id => prd_id).destroy_all
+    MyCourse.where(:user_id => user_id, :product_id => prd_id).destroy_all
   end
 
 end
