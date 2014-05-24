@@ -63,16 +63,16 @@
 	    <div class="panel panel-info" ng-if="options_json.discussions">
 		    <div class="panel-heading">Discussions</div>
         <div class="panel-body panel-discussions">
+          <div class="input-group">
+            <textarea class="form-control textarea-discussions" placeholder="Post a comment" ng-model="newDiscussion.title"></textarea>
+            <span class="input-group-btn">
+              <button class="btn btn-warning btn-post-discussions" type="button" ng-click="createDiscussion()">Post</button>
+            </span>
+          </div> <!-- /input-group -->
           <div class="well" ng-repeat="disc_post in discussions">
           {{ disc_post.title }}
             <div class="text-warning text-right">{{disc_post.user.email}}</div>
           </div>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Post a comment" ng-model="newDiscussion.title"></input>
-            <span class="input-group-btn">
-              <button class="btn btn-warning" type="button" ng-click="createDiscussion()">Post</button>
-            </span>
-          </div> <!-- /input-group -->
         </div>
 	    </div>
 

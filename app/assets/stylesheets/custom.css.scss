@@ -89,7 +89,8 @@ div.progress {
 div.panel-body .well {
   background-color: #6C8196;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 div.panel-body .well-sm {
@@ -186,4 +187,12 @@ h4.panel-title a:hover {
 .panel-discussions {
   max-height: 400px;
   overflow-y: auto;
+}
+
+.textarea-discussions {
+  // noting here yet
+}
+
+span.input-group-btn .btn-post-discussions {
+  margin-left: 5px !important;
 }
