@@ -18,11 +18,13 @@ EdgeApp::Application.routes.draw do
   get "playlists/:id/courses" => 'playlists#courses'
   get "discussions" => 'discussions#index'
   get "discussions/:id" => 'discussions#show'
+  get "users/current" => 'user_home#get_user'
   
   post "playlist_subscription" => 'user_home#subscribe'
   post "course_subscription" => 'my_courses#subscribe'
   post "users/preferences" => 'user_home#create_preferences'
   post "discussions" => 'discussions#create'
+  post "playlists/:id/courses/:course_id" => 'playlists#add_course'
   
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
 

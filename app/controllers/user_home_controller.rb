@@ -39,13 +39,10 @@ class UserHomeController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        # combine all aobject into one JSON result
+        # combine all objects into one JSON result
         json_result = Hash.new()
-        json_result['account'] = @account.as_json(methods: :options)
         json_result['playlists'] = @playlists
         json_result['subscribed_playlists'] = @subscribed_playlists
-        json_result['sign_in_count'] = u.sign_in_count #ugly but works
-        json_result['user_preferences'] = u.preferences #ugly but works
         render json: json_result.as_json
       }
     end
@@ -112,5 +109,23 @@ class UserHomeController < ApplicationController
     end
   end
 
+  # GET
+  # obtains current user's information
+  def get_user
+    u = current_user
+    @account = u.account
+
+    respond_to do |format|
+      format.json {
+        # combine all objects into one JSON result
+        json_result = Hash.new()
+        json_result['account'] = @account.as_json(methods: :options)
+        json_result['sign_in_count'] = u.sign_in_count #ugly but works
+        json_result['user_preferences'] = u.preferences #ugly but works
+        json_result['best_role'] = u.best_role
+        render json: json_result.as_json
+      }
+    end
+  end
 
 end

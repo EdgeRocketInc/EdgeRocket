@@ -13,9 +13,23 @@
       <span>{{ course.price_fmt }}</span></div>
   </div>
   <div class="modal-footer">
+
+      <div class="btn-group btn-playlists" dropdown is-open="status.isopen" ng-if="user.admin_role">
+        <button type="button" class="btn btn-success dropdown-toggle" ng-disabled="disabled">
+          Add to Playlist <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li class="btn-success" ng-repeat="pl in pl_data.playlists">
+            <a href ng-click="addToPlaylist(course,pl)">{{pl.title}}</a>
+          </li>
+        </ul>
+      </div>
+
       <button class="btn btn-success" ng-click="enroll()">Add to Wishlist</button>
       <button class="btn btn-success" ng-click="goto()">Go to course</button>
       <button class="btn btn-warning" ng-click="cancel()">Close</button>
+
+      <div class="alert-simple" ng-repeat="a in alerts">{{a.msg}}</div>
   </div>
 </script>
 

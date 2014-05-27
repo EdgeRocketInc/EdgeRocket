@@ -32,17 +32,26 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           $scope.btnSubscribedClass[i] = 'btn-default'
           $scope.glyphAction[i] = 'plus-sign green'
           $scope.glyphSubscribed[i] = ''
-      # check if the option is enabled and it's the first login
-      $scope.options_json = angular.fromJson($scope.data.account.options)
-      if $scope.options_json.discussions
-        loadDiscussions()
-      if $scope.options_json.survey && $scope.data.sign_in_count <= 1 && !$scope.data.user_preferences?
-        console.log('Starting survey...')
-        startSurvey()
     ).error( ->
       console.log('Error loading user_home')
     )
 
+  loadUser =  ->
+    $http.get('/users/current.json').success( (data) ->
+      $scope.user = data
+      console.log('Successfully loaded user')
+      # check if the option is enabled and it's the first login
+      $scope.options_json = angular.fromJson($scope.user.account.options)
+      if $scope.options_json.discussions
+        loadDiscussions()
+      if $scope.options_json.survey && $scope.user.sign_in_count <= 1 && !$scope.user.user_preferences?
+        console.log('Starting survey...')
+        startSurvey()
+    ).error( ->
+      console.log('Error loading user')
+    )
+
+  loadUser()
   loadPlaylists()
 
   $scope.togglePlaylistSubsciption = (index) ->

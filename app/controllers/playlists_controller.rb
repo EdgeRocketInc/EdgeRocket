@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :courses]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :courses, :add_course]
   before_filter :authenticate_user!
 
   # GET /playlists
@@ -68,6 +68,19 @@ class PlaylistsController < ApplicationController
   # List courses in the playlist
   def courses
   
+  end
+
+
+  # POST /playlists/1/courses/1
+  #
+  # Add course to the playlist
+  def add_course
+    course = Product.find(params[:course_id])
+    @playlist.products << course
+    respond_to do |format|
+      format.html { redirect_to playlists_url }
+      format.json { head :no_content }
+    end
   end
 
   private

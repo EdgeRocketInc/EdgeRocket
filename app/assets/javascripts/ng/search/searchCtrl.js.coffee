@@ -55,9 +55,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         console.error('Failed to create new subscription')
       )
 
-# controller for modal window
+# ------- controller for modal window --------------
+
 @ModalInstanceCtrl = ($scope, $modalInstance, $window, $http, course) ->
   $scope.course = course
+  $scope.alerts = []
 
   $http.get('/products/' + course.id + '.json').success( (data) ->
     $scope.course_description = data.description
@@ -65,6 +67,27 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   ).error( ->
     console.log('Error loading search product details')
   )
+
+  loadUser =  ->
+    $http.get('/users/current.json').success( (data) ->
+      $scope.user = data
+      if $scope.user.best_role == 'admin' ||  $scope.user.best_role == 'SA'
+        $scope.user.admin_role = true
+      console.log('Successfully loaded user')
+    ).error( ->
+      console.log('Error loading user')
+    )
+
+  loadPlaylists =  ->
+    $http.get('/user_home.json').success( (data) ->
+      $scope.pl_data = data
+      console.log('Successfully loaded playlists')
+    ).error( ->
+      console.log('Error loading playlists')
+    )
+
+  loadUser()
+  loadPlaylists()
 
   $scope.enroll = ->
     #alert('enroll')
@@ -76,6 +99,20 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
+
+  $scope.addToPlaylist = (course, playlist) ->
+    console.log('addToPlaylist course id=' + course.id + ' playlist=' + playlist.title)
+    # POST and send a request
+    data = {}
+    $http.post('/playlists/' + playlist.id + '/courses/' + course.id + '.json', data).success( (data) ->
+      console.log('Successfully added to playlist')
+      $scope.alerts.push({ 
+        type: 'success', 
+        msg: '* Added to Playlist' 
+      })
+   ).error( ->
+      console.error('Failed to add to playlist')
+    )
 
 @SearchCtrl.$inject = ['$scope', '$http', '$modal', '$log']
 @ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'course']
