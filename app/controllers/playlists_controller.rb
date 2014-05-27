@@ -5,7 +5,9 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.all
+    u = current_user
+    account = u.account
+    @playlists = account ? account.playlists : nil
   end
 
   # GET /playlists/1
