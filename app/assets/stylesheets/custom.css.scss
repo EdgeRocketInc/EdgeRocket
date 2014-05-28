@@ -98,8 +98,16 @@ div.panel-body .well-sm {
   padding: 0px;
 }
 
+// ---- Glyphs
+
 // Bigger glyphs
 .glyphicon-remove-sign, .glyphicon-plus-sign, .glyphicon-ok-sign {
+  font-size: 1.4em;
+}
+
+.glyph-action {
+  padding-left: 5px;
+  padding-right: 5px;
   font-size: 1.4em;
 }
 
