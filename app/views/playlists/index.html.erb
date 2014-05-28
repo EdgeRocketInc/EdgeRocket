@@ -4,38 +4,55 @@
       <div class="panel panel-info">
         <div class="panel-heading">Playlists</div>
         <div class="panel-body">
-          <div class="row" ng-repeat="pl in playlists">
-            <div class="col-lg-1"> 
-                <span class="glyphicon glyphicon-list glyph-action" 
-                  ng-click="manageCourses(pl)" tooltip="Manage Courses in this Playlist">
-                </span>
-                <span class="glyphicon glyphicon-edit glyph-action" 
-                  ng-click="editPlaylist(pl)" tooltip="Edit Playlist">
-                </span>
-                <span class="glyphicon glyphicon-remove glyph-action red" 
-                  ng-click="removePlaylist(pl,$index)" tooltip="Remove Playlist">
-                </span>
-            </div>
-            <div class="col-lg-3">{{pl.title}}</div>
-          </div>
+          <form role="form">
+            <div class="row" ng-repeat="pl in playlists">
 
-          <div class="row">
-            <div class="col-lg-1"> 
-            </div>
-            <div class="col-lg-4">
-              <div class="input-group">
-                <input type="text" class="form-control" id="newPlaylist" 
-                  placeholder="Playlist Name" ng-model="newPlaylist">
+              <div class="col-lg-3">
+                <div class="text-cell" ng-if="editModeIndex != $index">{{pl.title}}</div>
+                <input type="text" class="form-control" id="editPlaylistID" placeholder="Playlist Name" 
+                  ng-if="editModeIndex == $index" ng-model="pl.title">
                 </input>
-                <span class="input-group-addon glyphicon glyphicon-plus" 
-                  tooltip="Create new playlist" ng-click="addNewPlaylist()">
-                </span>
-              </div> 
-            </div>
-            <div class="col-lg-1"> 
-            </div>
-          </div>
+              </div>
 
+              <div class="col-lg-1"> 
+                <span ng-if="editModeIndex < 0">
+                  <span class="glyphicon glyphicon-list glyph-big glyph-action" 
+                    ng-click="manageCourses(pl)" tooltip="Manage Courses in this Playlist">
+                  </span>
+                  <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
+                    ng-click="editPlaylist(pl,$index)" tooltip="Edit Playlist">
+                  </span>
+                  <span class="glyphicon glyphicon-remove glyph-big glyph-action red" 
+                    ng-click="removePlaylist(pl,$index)" tooltip="Remove Playlist">
+                  </span>
+                </span>
+                <span ng-if="editModeIndex == $index">
+                  <span class="glyphicon glyphicon-save glyph-big glyph-action green" 
+                    tooltip="Update Playlist" ng-click="updatePlaylist(pl,$index)">
+                  </span>
+                  <span class="glyphicon glyphicon-ban-circle glyph-big glyph-action yellow" 
+                    tooltip="Cancel editing Playlist" ng-click="cancelEditingPlaylist()">
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+            <div class="row" ng-if="editModeIndex < 0">
+              <div class="col-lg-3">
+                <input type="text" class="form-control" id="newPlaylistID" 
+                  placeholder="New Playlist Name" ng-model="newPlaylist.title">
+                </input>
+              </div>
+
+              <div class="col-lg-1"> 
+                <span class="glyphicon glyphicon-plus glyph-big glyph-action green" 
+                  tooltip="Create new Playlist" ng-click="createPlaylist()">
+                </span>
+              </div>
+
+            </div>
+          </form>
         </div>
       </div>
     </div>

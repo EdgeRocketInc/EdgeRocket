@@ -63,6 +63,12 @@ img {
 .voffset8 { margin-top: 100px; }
 .voffset9 { margin-top: 150px; }
 
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
 // Progress bars
 
 .course-progress {
@@ -101,14 +107,16 @@ div.panel-body .well-sm {
 // ---- Glyphs
 
 // Bigger glyphs
-.glyphicon-remove-sign, .glyphicon-plus-sign, .glyphicon-ok-sign {
-  font-size: 1.4em;
+span.glyph-big {
+  font-size: 21px;
+  height: 31px;
+  margin-top: 8px;
 }
 
 .glyph-action {
   padding-left: 5px;
   padding-right: 5px;
-  font-size: 1.4em;
+  cursor: pointer;
 }
 
 // List items for trees
@@ -215,4 +223,12 @@ span.input-group-btn .btn-post-discussions {
 .alert-simple {
   padding: 5px;
   color: #5cb85c;
+}
+
+// Text for cells to align with big glyphs
+
+.text-cell {
+  min-height: 28px;
+  font-size: 21px;
+  margin-top: 3px;
 }
