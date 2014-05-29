@@ -14,8 +14,8 @@ class DiscussionsControllerTest < ActionController::TestCase
   end
 
   test "should get create" do
-    sign_in User.find(101)
-    get :create
+    sign_in User.find(103)
+    post(:create, {title: 'new post', format: 'json'})
     assert_response :success
   end
 
