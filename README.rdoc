@@ -40,4 +40,5 @@ There is also deploy.sh script that pushes to git repos, deploys andrefreshes te
 
 See more informaton on the project Wiki page:
 ====
+
 https://github.com/admitriyev/EdgeRocket/wiki
