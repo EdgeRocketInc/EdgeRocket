@@ -200,6 +200,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (= 3.0.4)
   keen (~> 0.8)
+  minitest (~> 4.7)
   pg (= 0.17.1)
   rails (= 4.0.4)
   rails_12factor (= 0.0.2)

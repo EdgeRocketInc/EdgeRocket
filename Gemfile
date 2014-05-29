@@ -12,6 +12,7 @@ group :development do
 end
 
 group :test do
+  gem 'minitest', '~> 4.7'
   gem 'simplecov', :require => false
 end
 
