@@ -1,7 +1,8 @@
 <div class="container-fluid" ng-controller="PlaylistsCtrl">
   <div class="row">
     <div class="col-lg-12">
-      <div class="panel panel-info">
+
+      <div class="panel panel-info"  ng-if="playlistMode"> <!-- This panel is displayed in Playlits CRUD mode -->
         <div class="panel-heading">Playlists</div>
         <div class="panel-body">
           <form role="form">
@@ -54,7 +55,34 @@
             </div>
           </form>
         </div>
-      </div>
+      </div> <!-- ng-if="playlistMode" -->
+
+      <div class="panel panel-info"  ng-if="!playlistMode"> <!-- This panel is displayed in Manage Courses mode -->
+        <div class="panel-heading">Courses in Playlist: {{currentPlaylist.title}}</div>
+        <div class="panel-body">
+
+          <form role="form">
+            <div class="row" ng-repeat="crs in currentCourses">
+
+              <div class="col-lg-3">
+                <div class="text-cell">{{crs.name}}</div>
+              </div>
+
+              <div class="col-lg-1"> 
+                <span ng-if="editModeIndex < 0">
+                  <span class="glyphicon glyphicon-remove glyph-big glyph-action red" 
+                    ng-click="removeCourse(crs,$index)" tooltip="Remove Course from Playlist">
+                  </span>
+                </span>
+              </div>
+
+            </div>
+            <button class="btn btn-success" ng-click="cancelManageCourses()">Back to Playlists</button>
+          </form>
+
+        </div>
+      </div> <!-- ng-if="!playlistMode" -->
+
     </div>
   </div>
 </div>

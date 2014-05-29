@@ -8,6 +8,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.newPlaylist = { title : '' }
   $scope.editModeIndex = -1 # will set to $index when editing a playlist in place
+  $scope.playlistMode = true
+  $scope.currentPlaylist = null # will set to the playlist for managing courses
+  $scope.currentCourses = [] # will populate when managing courses
 
   loadPlaylists =  ->
     $http.get('/playlists.json').success( (data) ->
@@ -59,5 +62,30 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.cancelEditingPlaylist = () ->
     console.log('cancel editing')
     $scope.editModeIndex = -1
+
+  $scope.manageCourses = (playlist,index) ->
+    console.log('manage courses for ' + playlist.title)
+    $http.get('/playlists/' + playlist.id + '/courses.json').success( (data) ->
+      # switch to manage courses mode
+      $scope.playlistMode = false 
+      $scope.currentPlaylist = playlist
+      $scope.currentCourses = data
+      console.log('Successfully loaded user_home')
+     ).error( ->
+      console.log('Error loading user_home')
+    )
+
+  $scope.cancelManageCourses = () ->
+    $scope.playlistMode = true # switch to playlist mode
+    $scope.currentPlaylist = null
+    $scope.currentCourses = []
+
+  $scope.removeCourse = (course,index) ->
+    $http.delete('/playlists/' + $scope.currentPlaylist.id + '/courses/' + course.id + '.json', null).success( (data) ->
+      console.log('Successfully removed course from playlist')
+      $scope.currentCourses.splice(index,1)
+    ).error( ->
+      console.error('Failed to remove course from playlist')
+    )
 
 @PlaylistsCtrl.$inject = ['$scope', '$http', '$modal', '$log']

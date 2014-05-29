@@ -30,6 +30,7 @@ EdgeApp::Application.routes.draw do
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
   delete "playlist_subscription/:id" => 'user_home#unsubscribe'
+  delete "playlists/:id/courses/:course_id" => 'playlists#remove_course'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
