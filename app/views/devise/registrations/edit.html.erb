@@ -31,7 +31,9 @@
 
           <% end %>
 
-          <%= link_to "Back", :back %>
+          <%= link_to("Home", controller: "/user_home", action: "index") =%>
+          <span style="margin: 10px"></span>
+          <%= link_to("Log out", {controller: "devise/sessions", action: "destroy"}, method: :delete) =%>
 
       </div>
     </div>
