@@ -70,6 +70,9 @@
               <li>
                   <%= link_to("Log out", {controller: "devise/sessions", action: "destroy"}, method: :delete) =%>
               </li>
+              <li>
+                  <%= link_to("Change Password", edit_user_registration_path) =%>
+              </li>
             </ul>
           </li>
 	<% end %>
