@@ -355,3 +355,105 @@ extra_10:
   origin: https://www.coursera.org/course/lead-ei
   description: "Emotional intelligence, hope, mindfulness, and compassion help a person reverse the damage of chronic stress and build great leadership relationships. The Positive and Negative Emotional Attractors inspire sustained, desired change and learning at many levels."
 
+bonus_1:
+  id: 5101
+  name: A Data Driven Approach to PR
+  authors: Will Flaherty
+  vendor_id: General Assembly
+  origin: https://generalassemb.ly/online/videos/a-data-driven-approach-to-pr
+  price: $25/month
+  description: "In this class, we'll examine how to take your data and craft an interesting storyline that can drive coverage about whatever trends you find. Although stories are often not directly on your product, the \"data wedge\" still allows you to win mentions, links and will often yield an opportunity for you to discuss how your product addresses a consumer need. Learn to take an empirical approach to PR that will grow your presence by leaps and bounds."
+
+bonus_2:
+  id: 5102
+  name: Five Tips for Creating Email Subject Lines that Increase Conversions
+  authors: Kath Pay
+  vendor_id: Marketing Profs
+  origin: http://www.marketingprofs.com/marketing/online-seminars/727
+  description: "Need to up your conversion rate? The best place to start is with your email subject line. We all know how important subject lines are for successful email campaigns—yet the subject line often turns out to be an afterthought. All too many marketers don't give it the attention it deserves.  In this PRO seminar, we'll discuss five tactical tips that will revolutionize how you write subject lines. You'll learn the secrets to making them compelling and increasing conversions."
+
+
+cybersecurity_1:
+  id: 6201
+  name: Enterprise Content Management
+  authors: AIIM
+  vendor_id: AIIM
+  origin: http://www.aiim.org/Training/Certificate-Courses/Enterprise-Content-Management
+  description: "Enterprise content management combines analytics, collaboration, governance and processes with anywhere, anytime access to deliver value to your customers, partners, and employees. Learn technologies and best practices for managing content as an asset for your organization. - See more at: http://www.aiim.org/Training/Certificate-Courses/Enterprise-Content-Management#sthash.4Wy2fzbt.dpuf"
+
+cybersecurity_2:
+  id: 6202
+  name: Security
+  authors: CBTnuggets
+  vendor_id: CBTnuggets
+  origin: http://www.cbtnuggets.com/it-training-videos/security
+  description: "Online IT security training to help you tackle threats with tools such as Ethical Hacker, Check Point, Wireshark, and more. Cybersecurity threats and vulnerabilities happen every day, and IT pros who can prevent and combat security issues are in high demand. Stay up-to-date with professional certification from respected security organizations such as the International Council of Electronic Commerce Consultants (EC-Council). EC-Council is renowned for security certifications, including disaster recovery, secure programming, e-business, and the popular Certified Ethical Hacker. The International Information Systems Security Certification Consortium, Inc., (ISC)2, is the information security certification leader."
+
+cybersecurity_3:
+  id: 6203
+  name: EC Council Certified Ethical Hacker v7.0
+  authors: James Conrad
+  vendor_id: CBTnuggets
+  origin: http://www.cbtnuggets.com/it-training-videos/course/ec-council-certified-ethical-hacker-v7
+  description: "IT training guru James Conrad's newest Certified Ethical Hacker training will show you just how important it is to know thy enemy. You'll see how frighteningly easy it can be to hack into a system, elevate your privilege and quickly “own” a machine. You'll learn how easy it can be to crack passwords – even those that would be considered “secure.” You'll learn how hackers create the dreaded Trojans that can potentially infect the computer of an unsuspecting user and taking control of the machine to infiltrate networks. "
+
+cybersecurity_4:
+  id: 6204
+  name: "IT Security Beginner: Certified Hacker Training"
+  authors: IT Security Academy
+  vendor_id: Udemy
+  origin: https://www.udemy.com/it-security-beginner-certified-hacking-training/
+  price: 99
+  description: "This course is ideal for everyone, regardless of their skills and expertise. The arrangement and presentation of learning resources will let both novices and more advanced students broaden their knowledge of IT security. Training is starting with IT Security current threat and trends. Afterwards we are disscussing popular security myths. Great part of the training relates to Network security. We will start with local networks, talk about protocols and theirs vulnerabilities. You will learn how to design secure computer networks and subnets. You will become real network administrator."
+
+cybersecurity_5:
+  id: 6205
+  name: Basic Computer Security
+  authors: Stephen Peterson
+  vendor_id: Udemy
+  origin: https://www.udemy.com/basic-computer-security/?dtcode=9tj1517r
+  price: 20
+  description: "This course offers a broad overview of many different security risks that computer users should be aware of and how the issues can be largely resolved. The majority of the course is delivered through videos providing either visuals and key points or screencasts displaying how to specifically handle some of the concepts. The majority of the information is contained within the course, though there are a few instances where students are encouraged to use linked online resources as supplementary materials."
+
+cybersecurity_6:
+  id: 6206
+  name: Cyber Security
+  authors: DeVry
+  vendor_id: Udemy
+  origin: https://www.udemy.com/cyber-security
+  price: #free
+  description: "Cyber Security is one of today’s hottest career fields. This course will provide a broad overview of cyber security concepts and practices. Starting with threat analysis and risk management, additional lessons explore core technologies such as encryption, firewalls, and intrusion detection systems. Cloud security is also featured, as are incident response, disaster recovery, and how to conduct cyber exercises."
+
+cybersecurity_7:
+  id: 6207
+  name: Cryptography
+  authors: Jonathan Katz
+  vendor_id: Coursera
+  origin: https://www.coursera.org/course/cryptography
+  description: "Historically, cryptography was used to ensure private communication between two people with some prior relationship. More recently, its scope has expanded to include things as diverse as data integrity, secure internet-wide communication, electronic cash, secure distributed computation, and more.Cryptography has also become ubiquitous. Perhaps unknowingly, we have all encountered applications of cryptography in our daily lives---whether by logging in using a password, making a web purchase over a secure connection, or applying a software update that is digitally signed.This course will introduce you to the foundations of modern cryptography, with an eye toward practical applications. We will learn the importance of carefully defining security; of relying on a set of well-studied “hardness assumptions” (e.g., the hardness of factoring large numbers); and of the possibility of proving security of complicated constructions based on low-level primitives."
+
+cybersecurity_8:
+  id: 6208
+  name: Software Security
+  authors: Michael Hicks
+  vendor_id: Coursera
+  origin: https://www.coursera.org/course/softwaresec
+  price: #free/$49 for verified certificate
+  description: "Software is everywhere: in laptops and desktops, mobile phones, the power grid ... even our cars and thermostats. Software is increasingly the vehicle that drives our economy and our personal lives. But software’s pervasiveness, and its importance, make it a target: at the root of many security compromises is vulnerable software. In this course we will look at how to build software that is secure. We will see that security must appear at all phases in the development lifecycle, including requirements development, system design, implementation, testing/validation, and maintenance. To start, we will consider tasks and methods that enhance a software system's design, including threat modeling and attack surface reduction."
+
+cybersecurity_9:
+  id: 6209
+  name: Applied Cryptography
+  authors: Dave Evans
+  vendor_id: Udacity
+  origin: https://www.udacity.com/course/cs387
+  price: #free
+  description: "Cryptography is present in everyday life, from paying with a credit card to using the telephone. Learn all about making and breaking puzzles in computing."
+
+cybersecurity_10:
+  id: 6210
+  name: Cyber Security Awareness
+  authors: GoogleCyberSecurity
+  vendor_id: YouTube
+  origin: https://www.youtube.com/user/GoogleCyberSecurity
+  description: "Google's Cyber Security Awareness channel highlights educational videos created by users, nonprofit groups, businesses, schools, and government agencies."
