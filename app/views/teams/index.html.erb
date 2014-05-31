@@ -1,0 +1,59 @@
+<div class="container-fluid" ng-controller="TeamsCtrl">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="panel panel-info"> <!-- Teams CRUD mode -->
+        <div class="panel-heading">Team Users</div>
+        <div class="panel-body">
+          <form role="form">
+            <div class="row" ng-repeat="u in users">
+
+              <div class="col-lg-3">
+                <div class="text-cell" ng-if="editModeIndex != $index">{{u.email}}</div>
+                <input type="text" class="form-control" id="editUserID" placeholder="User Email" 
+                  ng-if="editModeIndex == $index" ng-model="u.email">
+                </input>
+              </div>
+
+              <div class="col-lg-1"> 
+                <span ng-if="editModeIndex < 0">
+                  <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
+                    ng-click="editUser(u,$index)" tooltip="Edit User">
+                  </span>
+                  <span class="glyphicon glyphicon-remove glyph-big glyph-action red" 
+                    ng-click="removeUser(u,$index)" tooltip="Remove User">
+                  </span>
+                </span>
+                <span ng-if="editModeIndex == $index">
+                  <span class="glyphicon glyphicon-save glyph-big glyph-action green" 
+                    tooltip="Update User" ng-click="updateUser(u,$index)">
+                  </span>
+                  <span class="glyphicon glyphicon-ban-circle glyph-big glyph-action yellow" 
+                    tooltip="Cancel editing User" ng-click="cancelEditingUser()">
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+            <div class="row" ng-if="editModeIndex < 0">
+              <div class="col-lg-3">
+                <input type="text" class="form-control" id="newUserID" 
+                  placeholder="New User Email" ng-model="newUser.email">
+                </input>
+              </div>
+
+              <div class="col-lg-1"> 
+                <span class="glyphicon glyphicon-plus glyph-big glyph-action green" 
+                  tooltip="Create new User" ng-click="createUser()">
+                </span>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div> <!-- Panel -->
+
+    </div>
+  </div>
+</div>
