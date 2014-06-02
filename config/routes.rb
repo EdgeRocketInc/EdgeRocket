@@ -24,7 +24,7 @@ EdgeApp::Application.routes.draw do
   get "discussions" => 'discussions#index'
   get "discussions/:id" => 'discussions#show'
   get "users/current" => 'user_home#get_user'
-  get "users" => 'teams#index'
+  get "employees" => 'employees#index'
   get "teams" => 'teams#index'
   
   post "playlist_subscription" => 'user_home#subscribe'
@@ -32,15 +32,15 @@ EdgeApp::Application.routes.draw do
   post "users/preferences" => 'user_home#create_preferences'
   post "discussions" => 'discussions#create'
   post "playlists/:id/courses/:course_id" => 'playlists#add_course'
-  post "users/user" => 'teams#create'
+  post "employees" => 'employees#create'
   
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
-  put "users/user/:id" => 'teams#update'
+  put "employees/:id" => 'employees#update'
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
   delete "playlist_subscription/:id" => 'user_home#unsubscribe'
   delete "playlists/:id/courses/:course_id" => 'playlists#remove_course'
-  delete "users/user/:id" => 'teams#destroy'
+  delete "employees/:id" => 'employees#destroy'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -51,8 +51,7 @@ EdgeApp::Application.routes.draw do
 
   # STUBS FOR FUTURE ROUTES
   get 'corp_home' => 'corp_home#index'
-  get 'employees' => 'employees#index'
-
+  
 
   # Example resource route with options:
   #   resources :products do

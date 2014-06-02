@@ -95,7 +95,7 @@ class UserHomeController < ApplicationController
   end
 
   # POST
-  # create new set of user preferences
+  # create new set of user preferences for current user
   # JSON: {anything}
   def create_preferences
     u = current_user
