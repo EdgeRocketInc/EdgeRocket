@@ -36,6 +36,11 @@ textarea {
   color: rgb(40, 184, 40);
 }
 
+// Use for even rows in some places like lists of users
+.bg-color-even-gray {
+  background-color: rgb(121, 121, 121);
+}
+
 .bottom0 {
   margin-bottom: 0px;
 }
@@ -231,4 +236,17 @@ span.input-group-btn .btn-post-discussions {
   min-height: 28px;
   font-size: 21px;
   margin-top: 3px;
+}
+
+// Custom form controls for user editing
+
+input.form-control-user {
+  display: inline;
+  width: 100%;
+}
+
+
+input.form-control-49pct {
+  display: inline;
+  width: 49%;
 }

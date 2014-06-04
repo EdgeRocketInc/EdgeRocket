@@ -31,7 +31,6 @@ class EmployeesController < ApplicationController
 
     @user = User.new(user_params)
     @user.account_id = current_user.account_id
-    @user.password = '12345678' # TODO: obtain from user
 
     respond_to do |format|
       if @user.save
@@ -77,7 +76,7 @@ class EmployeesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       # TODO: figure out how to pass and recieve :user instead of :employee
-      params.require(:employee).permit(:id, :email)
+      params.require(:employee).permit(:id, :email, :first_name, :last_name, :password, :reset_required)
     end
 
 end

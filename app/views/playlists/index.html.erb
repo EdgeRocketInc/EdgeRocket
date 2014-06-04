@@ -15,7 +15,7 @@
                 </input>
               </div>
 
-              <div class="col-lg-1"> 
+              <div class="col-md-2"> 
                 <span ng-if="editModeIndex < 0">
                   <span class="glyphicon glyphicon-list glyph-big glyph-action" 
                     ng-click="manageCourses(pl)" tooltip="Manage Courses in this Playlist">
@@ -23,7 +23,7 @@
                   <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
                     ng-click="editPlaylist(pl,$index)" tooltip="Edit Playlist">
                   </span>
-                  <span class="glyphicon glyphicon-remove glyph-big glyph-action red" 
+                  <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
                     ng-click="removePlaylist(pl,$index)" tooltip="Remove Playlist">
                   </span>
                 </span>
@@ -68,9 +68,9 @@
                 <div class="text-cell">{{crs.name}}</div>
               </div>
 
-              <div class="col-lg-1"> 
+              <div class="col-md-2"> 
                 <span ng-if="editModeIndex < 0">
-                  <span class="glyphicon glyphicon-remove glyph-big glyph-action red" 
+                  <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
                     ng-click="removeCourse(crs,$index)" tooltip="Remove Course from Playlist">
                   </span>
                 </span>
