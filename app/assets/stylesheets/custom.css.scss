@@ -96,6 +96,13 @@ div.progress {
   text-decoration: none !important;
 }
 
+.course-row {
+  border-bottom: rgb(61, 61, 61) 1px solid;
+  padding-bottom: 5px;
+  padding-top: 8px;
+}
+
+
 // Making wells differnt from panels
 div.panel-body .well {
   background-color: #6C8196;

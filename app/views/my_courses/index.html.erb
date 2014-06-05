@@ -1,3 +1,33 @@
+<!-- Modal Course Details window -->
+<script type="text/ng-template" id="courseDetails.html">
+
+  <div class="modal-header">
+      <h4>{{ course.product.name }}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="rating-right">
+      <!-- Rating -->
+      <rating ng-model="rate" max="5" readonly="isReadonly" on-hover="hoveringOverRating(value)" on-leave="overStar = null"></rating>
+    </div>
+    <img src="{{ course.product.vendor.logo_asset_url }}" class="img-provider-logo"></img>
+    <div class="">{{ course.product.authors }}</div>
+    <div class="">{{ course.product.school }}</div>
+    <div class="well well-sm">{{ course_description }}</div>
+    <div class="text-right">
+      <span>{{ course.price_fmt }}</span></div>
+  </div>
+  <div class="modal-footer">
+
+      <button class="btn btn-success" ng-click="goto()">Go to course</button>
+      <button class="btn btn-warning" ng-click="cancel()">Close</button>
+
+      <div class="alert-simple" ng-repeat="a in alerts">{{a.msg}}</div>
+  </div>
+
+</script>
+
+
+<!-- Main content area -->
 <div class="container-fluid" ng-controller="MyCoursesCtrl">
 
   <!-- Budget SECTION -->
@@ -38,14 +68,18 @@
                   </i>
                 </accordion-heading>
 
-                <div class="row voffset2" ng-repeat="c in cg.my_courses">
+                <div class="row course-row" ng-repeat="c in cg.my_courses">
                   <div class="col-md-1">
-                    <span class="pull-right glyphicon {{mediaTypes[c.product.media_type].glyph}}"
-                      tooltip="{{mediaTypes[c.product.media_type].text}}">
-                    </span>
+                    <a href="{{c.product.origin}}" class="" target="_blank">
+                      <span class="glyphicon glyphicon-play pull-right"
+                        tooltip="Go to the course">
+                      </span>
+                    </a>
                   </div>
                   <div class="col-md-4">
-                    <a href="{{c.product.origin}}" class="course-link" target="_blank">{{c.product.name}}</a>
+                    <a href="#" class="course-link" ng-click="courseDetails(c)" tooltip="Course Details">
+                      {{c.product.name}}
+                    </a>
                   </div>
                   <div class="col-md-2">
                     <img src="{{c.product.vendor.logo_asset_url}}" class="img-provider-logo" 
@@ -55,6 +89,9 @@
                       <span class="glyphicon"
                         ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
                         tooltip="Assigned by {{c.assigned_by}}">
+                      </span>
+                      <span class="glyphicon {{mediaTypes[c.product.media_type].glyph}}"
+                        tooltip="{{mediaTypes[c.product.media_type].text}}">
                       </span>
                       <span class="label-duration" ng-if="c.product.duration">{{c.product.duration}}h</span>
                   </div>

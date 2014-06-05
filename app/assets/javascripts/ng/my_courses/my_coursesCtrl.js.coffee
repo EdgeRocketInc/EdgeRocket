@@ -48,7 +48,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.data = data
       $scope.options_json = angular.fromJson($scope.data.account.options)
       console.log('Successfully loaded user_home')
-     ).error( ->
+    ).error( ->
       console.log('Error loading user_home')
     )
 
@@ -86,4 +86,51 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.error('Failed to update subscription')
     )
 
+  $scope.courseDetails = (selectedCourse) ->
+    $scope.course = selectedCourse
+    modalInstance = $modal.open({
+      templateUrl: 'courseDetails.html',
+      controller: CourseDetailsCtrl
+      resolve:
+        course: () ->
+          return $scope.course
+    })
+
+    modalInstance.result.then () ->
+      console.log('result ' )
+      # Create data object to POST and send a request
+      data =
+        password: '1234'
+      $http.post('/employees/security.json', data).success( (data) ->
+        console.log('Successfully set preferences')
+      ).error( ->
+        console.error('Failed to set preferences')
+      )    
+
+# controller for modal window
+@CourseDetailsCtrl = ($scope, $modalInstance, $window, $http, course) ->
+  $scope.course = course
+  $scope.alerts = []
+
+  $http.get('/products/' + course.product_id + '.json').success( (data) ->
+    $scope.course_description = data.description
+    #debugger
+    console.log('Successfully loaded product details')
+  ).error( ->
+    console.log('Error loading search product details')
+  )
+
+  $scope.save = () ->
+    console.log('fields = ')
+    $modalInstance.close()
+
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
+
+  $scope.goto = ->
+    #debugger
+    $window.open($scope.course.product.origin)
+    $modalInstance.dismiss('goto')
+
+@CourseDetailsCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'course'] 
 @MyCoursesCtrl.$inject = ['$scope', '$http', '$modal', '$log']
