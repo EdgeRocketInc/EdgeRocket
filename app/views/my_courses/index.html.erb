@@ -7,7 +7,7 @@
   <div class="modal-body">
     <div class="rating-right">
       <!-- Rating -->
-      <rating ng-model="rate" max="5" readonly="isReadonly" on-hover="hoveringOverRating(value)" on-leave="overStar = null"></rating>
+      <rating ng-model="course.product.display_rating" max="5" readonly="false"></rating>
     </div>
     <img src="{{ course.product.vendor.logo_asset_url }}" class="img-provider-logo"></img>
     <div class="">{{ course.product.authors }}</div>
@@ -71,8 +71,8 @@
                 <div class="row course-row" ng-repeat="c in cg.my_courses">
                   <div class="col-md-1">
                     <a href="{{c.product.origin}}" class="" target="_blank">
-                      <span class="glyphicon glyphicon-play pull-right"
-                        tooltip="Go to the course">
+                      <span class="glyphicon glyphicon-play-circle glyph-big pull-right"
+                        tooltip="Go to course">
                       </span>
                     </a>
                   </div>

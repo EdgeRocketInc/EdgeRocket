@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602220345) do
+ActiveRecord::Schema.define(version: 20140605193304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140602220345) do
     t.string   "assigned_by",      limit: 20
     t.datetime "completion_date"
     t.decimal  "percent_complete"
+    t.decimal  "my_rating"
   end
 
   create_table "playlists", force: true do |t|
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 20140602220345) do
     t.text     "description"
     t.string   "media_type",  limit: 10
     t.decimal  "duration",               precision: 8, scale: 2
+    t.decimal  "avg_rating"
   end
 
   create_table "roles", force: true do |t|

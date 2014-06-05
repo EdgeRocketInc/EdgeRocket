@@ -42,6 +42,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           # TODO make it less ugly by refactoring the whole JSON structure
           c.product.vendor = (v for v in data.vendors when v.id is c.product.vendor_id)[0]
           #console.log('vendor=' + c.product.vendor.name)
+          c.product.display_rating = c.product.avg_rating * 5
+          #debugger
       # massage playlists
       for pl in data.my_playlists
         pl.checked = 'expand'
