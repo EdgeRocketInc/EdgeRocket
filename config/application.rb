@@ -21,7 +21,9 @@ module EdgeApp
     # config.i18n.default_locale = :de
 
     # need for Twitter bootstrap and AngularJS
-    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif flatly.js flatly.css user_home.js angular.js angular-charts.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.11.0.min.js my_courses.js playlists.js teams.js employees.js products.js)
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
+    config.assets.precompile += %w(yeti.js yeti.css) # Replace Bootswatch theme here
+    config.assets.precompile += %w(user_home.js angular.js angular-charts.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.11.0.min.js my_courses.js playlists.js teams.js employees.js products.js)
     config.assets.compile = true
 
     # need for Devise

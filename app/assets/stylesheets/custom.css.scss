@@ -49,11 +49,24 @@ textarea {
 img {
   @extend .img-responsive;
   margin: 0 auto;
-  }
+}
+
+// NAVBAR
+
+// Main navbar fonts and colors
+
+nav.navbar {
+  font-size: 16px;
+}
+
+nav.navbar-default, .navbar-nav > li > .dropdown-menu {
+  background-color: #4D5C97;
+}
+
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
-  }
+}
 
 // Vertical offset for rows
 
@@ -257,4 +270,11 @@ input.form-control-user {
 input.form-control-49pct {
   display: inline;
   width: 49%;
+}
+
+// General panels
+div.panel-info > div.panel-heading {
+  background-color: #EDFDFF;
+  color: #436983;
+  font-weight: 600;
 }

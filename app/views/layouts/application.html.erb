@@ -5,7 +5,10 @@
     <title><%= content_for?(:title) ? yield(:title) : "EdgeRocket" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "EdgeRocket" %>">
     <%= stylesheet_link_tag "application", media: "all" %>
-    <%= stylesheet_link_tag "flatly", media: "all" %>
+
+    <!-- Change Bootswatch theme here -->
+    <%= stylesheet_link_tag "yeti", media: "all" %>
+    
     <%= javascript_include_tag "application", controller_name if controller_name != 'sessions' %>
     <%= csrf_meta_tags %>
   </head>
