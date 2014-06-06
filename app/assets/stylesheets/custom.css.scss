@@ -38,7 +38,7 @@ textarea {
 
 // Use for even rows in some places like lists of users
 .bg-color-even-gray {
-  background-color: rgb(121, 121, 121);
+  background-color: #F1F1F1;
 }
 
 .bottom0 {
@@ -92,12 +92,13 @@ div.progress {
 // TODO: figure how not to use !important
 
 .course-link {
-  color: #FFD58B !important;
+  // The default color for Yeti seems to be fine
+  //color: #FFD58B !important;
   text-decoration: none !important;
 }
 
 .course-row {
-  border-bottom: rgb(61, 61, 61) 1px solid;
+  border-bottom: #DDDDDD 1px solid;
   padding-bottom: 5px;
   padding-top: 8px;
 }
