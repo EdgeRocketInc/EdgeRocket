@@ -40,7 +40,7 @@
  		    <div class="panel-heading">Playlists</div>
         <div class="panel-body">
           <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
-          <div class="row course-row" ng-repeat="pl in data.playlists">
+          <div class="row {{rowClass[$last]}}" ng-repeat="pl in data.playlists">
             <div class="col-xs-1">
               <span class="glyphicon glyph-big glyphicon-{{ glyphSubscribed[$index] }}" tooltip="Subscribed"></span>
             </div>
@@ -71,7 +71,7 @@
           </div> <!-- /input-group -->
           <div class="well" ng-repeat="disc_post in discussions">
           {{ disc_post.title }}
-            <div class="text-warning text-right">{{disc_post.user.email}}</div>
+            <div class="text-success text-right">{{disc_post.user.email}}</div>
           </div>
         </div>
 	    </div>

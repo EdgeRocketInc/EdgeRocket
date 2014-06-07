@@ -117,10 +117,15 @@ div.progress {
   padding-top: 8px;
 }
 
+// same as course-row but for the last row
+.course-last-row {
+  padding-bottom: 5px;
+  padding-top: 8px;
+}
 
 // Making wells differnt from panels
 div.panel-body .well {
-  background-color: #EBEBEB;
+  background-color: #F5F5F5;
   padding: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
