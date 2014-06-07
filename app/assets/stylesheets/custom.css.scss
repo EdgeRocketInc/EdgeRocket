@@ -56,11 +56,12 @@ img {
 // Main navbar fonts and colors
 
 nav.navbar {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 nav.navbar-default, .navbar-nav > li > .dropdown-menu {
-  background-color: #4D5C97;
+  // decided to use inverse instead for now
+  // background-color: #4D5C97;
 }
 
 // override for the 'Home' navigation link
@@ -119,7 +120,7 @@ div.progress {
 
 // Making wells differnt from panels
 div.panel-body .well {
-  background-color: #6C8196;
+  background-color: #EBEBEB;
   padding: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
