@@ -38,6 +38,11 @@ Nothing yet
 
 There is also deploy.sh script that pushes to git repos, deploys andrefreshes test database. 
 
+Continious Integration
+----
+There is an automatic build for the master-heroku brnach that runs on https://snap-ci.com
+
+
 See more informaton on the project Wiki page:
 ====
 
