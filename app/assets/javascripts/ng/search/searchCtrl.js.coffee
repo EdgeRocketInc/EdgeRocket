@@ -16,6 +16,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       r = 0
       c = 0
       for item in data
+        # add a display rating variable
+        item.display_rating = item.avg_rating * 5
         $scope.rowItems[r][c] = item
         if (c >= 3)
           r++
