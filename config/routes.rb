@@ -17,6 +17,7 @@ EdgeApp::Application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get "search" => 'search#index'
   get "my_courses" => 'my_courses#index'
+  get "my_courses/:product_id" => 'my_courses#show'
   get "user_home" => 'user_home#index'
   get "dashboard" => 'dashboards#show'
   get "plans" => 'plans#index'
@@ -36,6 +37,7 @@ EdgeApp::Application.routes.draw do
   
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
   put "employees/:id" => 'employees#update'
+  put "my_courses/:id/rating" => 'my_courses#update_rating'
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
   delete "playlist_subscription/:id" => 'user_home#unsubscribe'

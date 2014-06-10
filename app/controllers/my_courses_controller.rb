@@ -116,4 +116,43 @@ class MyCoursesController < ApplicationController
     # TODO implement
   end
 
+
+  # GET /my_courses/1.json
+  def show
+    @my_course = nil
+    my_courses = MyCourse.where("product_id=? and user_id=?", params[:product_id], current_user.id)
+    if !my_courses.nil? && my_courses.length > 0
+      @my_course = my_courses[0]
+    end
+  end
+
+
+  # PUT
+  # change the rating
+  # JSON: {"my_rating":"0.5"}
+  def update_rating
+    mc_id = params[:id]
+
+    # when subscription changes, we need to set the date and %complete
+    new_rating = params[:my_rating]
+    MyCourse.update(mc_id, :my_rating => new_rating)
+
+    # also make sure to keep avg rating in sync
+    Product.sync_rating(params[:product_id])
+
+    result = { 'id' => mc_id, 'my_rating' => new_rating }
+
+    respond_to do |format|
+        format.json { render json: result.as_json }
+    end
+
+  end
+
+private
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params.require(:my_course).permit(:rating)
+  end
+
 end

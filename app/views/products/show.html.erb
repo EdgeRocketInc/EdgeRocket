@@ -10,11 +10,14 @@
 				<div class="panel panel-info"> 
 					<div class="panel-heading">{{ course.name }}</div>
 					<div class="panel-body">
-
+						<!-- Rating -->
 						<div class="rating-right">
-							<!-- Rating -->
-							<rating ng-model="course.display_rating" max="5" readonly="false"></rating>
+					    	<div class="">{{rating.description}}</div>
+							<rating class="{{rating.color}}" ng-model="rating.display" max="5" readonly="rating.read_only" 
+								on-leave="leavingRating()">
+							</rating>
 						</div>
+
 						<img src="{{ course.vendor.logo_asset_url }}" class="img-provider-logo"></img>
 						<div class="">{{ course.authors }}</div>
 						<div class="">{{ course.school }}</div>
