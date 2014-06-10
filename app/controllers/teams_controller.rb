@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
     u = current_user
     account = u.account
     @users = account ? account.users.order('email') : nil
+    @AppVersion = EdgeApp::VERSION
   end
 
 end
