@@ -27,13 +27,15 @@ EdgeApp::Application.routes.draw do
   get "users/current" => 'user_home#get_user'
   get "employees" => 'employees#index'
   get "teams" => 'teams#index'
-  
+  get "products/:id/reviews" => 'products#reviews'
+
   post "playlist_subscription" => 'user_home#subscribe'
   post "course_subscription" => 'my_courses#subscribe'
   post "users/preferences" => 'user_home#create_preferences'
-  post "discussions" => 'discussions#create'
+  post "discussions" => 'discussions#create_discussion'
   post "playlists/:id/courses/:course_id" => 'playlists#add_course'
   post "employees" => 'employees#create'
+  post "products/:product_id/reviews" => "discussions#create_review"
   
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
   put "employees/:id" => 'employees#update'

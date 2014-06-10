@@ -16,6 +16,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     color : 'gray',
     description : 'Unrated'
   }
+  $scope.reviews = null
+  $scope.newReview = { title : '', actor_name : 'me' }
 
   # Load product/course details
   loadProduct =  ->
@@ -63,7 +65,19 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $scope.rating.display = $scope.rating.current * $scope.rating.MAX_STARS
     console.log("rating structure " + JSON.stringify($scope.rating))
 
+  loadReviews = ->
+    $http.get('/products/' + $scope.product_id + '/reviews.json').success( (data) ->
+      $scope.reviews = data.reviews
+      #debugger
+      console.log('Successfully loaded product reviews')
+      loadMyCourse()
+    ).error( ->
+      console.log('Error loading search product reviews')
+    )
+
+  # Invoke methods, and keep in mind they may run async
   loadProduct()
+  loadReviews()
 
   $scope.goto = ->
     #debugger
@@ -89,5 +103,22 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       ).error( ->
         console.error('Failed to create new subscription')
       )
+
+  $scope.createReview = () ->
+    # Create data object to POST and send a request
+    console.log('new title=' + $scope.newReview.title)
+    data = $scope.newReview
+    $http.post('/products/' + $scope.product_id + '/reviews.json', data).success( (data) ->
+      saved_reviews = { 
+        title : $scope.newReview.title, 
+        user : { email : '<me>' }
+      }
+      $scope.reviews.splice(0,0,saved_reviews)
+      $scope.newReview.title = ''
+      console.log('Successfully created review')
+    ).error( ->
+      console.error('Failed to create review')
+    )
+    return true
 
 @ProductsCtrl.$inject = ['$scope', '$http', '$modal', '$log', '$window']

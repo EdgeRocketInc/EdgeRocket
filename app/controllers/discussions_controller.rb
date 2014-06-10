@@ -35,11 +35,26 @@ class DiscussionsController < ApplicationController
 
   # POST
   # it posts into internal DB, and then if such option is enabled also posts to Google+ Domain
-  def create
-    
+  def create_discussion
+    create(nil)
+  end
+
+  # POST
+  # create new product review
+  def create_review
+    create(params[:product_id])
+  end
+
+private
+
+  # Create a new discussion or review
+  # if product_id is not null, then it's a prodcut review
+  def create(product_id)
+
     # Post internally
     new_discussion = Discussion.new
     new_discussion.title = params[:title]
+    new_discussion.product_id = product_id
     current_user.discussions << new_discussion
 
     #Post to Google+ if enabled
@@ -71,9 +86,6 @@ class DiscussionsController < ApplicationController
     # Return result
     @result = {}
   end
-
-
-private
 
   # Gplus+ login uses service account authentication
   def gplus_login
