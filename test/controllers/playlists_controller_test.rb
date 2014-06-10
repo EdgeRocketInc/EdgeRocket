@@ -20,7 +20,7 @@ class PlaylistsControllerTest < ActionController::TestCase
 
   test "should create playlist" do
     assert_difference('Playlist.count') do
-      post :create, playlist: { mandatory: @playlist.mandatory, title: @playlist.title }
+      post :create, playlist: { mandatory: @playlist.mandatory, title: @playlist.title, description: @playlist.description }
     end
 
     assert_redirected_to playlist_path(assigns(:playlist))
@@ -37,7 +37,7 @@ class PlaylistsControllerTest < ActionController::TestCase
   end
 
   test "should update playlist" do
-    patch :update, id: @playlist, playlist: { mandatory: @playlist.mandatory, title: @playlist.title }
+    patch :update, id: @playlist, playlist: { mandatory: @playlist.mandatory, title: @playlist.title, description: @playlist.description }
     assert_redirected_to playlist_path(assigns(:playlist))
   end
 

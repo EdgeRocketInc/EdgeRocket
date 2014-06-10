@@ -8,13 +8,22 @@
             <div class="row" ng-repeat="pl in playlists">
 
               <div class="col-lg-3">
-                <div class="text-cell" ng-if="editModeIndex != $index">{{pl.title}}</div>
-                <input type="text" class="form-control" id="editPlaylistID" placeholder="Playlist Name" 
+                <span ng-if="editModeIndex != $index">{{pl.title}}</span>
+                <span ng-if="editModeIndex != $index">{{pl.description}}</span>
+                <span ng-if="editModeIndex != $index">{{ pl.mandatory && "Mandatory" || "Optional" }} </span>
+                <input type="text" class="form-control" id="editPlaylistID" placeholder="Playlist Name"
                   ng-if="editModeIndex == $index" ng-model="pl.title">
                 </input>
+                <input type="text" class="form-control" id="editDescription" placeholder="Description"
+                       ng-if="editModeIndex == $index" ng-model="pl.description">
+                </input>
+                <input type="checkbox" class="form-control" id="editDescription" placeholder="Mandatory"
+                       ng-if="editModeIndex == $index" ng-model="pl.mandatory">
+                </input>
+
               </div>
 
-              <div class="col-lg-1"> 
+              <div class="col-lg-2">
                 <span ng-if="editModeIndex < 0">
                   <span class="glyphicon glyphicon-list glyph-big glyph-action" 
                     ng-click="manageCourses(pl)" tooltip="Manage Courses in this Playlist">
@@ -42,6 +51,17 @@
               <div class="col-lg-3">
                 <input type="text" class="form-control" id="newPlaylistID" 
                   placeholder="New Playlist Name" ng-model="newPlaylist.title">
+                </input>
+              </div>
+              <div class="col-lg-4">
+                <input type="text" class="form-control" id="newDescription"
+                       placeholder="Description" ng-model="newPlaylist.description">
+                </input>
+              </div>
+              <div class="col-lg-1">
+                Mandatory
+                <input type="checkbox" class="form-control" id="newMandatory"
+                       placeholder="" ng-model="newPlaylist.mandatory">
                 </input>
               </div>
 

@@ -6,7 +6,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 @PlaylistsCtrl = ($scope, $http, $modal, $log) ->
 
-  $scope.newPlaylist = { title : '' }
+  $scope.newPlaylist = { title : '', description : '', mandatory : false}
   $scope.editModeIndex = -1 # will set to $index when editing a playlist in place
 
   loadPlaylists =  ->
@@ -20,8 +20,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   loadPlaylists()
 
   $scope.createPlaylist = ()->
-    console.log('Creating:' + $scope.newPlaylist.title)
-    new_pl = { id : null, title : $scope.newPlaylist.title }
+    console.log('Creating:' + $scope.newPlaylist.title+','+$scope.newPlaylist.description)
+    new_pl = { id : null, title : $scope.newPlaylist.title, description : $scope.newPlaylist.description, mandatory : $scope.newPlaylist.mandatory}
     # POST and send a request
     $http.post('/playlists.json', new_pl).success( (data) ->
       console.log('Successfully created playlist')
@@ -29,13 +29,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       new_pl.id = data.id
       $scope.playlists.push(new_pl)
       $scope.newPlaylist.title = ''
+      $scope.newPlaylist.description = ''
+      $scope.newPlaylist.mandatory = false
     ).error( ->
       console.error('Failed to add to playlist')
     )
 
   $scope.updatePlaylist = (playlist,index) ->
-    updated_pl = { title : playlist.title }
-    console.log('Updating:' + updated_pl.title)
+    updated_pl = { title : playlist.title, description : playlist.description, mandatory : playlist.mandatory}
+    console.log('Updating:' + updated_pl.title+','+updated_pl.description)
     # POST and send a request
     $http.put('/playlists/' + playlist.id + '.json', updated_pl).success( (data) ->
       console.log('Successfully updated playlist')
