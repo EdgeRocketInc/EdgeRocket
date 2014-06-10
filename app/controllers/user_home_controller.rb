@@ -12,7 +12,7 @@ class UserHomeController < ApplicationController
     # --- Discussion section
 
     # --- Playlists section
-    @playlists = @account ? @account.playlists : nil
+    @playlists = @account ? @account.playlists.order('title') : nil
 
     @subscribed_playlists = Hash.new()
 

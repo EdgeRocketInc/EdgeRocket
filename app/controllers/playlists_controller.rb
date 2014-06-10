@@ -7,7 +7,7 @@ class PlaylistsController < ApplicationController
   def index
     u = current_user
     account = u.account
-    @playlists = account ? account.playlists : nil
+    @playlists = account ? account.playlists.order('title') : nil
   end
 
   # GET /playlists/1

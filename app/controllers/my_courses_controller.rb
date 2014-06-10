@@ -7,6 +7,8 @@ class MyCoursesController < ApplicationController
 
     # --- Courses section
     # TODO this can be more DRY and pushed to the view
+    # NOTE the courses are sorted inside MyCourse queries by their percent complete, which is not obvious.
+    # TODO consider setting the ABC sort order by course name
     my_courses = MyCourse.all_completed(u.id)
     @course_groups << {
       :status => 'compl',
@@ -37,7 +39,7 @@ class MyCoursesController < ApplicationController
     }
 
     # --- Playlists section
-    @my_playlists = u.playlists
+    @my_playlists = u.playlists.order('title')
 
     # --- Budget section
     @account = u.account

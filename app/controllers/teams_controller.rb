@@ -7,7 +7,7 @@ class TeamsController < ApplicationController
   def index
     u = current_user
     account = u.account
-    @users = account ? account.users : nil
+    @users = account ? account.users.order('email') : nil
   end
 
 end

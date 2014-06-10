@@ -22,7 +22,7 @@ class MyCourse < ActiveRecord::Base
   end
 
   def self.all_with_status(user_id, status)
-    where("user_id = ? and status = ?", user_id, status)
+    where("user_id = ? and status = ?", user_id, status).order('percent_complete DESC')
   end
 
   def self.find_courses(user_id, product_id)
