@@ -64,10 +64,10 @@
 		    <div class="panel-heading">Discussions</div>
         <div class="panel-body panel-discussions">
           <div class="input-group">
-            <textarea class="form-control textarea-discussions" placeholder="your question, comment, or reply" ng-model="newDiscussion.title">
+            <textarea class="form-control textarea-discussions" placeholder="Add comment or question" ng-model="newDiscussion.title">
             </textarea>
             <span class="input-group-btn">
-              <button class="btn btn-warning btn-post-discussions" type="button" ng-click="createDiscussion()">Post</button>
+              <button class="btn btn-warning btn-post-discussions" type="button" ng-click="createDiscussion()">Submit</button>
             </span>
           </div> <!-- /input-group -->
           <div class="well" ng-repeat="disc_post in discussions">

@@ -96,12 +96,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         my_rating : $scope.rating.display / $scope.rating.MAX_STARS
         product_id : $scope.my_course.product_id
       $http.put('/my_courses/' + $scope.my_course.id + '/rating.json', data).success( (data) ->
-        console.log('Successfully created subscription')
+        console.log('Successfully updated rating')
         $scope.rating.current = data.my_rating
         $scope.rating.color = 'red'
         $scope.rating.description = 'My rating'
       ).error( ->
-        console.error('Failed to create new subscription')
+        console.error('Failed to update rating')
       )
 
   $scope.createReview = () ->
@@ -111,7 +111,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $http.post('/products/' + $scope.product_id + '/reviews.json', data).success( (data) ->
       saved_reviews = { 
         title : $scope.newReview.title, 
-        user : { email : '<me>' }
+        user : { first_name : '<me>', last_name : null }
       }
       $scope.reviews.splice(0,0,saved_reviews)
       $scope.newReview.title = ''

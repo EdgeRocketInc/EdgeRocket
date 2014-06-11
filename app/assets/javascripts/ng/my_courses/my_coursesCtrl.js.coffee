@@ -57,6 +57,25 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.courseComplete = (cgroup,crs_index) ->
     $scope.courseMove('compl',cgroup,crs_index)
+    $scope.current_my_course = cgroup.my_courses[crs_index]
+    # prompt user to submit a comment
+    modalInstance = $modal.open({
+      templateUrl: 'commentModal.html',
+      controller: CommentModalCtrl
+      resolve:
+        current_my_course: () ->
+          return $scope.current_my_course
+    })
+
+    modalInstance.result.then (review) ->
+      # Create data object to POST and send a request
+      console.log('new review title=' + review.title + ' for id ' + $scope.current_my_course.product_id)
+      data = review
+      $http.post('/products/' + $scope.current_my_course.product_id + '/reviews.json', data).success( (data) ->
+        console.log('Successfully created review')
+      ).error( ->
+        console.error('Failed to create review')
+      )  
 
   $scope.courseWip = (cgroup,crs_index) ->
     $scope.courseMove('wip',cgroup,crs_index)
@@ -87,15 +106,34 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.error('Failed to update subscription')
     )
 
-    modalInstance.result.then () ->
-      console.log('result ' )
-      # Create data object to POST and send a request
-      data =
-        password: '1234'
-      $http.post('/employees/security.json', data).success( (data) ->
-        console.log('Successfully set preferences')
-      ).error( ->
-        console.error('Failed to set preferences')
-      )    
+# controller for modal window
+@CommentModalCtrl = ($scope, $modalInstance, $window, $http, current_my_course) ->
+  console.log('Comment modal ctrl')
+  $scope.newReview = { title : '', actor_name : 'me' }
+  $scope.rating = { MAX_STARS : 5, display : null }
+  $scope.current_my_course = current_my_course
 
+  # When leaving the rating control, save the new rating if needed
+  $scope.leavingRating = () ->
+    # check if rating changed
+    if $scope.rating.display != null
+      # Save the new my rating
+      console.log('rating changed ' + $scope.rating.display )
+      data =
+        my_rating : $scope.rating.display / $scope.rating.MAX_STARS
+        product_id : $scope.current_my_course.product_id
+      $http.put('/my_courses/' + $scope.current_my_course.id + '/rating.json', data).success( (data) ->
+        console.log('Successfully updated rating')
+      ).error( ->
+        console.error('Failed to update rating')
+      )
+
+  $scope.save = () ->
+    console.log('submitting comment...')
+    $modalInstance.close($scope.newReview)
+
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
+
+@CommentModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'current_my_course'] 
 @MyCoursesCtrl.$inject = ['$scope', '$http', '$modal', '$log']

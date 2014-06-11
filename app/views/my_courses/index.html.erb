@@ -1,3 +1,31 @@
+<!-- Modal Security settings window -->
+<script type="text/ng-template" id="commentModal.html">
+  <div class="modal-header">
+    <h4>Nice work completing this content!</h4>
+  </div>
+  <div class="modal-body">
+
+    Was it excellent?  Lame?  Do you recommend it?  Please add a Rating and Review to share with colleagues.
+
+    <!-- Rating -->
+    <div class="voffset3">
+      <rating class="orange" ng-model="rating.display" max="5" readonly="false" 
+        on-leave="leavingRating()">
+      </rating>
+    </div>
+
+    <div class="input-group voffset3 width-100pct">
+      <textarea class="form-control textarea-discussions" placeholder="Post comments or reviews" ng-model="newReview.title">
+      </textarea>
+    </div> <!-- /input-group -->
+
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-success" ng-click="save()">Submit</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()">Skip</button>
+  </div>
+</script>
+
 <!-- Main content area -->
 <div class="container-fluid" ng-controller="MyCoursesCtrl">
 
