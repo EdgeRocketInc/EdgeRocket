@@ -64,14 +64,18 @@
 		    <div class="panel-heading">Discussions</div>
         <div class="panel-body panel-discussions">
           <div class="input-group">
-            <textarea class="form-control textarea-discussions" placeholder="Post a comment" ng-model="newDiscussion.title"></textarea>
+            <textarea class="form-control textarea-discussions" placeholder="your question, comment, or reply" ng-model="newDiscussion.title">
+            </textarea>
             <span class="input-group-btn">
               <button class="btn btn-warning btn-post-discussions" type="button" ng-click="createDiscussion()">Post</button>
             </span>
           </div> <!-- /input-group -->
           <div class="well" ng-repeat="disc_post in discussions">
-          {{ disc_post.title }}
-            <div class="text-success text-right">{{disc_post.user.email}}</div>
+            <div class="text-info" ng-if="disc_post.product_id != null">
+              Reviewed: "<a href="/products/{{disc_post.product.id}}">{{disc_post.product.name}}</a>" by {{disc_post.product.authors}}
+            </div>
+            <div class="voffset2">{{ disc_post.title }}</div>
+            <div class="text-success text-right">{{disc_post.user.first_name}} {{disc_post.user.last_name}}</div>
           </div>
         </div>
 	    </div>

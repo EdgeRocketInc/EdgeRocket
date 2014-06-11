@@ -26,7 +26,7 @@ class DiscussionsController < ApplicationController
   # NOTE: using jbuilder 
   def index
   	discussions = Discussion.whole_company(current_user.account_id)
-    @discussions = discussions.as_json(:include => :user)
+    @discussions = discussions.as_json(:include => [:user,:product])
   end
 
   # GET

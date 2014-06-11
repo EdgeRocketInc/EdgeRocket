@@ -1,6 +1,6 @@
 class Discussion < ActiveRecord::Base
   belongs_to :user
-  belongs_to :discussion
+  belongs_to :product
 
   # returns discussions for all users in the same company
   def self.whole_company(account_id)
