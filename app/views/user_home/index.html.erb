@@ -72,7 +72,7 @@
           </div> <!-- /input-group -->
           <div class="well" ng-repeat="disc_post in discussions">
             <div class="text-info" ng-if="disc_post.product_id != null">
-              Reviewed: "<a href="/products/{{disc_post.product.id}}">{{disc_post.product.name}}</a>" by {{disc_post.product.authors}}
+              Comment on: "<a href="/products/{{disc_post.product.id}}">{{disc_post.product.name}}</a>" by {{disc_post.product.authors}}
             </div>
             <div class="voffset2">{{ disc_post.title }}</div>
             <div class="text-success text-right">{{disc_post.user.first_name}} {{disc_post.user.last_name}}</div>
