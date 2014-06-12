@@ -4,6 +4,7 @@ class Product < ActiveRecord::Base
 	has_and_belongs_to_many :playlists
 	belongs_to :vendor
 	has_many :my_courses
+  has_many :discussions
 
   # search courses (aka prodcuts) with a filter, and include the vendor fields
   # in the result

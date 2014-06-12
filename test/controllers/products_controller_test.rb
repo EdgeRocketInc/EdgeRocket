@@ -30,6 +30,11 @@ class ProductsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get product reviews in json" do
+    get :reviews, id: @product, :format => 'json'
+    assert_response :success
+  end
+
   test "should get edit" do
     get :edit, id: @product
     assert_response :success

@@ -4,11 +4,13 @@
       <h4>{{ course.pname }}</h4>
   </div>
   <div class="modal-body">
-    <div class="rating-right"><span class="glyphicon glyphicon-star rating-unknown"></span><!-- Rating --></div>
+    <div class="rating-right">
+      <rating class="orange" ng-model="course.display_rating" max="5" readonly="true"></rating>
+    </div>
     <img src="{{ course.logo_asset_url }}" class="img-provider-logo"></img>
-    <div class="">{{ course.authors }}</div>
-    <div class="">{{ course.school }}</div>
-    <div class="well well-sm">{{ course_description }}</div>
+    <div class="voffset2">{{ course.authors }}</div>
+    <div class="voffset2">{{ course.school }}</div>
+    <div class="well well-sm" ng-if="course_description != null && course_description != ''">{{ course_description }}</div>
     <div class="text-right">
       <span>{{ course.price_fmt }}</span></div>
   </div>

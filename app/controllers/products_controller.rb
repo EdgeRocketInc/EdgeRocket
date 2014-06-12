@@ -66,6 +66,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET
+  # producs/1/reviews.json
+  def reviews
+    reviews = Discussion.product_reviews(current_user.account_id, params[:id])
+    @reviews_json = reviews.as_json(:include => :user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

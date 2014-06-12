@@ -1,7 +1,8 @@
 <div class="container-fluid" ng-controller="PlaylistsCtrl">
   <div class="row">
     <div class="col-lg-12">
-      <div class="panel panel-info">
+
+      <div class="panel panel-info"  ng-if="playlistMode"> <!-- This panel is displayed in Playlits CRUD mode -->
         <div class="panel-heading">Playlists</div>
         <div class="panel-body">
           <form role="form">
@@ -17,15 +18,15 @@
                 <span ng-if="editModeIndex == $index" class="glyph-label text-cell">Mandatory</span>
               </div>
 
-              <div class="col-lg-2">
+              <div class="col-md-2"> 
                 <span ng-if="editModeIndex < 0">
                   <span class="glyphicon glyphicon-list glyph-big glyph-action" 
-                    ng-click="manageCourses(pl)" tooltip="Manage Courses in this Playlist">
+                    ng-click="manageCourses(pl)" tooltip="Manage Courses in Playlist">
                   </span>
                   <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
                     ng-click="editPlaylist(pl,$index)" tooltip="Edit Playlist">
                   </span>
-                  <span class="glyphicon glyphicon-remove glyph-big glyph-action red" 
+                  <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
                     ng-click="removePlaylist(pl,$index)" tooltip="Remove Playlist">
                   </span>
                 </span>
@@ -63,7 +64,34 @@
             </div>
           </form>
         </div>
-      </div>
+      </div> <!-- ng-if="playlistMode" -->
+
+      <div class="panel panel-info"  ng-if="!playlistMode"> <!-- This panel is displayed in Manage Courses mode -->
+        <div class="panel-heading">Courses in Playlist: {{currentPlaylist.title}}</div>
+        <div class="panel-body">
+
+          <form role="form">
+            <div class="row" ng-repeat="crs in currentCourses">
+
+              <div class="col-lg-3">
+                <div class="text-cell">{{crs.name}}</div>
+              </div>
+
+              <div class="col-md-2"> 
+                <span ng-if="editModeIndex < 0">
+                  <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
+                    ng-click="removeCourse(crs,$index)" tooltip="Remove Course from Playlist">
+                  </span>
+                </span>
+              </div>
+
+            </div>
+            <button class="btn btn-success" ng-click="cancelManageCourses()">Back to Playlists</button>
+          </form>
+
+        </div>
+      </div> <!-- ng-if="!playlistMode" -->
+
     </div>
   </div>
 </div>
