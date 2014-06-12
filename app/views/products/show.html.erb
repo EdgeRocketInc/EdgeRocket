@@ -1,9 +1,38 @@
-<p id="notice"><%= notice %></p>
+<!-- Course Details -->
+<div ng-init="product_id=<%= @product.id %>;">
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+	<!-- Main content area -->
+	<div class="container-fluid" ng-controller="ProductsCtrl">
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+		<div class="row">
+			<div class="col-lg-12">
+
+				<div class="panel panel-info"> 
+					<div class="panel-heading">{{ course.name }}</div>
+					<div class="panel-body">
+						<!-- Rating -->
+						<div class="rating-right">
+					    	<div class="">{{rating.description}}</div>
+							<rating class="{{rating.color}}" ng-model="rating.display" max="5" readonly="rating.read_only" 
+								on-leave="leavingRating()">
+							</rating>
+						</div>
+
+						<img src="{{ course.vendor.logo_asset_url }}" class="img-provider-logo"></img>
+						<div class="">{{ course.authors }}</div>
+						<div class="">{{ course.school }}</div>
+						<div class="well">{{ course.description }}</div>
+						<div class="text-right">
+							<span>{{ course.price | currency }}</span>
+							<span ng-if="course.price_free"> / Free</span>
+						</div>
+						<button class="btn btn-warning pull-right" ng-click="TODO()">Back to My Courses</button>
+						<button class="btn btn-success pull-right" ng-click="goto()">Go to course</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>

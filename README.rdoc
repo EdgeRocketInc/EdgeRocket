@@ -38,12 +38,7 @@ Nothing yet
 
 There is also deploy.sh script that pushes to git repos, deploys andrefreshes test database. 
 
-Database structure
-======
+See more informaton on the project Wiki page:
+====
 
-The tables used as an interface between Rails app and Data Acquisition service
-
-* products table - contains metadata for courses and other materials. It's populated by the Data Acquisition service and used by Rails App
-
-* vendors table - contains list of course providers and other meta data for sources of educational materials. It's populated manually by developers to describe the data sources for courses
- 
+https://github.com/admitriyev/EdgeRocket/wiki

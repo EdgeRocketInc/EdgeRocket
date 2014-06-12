@@ -1,6 +1,11 @@
 EdgeApp::Application.routes.draw do
 
-  devise_for :users
+  # Don't alloow users to sign up themselves, but allow changing passwords
+  devise_for :users, :skip => [:registrations]
+    as :user do
+      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
+      put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
+    end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -12,6 +17,7 @@ EdgeApp::Application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get "search" => 'search#index'
   get "my_courses" => 'my_courses#index'
+  get "my_courses/:product_id" => 'my_courses#show'
   get "user_home" => 'user_home#index'
   get "dashboard" => 'dashboards#show'
   get "plans" => 'plans#index'
@@ -19,17 +25,24 @@ EdgeApp::Application.routes.draw do
   get "discussions" => 'discussions#index'
   get "discussions/:id" => 'discussions#show'
   get "users/current" => 'user_home#get_user'
+  get "employees" => 'employees#index'
+  get "teams" => 'teams#index'
   
   post "playlist_subscription" => 'user_home#subscribe'
   post "course_subscription" => 'my_courses#subscribe'
   post "users/preferences" => 'user_home#create_preferences'
   post "discussions" => 'discussions#create'
   post "playlists/:id/courses/:course_id" => 'playlists#add_course'
+  post "employees" => 'employees#create'
   
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
+  put "employees/:id" => 'employees#update'
+  put "my_courses/:id/rating" => 'my_courses#update_rating'
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
   delete "playlist_subscription/:id" => 'user_home#unsubscribe'
+  delete "playlists/:id/courses/:course_id" => 'playlists#remove_course'
+  delete "employees/:id" => 'employees#destroy'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -39,10 +52,8 @@ EdgeApp::Application.routes.draw do
   resources :playlists
 
   # STUBS FOR FUTURE ROUTES
-  get 'teams' => 'teams#index'
   get 'corp_home' => 'corp_home#index'
-  get 'employees' => 'employees#index'
-
+  
 
   # Example resource route with options:
   #   resources :products do

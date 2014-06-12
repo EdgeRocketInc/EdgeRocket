@@ -16,6 +16,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       r = 0
       c = 0
       for item in data
+        # add a display rating variable 
+        item.display_rating = item.avg_rating * 5
         $scope.rowItems[r][c] = item
         if (c >= 3)
           r++
@@ -62,7 +64,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.alerts = []
 
   $http.get('/products/' + course.id + '.json').success( (data) ->
-    $scope.course_description = data.description
+    $scope.course_description = data.product.description
     console.log('Successfully loaded product details')
   ).error( ->
     console.log('Error loading search product details')

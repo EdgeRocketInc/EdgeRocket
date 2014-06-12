@@ -25,7 +25,7 @@ class Playlist < ActiveRecord::Base
   end
 
   def self.all_for_company(company_id)
-    self.where("account_id=?", company_id)
+    self.where("account_id=?", company_id).order('title')
   end
 
 end

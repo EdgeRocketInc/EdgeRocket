@@ -1,3 +1,4 @@
+<!-- Main content area -->
 <div class="container-fluid" ng-controller="MyCoursesCtrl">
 
   <!-- Budget SECTION -->
@@ -38,14 +39,18 @@
                   </i>
                 </accordion-heading>
 
-                <div class="row voffset2" ng-repeat="c in cg.my_courses">
+                <div class="row course-row" ng-repeat="c in cg.my_courses">
                   <div class="col-md-1">
-                    <span class="pull-right glyphicon {{mediaTypes[c.product.media_type].glyph}}"
-                      tooltip="{{mediaTypes[c.product.media_type].text}}">
-                    </span>
+                    <a href="{{c.product.origin}}" class="" target="_blank">
+                      <span class="glyphicon glyphicon-play-circle glyph-big pull-right"
+                        tooltip="Go to course">
+                      </span>
+                    </a>
                   </div>
                   <div class="col-md-4">
-                    <a href="{{c.product.origin}}" class="course-link" target="_blank">{{c.product.name}}</a>
+                    <a href="/products/{{c.product.id}}" class="course-link" tooltip="Course Details">
+                      {{c.product.name}}
+                    </a>
                   </div>
                   <div class="col-md-2">
                     <img src="{{c.product.vendor.logo_asset_url}}" class="img-provider-logo" 
@@ -55,6 +60,9 @@
                       <span class="glyphicon"
                         ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
                         tooltip="Assigned by {{c.assigned_by}}">
+                      </span>
+                      <span class="glyphicon {{mediaTypes[c.product.media_type].glyph}}"
+                        tooltip="{{mediaTypes[c.product.media_type].text}}">
                       </span>
                       <span class="label-duration" ng-if="c.product.duration">{{c.product.duration}}h</span>
                   </div>

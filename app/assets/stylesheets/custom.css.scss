@@ -28,12 +28,21 @@ textarea {
   color: rgb(255, 255, 108);
 }
 
+.orange {
+  color: orange;
+}
+
 .blue {
   color: #5bc0de;
 }
 
 .green {
   color: rgb(40, 184, 40);
+}
+
+// Use for even rows in some places like lists of users
+.bg-color-even-gray {
+  background-color: #F1F1F1;
 }
 
 .bottom0 {
@@ -44,11 +53,34 @@ textarea {
 img {
   @extend .img-responsive;
   margin: 0 auto;
-  }
+}
+
+// NAVBAR
+
+// Main navbar fonts and colors
+
+nav.navbar {
+  font-size: 15px;
+  background-color: #004F69;
+}
+
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  background-color: #455786 !important;
+}
+
+.navbar-inverse {
+//  background-color: #005F7E;
+}
+
+nav.navbar-default, .navbar-nav > li > .dropdown-menu {
+  background-color: #004F69; // Main bg color for navbar
+}
+
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
-  }
+}
 
 // Vertical offset for rows
 
@@ -87,13 +119,26 @@ div.progress {
 // TODO: figure how not to use !important
 
 .course-link {
-  color: #FFD58B !important;
+  // The default color for Yeti seems to be fine
+  //color: #FFD58B !important;
   text-decoration: none !important;
+}
+
+.course-row {
+  border-bottom: #DDDDDD 1px solid;
+  padding-bottom: 5px;
+  padding-top: 8px;
+}
+
+// same as course-row but for the last row
+.course-last-row {
+  padding-bottom: 5px;
+  padding-top: 8px;
 }
 
 // Making wells differnt from panels
 div.panel-body .well {
-  background-color: #6C8196;
+  background-color: #F5F5F5;
   padding: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -231,4 +276,24 @@ span.input-group-btn .btn-post-discussions {
   min-height: 28px;
   font-size: 21px;
   margin-top: 3px;
+}
+
+// Custom form controls for user editing
+
+input.form-control-user {
+  display: inline;
+  width: 100%;
+}
+
+
+input.form-control-49pct {
+  display: inline;
+  width: 49%;
+}
+
+// General panels
+div.panel-info > div.panel-heading {
+  background-color: #EDFDFF;
+  color: #436983;
+  font-weight: 600;
 }

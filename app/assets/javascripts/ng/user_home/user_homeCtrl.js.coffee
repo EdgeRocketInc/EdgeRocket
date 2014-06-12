@@ -15,6 +15,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # discussions
   $scope.discussions = []
   $scope.newDiscussion = { title : '', actor_name : 'me' }
+  # the true valu is for the last row
+  $scope.rowClass = { true:'course-last-row', false:'course-row' }
 
   loadPlaylists =  ->
     $http.get('/user_home.json').success( (data) ->

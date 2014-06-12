@@ -13,6 +13,12 @@ class UserHomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get current user json" do
+    sign_in User.find(101)
+    get :get_user, :format => 'json'
+    assert_response :success
+  end
+
   test "should have playlists" do
     sign_in User.find(102)
     get :index

@@ -6,21 +6,15 @@
         <div class="panel-body">
           <form role="form">
             <div class="row" ng-repeat="pl in playlists">
-
               <div class="col-lg-3">
                 <span ng-if="editModeIndex != $index">{{pl.title}}</span>
                 <span ng-if="editModeIndex != $index">{{pl.description}}</span>
-                <span ng-if="editModeIndex != $index">{{ pl.mandatory && "Mandatory" || "Optional" }} </span>
                 <input type="text" class="form-control" id="editPlaylistID" placeholder="Playlist Name"
                   ng-if="editModeIndex == $index" ng-model="pl.title">
                 </input>
-                <input type="text" class="form-control" id="editDescription" placeholder="Description"
-                       ng-if="editModeIndex == $index" ng-model="pl.description">
-                </input>
-                <input type="checkbox" class="form-control" id="editDescription" placeholder="Mandatory"
-                       ng-if="editModeIndex == $index" ng-model="pl.mandatory">
-                </input>
-
+                <textarea id="editDescription" cols=40 rows=3 class="form-control" placeholder="Description" ng-if="editModeIndex == $index" ng-model="pl.description"></textarea>
+                <span class="glyphicon glyphicon-{{pl.mandatory_class}} glyph-big glyph-action black" ng-if="editModeIndex == $index" ng-click="toggleMandatoryEdit(pl)"></span>
+                <span ng-if="editModeIndex == $index" class="glyph-label text-cell">Mandatory</span>
               </div>
 
               <div class="col-lg-2">
@@ -54,18 +48,13 @@
                 </input>
               </div>
               <div class="col-lg-4">
-                <input type="text" class="form-control" id="newDescription"
-                       placeholder="Description" ng-model="newPlaylist.description">
-                </input>
+                <textarea id="newDescription" cols=40 rows=3 class="form-control" placeholder="Description" ng-model="newPlaylist.description"></textarea>
               </div>
               <div class="col-lg-1">
-                Mandatory
-                <input type="checkbox" class="form-control" id="newMandatory"
-                       placeholder="" ng-model="newPlaylist.mandatory">
-                </input>
+                <span class="glyphicon glyphicon-{{newPlaylist.mandatory_class}} glyph-big glyph-action black" ng-click="toggleMandatory()"></span>
+                <span class="glyph-label text-cell">Mandatory</span>
               </div>
-
-              <div class="col-lg-1"> 
+              <div class="col-lg-1">
                 <span class="glyphicon glyphicon-plus glyph-big glyph-action green" 
                   tooltip="Create new Playlist" ng-click="createPlaylist()">
                 </span>

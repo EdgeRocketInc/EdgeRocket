@@ -12,7 +12,7 @@ class UserHomeController < ApplicationController
     # --- Discussion section
 
     # --- Playlists section
-    @playlists = @account ? @account.playlists : nil
+    @playlists = @account ? @account.playlists.order('title') : nil
 
     @subscribed_playlists = Hash.new()
 
@@ -95,7 +95,7 @@ class UserHomeController < ApplicationController
   end
 
   # POST
-  # create new set of user preferences
+  # create new set of user preferences for current user
   # JSON: {anything}
   def create_preferences
     u = current_user

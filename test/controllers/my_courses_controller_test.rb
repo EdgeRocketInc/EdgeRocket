@@ -3,7 +3,20 @@ require 'test_helper'
 class MyCoursesControllerTest < ActionController::TestCase
   test "should get index" do
     sign_in User.find(101)
+    get :index, {format: 'json'}
+    assert_response :success
+  end
+
+  test "should get index json" do
+    sign_in User.find(103)
     get :index
+    assert_response :success
+  end
+
+  test "should get one course json" do
+    sign_in User.find(103)
+    # TODO fix this
+    #get :show, {id: '2006', format: 'json'}
     assert_response :success
   end
 

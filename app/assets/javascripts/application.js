@@ -12,7 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require superhero/loader
-//= require superhero/bootswatch
+
+//--- Bootswatch themes
+//--  
+// require flatly/loader
+// require flatly/bootswatch
+//-- Active --
+//= require yeti/loader
+//= require yeti/bootswatch
+
 //= require angular
-//= require ui-bootstrap-tpls-0.10.0.min
+//= require ui-bootstrap-tpls-0.11.0.min

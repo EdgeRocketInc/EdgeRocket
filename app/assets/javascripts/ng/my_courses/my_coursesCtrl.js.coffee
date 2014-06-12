@@ -42,13 +42,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           # TODO make it less ugly by refactoring the whole JSON structure
           c.product.vendor = (v for v in data.vendors when v.id is c.product.vendor_id)[0]
           #console.log('vendor=' + c.product.vendor.name)
+          #debugger
       # massage playlists
       for pl in data.my_playlists
         pl.checked = 'expand'
       $scope.data = data
       $scope.options_json = angular.fromJson($scope.data.account.options)
       console.log('Successfully loaded user_home')
-     ).error( ->
+    ).error( ->
       console.log('Error loading user_home')
     )
 
@@ -85,5 +86,16 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     ).error( ->
       console.error('Failed to update subscription')
     )
+
+    modalInstance.result.then () ->
+      console.log('result ' )
+      # Create data object to POST and send a request
+      data =
+        password: '1234'
+      $http.post('/employees/security.json', data).success( (data) ->
+        console.log('Successfully set preferences')
+      ).error( ->
+        console.error('Failed to set preferences')
+      )    
 
 @MyCoursesCtrl.$inject = ['$scope', '$http', '$modal', '$log']

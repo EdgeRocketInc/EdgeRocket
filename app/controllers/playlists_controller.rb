@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :courses, :add_course]
+  before_action :set_playlist, only: [:show, :edit, :update, :destroy, :courses, :add_course, :remove_course]
   before_filter :authenticate_user!
 
   # GET /playlists
@@ -7,7 +7,7 @@ class PlaylistsController < ApplicationController
   def index
     u = current_user
     account = u.account
-    @playlists = account ? account.playlists : nil
+    @playlists = account ? account.playlists.order('title') : nil
   end
 
   # GET /playlists/1
@@ -70,7 +70,7 @@ class PlaylistsController < ApplicationController
   #
   # List courses in the playlist
   def courses
-  
+    # see jbuilder
   end
 
 
@@ -80,6 +80,24 @@ class PlaylistsController < ApplicationController
   def add_course
     course = Product.find(params[:course_id])
     @playlist.products << course
+    respond_to do |format|
+      format.html { redirect_to playlists_url }
+      format.json { head :no_content }
+    end
+  end
+
+
+  # DELETE /playlists/1/courses/1
+  #
+  # Remove course from the playlist
+  def remove_course
+    # This will delete the link that associates the playlist and the product
+    @playlist.products.each { |product|
+      if product.id == params[:course_id].to_i
+        @playlist.products.delete(product)
+      end
+      # we keep going here, just in case if there are duplicate links
+    }
     respond_to do |format|
       format.html { redirect_to playlists_url }
       format.json { head :no_content }

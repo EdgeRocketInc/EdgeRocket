@@ -11,6 +11,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @product_json = @product.as_json(include: :vendor)
+    if !@product_json['vendor'].nil?
+      @product_json['vendor']['logo_asset_url'] = view_context.image_path(@product_json['vendor']['logo_file_name'])
+    end
   end
 
   # GET /products/new

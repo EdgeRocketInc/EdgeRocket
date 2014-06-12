@@ -13,10 +13,6 @@ class PlaylistsControllerTest < ActionController::TestCase
     #assert_not_nil assigns(:playlists)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
 
   test "should create playlist" do
     assert_difference('Playlist.count') do
@@ -24,16 +20,6 @@ class PlaylistsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to playlist_path(assigns(:playlist))
-  end
-
-  test "should show playlist" do
-    get :show, id: @playlist
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @playlist
-    assert_response :success
   end
 
   test "should update playlist" do
