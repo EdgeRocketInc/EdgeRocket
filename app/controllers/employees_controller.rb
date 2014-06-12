@@ -11,20 +11,6 @@ class EmployeesController < ApplicationController
     @users = account ? account.users.order('email') : nil
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
   # POST /users
   # POST /users.json
   def create
@@ -46,6 +32,12 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+
+    # If password is blank it means don't update it
+    if params[:password].blank?
+      params[:employee].delete(:password)
+    end
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

@@ -159,9 +159,7 @@ div.panel-body .well-sm {
 
 // Bigger glyphs
 span.glyph-big {
-  font-size: 21px;
-  height: 31px;
-  margin-top: 8px;
+  font-size: 18px;
 }
 
 .glyph-action {
@@ -279,9 +277,8 @@ span.input-group-btn .btn-post-discussions {
 // Text for cells to align with big glyphs
 
 .text-cell {
-  min-height: 28px;
-  font-size: 21px;
-  margin-top: 3px;
+  font-size: 18px;
+  padding: 5px;
 }
 
 // Custom form controls for user editing
@@ -302,4 +299,12 @@ div.panel-info > div.panel-heading {
   background-color: #EDFDFF;
   color: #436983;
   font-weight: 600;
+}
+
+// Grid UI component
+.gridStyle {
+    border: 1px solid transparent;
+    border-color: #3db5d8;
+    width: 100%; 
+    min-height: 250px;
 }
