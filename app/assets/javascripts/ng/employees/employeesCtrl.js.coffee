@@ -16,12 +16,20 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     password2 : '',
     reset_required_class : 'unchecked'
   }
-  $scope.editModeIndex = -1 # will set to $index when editing a user in place
-  $scope.userMode = true
+
+
+  # This method is called when a grid is selected
+  $scope.beforeSelect = (rowItem) ->
+    false # disable select
+
+  # will set to index when editing a user in place
+  # the index value is not really used at this time; it works as long as it is >=0 
+  $scope.editModeIndex = -1 
   $scope.currentUser = null 
   $scope.gridOptions = { 
     data : 'users',
     multiSelect : false,
+    beforeSelectionChange : $scope.beforeSelect
     columnDefs : [
       { field : 'email', displayName:'Email'}, 
       { field : 'first_name', displayName : 'First Name', cellTemplate: 'cellFirstName.html' },

@@ -39,6 +39,8 @@ Vendor.create(id: 19, name: 'Usability Professionals Association', logo_file_nam
 Vendor.create(id: 20, name: 'MarketingProfs' )
 Vendor.create(id: 21, name: 'AIIM' )
 Vendor.create(id: 22, name: 'CBTnuggets' )
+Vendor.create(id: 24, name: 'UIE', logo_file_name: 'uie.png' )
+Vendor.create(id: 26, name: 'Vimeo', logo_file_name: 'vimeo.png' )
 
 User.create(id: 0, email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: 1)
 User.create(id: 1, email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: 1)
