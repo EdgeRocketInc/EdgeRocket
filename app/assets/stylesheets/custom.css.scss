@@ -110,15 +110,14 @@ nav.navbar-default, .navbar-nav > li > .dropdown-menu {
 // Progress bars
 
 .course-progress {
-  // TODO remove
+  // NOTE not used yet
 }
 
 div.progress {
   width: 100px;
-  height: 5px;
+  height: 12px;
   margin-top: 5px;
   margin-bottom: 5px;
-  background-color: white;
 }
 
 // Links for courses
@@ -140,6 +139,22 @@ div.progress {
 .course-last-row {
   padding-bottom: 5px;
   padding-top: 8px;
+}
+
+// column
+.course-col {
+  padding: 5px;
+}
+.course-col-25px {
+  width: 25px;
+}
+.course-col-50px {
+  width: 50px;
+  min-width: 50px;
+}
+.course-col-100px {
+  width: 100px;
+  min-width: 100px;
 }
 
 // Making wells differnt from panels
@@ -226,6 +241,7 @@ span.glyph-big {
   padding-bottom: 10px;
   padding-left: 0px;
   font-size: 11pt;
+  font-weight: 500;
 }
 
 .accordion-course {
@@ -307,4 +323,23 @@ div.panel-info > div.panel-heading {
     border-color: #3db5d8;
     width: 100%; 
     min-height: 250px;
+}
+
+// Keep divs inline without breaking line
+
+div.inline-col-left {
+  float: left;
+  padding-right: 5px;
+  min-width: 25px;
+}
+
+div.inline-col-wrap {
+    overflow:hidden;
+}
+
+div.inline-col-center {
+}
+
+div.inline-col-right {
+  float: right;
 }
