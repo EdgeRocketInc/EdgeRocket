@@ -118,7 +118,7 @@ class UserHomeController < ApplicationController
     respond_to do |format|
       format.json {
         # combine all objects into one JSON result
-        json_result = Hash.new()
+        json_result = u.as_json
         json_result['account'] = @account.as_json(methods: :options)
         json_result['sign_in_count'] = u.sign_in_count #ugly but works
         json_result['user_preferences'] = u.preferences #ugly but works

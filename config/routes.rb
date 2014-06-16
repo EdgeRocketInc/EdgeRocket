@@ -3,8 +3,8 @@ EdgeApp::Application.routes.draw do
   # Don't alloow users to sign up themselves, but allow changing passwords
   devise_for :users, :skip => [:registrations]
     as :user do
-      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
-      put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
+      #get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
+      #put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
     end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -15,6 +15,7 @@ EdgeApp::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  get "welcome/edit_password" => 'welcome#edit_password'
   get "search" => 'search#index'
   get "my_courses" => 'my_courses#index'
   get "my_courses/:product_id" => 'my_courses#show'
@@ -39,6 +40,7 @@ EdgeApp::Application.routes.draw do
   
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
   put "employees/:id" => 'employees#update'
+  put "employees/:id/password" => 'employees#change_password'
   put "my_courses/:id/rating" => 'my_courses#update_rating'
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe'

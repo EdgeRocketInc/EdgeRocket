@@ -49,6 +49,29 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /employees/1/password.json
+  # changes password and set reset_required to false
+  def change_password
+
+    u = User.find(params[:id])
+    # TODO confirm that 2 passwords match (server side needs it too)
+    if u.valid_password?(params[:current_password])
+      u.password = params[:new_password]
+      u.reset_required = false
+      u.save
+    else
+      u.errors[:base] << 'Wrong current password'
+    end
+
+    respond_to do |format|
+      if u.errors.empty?
+        format.json { head :no_content }
+      else
+        format.json { render json: u.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
