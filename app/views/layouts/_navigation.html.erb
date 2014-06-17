@@ -42,8 +42,9 @@
         	  <%= link_to("Company Dashboard", controller: "dashboards", action: "show") =%>
 	       </li>
 	       <li class="dropdown">
-        	  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <b class="caret"></b></a>
-	          <ul class="dropdown-menu">
+            <!-- removed data-toggle="dropdown" from <a> below because it conflicts with ui-bootstrap-0.11 -->
+        	  <a href="#" class="dropdown-toggle">Manage <b class="caret"></b></a>  
+	          <ul class="dropdown-menu" role="menu">
         		<li class="<%= 'active' if params[:controller] == 'teams' %>">
          			<%= link_to("My Team", controller: "teams", action: "index") =%>
 	       		</li>
@@ -63,7 +64,7 @@
       <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
         	<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle"> <!-- removed data-toggle="dropdown" because it conflicts with ui-bootstrap-0.11 -->
               <span class="glyphicon glyphicon-user"/> 
               <%= current_user.email %>
             </a>
