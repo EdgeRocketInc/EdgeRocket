@@ -68,6 +68,6 @@ class ProfileController < ApplicationController
 
   def profile_params
     # TODO: figure out how to pass and recieve :user instead of :employee
-    params.require(:profile).permit(:id, :title, :employee_id, :user_id)
+    params.require(:profile).permit(:id, :title, :employee_identifier, :user_id)
   end
 end

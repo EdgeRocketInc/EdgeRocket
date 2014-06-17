@@ -23,7 +23,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.profile = data.profile
       $scope.orig_profile = {
         title : $scope.profile.title,
-        employee_id : $scope.profile.employee_id
+        employee_identifier : $scope.profile.employee_identifier
       }
       console.log('Successfully loaded profile')
       #console.log('Profile'+ JSON.stringify($scope.profile, null, 4))
@@ -58,7 +58,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     console.log('Creating/Updating profile:' + $scope.profile.title)
     new_p = {
       title : $scope.profile.title,
-      employee_id : $scope.profile.employee_id,
+      employee_identifier : $scope.profile.employee_identifier,
       user_id : user.id
     }
     # POST and send a request
@@ -66,7 +66,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('Successfully created profile')
       $scope.orig_profile = {
         title : profile.title,
-        employee_id : profile.employee_id
+        employee_identifier : profile.employee_identifier
       }
       # use new user ID
     ).error( ->
@@ -84,6 +84,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.cancelEditingProfile = () ->
     console.log('cancel editing')
 
+    # TODO: this doesn't look like right Angular approach, what does it do?
     elem = document.getElementById("mainform").elements
     i = 0
 
@@ -97,8 +98,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       if elem[i].name == 'title'
         elem[i].value = $scope.orig_profile.title
 
-      if elem[i].name == 'employee_id'
-        elem[i].value = $scope.orig_profile.employee_id
+      if elem[i].name == 'employee_identifier'
+        elem[i].value = $scope.orig_profile.employee_identifier
 
       i++
 
