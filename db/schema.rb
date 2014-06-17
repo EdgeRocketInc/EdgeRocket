@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20140610203050) do
     t.integer  "product_id"
   end
 
+  create_table "profiles", force: true do |t|
+    t.text     "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "employee_id"
+    t.integer  "user_id", null: false
+    r.binary   "photo"
+  end
+
   create_table "my_courses", force: true do |t|
     t.integer  "user_id"
     t.integer  "product_id"

@@ -28,6 +28,8 @@ EdgeApp::Application.routes.draw do
   get "employees" => 'employees#index'
   get "teams" => 'teams#index'
   get "products/:id/reviews" => 'products#reviews'
+  get "profile/current" => 'profile#index'
+  get "profile/get_profile_photo" => 'profile#get_profile_photo'
 
   post "playlist_subscription" => 'user_home#subscribe'
   post "course_subscription" => 'my_courses#subscribe'
@@ -40,6 +42,9 @@ EdgeApp::Application.routes.draw do
   put "course_subscription/:id" => 'my_courses#update_subscribtion'
   put "employees/:id" => 'employees#update'
   put "my_courses/:id/rating" => 'my_courses#update_rating'
+
+  post "profile/upload" => 'profile#upload'
+  post "profile" => 'profile#update'
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe'
   delete "playlist_subscription/:id" => 'user_home#unsubscribe'

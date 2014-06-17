@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 #
 #= require_self
-#= require_tree ./ng/user_home
+#= require_tree ./ng/profile

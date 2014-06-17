@@ -87,58 +87,7 @@ upload.factory "uploadService", [ "$rootScope", ($rootScope) ->
 
 # Controller
 # ----------
-upload.controller "ProfileCtrl", [ "$scope", "$rootScope", "uploadService","$http", ($scope, $rootScope, uploadService, $http) ->
-  loadData =  ->
-  $http.get('/users/current.json').success( (data) ->
-    $scope.user = data
-    console.log('Original User'+$scope.user.id)
-
-    if $scope.user.best_role == 'admin' ||  $scope.user.best_role == 'SA'
-      $scope.user.admin_role = true
-    console.log('Successfully loaded user')
-   ).error( ->
-    console.log('Error loading user')
-    )
-
-  console.log('Data'+$scope.user)
-
-  $http.get('/profile/' + $scope.user.id + '.json').success( (data) ->
-    $scope.profile = data
-    console.log('Successfully loaded profile')
-  ).error( ->
-    console.log('Error loading profile')
-  )
-
-  loadData()
-
-  $scope.updateProfile = (user, profile) ->
-    updated_u = {
-      first_name : user.first_name,
-      last_name : user.last_name
-    }
-    console.log('Updating:' + updated_u.first_name+','+updated_u.last_name)
-    # POST and send a request
-    $http.put('/employees/' + user.id + '.json', updated_u).success( (data) ->
-      console.log('Successfully updated user')
-      # switch to non-editing mode
-    ).error( ->
-      console.error('Failed to update user')
-    )
-
-    console.log('Creating/Updating profile:' + $scope.profile.title)
-    new_p = {
-      title : $scope.profile.title,
-      employee_id : $scope.profile.employee_id,
-      user_id : user.id
-    }
-    # POST and send a request
-    $http.post('/profile.json', new_p).success( (data) ->
-      console.log('Successfully created profile')
-      # use new user ID
-    ).error( ->
-      console.error('Failed to createe/update profile')
-    )
-
+upload.controller "UploadCtrl", [ "$scope", "$rootScope", "uploadService","$http", ($scope, $rootScope, uploadService, $http) ->
   # 'files' is an array of JavaScript 'File' objects.
   $scope.files = []
   $scope.$watch "files", ((newValue, oldValue) ->

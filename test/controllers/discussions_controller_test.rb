@@ -20,3 +20,4 @@ class DiscussionsControllerTest < ActionController::TestCase
   end
 
 end
+

@@ -1,3 +1,4 @@
-json.array!(@users) do |user|
-  json.extract! user, :id, :email, :first_name, :last_name, :reset_required
-end
+#json.array!(@profiles) do |profile|
+#  json.extract! profile, :id, :title, :user_id, :employee_id, :photo
+#end
+json.profile @profile
