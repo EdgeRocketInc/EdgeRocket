@@ -48,6 +48,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         pl.checked = 'expand'
       $scope.data = data
       $scope.options_json = angular.fromJson($scope.data.account.options)
+      # set checkbox for G+
+      $scope.options_json.gbox_class = if $scope.options_json.discussions == 'gplus' then 'check' else null
       console.log('Successfully loaded user_home')
     ).error( ->
       console.log('Error loading user_home')
@@ -58,18 +60,23 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.courseComplete = (cgroup,crs_index) ->
     $scope.courseMove('compl',cgroup,crs_index)
     $scope.current_my_course = cgroup.my_courses[crs_index]
+    $scope.modal_params = {
+      current_my_course : $scope.current_my_course,
+      options_json : $scope.options_json
+    }
     # prompt user to submit a comment
     modalInstance = $modal.open({
       templateUrl: 'commentModal.html',
       controller: CommentModalCtrl
       resolve:
-        current_my_course: () ->
-          return $scope.current_my_course
+        modal_params: () ->
+          return $scope.modal_params
     })
 
     modalInstance.result.then (review) ->
       # Create data object to POST and send a request
       console.log('new review title=' + review.title + ' for id ' + $scope.current_my_course.product_id)
+      review.gplus = ($scope.options_json.gbox_class == 'check')
       data = review
       $http.post('/products/' + $scope.current_my_course.product_id + '/reviews.json', data).success( (data) ->
         console.log('Successfully created review')
@@ -107,11 +114,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     )
 
 # controller for modal window
-@CommentModalCtrl = ($scope, $modalInstance, $window, $http, current_my_course) ->
+@CommentModalCtrl = ($scope, $modalInstance, $window, $http, modal_params) ->
   console.log('Comment modal ctrl')
-  $scope.newReview = { title : '', actor_name : 'me' }
+  $scope.newReview = { title : '', actor_name : 'me', gplus : false }
   $scope.rating = { MAX_STARS : 5, display : null }
-  $scope.current_my_course = current_my_course
+  $scope.current_my_course = modal_params.current_my_course
+  $scope.options_json = modal_params.options_json
 
   # When leaving the rating control, save the new rating if needed
   $scope.leavingRating = () ->
@@ -135,5 +143,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
 
-@CommentModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'current_my_course'] 
+  $scope.toggleGBox = () ->
+    if $scope.options_json.gbox_class == 'check'
+      $scope.options_json.gbox_class = 'unchecked'
+    else
+      $scope.options_json.gbox_class = 'check'
+
+@CommentModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'modal_params'] 
 @MyCoursesCtrl.$inject = ['$scope', '$http', '$modal', '$log']

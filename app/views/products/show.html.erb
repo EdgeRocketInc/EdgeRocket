@@ -44,13 +44,22 @@
 					<div class="panel-heading">Comments</div>
 					<div class="panel-body">
 
-						<div class="input-group">
-							<textarea class="form-control textarea-discussions" placeholder="Post comments or reviews" ng-model="newReview.title">
-							</textarea>
-							<span class="input-group-btn">
-								<button class="btn btn-warning btn-post-discussions" type="button" ng-click="createReview()">Submit</button>
-							</span>
-						</div> <!-- /input-group -->
+						<div class="row">
+							<div class="col-xs-9">
+								<textarea class="form-control textarea-discussions" placeholder="Post comments or reviews" ng-model="newReview.title">
+								</textarea>
+							</div>
+							<div class="col-xs-3">
+								<span class="input-group-btn">
+									<button class="form-control btn btn-warning btn-post-discussions" type="button" ng-click="createReview()">Submit</button>
+								</span>
+								<div class="voffset1" ng-if="options_json.discussions == 'gplus'">
+									<span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" ng-click="toggleGBox()"></span>
+									<span class="glyph-label">Also post to Google+</span>
+								</div>
+							</div>
+						</div> <!-- Row -->
+
 						<div class="well" ng-repeat="review in reviews">
 							{{ review.title }}
 							<div class="text-success text-right">{{review.user.first_name}} {{review.user.last_name}}</div>

@@ -1,4 +1,4 @@
-<!-- Modal Security settings window -->
+<!-- Modal comments window -->
 <script type="text/ng-template" id="commentModal.html">
   <div class="modal-header">
     <h4>Nice work completing this content!</h4>
@@ -18,9 +18,9 @@
       <textarea class="form-control textarea-discussions" placeholder="Post comments or reviews" ng-model="newReview.title">
       </textarea>
     </div> <!-- /input-group -->
-    <div class="voffset1"> <!-- ng-if="options_json.discussions == 'gplus'"> -->
-      <span class="glyphicon glyphicon-check glyph-big glyph-action" ng-click="toggleGBox()"></span>
-      <span class="glyph-label">Google+</span>
+    <div class="voffset1 pull-right" ng-if="options_json.discussions == 'gplus'"> 
+      <span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" ng-click="toggleGBox()"></span>
+      <span class="glyph-label">Also post to Google+</span>
     </div>
 
   </div>

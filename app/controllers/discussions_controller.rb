@@ -67,7 +67,7 @@ private
           if !@gplus_client.nil?
             json_payload = { 
               "object" => {
-                  "originalContent" => new_discussion.title
+                  "originalContent" => (new_discussion.title + ' #EdgeRocket')
                 },
               "access" => {
                 "items" => [{ "type" => "domain" }],

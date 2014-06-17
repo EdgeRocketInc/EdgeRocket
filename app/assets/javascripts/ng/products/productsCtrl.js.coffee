@@ -17,7 +17,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     description : 'Unrated'
   }
   $scope.reviews = null
-  $scope.newReview = { title : '', actor_name : 'me' }
+  $scope.newReview = { title : '', actor_name : 'me', gplus : false }
 
   # Load product/course details
   loadProduct =  ->
@@ -75,9 +75,25 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('Error loading search product reviews')
     )
 
+  # Loading current user just for account options
+  loadAccountOptions = ->
+    $http.get('/users/current.json').success( (data) ->
+      $scope.user = data
+      console.log('Successfully loaded user')
+      $scope.options_json = angular.fromJson($scope.user.account.options)
+      if $scope.options_json.discussions
+        # set checkbox for G+
+        $scope.options_json.gbox_class = if $scope.options_json.discussions == 'gplus' then 'check' else null
+        loadReviews()
+    ).error( ->
+      console.log('Error loading user')
+    )
+
+
   # Invoke methods, and keep in mind they may run async
   loadProduct()
-  loadReviews()
+  # load options and reviews
+  loadAccountOptions()
 
   $scope.goto = ->
     #debugger
@@ -107,6 +123,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.createReview = () ->
     # Create data object to POST and send a request
     console.log('new title=' + $scope.newReview.title)
+    $scope.newReview.gplus = ($scope.options_json.gbox_class == 'check')
     data = $scope.newReview
     $http.post('/products/' + $scope.product_id + '/reviews.json', data).success( (data) ->
       saved_reviews = { 
@@ -120,5 +137,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.error('Failed to create review')
     )
     return true
+
+  $scope.toggleGBox = () ->
+    if $scope.options_json.gbox_class == 'check'
+      $scope.options_json.gbox_class = 'unchecked'
+    else
+      $scope.options_json.gbox_class = 'check'
 
 @ProductsCtrl.$inject = ['$scope', '$http', '$modal', '$log', '$window']
