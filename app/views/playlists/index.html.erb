@@ -1,79 +1,39 @@
+<!-- Grid Cell template for Mandatory  -->
+<script type="text/ng-template" id="cellMandatory.html">
+  <div class="ngCellText text-center">
+    <span class="glyphicon glyphicon-warning-sign glyph-big orange" 
+      ng-if="row.getProperty(col.field)" tooltip="Mandatory" tooltip-append-to-body="true">
+    </span>
+  </div>
+</script>
+
+<!-- Grid Cell template for Actions -->
+<script type="text/ng-template" id="cellActions.html">
+  <div class="ngCellText text-center">
+    <span class="glyphicon glyphicon-list glyph-big glyph-action" 
+      ng-click="manageCourses(row.getProperty(col.field))" tooltip="Manage Courses in Playlist" tooltip-append-to-body="true">
+    </span>
+    <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
+      ng-click="editPlaylist(row.getProperty(col.field))" tooltip="Edit Playlist" tooltip-append-to-body="true">
+    </span>
+    <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
+      ng-click="removePlaylist(row.getProperty(col.field))" tooltip="Delete Playlist" tooltip-append-to-body="true">
+    </span>
+  </div>
+</script>
+
 <div class="container-fluid" ng-controller="PlaylistsCtrl">
-  <div class="row">
+  <div class="row" ng-if="!playlistMode">
     <div class="col-lg-12">
 
-      <div class="panel panel-info"  ng-if="playlistMode"> <!-- This panel is displayed in Playlits CRUD mode -->
-        <div class="panel-heading">Playlists</div>
-        <div class="panel-body">
-          <form role="form">
-            <div class="row" ng-repeat="pl in playlists">
-              <div class="col-lg-3">
-                <span ng-if="editModeIndex != $index">{{pl.title}}</span>
-                <span ng-if="editModeIndex != $index">{{pl.description}}</span>
-                <input type="text" class="form-control" id="editPlaylistID" placeholder="Playlist Name"
-                  ng-if="editModeIndex == $index" ng-model="pl.title">
-                </input>
-                <textarea id="editDescription" cols=40 rows=3 class="form-control" placeholder="Description" ng-if="editModeIndex == $index" ng-model="pl.description"></textarea>
-                <span class="glyphicon glyphicon-{{pl.mandatory_class}} glyph-big glyph-action black" ng-if="editModeIndex == $index" ng-click="toggleMandatoryEdit(pl)"></span>
-                <span ng-if="editModeIndex == $index" class="glyph-label text-cell">Mandatory</span>
-              </div>
-
-              <div class="col-md-2"> 
-                <span ng-if="editModeIndex < 0">
-                  <span class="glyphicon glyphicon-list glyph-big glyph-action" 
-                    ng-click="manageCourses(pl)" tooltip="Manage Courses in Playlist">
-                  </span>
-                  <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
-                    ng-click="editPlaylist(pl,$index)" tooltip="Edit Playlist">
-                  </span>
-                  <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
-                    ng-click="removePlaylist(pl,$index)" tooltip="Remove Playlist">
-                  </span>
-                </span>
-                <span ng-if="editModeIndex == $index">
-                  <span class="glyphicon glyphicon-save glyph-big glyph-action green" 
-                    tooltip="Update Playlist" ng-click="updatePlaylist(pl,$index)">
-                  </span>
-                  <span class="glyphicon glyphicon-ban-circle glyph-big glyph-action yellow" 
-                    tooltip="Cancel editing Playlist" ng-click="cancelEditingPlaylist()">
-                  </span>
-                </span>
-              </div>
-
-            </div>
-
-            <div class="row" ng-if="editModeIndex < 0">
-              <div class="col-lg-3">
-                <input type="text" class="form-control" id="newPlaylistID" 
-                  placeholder="New Playlist Name" ng-model="newPlaylist.title">
-                </input>
-              </div>
-              <div class="col-lg-4">
-                <textarea id="newDescription" cols=40 rows=3 class="form-control" placeholder="Description" ng-model="newPlaylist.description"></textarea>
-              </div>
-              <div class="col-lg-1">
-                <span class="glyphicon glyphicon-{{newPlaylist.mandatory_class}} glyph-big glyph-action black" ng-click="toggleMandatory()"></span>
-                <span class="glyph-label text-cell">Mandatory</span>
-              </div>
-              <div class="col-lg-1">
-                <span class="glyphicon glyphicon-plus glyph-big glyph-action green" 
-                  tooltip="Create new Playlist" ng-click="createPlaylist()">
-                </span>
-              </div>
-
-            </div>
-          </form>
-        </div>
-      </div> <!-- ng-if="playlistMode" -->
-
-      <div class="panel panel-info"  ng-if="!playlistMode"> <!-- This panel is displayed in Manage Courses mode -->
+      <div class="panel panel-info"> <!-- This panel is displayed in Manage Courses mode -->
         <div class="panel-heading">Courses in Playlist: {{currentPlaylist.title}}</div>
         <div class="panel-body">
 
           <form role="form">
             <div class="row" ng-repeat="crs in currentCourses">
 
-              <div class="col-lg-3">
+              <div class="col-md-6">
                 <div class="text-cell">{{crs.name}}</div>
               </div>
 
@@ -86,12 +46,84 @@
               </div>
 
             </div>
-            <button class="btn btn-success" ng-click="cancelManageCourses()">Back to Playlists</button>
+            <button class="btn btn-sm btn-warning" ng-click="cancelManageCourses()">Back to Playlists</button>
           </form>
 
         </div>
-      </div> <!-- ng-if="!playlistMode" -->
+      </div> 
 
     </div>
-  </div>
+  </div> <!-- Row --> <!-- ng-if="!playlistMode" -->
+
+  <div class="gridStyle" ng-grid="gridOptions" ng-if="playlistMode"></div>
+
+  <div class="row voffset3" ng-if="editModeIndex < 0 && addingMode == false && playlistMode == true">
+    <div class="col-lg-12">
+      <div class="pull-right">
+        <button class="btn btn-sm btn-success" ng-click="addPlaylist()">
+          Add Playlist
+        </button>
+      </div>
+    </div>
+  </div> <!-- Row -->
+
+  <!-- A row to enter values for Playlist record in Edit/Add mode -->
+  <div class="row voffset3" ng-if="editModeIndex >= 0 || addingMode == true">
+    <div class="col-lg-12">
+
+      <div class="panel panel-info"> <!-- Playlist New mode -->
+        <div class="panel-heading" ng-if="addingMode == true">Add Playlist</div>
+        <div class="panel-heading" ng-if="addingMode == false">Edit Playlist</div>
+        <div class="panel-body">
+    
+          <form role="form" name="addForm">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="form-control-user form-control" name="newTitle" 
+                    placeholder="Title" ng-model="newPlaylist.title" required>
+                  </input>
+                </div>
+                <div class="col-md-6">
+                  <span class="glyphicon glyphicon-{{newPlaylist.mandatory_class}} glyph-big glyph-action" ng-click="toggleMandatory()"></span>
+                  <span class="glyph-label">Mandatory</span>
+                </div>
+              </div> <!-- Row -->
+
+              <div class="row voffset2">
+                <div class="col-md-6 text-cell">
+                  <textarea id="newDescription" cols=40 rows=3 class="form-control" placeholder="Description" 
+                    ng-model="newPlaylist.description">
+                  </textarea>
+                </div>
+              </div> <!-- Row -->
+
+              <div class="row voffset3">
+                <div class="col-md-6">
+                  <span class="error red" ng-show="addForm.newEmplEmail.$error.required">* Email required</span>
+                  <br/>
+                  <span class="error red" ng-show="addForm.newEmplPassword.$error.required">* Password required, 8 characters minimum</span>
+                </div>
+                <div class="col-md-6">
+                  <div class="pull-right">
+                    <button class="btn btn-sm btn-success" ng-click="createPlaylist()" ng-if="editModeIndex < 0">
+                      Create
+                    </button>
+                    <button class="btn btn-sm btn-success" ng-click="updatePlaylist()" ng-if="editModeIndex >= 0">
+                      Save Changes
+                    </button>
+                    <button class="btn btn-sm btn-warning" ng-click="cancelEditingPlaylist()" ng-if="editModeIndex >= 0 || addingMode == true">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div> <!-- Row -->
+
+          </form>
+        </div>
+      </div> <!-- Panel --> 
+      
+    </div>
+  </div> <!-- Row -->
+
 </div>

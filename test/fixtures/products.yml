@@ -457,3 +457,30 @@ cybersecurity_10:
   vendor_id: 2 #YouTube
   origin: https://www.youtube.com/user/GoogleCyberSecurity
   description: "Google's Cyber Security Awareness channel highlights educational videos created by users, nonprofit groups, businesses, schools, and government agencies."
+
+UXD_05:
+  id: 7705
+  vendor_id: 24
+  authors: Jared Spool
+  name: "LiRPPS: Lightweight, Research-Based Principles, Personas, and Scenarios - Part 1"
+  origin: http://www.uie.com/articles/lirpps/
+  price:
+  keywords: UX, User Research
+  school:
+  description: This article discusses an approach to team design work.  I details how the approach helps keep design meetings and discussions focused on revealing the insights we need to move our design forward.
+  media_type:
+  duration: .2
+
+UXD_10:
+  id: 7710
+  vendor_id: 26
+  authors: Dan Saffer
+  name: "Smart Thinking: Principles of Designing Microinteractions"
+  origin: https://vimeo.com/84933131
+  price:
+  keywords: IxD, Visual Design
+  school:
+  description: "There are some handy guidelines to keep in mind while designing microinteractions. This video will guide you through the basics of these principles, such as bringing data forward, and speaking human."
+  media_type: video
+  duration: .1
+

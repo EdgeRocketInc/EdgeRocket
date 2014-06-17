@@ -11,20 +11,6 @@ class EmployeesController < ApplicationController
     @users = account ? account.users.order('email') : nil
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
   # POST /users
   # POST /users.json
   def create
@@ -46,6 +32,12 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+
+    # If password is blank it means don't update it
+    if params[:password].blank?
+      params[:employee].delete(:password)
+    end
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -53,6 +45,29 @@ class EmployeesController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /employees/1/password.json
+  # changes password and set reset_required to false
+  def change_password
+
+    u = User.find(params[:id])
+    # TODO confirm that 2 passwords match (server side needs it too)
+    if u.valid_password?(params[:current_password])
+      u.password = params[:new_password]
+      u.reset_required = false
+      u.save
+    else
+      u.errors[:base] << 'Wrong current password'
+    end
+
+    respond_to do |format|
+      if u.errors.empty?
+        format.json { head :no_content }
+      else
+        format.json { render json: u.errors, status: :unprocessable_entity }
       end
     end
   end
