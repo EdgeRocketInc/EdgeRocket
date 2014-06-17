@@ -15,44 +15,44 @@
     <div class="panel-body" ng-controller="ProfileCtrl">
       <div  align="right" ng-controller="UploadCtrl">
         <div style="position:absolute;left:0;right:0;margin-left:87%;margin-right:13%;">
-          <button id="main_photo_btn" class="btn btn-primary btn-sm">Select photo</button>
+          <button id="main_photo_btn" class="btn btn-primary btn-sm" >Select photo</button>
         </div>
         <div>
           <input id="photo_btn" style="opacity: 0;" type="file" ng-model="files" file-change>
         </div>
         <div id="file-list">
-          <img id="Photo" src="get_profile_photo" width="22" height="22"/>
+          <img id="Photo" src="get_profile_photo" width="42" height="42"/>
         </div>
       </div>
-
-      <form role="form" style="text-align:center;margin: 0 auto;">
+      <div align="center" > {{user.first_name}} {{user.last_name}}
+      <form id="mainform" role="form" style="text-align:center;margin: 0 auto;">
 
           <!-- Inline Edit mode -->
 
-        <div class="col-md-6" >
-          <input type="text" class="form-control form-control-49pct" placeholder="First Name"
+        <div class="col-md-12" >
+          <input name="first_name" type="text" class="form-control form-control-49pct" placeholder="First Name"
                  ng-model="user.first_name">
           </input>
-          <input type="text" class="form-control form-control-49pct" placeholder="Last Name"
+          <input name="last_name" type="text" class="form-control form-control-49pct" placeholder="Last Name"
                  ng-model="user.last_name">
           </input>
-          <input type="text" class="form-control form-control-49pct" placeholder="Title"
+          <input name="title" type="text" class="form-control form-control-49pct" placeholder="Title"
                  ng-model="profile.title">
           </input>
-          <input type="text" class="form-control form-control-49pct" placeholder="Employee Id"
+          <input name="employee_id" type="text" class="form-control form-control-49pct" placeholder="Employee Id"
                  ng-model="profile.employee_id">
           </input>
 
         </div>
+
       </form>
-      <div class="row">
-        <div class="col-md-6" align="center">
-                <span class="pull-center">
-                      <button class="btn btn-success pull-center" ng-click="updateProfile(user,profile)">Save</button>
-                      <button class="btn btn-warning pull-center" ng-click="cancel()">Cancel</button>
-                </span>
-        </div>
       </div>
     </div>
+       <div align="center">
+      <span class="pull-center" >
+                    <button class="btn btn-success pull-center" ng-click="updateProfile(user,profile)">Save</button>
+                    <button class="btn btn-warning pull-center" ng-click="cancelEditingProfile()">Cancel</button>
+       </span>
+       </div>
   </div> <!-- Panel -->
 </div>

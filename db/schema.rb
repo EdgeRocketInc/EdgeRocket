@@ -42,15 +42,6 @@ ActiveRecord::Schema.define(version: 20140610203050) do
     t.integer  "product_id"
   end
 
-  create_table "profiles", force: true do |t|
-    t.text     "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "employee_id"
-    t.integer  "user_id", null: false
-    r.binary   "photo"
-  end
-
   create_table "my_courses", force: true do |t|
     t.integer  "user_id"
     t.integer  "product_id"
@@ -102,6 +93,15 @@ ActiveRecord::Schema.define(version: 20140610203050) do
     t.string   "media_type",  limit: 10
     t.decimal  "duration",               precision: 8, scale: 2
     t.decimal  "avg_rating"
+  end
+
+  create_table "profiles", force: true do |t|
+    t.string   "title"
+    t.string   "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.binary   "photo"
+    t.integer  "user_id",     null: false
   end
 
   create_table "roles", force: true do |t|

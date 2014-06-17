@@ -81,7 +81,7 @@ upload.factory "uploadService", [ "$rootScope", ($rootScope) ->
 
     # Send to server, where we can then access it with $_FILES['file].
     data.append "file", file, file.name
-    xhr.open "POST", "profile/upload"
+    xhr.open "POST", "upload"
     xhr.send data
 ]
 

@@ -56,9 +56,6 @@
         		<li class="<%= 'active' if params[:controller] == 'employees' %>">
           			<%= link_to("Users", controller: "employees", action: "index") =%>
 	        	</li>
-                <li class="<%= 'active' if params[:controller] == 'profile' %>">
-                  <%= link_to("Profile", controller: "profile", action: "index") =%>
-                </li>
         	  </ul>
 	       </li>
 	<% end %>
@@ -76,6 +73,9 @@
               </li>
               <li>
                   <%= link_to("Change Password", {controller: "welcome", action: "edit_password" }) =%>
+              </li>
+              <li>
+                  <%= link_to("Manage Profile", {controller: "profile", action: "index" }) =%>
               </li>
             </ul>
           </li>
