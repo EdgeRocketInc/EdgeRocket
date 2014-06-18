@@ -67,15 +67,19 @@
 		    <div class="panel-heading">Discussions</div>
         <div class="panel-body panel-discussions">
           <div class="row">
-            <div class="col-xs-7">
+            <div class="col-xs-12">
               <textarea class="form-control textarea-discussions" placeholder="Add comment or question" ng-model="newDiscussion.title">
               </textarea>
             </div>
-            <div class="col-xs-5">
-              <button class="form-control btn btn-warning" type="button" ng-click="createDiscussion()">Submit</button>
-              <div class="voffset1" ng-if="options_json.discussions == 'gplus'">
-                <span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" ng-click="toggleGBox()"></span>
-                <span class="glyph-label">Google+</span>
+          </div> <!-- Row -->
+          <div class="row voffset1">
+            <div class="col-xs-12">
+              <div class="pull-right">
+                <span class="" ng-if="options_json.discussions == 'gplus'">
+                  <span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" ng-click="toggleGBox()"></span>
+                  <span class="glyph-label" tooltip="Also post to Google+">Google+</span>
+                </span>
+                <button class="btn btn-sm btn-success" type="button" ng-click="createDiscussion()">Submit</button>
               </div>
             </div>
           </div> <!-- Row -->
@@ -116,7 +120,7 @@
               <footer>Doug Lewis, Sales Rep</footer>
             </blockquote>
           </div>
-  		    <div class="text-right"><button class="btn btn-primary btn-sm">Recommend</button></div>
+  		    <div class="text-right"><button class="btn btn-success btn-sm">Recommend</button></div>
 		    </div>
 	    </div>
     </div>
