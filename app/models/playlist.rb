@@ -1,11 +1,12 @@
 class Playlist < ActiveRecord::Base
-  has_and_belongs_to_many :products
+  has_many :playlist_items
+  has_many :products, through: :playlist_items
   has_and_belongs_to_many :users
   belongs_to :account
 
   def percent_complete
     # TODO do we need to sanitize SQL here?
-    sql = "select avg(mc.percent_complete) percent_avg from playlists_products pp inner join my_courses mc on pp.product_id=mc.product_id where playlist_id=" + id.to_s
+    sql = "select avg(mc.percent_complete) percent_avg from playlist_items pp inner join my_courses mc on pp.product_id=mc.product_id where playlist_id=" + id.to_s
     pc = ActiveRecord::Base.connection.execute(sql)
     pc[0]['percent_avg']
   end

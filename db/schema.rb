@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617155637) do
+ActiveRecord::Schema.define(version: 20140618061206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20140617155637) do
     t.decimal  "my_rating"
   end
 
+  create_table "playlist_items", force: true do |t|
+    t.integer "playlist_id", null: false
+    t.integer "product_id",  null: false
+    t.integer "rank"
+  end
+
+  add_index "playlist_items", ["playlist_id", "product_id"], name: "index_playlist_items_on_playlist_id_and_product_id", using: :btree
+  add_index "playlist_items", ["product_id", "playlist_id"], name: "index_playlist_items_on_product_id_and_playlist_id", using: :btree
+
   create_table "playlists", force: true do |t|
     t.string   "title"
     t.boolean  "mandatory"
@@ -62,14 +71,6 @@ ActiveRecord::Schema.define(version: 20140617155637) do
     t.text     "description"
     t.integer  "account_id"
   end
-
-  create_table "playlists_products", id: false, force: true do |t|
-    t.integer "playlist_id", null: false
-    t.integer "product_id",  null: false
-  end
-
-  add_index "playlists_products", ["playlist_id", "product_id"], name: "index_playlists_products_on_playlist_id_and_product_id", using: :btree
-  add_index "playlists_products", ["product_id", "playlist_id"], name: "index_playlists_products_on_product_id_and_playlist_id", using: :btree
 
   create_table "playlists_users", id: false, force: true do |t|
     t.integer "user_id",     null: false
