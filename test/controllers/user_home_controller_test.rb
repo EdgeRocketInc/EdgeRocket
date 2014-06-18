@@ -27,7 +27,7 @@ class UserHomeControllerTest < ActionController::TestCase
 
   test "playlits subscription" do
     sign_in User.find(101)
-    post(:subscribe, {playlist_id: '1003', format: 'json'})
+    post(:subscribe, {id: '1001', playlist_id: '1003', format: 'json'})
     assert_response :success
   end
 
