@@ -9,7 +9,7 @@ class ProductTest < ActiveSupport::TestCase
 
   test "Sync rating" do
   	r = Product.sync_rating(1)
-  	assert r == nil, 'testing the CI errors'
+  	assert r != nil, 'synced'
   end
 
 end
