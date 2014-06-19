@@ -11,9 +11,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       'glyph' : 'glyphicon-facetime-video',
       'text' : 'Video'
     }
-    'mooc': {
+    'online': {
       'glyph' : 'glyphicon-cloud',
-      'text' : 'MOOC'
+      'text' : 'Online'
     }
   }
 

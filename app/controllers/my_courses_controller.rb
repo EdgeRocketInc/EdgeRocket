@@ -68,7 +68,8 @@ class MyCoursesController < ApplicationController
         # combine all aobject into one JSON result
         json_result = Hash.new()
         json_result['account'] = @account
-        json_result['my_playlists'] = @my_playlists.as_json(methods: :percent_complete, include: :products)
+        json_result['my_playlists'] = \
+          @my_playlists.as_json(methods: :percent_complete, :include => { :playlist_items => {:include => :product}})
         json_result['course_groups'] = @course_groups
         json_result['vendors'] = vendors
         render json: json_result.as_json

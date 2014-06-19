@@ -49,7 +49,8 @@
          			<%= link_to("My Team", controller: "teams", action: "index") =%>
 	       		</li>
         		<li class="<%= 'active' if params[:controller] == 'corp_home' %>">
-          			<%= link_to("Edit Home", controller: "corp_home", action: "index") =%>
+                <!-- TODO: route to corp home -->
+          			<%= link_to("Edit Home", controller: "teams", action: "index") =%>
 	        	</li>
         		<li class="<%= 'active' if params[:controller] == 'playlists' %>">
           			<%= link_to("Playlists", controller: "playlists", action: "index") =%>

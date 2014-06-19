@@ -9,6 +9,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.rows = [0]
   $scope.rowItems = []
   $scope.rowItems[0] = []
+  # for media type checkboxes
+  $scope.mediaCbAll = { class : 'check' }
+  $scope.mediaCheckboxes = [
+    { class : 'check', label : 'Courses', media_type : 'online' }
+    { class : 'check', label : 'Books', media_type : 'book' }
+    { class : 'check', label : 'Articles', media_type : 'blog' }
+    { class : 'check', label : 'Videos', media_type : 'video' }
+  ]
 
   loadCourses =  ->
     $http.get('/search.json').success( (data) ->
@@ -56,6 +64,38 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       ).error( ->
         console.error('Failed to create new subscription')
       )
+
+  # toggle all media type checkboxes, and filter the search result accordingly
+  $scope.toggleMediaAll = ->
+    if $scope.mediaCbAll.class == 'check'
+      $scope.mediaCbAll.class = 'unchecked'
+      for cb in $scope.mediaCheckboxes
+        cb.class = 'unchecked'
+    else
+      $scope.mediaCbAll.class = 'check'
+      for cb in $scope.mediaCheckboxes
+        cb.class = 'check'
+
+  # toggle single media type check box
+  $scope.toggleMediaCbox = (cbox) ->
+    if cbox.class == 'check' 
+      cbox.class = 'unchecked' 
+      $scope.mediaCbAll.class = 'unchecked'
+    else
+      cbox.class = 'check' 
+    
+  # Filter for media types. 
+  # Returns true if all media types are enabled or a specific type matches enabled checkbox
+  $scope.filterMediaType = (product) ->
+    result = false
+    if $scope.mediaCbAll.class == 'check'
+      result = true
+    else
+      for cbox in $scope.mediaCheckboxes
+        if cbox.class == 'check' && product.media_type == cbox.media_type
+          result = true
+          break
+    result
 
 # ------- controller for modal window --------------
 
@@ -112,7 +152,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         type: 'success', 
         msg: '* Added to Playlist' 
       })
-   ).error( ->
+    ).error( ->
       console.error('Failed to add to playlist')
     )
 

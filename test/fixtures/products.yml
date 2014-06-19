@@ -64,13 +64,13 @@ TechCorp102:
   id: 102
   name: Presentation Skills Training
   vendor_id: 6 #Lynda
-  media_type: mooc
+  media_type: online
 
 TechCorp103:
   id: 103
   name: Intro to Cloud Computing
   vendor_id: 7 #VTC
-  media_type: mooc
+  media_type: online
 
 TechCorp104:
   id: 104

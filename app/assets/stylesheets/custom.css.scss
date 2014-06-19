@@ -211,6 +211,13 @@ span.glyph-big {
   max-height: 25px;
 }
 
+div.search-tile {
+  width: 280px;
+  min-height: 150px; 
+  display: inline-block;
+  vertical-align: top;
+}
+
 // Panel for charts
 
 .panel-chart {

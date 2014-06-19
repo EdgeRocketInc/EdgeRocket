@@ -27,7 +27,7 @@ EdgeApp::Application.routes.draw do
   get "discussions/:id" => 'discussions#show'
   get "users/current" => 'user_home#get_user'
   get "employees" => 'employees#index'
-  get "teams" => 'teams#index'
+  get "teams" => 'teams#index' 
   get "products/:id/reviews" => 'products#reviews'
   get "profile/current" => 'profile#index'
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
@@ -60,10 +60,6 @@ EdgeApp::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :products
   resources :playlists
-
-  # STUBS FOR FUTURE ROUTES
-  get 'corp_home' => 'corp_home#index'
-  
 
   # Example resource route with options:
   #   resources :products do

@@ -40,22 +40,24 @@
 
   <div class="row">
 
-    <div class="col-lg-8">
-      <div class="input-group well well-sm">
+    <div class="col-md-6 voffset2">
+      <div class="input-group">
         <span class="input-group-addon">Search: </span>
-        <input type="text" class="input-sm form-control" placeholder="" ng-model="searchText.$" />
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Select All</span>
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Courses</span>
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Books</span>
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Articles</span>
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Videos</span>
-        </span>
+        <input type="text" class="input-sm form-control" placeholder="Text" ng-model="searchText.$"/>
       </div>
+    </div>
+    <div class="col-md-6 voffset2">
+      <span class="glyphicon glyphicon-{{ mediaCbAll.class }} glyph-big glyph-action" ng-click="toggleMediaAll()"></span>
+      <span class="glyph-label">Select All</span>
+      <span ng-repeat="cbox in mediaCheckboxes">
+        <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action" ng-click="toggleMediaCbox(cbox)"></span>
+        <span class="glyph-label">{{cbox.label}}</span>
+      </span>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row voffset4">
+    <!-- TODO: implement
     <div class="col-md-2">
       <div class="well well-sm">
       <ul class="list-root">
@@ -109,23 +111,25 @@
       </ul>
       </div>
     </div>
-    <div class="col-md-10">
-      <div class="row" ng-repeat="rowNum in rows">
-        <div class="col-sm-3" ng-repeat="crs in rowItems[rowNum] | filter:searchText">
-          <div class="well well-sm">
+    -->
+
+    <div class="col-md-12">
+      <span class="" ng-repeat="rowNum in rows">
+        <span class="" ng-repeat="crs in rowItems[rowNum] | filter:searchText | filter:filterMediaType">
+          <div class="well well-sm search-tile">
             <div class="rating-right">
               <rating class="orange" ng-model="crs.display_rating" max="5" readonly="true"></rating>
             </div>
             <img src="{{ crs.logo_asset_url }}" class="img-provider-logo"></img>
-            <div><a class="course-link" href="#" ng-click="openModal(crs)">{{ crs.pname }}</a></div>
-            <div class="">{{ crs.authors }}</div>
-            <div class="">{{ crs.school }}</div>
-            <div class="text-right">
-              <span>{{ crs.price_fmt }}</span></div>
-            <div class=""></div>
+            <div class="voffset2"><a class="course-link" href="#" ng-click="openModal(crs)">{{ crs.pname }}</a></div>
+            <div class="voffset1">{{ crs.authors }}</div>
+            <div class="voffset1">{{ crs.school }}</div>
+            <div class="text-right text-info">
+              <span>{{ crs.price_fmt }}</span>
+            </div>
           </div>
-        </div>
-      </div>
+        </span>
+      </span>
     </div>
 
   </div>
