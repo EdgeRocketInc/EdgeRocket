@@ -7,24 +7,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 @ProfileCtrl = ($scope, $http) ->
   $scope.user = null
   $scope.profile = null
-  $scope.orig_user = null
-  $scope.orig_profile = null
+  $scope.statusDone = false
 
   loadData =  ->
   $http.get('/users/current.json').success( (data) ->
     $scope.user = data
-    $scope.orig_user = {
-      first_name : $scope.user.first_name,
-      last_name : $scope.user.last_name
-    }
     console.log('User'+ $scope.user.first_name)
 
   $http.get('/profile/current.json').success( (data) ->
       $scope.profile = data.profile
-      $scope.orig_profile = {
-        title : $scope.profile.title,
-        employee_identifier : $scope.profile.employee_identifier
-      }
       console.log('Successfully loaded profile')
       #console.log('Profile'+ JSON.stringify($scope.profile, null, 4))
     ).error( ->
@@ -45,11 +36,6 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     # POST and send a request
     $http.put('/employees/' + user.id + '.json', updated_u).success( (data) ->
       console.log('Successfully updated user')
-      $scope.orig_user = {
-        first_name : user.first_name,
-        last_name : user.last_name
-      }
-
       # switch to non-editing mode
     ).error( ->
       console.error('Failed to update user')
@@ -64,15 +50,10 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     # POST and send a request
     $http.post('/profile.json', new_p).success( (data) ->
       console.log('Successfully created profile')
-      $scope.orig_profile = {
-        title : profile.title,
-        employee_identifier : profile.employee_identifier
-      }
-      # use new user ID
+      $scope.statusDone = true
     ).error( ->
       console.error('Failed to createe/update profile')
     )
-
 
   $scope.removeProfile = (user,index) ->
     $http.delete('/users/user/' + user.id + '.json', null).success( (data) ->
@@ -80,27 +61,5 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     ).error( ->
       console.error('Failed to remove user')
     )
-
-  $scope.cancelEditingProfile = () ->
-    console.log('cancel editing')
-
-    # TODO: this doesn't look like right Angular approach, what does it do?
-    elem = document.getElementById("mainform").elements
-    i = 0
-
-    while i < elem.length
-      if elem[i].name == 'first_name'
-        elem[i].value = $scope.orig_user.first_name
-
-      if elem[i].name == 'last_name'
-        elem[i].value = $scope.orig_user.last_name
-
-      if elem[i].name == 'title'
-        elem[i].value = $scope.orig_profile.title
-
-      if elem[i].name == 'employee_identifier'
-        elem[i].value = $scope.orig_profile.employee_identifier
-
-      i++
 
 @ProfileCtrl.$inject = ['$scope', '$http']

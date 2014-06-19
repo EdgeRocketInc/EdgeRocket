@@ -51,7 +51,13 @@ class ProfileController < ApplicationController
   end
 
   def get_profile_photo
-    send_data @profile.photo, :type => 'image/jpg',:disposition => 'inline'
+    if @profile.blank? || @profile.photo.blank?
+      file = "app/assets/images/user_default.jpg"
+      File.open(file, "r")
+      send_file file, :type => 'image/jpg',:disposition => 'inline'
+    else
+      send_data @profile.photo, :type => 'image/jpg',:disposition => 'inline'
+    end
   end
 
   private
