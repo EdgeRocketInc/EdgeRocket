@@ -44,6 +44,7 @@ EdgeApp::Application.routes.draw do
   put "employees/:id" => 'employees#update'
   put "employees/:id/password" => 'employees#change_password'
   put "my_courses/:id/rating" => 'my_courses#update_rating'
+  put "playlist_items/ranks" => 'playlists#update_ranks'
 
   post "profile/upload" => 'profile#upload'
   post "profile" => 'profile#update'
