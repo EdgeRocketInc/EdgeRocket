@@ -6,7 +6,8 @@ class MyCourse < ActiveRecord::Base
   # TODO this is ugly, need to change to scopes/etc
 
   def self.all_completed(user_id)
-    self.all_with_status(user_id, 'compl')
+    # this is a special case because we want to sort by completion date
+    where("user_id = ? and status = ?", user_id, 'compl').order('completion_date')
   end
 
   def self.all_wip(user_id)
@@ -22,7 +23,19 @@ class MyCourse < ActiveRecord::Base
   end
 
   def self.all_with_status(user_id, status)
-    where("user_id = ? and status = ?", user_id, status).order('percent_complete DESC')
+    # we want to sort courses withing each status by their rank
+    self.find_by_sql [ \
+      'select mc.* from my_courses as mc ' \
+      + ' left join ' \
+      + ' (select pi.product_id pid, min(rank) r ' \
+      + ' from playlists p ' \
+      + ' join users u on p.account_id=u.account_id ' \
+      + ' join playlist_items pi on p.id=pi.playlist_id ' \
+      + ' where u.id = ? and rank is not null ' \
+      + ' group by product_id) j on mc.product_id = j.pid ' \
+      + ' where mc.user_id = ? and status=? ' \
+      + ' order by status, r', user_id, user_id, status]
+  
   end
 
   def self.find_courses(user_id, product_id)

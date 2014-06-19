@@ -22,6 +22,16 @@
   </div>
 </script>
 
+<!-- Grid Cell template for Actions on a course -->
+<script type="text/ng-template" id="cellCourseActions.html">
+  <div class="ngCellText text-center">
+    <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
+      ng-click="removeCourse(row.getProperty(col.field))" tooltip="Remove from Playlist" tooltip-append-to-body="true">
+    </span>
+  </div>
+</script>
+
+
 <div class="container-fluid" ng-controller="PlaylistsCtrl">
   <div class="row" ng-if="!playlistMode">
     <div class="col-lg-12">
@@ -30,24 +40,19 @@
         <div class="panel-heading">Courses in Playlist: {{currentPlaylist.title}}</div>
         <div class="panel-body">
 
-          <form role="form">
-            <div class="row" ng-repeat="crs in currentCourses">
+          <div class="gridStyle" ng-grid="coursesGridOptions"></div>
 
-              <div class="col-md-6">
-                <div class="text-cell">{{crs.name}}</div>
-              </div>
-
-              <div class="col-md-2"> 
-                <span ng-if="editModeIndex < 0">
-                  <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
-                    ng-click="removeCourse(crs,$index)" tooltip="Remove Course from Playlist">
-                  </span>
-                </span>
-              </div>
-
-            </div>
-            <button class="btn btn-sm btn-warning" ng-click="cancelManageCourses()">Back to Playlists</button>
-          </form>
+          <div class="pull-right voffset2">
+            <form role="form">
+              <button class="btn btn-sm btn-success" ng-click="saveRanks()">
+                Save Changes
+              </button>
+              <button class="btn btn-sm btn-warning" ng-click="cancelManageCourses()">Back to Playlists</button>
+            </form>
+          </div>
+          <div class="text-info voffset1">* Edit rank in place</div>
+          <div class="text-success voffset1">{{rankSuccessMessage}}</div>
+          <div class="text-danger voffset1">{{rankErrorMessage}}</div>
 
         </div>
       </div> 

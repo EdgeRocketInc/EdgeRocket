@@ -17,3 +17,4 @@ three:
   id: 103
   email: test2-user@edgerocket.co
   account_id: 103
+  encrypted_password: "$2a$10$V9JZy0FzG2OI8sVmmESOvOUqcpThzuE6Oba0lVujMkoi94v2iZoYO"

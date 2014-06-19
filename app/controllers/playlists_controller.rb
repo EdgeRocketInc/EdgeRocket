@@ -70,6 +70,7 @@ class PlaylistsController < ApplicationController
   #
   # List courses in the playlist
   def courses
+    @courses_json = @playlist.playlist_items.as_json(:include => :product)
     # see jbuilder
   end
 
@@ -97,6 +98,21 @@ class PlaylistsController < ApplicationController
         @playlist.products.delete(product)
       end
       # we keep going here, just in case if there are duplicate links
+    }
+    respond_to do |format|
+      format.html { redirect_to playlists_url }
+      format.json { head :no_content }
+    end
+  end
+
+  # PUT /playlists/1/ranks
+  #
+  # Update ranking order of the courses in the playlist
+  def update_ranks
+    ranks = params[:ranks]
+    debugger
+    ranks.each { |rank|
+      PlaylistItem.update(rank['id'], :rank => rank['rank'])
     }
     respond_to do |format|
       format.html { redirect_to playlists_url }

@@ -14,8 +14,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.glyphAction = []
   # discussions
   $scope.discussions = []
-  $scope.newDiscussion = { title : '', actor_name : 'me' }
-  # the true valu is for the last row
+  $scope.newDiscussion = { title : '', actor_name : 'me', gplus : false }
+  # the true value is for the last row
   $scope.rowClass = { true:'course-last-row', false:'course-row' }
 
   loadPlaylists =  ->
@@ -45,6 +45,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       # check if the option is enabled and it's the first login
       $scope.options_json = angular.fromJson($scope.user.account.options)
       if $scope.options_json.discussions
+        # set checkbox for G+
+        $scope.options_json.gbox_class = if $scope.options_json.discussions == 'gplus' then 'check' else null
         loadDiscussions()
       if $scope.options_json.survey && $scope.user.sign_in_count <= 1 && !$scope.user.user_preferences?
         console.log('Starting survey...')
@@ -120,6 +122,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.createDiscussion = () ->
     # Create data object to POST and send a request
     console.log('new title=' + $scope.newDiscussion.title)
+    # Pass G+ flag if it's checked
+    $scope.newDiscussion.gplus = ($scope.options_json.gbox_class == 'check')
     data = $scope.newDiscussion
 
     $http.post('/discussions.json', data).success( (data) ->
@@ -134,6 +138,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.error('Failed to create discussion')
     )
     return true
+
+  $scope.toggleGBox = () ->
+    if $scope.options_json.gbox_class == 'check'
+      $scope.options_json.gbox_class = 'unchecked'
+    else
+      $scope.options_json.gbox_class = 'check'
+
 
 
 # controller for modal window

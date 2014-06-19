@@ -57,28 +57,30 @@ private
     new_discussion.product_id = product_id
     current_user.discussions << new_discussion
 
-    #Post to Google+ if enabled
-    @account = current_user.account
-    if !@account.blank? && !@account.options.blank? 
-      @options = ActiveSupport::JSON.decode(@account.options)
-      if @options['discussions'] == 'gplus'
-        gplus_login
-        if !@gplus_client.nil?
-          json_payload = { 
-            "object" => {
-                "originalContent" => new_discussion.title
-              },
-            "access" => {
-              "items" => [{ "type" => "domain" }],
-              "domainRestricted" => true
+    #Post to Google+ if enabled and if it's requested
+    if params[:gplus] == true
+      @account = current_user.account
+      if !@account.blank? && !@account.options.blank? 
+        @options = ActiveSupport::JSON.decode(@account.options)
+        if @options['discussions'] == 'gplus'
+          gplus_login
+          if !@gplus_client.nil?
+            json_payload = { 
+              "object" => {
+                  "originalContent" => (new_discussion.title + ' #EdgeRocket')
+                },
+              "access" => {
+                "items" => [{ "type" => "domain" }],
+                "domainRestricted" => true
+              }
             }
-          }
-          result = @gplus_client.execute(
-            :api_method => @gplus_domain_api.activities.insert, 
-            :headers => {'Content-Type' => 'application/json'},
-            :parameters => { 'userId' => 'me' },
-            :body_object => json_payload
-          )
+            result = @gplus_client.execute(
+              :api_method => @gplus_domain_api.activities.insert, 
+              :headers => {'Content-Type' => 'application/json'},
+              :parameters => { 'userId' => 'me' },
+              :body_object => json_payload
+            )
+          end
         end
       end
     end

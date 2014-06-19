@@ -20,6 +20,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.currentPlaylist = null # will set to the playlist for managing courses
   $scope.currentCourses = [] # will populate when managing courses
   $scope.playlists = null
+  $scope.rankErrorMessage = ''
+  $scope.rankSuccessMessage = ''
 
   $scope.editPlaylist = (playlist_id) ->
     # find the user record and switch to edit more
@@ -34,19 +36,29 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         console.log('editing index=' + $scope.editModeIndex + ' title:' + p.title)
         break
 
-  # This method is called before a grid is selected
-  $scope.beforeSelect = (rowItem) ->
-    false
-
   $scope.gridOptions = { 
     data : 'playlists',
     multiSelect : false,
-    beforeSelectionChange : $scope.beforeSelect
+    enableRowSelection: false,
     columnDefs : [
       { field : 'title', displayName : 'Playlist'}, 
       { field : 'description', displayName : 'Description'}, 
       { field : 'mandatory', displayName : 'Mandatory', width : '8%', minWidth : '80', cellTemplate: 'cellMandatory.html' },
       { field : 'id', displayName : 'Content/Delete', width : '8%', minWidth : '80', cellTemplate: 'cellActions.html' }
+    ]
+  }  
+
+  $scope.coursesGridOptions = { 
+    data : 'currentCourses',
+    multiSelect : false,
+    sortInfo : { fields: ['rank'], directions: ['asc'] }
+    enableCellSelection: false,
+    enableRowSelection: false,
+    enableCellEditOnFocus: true,
+    columnDefs : [
+      { field : 'rank', displayName : 'Rank',  width : '8%', enableCellEdit: true, cellClass : 'text-info' }, 
+      { field : 'product.name', displayName : 'Name', enableCellEdit: false}, 
+      { field : 'product_id', displayName : 'Delete', width : '8%', minWidth : '80', cellTemplate: 'cellCourseActions.html', enableCellEdit: false }
     ]
   }  
 
@@ -154,11 +166,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           $scope.playlistMode = false 
           $scope.addingMode = false
           $scope.editModeIndex = -1
-          $scope.currentCourses = data
-          console.log('Successfully loaded user_home')
+          $scope.currentCourses = data.courses
+          console.log('Successfully loaded playlist items')
           break
      ).error( ->
-      console.log('Error loading user_home')
+      console.log('Error loading playlist items')
     )
 
   $scope.cancelManageCourses = () ->
@@ -168,12 +180,31 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $scope.currentPlaylist = null
     $scope.currentCourses = []
 
-  $scope.removeCourse = (course,index) ->
-    $http.delete('/playlists/' + $scope.currentPlaylist.id + '/courses/' + course.id + '.json', null).success( (data) ->
+  $scope.removeCourse = (course_id) ->
+    $http.delete('/playlists/' + $scope.currentPlaylist.id + '/courses/' + course_id + '.json', null).success( (data) ->
       console.log('Successfully removed course from playlist')
-      $scope.currentCourses.splice(index,1)
+      # find and remove record from internal array
+      for p,i in $scope.currentCourses
+        if p.product_id == course_id
+          $scope.currentCourses.splice(i,1)
+          break
     ).error( ->
       console.error('Failed to remove course from playlist')
+    )
+
+  $scope.saveRanks = ->
+    console.log('updating ranks')
+    new_ranks = { ranks : [] }
+    for c in $scope.currentCourses
+      new_ranks.ranks.push({ id : c.id, rank : c.rank })
+    $http.put('/playlist_items/ranks.json', new_ranks).success( (data) ->
+      console.log('Successfully updated ranks')
+      $scope.rankSuccessMessage = '* Successfully updated ranks'
+      $scope.rankErrorMessage = ''
+    ).error( ->
+      console.error('Failed to update ranks')
+      $scope.rankSuccessMessage = ''
+      $scope.rankErrorMessage = '* Error updating ranks'
     )
 
 @PlaylistsCtrl.$inject = ['$scope', '$http', '$modal', '$log']
