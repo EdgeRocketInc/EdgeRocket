@@ -32,11 +32,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       first_name : user.first_name,
       last_name : user.last_name
     }
+    new_p = {
+      title : if $scope.profile then $scope.profile.title else ''
+      employee_identifier : if $scope.profile then $scope.profile.employee_identifier else ''
+      user_id : user.id
+    }
     console.log('Updating:' + updated_u.first_name + ',' + updated_u.last_name)
+    console.log('Creating/Updating profile:' + new_p.title)
     # POST and send a request
     $http.put('/employees/' + user.id + '.json', updated_u).success( (data) ->
       console.log('Successfully updated user')
-      # POST and send a request
+      # Prep data, POST and send a request
       $http.post('/profile.json', new_p).success( (data) ->
         console.log('Successfully created profile')
         $scope.statusDone = true
@@ -47,12 +53,6 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.error('Failed to update user')
     )
 
-    console.log('Creating/Updating profile:' + $scope.profile.title)
-    new_p = {
-      title : $scope.profile.title,
-      employee_identifier : $scope.profile.employee_identifier,
-      user_id : user.id
-    }
 
   $scope.removeProfile = (user,index) ->
     $http.delete('/users/user/' + user.id + '.json', null).success( (data) ->
