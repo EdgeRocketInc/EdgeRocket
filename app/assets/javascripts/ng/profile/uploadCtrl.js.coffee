@@ -22,17 +22,13 @@ upload.directive "fileChange", ->
 # -------
 upload.factory "uploadService", [ "$rootScope", ($rootScope) ->
   send: (file) ->
-    fileList = document.getElementById("file-list")
-    li = document.createElement("div")
-    div = document.createElement("div")
     reader = undefined
     if typeof FileReader isnt "undefined" and file.type.match "image.*"
       reader = new FileReader()
       reader.onload = (event) ->
-        onImageLoaded event, li
+        onImageLoaded event, null
 
     reader.readAsDataURL file
-    fileList.appendChild li
     data = new FormData()
     xhr = new XMLHttpRequest()
 
@@ -46,27 +42,6 @@ upload.factory "uploadService", [ "$rootScope", ($rootScope) ->
         dummyImage.src = event.target.result
       else
         dummyImage.src = event.target.result
-
-      MAX_WIDTH = 200
-      MAX_HEIGHT = 150
-      tempW = dummyImage.width
-      tempH = dummyImage.height
-      if tempW > tempH
-        if tempW > MAX_WIDTH
-          tempH = tempH*MAX_WIDTH / tempW
-          tempW = MAX_WIDTH
-        else
-          if tempH > MAX_HEIGHT
-            tempW = tempW*MAX_HEIGHT / tempH
-            tempH = MAX_HEIGHT
-
-      console.log "Width: ", tempW
-      console.log "Height: ", tempH
-
-      dummyImage.width=tempW
-      dummyImage.height=tempH
-      li.appendChild dummyImage
-
 
   # When the request starts.
     xhr.onloadstart = ->

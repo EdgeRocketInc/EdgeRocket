@@ -1,63 +1,74 @@
 <div class="container-fluid">
-<div class="row">
-<div class="col-lg-12">
 
   <div class="panel panel-info" ng-controller="ProfileCtrl"> <!-- Profile update mode -->
-    <div class="panel-heading">User profile : {{user.first_name}} {{user.last_name}}</div>
+    <div class="panel-heading">
+      User profile: <span class="text-info">{{user.first_name}} {{user.last_name}}</span>
+    </div>
+
     <div class="panel-body">
-      <div  align="right" ng-controller="UploadCtrl">
-        <div style="position:absolute;left:0;right:0;margin-right:30px;">
-          <button id="main_photo_btn" class="btn btn-primary btn-sm" >Select photo</button>
+
+      <div class="row">
+
+        <div class="col-xs-offset-2 col-md-2" ng-controller="UploadCtrl ">
+            <div class="img-profile" id="file-list">
+              <img id="Photo" src="get_profile_photo" class="img-thumbnail"/>
+              <div class="file-upload btn btn-primary btn-xs">
+                  <span>Upload Photo</span>
+                  <input type="file" class="upload" ng-model="files" file-change />
+              </div>
+            </div>
         </div>
-        <div>
-          <input id="photo_btn" style="opacity: 0;" type="file" ng-model="files" file-change>
+
+        <div class="col-md-6" >
+          <form id="mainform" role="form" >
+            <div class="row voffset3">
+              <div class="col-md-6">
+                <input name="first_name" type="text" class="form-control" placeholder="First Name"
+                  ng-model="user.first_name">
+                </input>
+              </div>
+              <div class="col-md-6">
+                <input name="last_name" type="text" class="form-control" placeholder="Last Name"
+                  ng-model="user.last_name">
+                </input>
+              </div>
+            </div>
+            <div class="row voffset3">
+              <div class="col-md-6">
+                <input name="title" type="text" class="form-control" placeholder="Title"
+                  ng-model="profile.title">
+                </input>
+              </div>
+              <div class="col-md-6">
+                <input name="employee_identifier" type="text" class="form-control" placeholder="Employee Id"
+                  ng-model="profile.employee_identifier">
+                </input>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+
+      </div> <!-- Row -->
+
+      <div class="row voffset3">
+        <div class="col-md-12">
+          <div class="pull-right">
+            <button class="btn btn-sm btn-success" ng-click="updateProfile(user,profile)">
+              Save Changes
+            </button>
+          </div>
         </div>
       </div>
-        <div style="margin-bottom: 10px;"></div>
-        <div id="file-list" align="right" style="margin-right:25px;">
-          <img id="Photo" src="get_profile_photo" style="max-width: 48px; max-height: 42px;"/>
+
+      <div class="row" ng-if="statusDone">
+        <div class="col-md-12">
+          <span class="text-success">* Profile changed successfully</span>
         </div>
-
-      <form id="mainform" role="form" >
-        <div class="row">
-
-          <!-- Inline Edit mode -->
-
-        <div class="col-md-12" >
-          <input name="first_name" type="text" class="form-control form-control-49pct" placeholder="First Name"
-                 ng-model="user.first_name">
-          </input>
-          <input name="last_name" type="text" class="form-control form-control-49pct" placeholder="Last Name"
-                 ng-model="user.last_name">
-          </input>
-          <input name="title" type="text" class="form-control form-control-49pct" placeholder="Title"
-                 ng-model="profile.title">
-          </input>
-          <input name="employee_identifier" type="text" class="form-control form-control-49pct" placeholder="Employee Id"
-                 ng-model="profile.employee_identifier">
-          </input>
-
-        </div>
-        </div>
-        <div class="row voffset3">
-          <div class="col-md-6">
-            <span class="text-success" ng-if="statusDone">* Profile changed successfully</span>
-          </div>
-          <div class="col-md-6">
-            <div class="pull-right">
-              <button class="btn btn-sm btn-success" ng-click="updateProfile(user,profile)" >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </form>
-
       </div>
 
     </div>
   </div> <!-- Panel -->
-</div>
-</div>
+
 </div>
