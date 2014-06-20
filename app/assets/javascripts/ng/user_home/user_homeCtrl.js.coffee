@@ -1,4 +1,4 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap'])
+EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'ngSanitize'])
 
 EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')

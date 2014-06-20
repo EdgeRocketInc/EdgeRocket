@@ -30,8 +30,8 @@
             ng-class="{'glyphicon-chevron-down': !isCollapsed, 'glyphicon-chevron-right': isCollapsed}">
           </i>
         </div>
-        <div class="panel-body" collapse="isCollapsed">
-          <p>{{ user.account['overview'] }}</p>
+        <div class="panel-body" collapse="isCollapsed" id="bind-html-with-sanitize">
+          <div ng-bind-html="user.account['overview']"></div>
         </div>
       </div>
 
