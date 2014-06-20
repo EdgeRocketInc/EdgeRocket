@@ -25,7 +25,7 @@ EdgeRocket.directive "fileChange", ->
 
 # Factory
 # -------
-EdgeRocket.factory "uploadService", [ "$rootScope", ($rootScope) ->
+EdgeRocket.factory "uploadService", [ "$rootScope", "$http", ($rootScope, $http) ->
   send: (file) ->
     reader = undefined
     if typeof FileReader isnt "undefined" and file.type.match "image.*"
@@ -34,8 +34,7 @@ EdgeRocket.factory "uploadService", [ "$rootScope", ($rootScope) ->
         onImageLoaded event, null
 
     reader.readAsDataURL file
-    data = new FormData()
-    xhr = new XMLHttpRequest()
+    formData = new FormData()
 
     onImageLoaded = (event, li) ->
 
@@ -48,21 +47,18 @@ EdgeRocket.factory "uploadService", [ "$rootScope", ($rootScope) ->
       else
         dummyImage.src = event.target.result
 
-  # When the request starts.
-    xhr.onloadstart = ->
-      console.log "Factory: upload started: ", file.name
-      $rootScope.$emit "upload:loadstart", xhr
-
-
-    # When the request has failed.
-    xhr.onerror = (e) ->
-      $rootScope.$emit "upload:error", e
-
-
     # Send to server, where we can then access it with $_FILES['file].
-    data.append "file", file, file.name
-    xhr.open "POST", "upload"
-    xhr.send data
+    formData.append "file", file, file.name
+    #debugger
+
+    $http(
+      { method: 'POST', url: 'upload', data: formData, headers: {'Content-Type': undefined}, transformRequest: angular.identity}
+    ).success( (data) ->
+      console.log('Successfully uploaded image`')
+    ).error( ->
+      console.error('Failed to update user')
+    )
+
 ]
 
 # Controller
