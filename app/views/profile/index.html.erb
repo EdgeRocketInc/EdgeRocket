@@ -1,5 +1,7 @@
 <div class="container-fluid">
 
+  <form name="mainform" role="form" >
+
   <div class="panel panel-info" ng-controller="ProfileCtrl"> <!-- Profile update mode -->
     <div class="panel-heading">
       User profile: <span class="text-info">{{user.first_name}} {{user.last_name}}</span>
@@ -18,9 +20,8 @@
               </div>
             </div>
         </div>
-
+ 
         <div class="col-md-6" >
-          <form id="mainform" role="form" >
             <div class="row voffset3">
               <div class="col-md-6">
                 <input name="first_name" type="text" class="form-control" placeholder="First Name"
@@ -46,8 +47,6 @@
               </div>
             </div>
 
-          </form>
-
         </div>
 
       </div> <!-- Row -->
@@ -70,5 +69,7 @@
 
     </div>
   </div> <!-- Panel -->
+
+  </form>
 
 </div>

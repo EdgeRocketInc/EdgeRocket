@@ -1,8 +1,13 @@
-upload = angular.module("EdgeRocket", ['ui.bootstrap'])
+EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap'])
+
+EdgeRocket.config(["$httpProvider", (provider) ->
+  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+])
+
 
 # Directive
 # ---------
-upload.directive "fileChange", ->
+EdgeRocket.directive "fileChange", ->
   linker = ($scope, element) ->
 
     # onChange, push the files to $scope.files.
@@ -20,7 +25,7 @@ upload.directive "fileChange", ->
 
 # Factory
 # -------
-upload.factory "uploadService", [ "$rootScope", ($rootScope) ->
+EdgeRocket.factory "uploadService", [ "$rootScope", ($rootScope) ->
   send: (file) ->
     reader = undefined
     if typeof FileReader isnt "undefined" and file.type.match "image.*"
@@ -62,7 +67,7 @@ upload.factory "uploadService", [ "$rootScope", ($rootScope) ->
 
 # Controller
 # ----------
-upload.controller "UploadCtrl", [ "$scope", "$rootScope", "uploadService","$http", ($scope, $rootScope, uploadService, $http) ->
+@UploadCtrl = ($scope, $rootScope, uploadService, $http) ->
   # 'files' is an array of JavaScript 'File' objects.
   $scope.files = []
   $scope.$watch "files", ((newValue, oldValue) ->
@@ -82,4 +87,5 @@ upload.controller "UploadCtrl", [ "$scope", "$rootScope", "uploadService","$http
 
   $rootScope.$on "upload:error", ->
     console.log "Controller: on `error`"
-]
+
+@UploadCtrl.$inject = ['$scope', '$rootScope', 'uploadService', '$http']

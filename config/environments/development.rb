@@ -38,5 +38,6 @@ EdgeApp::Application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   # Disable request forgery protection in development environment.
-  config.action_controller.allow_forgery_protection = false
+  # DO NOT COMMIT set to false
+  config.action_controller.allow_forgery_protection = true 
 end

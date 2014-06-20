@@ -110,7 +110,7 @@ class PlaylistsController < ApplicationController
   # Update ranking order of the courses in the playlist
   def update_ranks
     ranks = params[:ranks]
-    debugger
+    #debugger
     ranks.each { |rank|
       PlaylistItem.update(rank['id'], :rank => rank['rank'])
     }
