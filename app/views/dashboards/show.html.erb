@@ -12,7 +12,7 @@
 							<tr>
 								<!-- TODO remove demo multiplier -->
 								<th>Total Users</th>
-								<th><%= @users[:total_count] * 21 =%></th>
+								<th><%= @users[:total_count] =%></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -22,7 +22,7 @@
 							</tr>
 							<tr>
 								<td>Standard Users</td>
-								<td><%= (@users[:total_count] *21) - @users[:num_admins] =%></td>
+								<td><%= (@users[:total_count]	) - @users[:num_admins] =%></td>
 							</tr>
 						</tbody>
 					</table>

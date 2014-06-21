@@ -7,14 +7,14 @@ class DashboardsController < ApplicationController
   # NOTE: it uses a jbuilder view
   def show
   	@users = { 
-  		:total_count => User.count, 
-  		:num_admins => Role.count("name in ('Admin', 'SA')")
+  		:total_count => User.where(:account_id => current_user.account_id).count, 
+  		:num_admins => User.joins(:roles).where("users.account_id=? and roles.name in ('SA','Admin')", current_user.account_id).count
   	}
 
   	authorize! :manage, :all
 
     @account = current_user.account
-    @group_count = MyCourse.group(:status).count
+    @group_count = MyCourse.joins(:user).where("users.account_id=?", @account.id).group(:status).count
 
   end
 
