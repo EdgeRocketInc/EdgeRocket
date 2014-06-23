@@ -5,4 +5,4 @@
 #= require_self
 #= require_tree ./ng/dashboards
 #= require d3
-#= require angular-charts
+#= require angular-charts.min

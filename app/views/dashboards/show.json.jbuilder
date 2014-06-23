@@ -2,7 +2,7 @@ json.account @account
 tmp = { 
 	"series" => ['Completed', 'In Progress','Assigned'],
 	"data" => [{
-      "x" => "Today",
+      "x" => "Learning items completed to date",
       "y" => [
       	@group_count['compl'], 
       	@group_count['wip'], 
