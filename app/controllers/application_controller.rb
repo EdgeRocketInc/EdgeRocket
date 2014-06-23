@@ -5,4 +5,14 @@ class ApplicationController < ActionController::Base
 
   # not needed because it's included in other layouts
   # layout 'superhero'
+
+
+	# Publish an event to the external Keen IO collector
+	def publish_keen_io(request_format, collection, data_hash)
+	    #TODO make it async
+	    if Rails.env.production? && request.format.symbol == request_format
+	      Keen.publish(collection, data_hash)
+	    end
+	end
+
 end

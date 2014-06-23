@@ -13,6 +13,14 @@ class DashboardsController < ApplicationController
 
   	authorize! :manage, :all
 
+    publish_keen_io(:html, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name,
+        :request_format => request.format.symbol
+      }
+    )
+    
     @account = current_user.account
     @group_count = MyCourse.joins(:user).where("users.account_id=?", @account.id).group(:status).count
 
