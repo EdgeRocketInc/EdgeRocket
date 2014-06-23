@@ -8,6 +8,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.statusDone = false
   $scope.serverError = null
+  $scope.user  = null
   $scope.newUser = {
     id : null,
     current_password : '',
@@ -21,10 +22,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $scope.newUser.new_password = ''
     $scope.newUser.new_password2 = ''
 
+  # load current use to use ID and dislay name
   loadCurrentUser =  ->
-    # we just need the current user ID to send it back
     $http.get('/users/current.json').success( (data) ->
       $scope.newUser.id = data.id
+      $scope.user = data
       console.log('Successfully loaded user')
     ).error( ->
       console.log('Error loading user')

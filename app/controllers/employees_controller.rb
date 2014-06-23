@@ -59,6 +59,9 @@ class EmployeesController < ApplicationController
       u.password = params[:new_password]
       u.reset_required = false
       u.save
+      if u.errors.empty?
+        sign_in(u, :bypass => true)
+      end
     else
       u.errors[:base] << 'Wrong current password'
     end

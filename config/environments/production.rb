@@ -85,5 +85,5 @@ EdgeApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # this is for Devise
-  config.action_mailer.default_url_options = { host: 'TODO' }
+  config.action_mailer.default_url_options = { host: 'edgerocket.co' }
 end
