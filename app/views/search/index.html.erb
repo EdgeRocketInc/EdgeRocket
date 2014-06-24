@@ -120,7 +120,7 @@
             <div class="rating-right">
               <rating class="orange" ng-model="crs.display_rating" max="5" readonly="true"></rating>
             </div>
-            <img src="{{ crs.logo_asset_url }}" class="img-provider-logo"></img>
+            <img ng-src="{{ crs.logo_asset_url }}" class="img-provider-logo"></img>
             <div class="voffset2"><a class="course-link" href="#" ng-click="openModal(crs)">{{ crs.pname }}</a></div>
             <div class="voffset1">{{ crs.authors }}</div>
             <div class="voffset1">{{ crs.school }}</div>

@@ -25,10 +25,14 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     fill_in "user_password", with: '12345678'
     click_button 'Sign in'
 
-    #visit '/user_home'
     assert_content page, "Playlists"
+
     visit '/my_courses'
     assert_content page, "My Courses"
     assert_content page, "My Playlists"
+
+    visit '/search'
+    assert_content page, "Select All"
+
   end
 end
