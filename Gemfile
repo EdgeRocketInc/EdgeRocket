@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.0'
+gem 'rails', '~> 4.1'
 
 group :development do
   # Use sqlite3 as the database for Active Record
@@ -13,7 +13,12 @@ group :development do
 end
 
 group :test do
-  gem 'minitest', '~> 4.7'
+  gem 'minitest'
+  gem 'minitest-rails-capybara'
+  gem 'factory_girl_rails'
+  gem 'factory_girl'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
   gem 'simplecov', :require => false
 end
 
