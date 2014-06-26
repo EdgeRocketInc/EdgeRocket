@@ -33,6 +33,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
     visit '/search'
     assert_content page, "Select All"
+    assert_content page, "Test if CI can fils on this"
 
   end
 end
