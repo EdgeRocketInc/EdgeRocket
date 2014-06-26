@@ -8,6 +8,19 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  # GET /products/curated
+  # HTML template for curated products that belong to this account only
+  # JSON see jbuilder
+  def curated_index
+    authorize! :manage, :all
+    @products = Product.where(:account_id => current_user.account_id).includes(:vendor).order(:name)
+  end
+
+  # GET /vendors
+  def vendors
+    @vendors = Vendor.all.order(:name)
+  end
+
   # GET /products/1
   # GET /products/1.json
   def show
@@ -17,24 +30,23 @@ class ProductsController < ApplicationController
     end
   end
 
-  # GET /products/new
-  def new
-    @product = Product.new
-  end
-
-  # GET /products/1/edit
-  def edit
-  end
-
   # POST /products
   # POST /products.json
   def create
     @product = Product.new(product_params)
 
+    # if it's manually entered prodcut, we should set the account to current user's company
+    if @product.manual_entry == true
+      @product.account_id = current_user.account_id
+    end
+
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @product }
+        format.json { 
+          @product_json = @product.as_json
+          render action: 'show', status: :created, location: @product 
+        }
       else
         format.html { render action: 'new' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -62,7 +74,13 @@ class ProductsController < ApplicationController
     @product.destroy
     respond_to do |format|
       format.html { redirect_to products_url }
-      format.json { head :no_content }
+      format.json { 
+        if @product.errors.empty? 
+          head :no_content 
+        else
+          render json: @product.errors, status: :unprocessable_entity 
+        end
+      }
     end
   end
 
@@ -81,6 +99,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name)
+      params.require(:product).permit(:name, :authors, :origin, :price, :price_free, :keywords, :school, :description, :media_type, :duration, :vendor_id)
     end
 end

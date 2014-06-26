@@ -23,6 +23,6 @@
 
 
 //= require angular
-//= require angular-sanitize.min
+//= require angular-sanitize
 //= require ui-bootstrap-tpls-0.11.0.min
 //= require ng-grid-2.0.11.min

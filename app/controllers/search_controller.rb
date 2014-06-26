@@ -12,7 +12,7 @@ class SearchController < ApplicationController
       }
     )
 
-    prd = Product.search_courses(nil)
+    prd = Product.search_courses(current_user.account_id)
 
     # format some of the fields in the resultset
     prd.each { |p|

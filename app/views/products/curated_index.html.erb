@@ -1,0 +1,133 @@
+<!-- Grid Cell template for Actions -->
+<script type="text/ng-template" id="cellActions.html">
+  <div class="ngCellText text-center">
+    <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
+      ng-click="editProduct(row.getProperty(col.field))" tooltip="Edit Item" tooltip-append-to-body="true">
+    </span>
+    <span class="glyphicon glyphicon-trash glyph-big glyph-action red" 
+      ng-click="removeProduct(row.getProperty(col.field))" tooltip="Delete Item" tooltip-append-to-body="true">
+    </span>
+  </div>
+</script>
+
+<div class="container-fluid" ng-controller="CuratedProductsCtrl">
+
+  <div class="gridStyle" ng-grid="gridOptions"></div>
+
+  <div class="row voffset3" ng-if="editModeIndex < 0 && addingMode == false">
+    <div class="col-lg-12">
+      <div class="pull-right">
+        <button class="btn btn-sm btn-success" ng-click="addProduct()">
+          Add Item
+        </button>
+      </div>
+    </div>
+  </div> <!-- Row -->
+
+  <!-- A row to enter values for Product record in Edit/Add mode -->
+  <div class="row voffset3" ng-if="editModeIndex >= 0 || addingMode == true">
+    <div class="col-lg-12">
+
+      <div class="panel panel-info"> <!-- Product New mode -->
+        <div class="panel-heading" ng-if="addingMode == true">Add Item</div>
+        <div class="panel-heading" ng-if="addingMode == false">Edit Item</div>
+        <div class="panel-body">
+    
+          <form role="form" name="addForm">
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <input type="text" class="form-control-user form-control" name="newTitle" 
+                    placeholder="Title" ng-model="newProduct.name" required>
+                  </input>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control-user form-control" name="newOrigin" 
+                    placeholder="URL" ng-model="newProduct.origin">
+                  </input>
+                </div>
+                <div class="col-sm-4">
+					<select class="form-control" ng-model="newProduct.theVendor" ng-options="vendor.name for vendor in vendors">
+      					<option value="">-- choose provider --</option>
+					</select>
+    			</div>
+              </div> <!-- Row -->
+
+              <div class="row voffset2">
+                <div class="col-sm-12">
+                  <textarea id="newDescription" cols=40 rows=5 class="form-control" placeholder="Description" 
+                    ng-model="newProduct.description">
+                  </textarea>
+                </div>
+              </div> <!-- Row -->
+
+
+              <div class="row voffset2">
+                <div class="col-sm-4">
+                  	<input type="text" class="form-control-user form-control" name="newAuthors" 
+                    	placeholder="Authors" ng-model="newProduct.authors">
+                  	</input>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control-user form-control" name="newSchool" 
+                    placeholder="Developed By University" ng-model="newProduct.school">
+                  </input>
+                </div>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control-user form-control" name="newKeywords" 
+                    placeholder="Keywords" ng-model="newProduct.keywords">
+                  </input>
+                </div>
+              </div> <!-- Row -->
+
+              <div class="row voffset2">
+                <div class="col-sm-4">
+					<select class="form-control" ng-model="newProduct.mediaType" ng-options="mt.name for mt in mediaTypes">
+      					<option value="">-- choose medium --</option>
+					</select>
+				</div>
+                <div class="col-sm-2">
+                  <input type="number" class="form-control-user form-control" name="newPrice" 
+                    placeholder="Price" ng-model="newProduct.price">
+                  </input>
+                </div>
+                <div class="col-sm-2">
+                	<div class="check-with-glyph">
+	                  <span class="glyphicon glyphicon-{{newProduct.price_free_class}} glyph-big glyph-action" ng-click="togglePriceFree()"></span>
+	                  <span class="glyph-label">Available for free</span>
+	                </div>
+                </div>
+                <div class="col-sm-4">
+                  <input type="number" class="form-control-user form-control" name="newDuration" 
+                    placeholder="Duration in hours" ng-model="newProduct.duration">
+                  </input>
+                </div>
+              </div> <!-- Row -->
+
+              <div class="row voffset3">
+                <div class="col-sm-6">
+                  <span class="error red" ng-show="addForm.newTitle.$error.required">* Title required</span>
+                </div>
+                <div class="col-sm-6">
+                  <div class="pull-right">
+                    <button class="btn btn-sm btn-success" ng-click="createProduct()" ng-if="editModeIndex < 0">
+                      Create
+                    </button>
+                    <button class="btn btn-sm btn-success" ng-click="updateProduct()" ng-if="editModeIndex >= 0">
+                      Save Changes
+                    </button>
+                    <button class="btn btn-sm btn-warning" ng-click="cancelEditingProduct()" ng-if="editModeIndex >= 0 || addingMode == true">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div> <!-- Row -->
+
+          </form>
+        </div>
+      </div> <!-- Panel --> 
+      
+    </div>
+  </div> <!-- Row -->
+
+</div>

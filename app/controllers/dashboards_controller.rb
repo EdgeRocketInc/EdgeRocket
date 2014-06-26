@@ -6,12 +6,16 @@ class DashboardsController < ApplicationController
   # GET /dashboard.json
   # NOTE: it uses a jbuilder view
   def show
+
+    authorize! :manage, :all
+
   	@users = { 
   		:total_count => User.where(:account_id => current_user.account_id).count, 
   		:num_admins => User.joins(:roles).where("users.account_id=? and roles.name in ('SA','Admin')", current_user.account_id).count
   	}
-
-  	authorize! :manage, :all
+   
+    @account = current_user.account
+    @group_count = MyCourse.joins(:user).where("users.account_id=?", @account.id).group(:status).count
 
     publish_keen_io(:html, :ui_actions, {
         :user_email => current_user.email,
@@ -20,9 +24,6 @@ class DashboardsController < ApplicationController
         :request_format => request.format.symbol
       }
     )
-    
-    @account = current_user.account
-    @group_count = MyCourse.joins(:user).where("users.account_id=?", @account.id).group(:status).count
 
   end
 

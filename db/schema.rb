@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619193950) do
+ActiveRecord::Schema.define(version: 20140626035332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,14 +87,20 @@ ActiveRecord::Schema.define(version: 20140619193950) do
     t.integer  "vendor_id"
     t.string   "authors"
     t.string   "origin"
-    t.decimal  "price",                  precision: 8, scale: 2
+    t.decimal  "price",                   precision: 8, scale: 2
     t.text     "keywords"
     t.string   "school"
     t.text     "description"
-    t.string   "media_type",  limit: 10
-    t.decimal  "duration",               precision: 8, scale: 2
+    t.string   "media_type",   limit: 10
+    t.decimal  "duration",                precision: 8, scale: 2
     t.decimal  "avg_rating"
+    t.boolean  "manual_entry",                                    default: true
+    t.boolean  "price_free",                                      default: false
+    t.integer  "account_id"
   end
+
+  add_index "products", ["account_id"], name: "index_products_on_account_id", using: :btree
+  add_index "products", ["name"], name: "index_products_on_name", using: :btree
 
   create_table "profiles", force: true do |t|
     t.string   "title"

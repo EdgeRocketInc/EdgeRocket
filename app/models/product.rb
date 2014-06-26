@@ -1,20 +1,27 @@
 # This model contains all kinds of educational materials such as courses, videos, books, and etc.
 
 class Product < ActiveRecord::Base
-  has_many :playlist_items
+  has_many :playlist_items, dependent: :restrict_with_error
   has_many :playlists, through: :playlist_items
-	belongs_to :vendor
-	has_many :my_courses
-  has_many :discussions
+	has_many :my_courses, dependent: :restrict_with_error
+  has_many :discussions, dependent: :restrict_with_error
+  belongs_to :vendor
+  belongs_to :account
 
   # search courses (aka prodcuts) with a filter, and include the vendor fields
   # in the result
-  def self.search_courses(filter)
+  def self.search_courses(account_id)
     # TODO make it right with the eager loading or something like that
-    self.connection.select_all(
+    sql_query =
       'select p.id, p.name as pname, p.authors, p.origin, p.price, v.name as vname, v.logo_file_name, ' \
       + 'p.keywords, p.school, p.avg_rating, p.media_type ' \
-      + 'from products p left join vendors v on p.vendor_id=v.id order by p.name')
+      + 'from products p left join vendors v on p.vendor_id=v.id ' \
+      + 'where p.account_id is null'
+    if !account_id.nil?
+       sql_query += ' or p.account_id=' + account_id.to_s
+    end
+    sql_query += ' order by p.name'
+    self.connection.select_all(sql_query)
   end
 
   # synchronize (update) avg rating for the given product
