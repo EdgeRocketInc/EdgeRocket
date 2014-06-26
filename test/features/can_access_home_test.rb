@@ -14,7 +14,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     DatabaseCleaner.clean
   end
 
-  test "all pages sanity" do
+  test "all user pages sanity" do
 
     Capybara.current_driver = :selenium
 
@@ -33,7 +33,42 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
     visit '/search'
     assert_content page, "Select All"
-    assert_content page, "Test if CI can fils on this"
+
+    visit '/plans'
+    assert_content page, "No Plans"
+
+    visit '/welcome/edit_password'
+    assert_content page, "Change Password"
+
+    visit '/profile/current'
+    assert_content page, "User profile"
+    click_button 'Save Changes'
+    assert_content page, "Profile changed successfully"
+
+    # The snap-ci did not execute it
+    #assert_content page, "Test if CI can fail on this"
 
   end
+
+
+  test "all admin pages sanity" do
+
+    Capybara.current_driver = :selenium
+
+    @user = FactoryGirl.create(:user, :email => 'admin-test@edgerocket.co', :password => '12345678')
+    @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
+
+    visit root_path
+    fill_in "user_email", with: 'admin-test@edgerocket.co'
+    fill_in "user_password", with: '12345678'
+    click_button 'Sign in'
+
+    visit '/dashboard'
+    assert_content page, "Total Users"
+    assert_content page, "Admin Users"
+    assert_content page, "Standard Users"
+
+  end
+
+
 end

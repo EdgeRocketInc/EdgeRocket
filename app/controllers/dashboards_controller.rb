@@ -15,7 +15,7 @@ class DashboardsController < ApplicationController
   	}
    
     @account = current_user.account
-    @group_count = MyCourse.joins(:user).where("users.account_id=?", @account.id).group(:status).count
+    @group_count = @account.nil? ? {} : MyCourse.joins(:user).where("users.account_id=?", @account.id).group(:status).count
 
     publish_keen_io(:html, :ui_actions, {
         :user_email => current_user.email,
