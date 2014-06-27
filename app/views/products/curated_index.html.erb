@@ -1,6 +1,11 @@
 <!-- Grid Cell template for Actions -->
 <script type="text/ng-template" id="cellActions.html">
   <div class="ngCellText text-center">
+    <!-- TODO
+    <span class="glyphicon glyphicon-list glyph-big glyph-action" 
+      ng-click="addToPlaylist(row.getProperty(col.field))" tooltip="Add to Playlist" tooltip-append-to-body="true">
+    </span>
+    -->
     <span class="glyphicon glyphicon-edit glyph-big glyph-action" 
       ng-click="editProduct(row.getProperty(col.field))" tooltip="Edit Item" tooltip-append-to-body="true">
     </span>
@@ -47,10 +52,11 @@
                   </input>
                 </div>
                 <div class="col-sm-4">
-					<select class="form-control" ng-model="newProduct.theVendor" ng-options="vendor.name for vendor in vendors">
-      					<option value="">-- choose provider --</option>
-					</select>
-    			</div>
+                  <input type="text" ng-model="newProduct.theVendor" placeholder="Course/material provider"
+                    typeahead="vendor.name for vendor in vendors | filter:$viewValue | limitTo:8" 
+                    typeahead-editable="false" class="form-control" tooltip="Type and select from available choices">
+                  </input>
+    		        </div>
               </div> <!-- Row -->
 
               <div class="row voffset2">
@@ -82,24 +88,33 @@
 
               <div class="row voffset2">
                 <div class="col-sm-4">
-					<select class="form-control" ng-model="newProduct.mediaType" ng-options="mt.name for mt in mediaTypes">
-      					<option value="">-- choose medium --</option>
-					</select>
-				</div>
-                <div class="col-sm-2">
-                  <input type="number" class="form-control-user form-control" name="newPrice" 
-                    placeholder="Price" ng-model="newProduct.price">
-                  </input>
+        					<select class="form-control" ng-model="newProduct.theMediaType" ng-options="mt.name for mt in mediaTypes">
+              					<option value="">-- choose medium --</option>
+        					</select>
+				        </div>
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="number" class="form-control-number form-control" name="newPrice" 
+                      placeholder="Price" min="0" ng-model="newProduct.price" tooltip="Price of the course/item">
+                    </input>
+                  </div>
                 </div>
+                <!-- DISABLED FOR NOW
                 <div class="col-sm-2">
                 	<div class="check-with-glyph">
 	                  <span class="glyphicon glyphicon-{{newProduct.price_free_class}} glyph-big glyph-action" ng-click="togglePriceFree()"></span>
 	                  <span class="glyph-label">Available for free</span>
 	                </div>
                 </div>
+                -->
                 <div class="col-sm-4">
-                  <input type="number" class="form-control-user form-control" name="newDuration" 
-                    placeholder="Duration in hours" ng-model="newProduct.duration">
+                  <span>Duration:</span>
+                  <input type="number" class="form-control-number form-control" name="newDurationHours" 
+                    min="0" placeholder="Hrs" ng-model="newProduct.theDuration.hours" tooltip="Hours can be greater than 24">
+                  </input>
+                  <input type="number" class="form-control-number form-control" name="newDurationMinutes" 
+                    min="0" step="5" placeholder="Min" ng-model="newProduct.theDuration.minutes" tooltip="Minutes">
                   </input>
                 </div>
               </div> <!-- Row -->

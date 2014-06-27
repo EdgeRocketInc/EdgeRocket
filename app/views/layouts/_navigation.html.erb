@@ -49,7 +49,7 @@
                 <%= link_to("Playlists", controller: "playlists", action: "index") =%>
             </li>
             <li class="<%= 'active' if params[:controller] == 'products' %>">
-                <%= link_to("Courses", controller: "products", action: "curated_index") =%>
+                <%= link_to("Add Item/Course", controller: "products", action: "curated_index") =%>
             </li>
             <li class="<%= 'active' if params[:controller] == 'employees' %>">
                 <%= link_to("Users", controller: "employees", action: "index") =%>

@@ -15,17 +15,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   ]
 
   $scope.newProduct = { 
-    name : '', 
-    description : '', 
-    theVendor : null,
-    authors : '',
-    origin : '',
-    price : null,
-    price_free_class : 'unchecked',
-    keywords : '',
-    school : '',
-    mediaType : null,
-    duration : null,
+    # will be fille out by clearEditForm call
   }
 
   # will set to index when editing an item
@@ -44,18 +34,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     ]
   }  
 
-  $scope.clearEditForm = ->
-    $scope.newProduct.name = ''
-    $scope.newProduct.description = ''
+  clearEditForm = ->
+    $scope.newProduct.name = null
+    $scope.newProduct.description = null
     $scope.newProduct.theVendor = null
-    $scope.newProduct.authors = ''
-    $scope.newProduct.origin = ''
+    $scope.newProduct.authors = null
+    $scope.newProduct.origin = null
     $scope.newProduct.price = null
     $scope.newProduct.price_free_class = 'unchecked'
-    $scope.newProduct.keywords = ''
-    $scope.newProduct.school = ''
-    $scope.newProduct.media_type = null
-    $scope.newProduct.duration = null
+    $scope.newProduct.keywords = null
+    $scope.newProduct.school = null
+    $scope.newProduct.theMediaType = null
+    $scope.newProduct.theDuration = { hours : null, minutes : null }
 
   loadVendors =  ->
     $http.get('/vendors.json').success( (data) ->
@@ -74,13 +64,39 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('Error loading products')
     )
 
+  # return viendor id based on the passed name
+  findVendorId = (vendor_name) ->
+    for v in $scope.vendors
+      if v.name == vendor_name
+        return v.id
+
+  # converst duration display object to hours with fractions
+  # will return null if hh==mm==0
+  toDurationHours = (duration_obj) ->
+    hours = null
+    if duration_obj.hours > 0 || duration_obj.minutes > 0
+      hours = if duration_obj.hours then duration_obj.hours else 0 
+      hours += if duration_obj.minutes then (duration_obj.minutes / 60) else 0
+    return hours
+
+  # convert duration in hours with fraction to an object wtih hours and minutes
+  toDurationObject = (duration_hours) ->
+    hh = null
+    mm = null   
+    if duration_hours
+      hh = Math.floor(duration_hours)
+      mm = (duration_hours - hh) * 60
+      mm = Math.round(mm)
+    duration_obj = { hours : hh, minutes : mm }
+
+  clearEditForm()
   loadProducts()
 
   $scope.addProduct = () ->
     console.log('switching to adding mode')
     $scope.addingMode = true
     $scope.editModeIndex = -1
-    $scope.clearEditForm()
+    clearEditForm()
 
   $scope.createProduct = () ->
     console.log('Creating:' + $scope.newProduct.name)
@@ -88,15 +104,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       id : null, 
       name : $scope.newProduct.name, 
       description : $scope.newProduct.description 
-      vendor_id : if $scope.newProduct.theVendor then $scope.newProduct.theVendor.id else null
+      vendor_id : findVendorId($scope.newProduct.theVendor)
       authors : $scope.newProduct.authors
       origin : $scope.newProduct.origin
       price : $scope.newProduct.price
       price_free : $scope.newProduct.price_free_class == 'check'
       keywords : $scope.newProduct.keywords
       school : $scope.newProduct.school
-      media_type : if $scope.newProduct.media_type then $scope.newProduct.mediaType.value else null
-      duration : $scope.newProduct.duration
+      media_type : if $scope.newProduct.theMediaType then $scope.newProduct.theMediaType.value else null
+      duration : toDurationHours($scope.newProduct.theDuration)
       manual_entry : true
     }
     # POST and send a request
@@ -104,11 +120,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('Successfully created product')
       # use new product ID
       new_prd.id = data.product.id
-      new_prd.vendor = $scope.newProduct.theVendor
+      new_prd.vendor = { name : $scope.newProduct.theVendor }
       $scope.products.push(new_prd)
       $scope.editModeIndex = -1
       $scope.addingMode = false
-      $scope.clearEditForm()
+      clearEditForm()
     ).error( ->
       console.error('Failed to create product')
     )
@@ -128,21 +144,16 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         $scope.newProduct.price_free_class = if p.price_free == true then 'check' else 'unchecked'
         $scope.newProduct.keywords = p.keywords
         $scope.newProduct.school = p.school
-        $scope.newProduct.media_type  = p.media_type
-        $scope.newProduct.duration = p.duration
+        $scope.newProduct.theDuration = toDurationObject(p.duration)
 
         # select the vendor
-        $scope.newProduct.theVendor = null
-        for v in $scope.vendors
-          if p.vendor && p.vendor.id == v.id
-            $scope.newProduct.theVendor = v
-            break
+        $scope.newProduct.theVendor = if p.vendor then p.vendor.name else null
 
         # select the media_type
-        $scope.newProduct.media_type = null
+        $scope.newProduct.theMediaType = null
         for mt in $scope.mediaTypes
           if p.media_type == mt.value
-            $scope.newProduct.mediaType = mt
+            $scope.newProduct.theMediaType = mt
             break
 
         console.log('editing index=' + $scope.editModeIndex + ' name:' + p.name)
@@ -157,15 +168,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       description : $scope.newProduct.description, 
       name : $scope.newProduct.name, 
       description : $scope.newProduct.description 
-      vendor_id : if $scope.newProduct.theVendor then $scope.newProduct.theVendor.id else null
+      vendor_id : findVendorId($scope.newProduct.theVendor)
       authors : $scope.newProduct.authors
       origin : $scope.newProduct.origin
       price : $scope.newProduct.price
       price_free : $scope.newProduct.price_free_class == 'check'
       keywords : $scope.newProduct.keywords
       school : $scope.newProduct.school
-      media_type : if $scope.newProduct.media_type then $scope.newProduct.mediaType.value else null
-      duration : $scope.newProduct.duration
+      media_type : if $scope.newProduct.theMediaType then $scope.newProduct.theMediaType.value else null
+      duration : toDurationHours($scope.newProduct.theDuration)
       manual_entry : true
     }
     console.log('Updating: ' + updated_item.name)
@@ -178,7 +189,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           p.name = updated_item.name
           p.description = updated_item.description
           p.vendor_id = updated_item.vendor_id
-          p.vendor = $scope.newProduct.theVendor
+          p.vendor = { name : $scope.newProduct.theVendor }
           p.authors = updated_item.authors
           p.origin = updated_item.origin
           p.price = updated_item.price
@@ -191,7 +202,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       # switch to non-editing mode
       $scope.editModeIndex = -1
       $scope.addingMode = false
-      $scope.clearEditForm()
+      clearEditForm()
     ).error( ->
       console.error('Failed to update product')
     )

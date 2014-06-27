@@ -4,7 +4,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-@DashboardCtrl = ($scope, $http) ->
+@DashboardCtrl = ($scope, $http, $window) ->
 
   # CHARTS - activity
 
@@ -35,6 +35,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   loadActivity()
 
+  $scope.manageUsers = ->
+    $window.location.href = "/employees"
 
   # CHARTS - topics
 
@@ -155,4 +157,4 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     }
   }
 
-@DashboardCtrl.$inject = ['$scope', '$http']
+@DashboardCtrl.$inject = ['$scope', '$http', '$window']
