@@ -27,6 +27,10 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
+group :stage do
+  gem 'unicorn'
+end
+
 gem 'pg', '0.17.1'
 
 # Use SCSS for stylesheets
