@@ -24,11 +24,12 @@ end
 
 group :production do
   #gem 'unicorn'
-  gem 'rails_12factor', '0.0.2'
+  gem 'rails_12factor'
 end
 
 group :stage do
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 
 gem 'pg', '0.17.1'
