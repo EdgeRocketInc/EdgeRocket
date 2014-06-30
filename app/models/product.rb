@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
     if !account_id.nil?
        sql_query += ' or p.account_id=' + account_id.to_s
     end
-    sql_query += ' order by p.name'
+    sql_query += ' order by p.manual_entry desc, p.name'
     self.connection.select_all(sql_query)
   end
 
