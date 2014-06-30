@@ -1,5 +1,8 @@
 database:
-  adapter: sqlite3
-  database: ../../../master-heroku/db/development.sqlite3
-  pool: 5
-  timeout: 5000
+    adapter: postgresql
+    encoding: unicode
+    database: heroku
+    port: 5432
+    host: localhost
+    username: postgres
+    password: ER0cket!

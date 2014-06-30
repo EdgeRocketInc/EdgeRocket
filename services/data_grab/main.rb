@@ -51,12 +51,26 @@ ActiveRecord::Base.establish_connection\
 
 
 courses_json = CourseraClient.courses
+skipped = 0
 
-for crs in courses_json
-	prd = Product.new
-	prd.vendor_id = 1 # Coursera
-	prd.name = crs['name']
-	prd.authors = crs['instructor']
-	prd.origin = 'https://www.coursera.org/course/' + crs['shortName']
-	prd.save
-end
+courses_json.each_with_index { |crs, i|
+	# construct the course url and then search existing record in the DB
+	course_url = 'https://www.coursera.org/course/' + crs['shortName']
+	existing_prd = Product.find_by_origin(course_url)
+	if existing_prd.nil?
+		prd = Product.new
+		prd.vendor_id = 1 # Coursera
+		prd.name = crs['name']
+		prd.authors = crs['instructor']
+		prd.origin = course_url
+		prd.media_type = 'online'
+		prd.manual_entry = false
+		prd.save
+	else 
+		skipped += 1
+	end
+	if (i % 100) == 0 then print '.' end
+}
+
+print "\n"
+puts('Processed ' + courses_json.length.to_s + ' records, ' + skipped.to_s + ' skipped ')
