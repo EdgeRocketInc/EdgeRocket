@@ -54,9 +54,11 @@
             <li class="<%= 'active' if params[:controller] == 'employees' %>">
                 <%= link_to("Users", controller: "employees", action: "index") =%>
             </li>
+            <!-- TODO future
         		<li class="<%= 'active' if params[:controller] == 'teams' %>">
          			<%= link_to("My Team", controller: "teams", action: "index") =%>
 	       		</li>
+            -->
         		<li class="<%= 'active' if params[:controller] == 'corp_home' %>">
                 <!-- TODO: route to corp home -->
           			<%= link_to("Edit Home", controller: "teams", action: "index") =%>
