@@ -9,8 +9,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # CHARTS - activity
 
   $scope.activityChartData = {
-    series: [],
-    data : []
+    series : ['Completed', 'In Progress','Assigned'],
+    data : [{
+      x : "Learning items completed to date",
+      y : [],
+      tooltip : "Activity"
+    }]
   }
 
   $scope.activityChartType = 'bar'
@@ -24,9 +28,38 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     }
   }
 
+  # CHARTS - users
+
+  $scope.usersChartData = {
+    series: ['Number of Users'],
+    data : []
+  }
+
+  $scope.usersChartType = 'pie'
+
+  $scope.usersConfig = {
+    labels: false,
+    title : "",
+    legend : {
+      display:true,
+      position:'left'
+    }
+  }
+  pushActivityValue = (data, state) ->
+    y = if data.activityData[state] == null or data.activityData[state] == undefined then 0 else data.activityData[state]
+    $scope.activityChartData.data[0].y.push(y)
+
   loadActivity =  ->
     $http.get('/dashboard.json').success( (data) ->
-      $scope.activityChartData = data.activityChartData
+      pushActivityValue(data, 'compl')
+      pushActivityValue(data, 'wip')
+      pushActivityValue(data, 'reg')
+      for g in data.coursesPerUserData
+        piece = { 
+          x : g.number_of_courses + ' courses', 
+          y : g.number_of_users 
+        }
+        $scope.usersChartData.data.push(piece) 
       $scope.options_json = angular.fromJson(data.account.options)
       console.log('Successfully loaded dashboards')
      ).error( ->
@@ -115,40 +148,6 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.deptChartType = 'bar'
 
   $scope.deptConfig = {
-    labels: false,
-    title : "",
-    legend : {
-      display:true,
-      position:'left'
-    }
-  }
-
-  # CHARTS - users
-
-  $scope.usersChartData = {
-    series: ['Number of Users'],
-    data : [{
-      x : "0",
-      y: [4],
-      tooltip:"this is tooltip"
-    },
-    {
-      x : "1-3",
-      y: [2]
-    },
-    {
-      x : "4-6",
-      y: [2]
-    },
-    {
-      x : "7+",
-      y: [1]
-    }]
-  }
-
-  $scope.usersChartType = 'pie'
-
-  $scope.usersConfig = {
     labels: false,
     title : "",
     legend : {

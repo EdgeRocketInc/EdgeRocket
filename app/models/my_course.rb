@@ -75,4 +75,19 @@ class MyCourse < ActiveRecord::Base
     MyCourse.where(:user_id => user_id, :product_id => prd_id).destroy_all
   end
 
+  # Count courses per user for the dashboard report
+  def self.courses_per_user(account_id)
+    # TODO do we need to sanitize SQL here?
+    sql = 'select count(cnt) as number_of_users, cnt as number_of_courses ' \
+      + ' from (' \
+      + ' select count(mc.id) cnt, user_id ' \
+      + ' from my_courses mc join users u on mc.user_id=u.id ' \
+      + " where status='compl' and u.account_id=" + account_id.to_s \
+      + ' group by user_id ) as g ' \
+      + ' group by cnt order by 1'
+
+    pc = ActiveRecord::Base.connection.execute(sql)
+    pc.as_json
+  end
+
 end
