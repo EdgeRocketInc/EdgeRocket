@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   # JSON see jbuilder
   def curated_index
     authorize! :manage, :all
-    @products = Product.where(:account_id => current_user.account_id).includes(:vendor).order(:name)
+    @products = Product.where(:account_id => current_user.account_id).includes(:vendor, :playlist_items).order(:name)
   end
 
   # GET /vendors
@@ -40,8 +40,24 @@ class ProductsController < ApplicationController
       @product.account_id = current_user.account_id
     end
 
+    @product.save
+
+    if @product.errors.empty?
+      # if an array of playlists was supplied in the request, then add the newly
+      # created product to the provided playslists
+      playlists = params[:playlist_items]
+      if !playlists.nil?
+        playlists.each { |pl|
+          new_pl_item = PlaylistItem.new
+          new_pl_item.playlist_id = pl[:playlist_id]
+          new_pl_item.product_id = @product.id
+          new_pl_item.save
+        }
+      end
+    end
+
     respond_to do |format|
-      if @product.save
+      if @product.errors.empty?
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { 
           @product_json = @product.as_json
@@ -57,8 +73,42 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+
+    @product.update(product_params)
+
+    if @product.errors.empty?
+      # if an array of playlists was supplied in the request, then add, delete, or keep the 
+      # updated product to the provided playslists
+      existing_playlists = @product.playlist_items
+      playlists = params[:playlist_items]
+      # first add new playlists
+      if !playlists.nil?
+        playlists.each { |pl|
+          existing_index = existing_playlists.index { |epl| epl.playlist_id==pl[:playlist_id] }
+          if existing_index.nil?
+            new_pl_item = PlaylistItem.new
+            new_pl_item.playlist_id = pl[:playlist_id]
+            new_pl_item.product_id = @product.id
+            new_pl_item.save
+          end
+        }
+      end
+      # second, delete playlists that are not requested anymore
+      if !existing_playlists.nil?
+        existing_playlists.each { |pl|
+          new_index = nil
+          if !playlists.nil?
+            new_index = playlists.index { |epl| epl[:playlist_id]==pl[:playlist_id] }
+          end
+          if new_index.nil?
+            PlaylistItem.where("playlist_id=? and product_id=?", pl.playlist_id, @product.id).destroy_all
+          end
+        }
+      end
+    end
+
     respond_to do |format|
-      if @product.update(product_params)
+      if @product.errors.empty?
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,6 +122,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product.destroy
+    #debugger
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { 

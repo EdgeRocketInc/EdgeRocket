@@ -20,7 +20,10 @@
   <div class="gridStyle" ng-grid="gridOptions"></div>
 
   <div class="row voffset3" ng-if="editModeIndex < 0 && addingMode == false">
-    <div class="col-lg-12">
+    <div class="col-sm-6">
+      <span class="error red" ng-if="serverError">* {{serverError}}</span>
+    </div>
+    <div class="col-sm-6">
       <div class="pull-right">
         <button class="btn btn-sm btn-success" ng-click="addProduct()">
           Add Item
@@ -116,6 +119,16 @@
                   <input type="number" class="form-control-number form-control" name="newDurationMinutes" 
                     min="0" step="5" placeholder="Min" ng-model="newProduct.theDuration.minutes" tooltip="Minutes">
                   </input>
+                </div>
+              </div> <!-- Row -->
+
+
+              <div class="row voffset2">
+                <div class="col-sm-6">
+                  <label>Include in Playlists:</label>
+                  <select class="form-control" name="selectPlaylists" multiple size="5"
+                      ng-model="newProduct.thePlaylists" ng-options="pl.title for pl in allPlaylists">
+                  </select>
                 </div>
               </div> <!-- Row -->
 

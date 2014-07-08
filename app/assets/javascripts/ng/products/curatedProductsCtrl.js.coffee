@@ -34,6 +34,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     ]
   }  
 
+  $scope.serverError = null
+
   clearEditForm = ->
     $scope.newProduct.name = null
     $scope.newProduct.description = null
@@ -46,6 +48,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $scope.newProduct.school = null
     $scope.newProduct.theMediaType = null
     $scope.newProduct.theDuration = { hours : null, minutes : null }
+    $scope.newProduct.thePlaylists = []
+    $scope.serverError = null
 
   loadVendors =  ->
     $http.get('/vendors.json').success( (data) ->
@@ -62,6 +66,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       loadVendors()
     ).error( ->
       console.log('Error loading products')
+    )
+
+  loadPlaylists =  ->
+    $http.get('/playlists.json').success( (data) ->
+      $scope.allPlaylists = data
+      console.log('Successfully loaded playlists')
+    ).error( ->
+      console.log('Error loading playlists')
     )
 
   # return viendor id based on the passed name
@@ -91,12 +103,20 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   clearEditForm()
   loadProducts()
+  loadPlaylists()
 
   $scope.addProduct = () ->
     console.log('switching to adding mode')
     $scope.addingMode = true
     $scope.editModeIndex = -1
     clearEditForm()
+
+
+  # Add selected playlists to the array of playlist items
+  addProductToPlaylist = (pl_items, selected_playlists) ->
+    for pl in selected_playlists
+      new_item = { playlist_id : pl.id }
+      pl_items.push(new_item)
 
   $scope.createProduct = () ->
     console.log('Creating:' + $scope.newProduct.name)
@@ -114,7 +134,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       media_type : if $scope.newProduct.theMediaType then $scope.newProduct.theMediaType.value else null
       duration : toDurationHours($scope.newProduct.theDuration)
       manual_entry : true
+      playlist_items : [] # will populate below
     }
+    addProductToPlaylist(new_prd.playlist_items, $scope.newProduct.thePlaylists)
     # POST and send a request
     $http.post('/products.json', new_prd).success( (data) ->
       console.log('Successfully created product')
@@ -130,6 +152,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     )
 
   $scope.editProduct = (product_id) ->
+    clearEditForm()    
     # find the record and switch to edit more
     for p,i in $scope.products
       if p.id == product_id
@@ -156,6 +179,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
             $scope.newProduct.theMediaType = mt
             break
 
+        # select the playlists in which it's included
+        if p.playlist_items != null && p.playlist_items != undefined
+          for pl in $scope.allPlaylists
+            for pl_item in p.playlist_items
+              if pl_item.playlist_id == pl.id
+                $scope.newProduct.thePlaylists.push(pl)
+
         console.log('editing index=' + $scope.editModeIndex + ' name:' + p.name)
         break
 
@@ -178,7 +208,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       media_type : if $scope.newProduct.theMediaType then $scope.newProduct.theMediaType.value else null
       duration : toDurationHours($scope.newProduct.theDuration)
       manual_entry : true
+      playlist_items : [] # will populate below
     }
+    addProductToPlaylist(updated_item.playlist_items, $scope.newProduct.thePlaylists)
     console.log('Updating: ' + updated_item.name)
     # POST and send a request
     $http.put('/products/' + updated_item.id + '.json', updated_item).success( (data) ->
@@ -198,6 +230,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           p.school = updated_item.school
           p.media_type = updated_item.media_type
           p.duration = updated_item.duration
+          p.playlist_items = updated_item.playlist_items
           break
       # switch to non-editing mode
       $scope.editModeIndex = -1
@@ -215,7 +248,6 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.removeProduct = (product_id) ->
     $http.delete('/products/' + product_id + '.json', null).success( (data) ->
-      console.log('Successfully removed product')
       $scope.editModeIndex = -1
       $scope.addingMode = false
       # find and remove record from internal array
@@ -223,7 +255,10 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         if p.id == product_id
           $scope.products.splice(i,1)
           break
+      $scope.serverError = null
+      console.log('Successfully removed product')
     ).error( ->
+      $scope.serverError = 'Failed to remove an item because it is included in Playlists'
       console.error('Failed to remove product')
     )
 

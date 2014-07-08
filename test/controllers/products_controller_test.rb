@@ -12,12 +12,10 @@ class ProductsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:products)
   end
 
-  test "should create product" do
+  test "should create product json" do
     assert_difference('Product.count') do
-      post :create, product: { name: @product.name }
+      post :create, product: { name: @product.name }, :format => 'json'
     end
-
-    assert_redirected_to product_path(assigns(:product))
   end
 
   test "should show product" do
@@ -30,9 +28,9 @@ class ProductsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should update product" do
-    patch :update, id: @product, product: { name: @product.name }
-    assert_redirected_to product_path(assigns(:product))
+  test "should update product json" do
+    patch :update, id: @product, product: { name: @product.name }, \
+      playlist_items: [ {playlist_id: 1001} ], :format => 'json'
   end
 
   test "should not destroy product with dependency" do
