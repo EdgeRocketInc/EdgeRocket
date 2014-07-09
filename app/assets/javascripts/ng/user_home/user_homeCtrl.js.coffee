@@ -4,7 +4,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-@IndexCtrl = ($scope, $http, $modal) ->
+@IndexCtrl = ($scope, $http, $modal, $sce) ->
 
   $scope.playlistsExist = true # TODO make dynamic
   # TODO: move 4 arrays below into one array of structures $scope.plStyle = []
@@ -145,7 +145,10 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     else
       $scope.options_json.gbox_class = 'check'
 
-
+  $scope.companyOverview = () ->
+    $scope.company_overview = $scope.user.account['overview']
+    $sce.trustAsHtml($scope.company_overview)
+    
 
 # controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->
@@ -163,5 +166,5 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     console.log('selected = ' + s)
     $modalInstance.close(s)
 
-@IndexCtrl.$inject = ['$scope', '$http', '$modal']
+@IndexCtrl.$inject = ['$scope', '$http', '$modal', '$sce']
 @SurveyModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
