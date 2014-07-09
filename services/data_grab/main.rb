@@ -6,12 +6,19 @@ require 'active_record'
 require 'logger'
 require 'optparse'
 require 'yaml'
+#require 'byebug'
 
 class CourseraClient
  	def self.courses
-		courses = RestClient.get "https://api.coursera.org/api/catalog.v1/courses?fields=instructor", {:accept => :json}
+		courses = RestClient.get "https://api.coursera.org/api/catalog.v1/courses?fields=instructor&includes=instructors", {:accept => :json}
 		courses_json = JSON.parse(courses)
 		courses_json['elements']		
+ 	end
+
+ 	def self.instructors
+		instructors = RestClient.get "https://api.coursera.org/api/catalog.v1/instructors", {:accept => :json}
+		instructors_json = JSON.parse(instructors)
+		instructors_json['elements']		
  	end
 end
 
@@ -50,6 +57,7 @@ ActiveRecord::Base.establish_connection\
 	:password => config['database']['password']
 
 
+instructors_json = CourseraClient.instructors
 courses_json = CourseraClient.courses
 skipped = 0
 
@@ -62,6 +70,25 @@ courses_json.each_with_index { |crs, i|
 		prd.vendor_id = 1 # Coursera
 		prd.name = crs['name']
 		prd.authors = crs['instructor']
+		# in some cases, instructors field may be empty, then we need to dig into the assicoated links
+		if prd.authors.blank?
+			#puts "blank instr, linked instructors=" + crs['links']['instructors'].to_s
+			if !crs['links'].blank? && !crs['links']['instructors'].blank?
+				# find instructors in the pre-fetched list
+				crs['links']['instructors'].each { |linked_instructor|
+					instructors_json.each { |instr|
+						if instr['id'] == linked_instructor
+							#puts "linked instructor " + instr['firstName'] + ' ' + instr['lastName']
+							if prd.authors.blank?
+								prd.authors = instr['firstName'] + ' ' + instr['lastName']
+							else
+								prd.authors += ', ' + instr['firstName'] + ' ' + instr['lastName']
+							end
+						end
+					}
+				}
+			end
+		end
 		prd.origin = course_url
 		prd.media_type = 'online'
 		prd.manual_entry = false
