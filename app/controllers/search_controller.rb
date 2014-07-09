@@ -18,7 +18,6 @@ class SearchController < ApplicationController
     prd.each { |p|
       # produce an asset path for Angular to understand and save it in the same array
       p['logo_asset_url'] = view_context.image_path(p['logo_file_name'])
-      p['price_fmt'] = p['price'].blank? ? 'Free' : view_context.number_to_currency(p['price'])
     }
 
     respond_to do |format|

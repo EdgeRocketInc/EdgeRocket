@@ -4,11 +4,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-@SearchCtrl = ($scope, $http, $modal, $log) ->
+@SearchCtrl = ($scope, $http, $modal, $log, $filter) ->
 
-  $scope.rows = [0]
-  $scope.rowItems = []
-  $scope.rowItems[0] = []
+  $scope.items = []
   # for media type checkboxes
   $scope.mediaCbAll = { class : 'check' }
   $scope.mediaCheckboxes = [
@@ -20,20 +18,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   loadCourses =  ->
     $http.get('/search.json').success( (data) ->
-      # chunk data into rows for iterating on the page
-      r = 0
-      c = 0
+      # massage data for displaying
       for item in data
         # add a display rating variable 
         item.display_rating = item.avg_rating * 5
-        $scope.rowItems[r][c] = item
-        if (c >= 3)
-          r++
-          $scope.rowItems[r] = []
-          $scope.rows[r] = r
-          c = 0
-        else
-          c++
+        # add a formatted price 
+        item.price_fmt = if item.price > 0 then $filter('currency')(item.price, '$') else 'Free'
+      $scope.items = data
       console.log('Successfully loaded search data')
     ).error( ->
       console.log('Error loading search data')
@@ -156,5 +147,5 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.error('Failed to add to playlist')
     )
 
-@SearchCtrl.$inject = ['$scope', '$http', '$modal', '$log']
+@SearchCtrl.$inject = ['$scope', '$http', '$modal', '$log', '$filter']
 @ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'course']
