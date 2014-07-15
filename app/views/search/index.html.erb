@@ -114,7 +114,7 @@
     -->
 
     <div class="col-md-12">
-        <span class="" ng-repeat="crs in items | filter:searchText | filter:filterMediaType">
+        <span class="" ng-repeat="crs in items | filter:searchText | filter:filterMediaType | limitTo:limitItems">
           <div class="well well-sm search-tile">
             <div class="rating-right">
               <rating class="orange" ng-model="crs.display_rating" max="5" readonly="true"></rating>

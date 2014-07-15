@@ -90,3 +90,7 @@ gem 'keen', '~> 0.8'
 
 # Google API client for Google+ Domain discussions and comments
 gem 'google-api-client', '~> 0.7'
+
+# pagination
+gem 'clean_pagination', '~> 0.0'
+gem 'rack-cors', :require => 'rack/cors'

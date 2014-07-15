@@ -10,7 +10,7 @@ class Product < ActiveRecord::Base
 
   # search courses (aka prodcuts) with a filter, and include the vendor fields
   # in the result
-  def self.search_courses(account_id)
+  def self.search_courses(account_id, limit, offset)
     # TODO make it right with the eager loading or something like that
     sql_query =
       'select p.id, p.name as pname, p.authors, p.origin, p.price, v.name as vname, v.logo_file_name, ' \
@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
     if !account_id.nil?
        sql_query += ' or p.account_id=' + account_id.to_s
     end
-    sql_query += ' order by p.manual_entry desc, p.name'
+    sql_query += ' order by p.manual_entry desc, p.name offset ' + offset.to_s + ' limit ' + limit.to_s
     self.connection.select_all(sql_query)
   end
 

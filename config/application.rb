@@ -36,5 +36,16 @@ module EdgeApp
     # less-rails gem (default all generators)
     config.app_generators.stylesheet_engine :less
 
+    # Required for CleanPagination gem
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          :headers => :any,
+          :methods => [:get, :options],
+          :expose => ['Content-Range', 'Accept-Ranges']
+      end
+    end
+
   end
 end

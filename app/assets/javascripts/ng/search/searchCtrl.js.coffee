@@ -15,6 +15,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     { class : 'check', label : 'Articles', media_type : 'blog' }
     { class : 'check', label : 'Videos', media_type : 'video' }
   ]
+  $scope.limitItems = 100
 
   loadCourses =  ->
     $http.get('/search.json').success( (data) ->
