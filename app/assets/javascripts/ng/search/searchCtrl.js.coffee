@@ -6,7 +6,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 @SearchCtrl = ($scope, $http, $modal, $log, $filter) ->
 
+  DISPLAY_ITEMS = 100
   $scope.items = []
+  $scope.filteredItems = []
   # for media type checkboxes
   $scope.mediaCbAll = { class : 'check' }
   $scope.mediaCheckboxes = [
@@ -15,7 +17,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     { class : 'check', label : 'Articles', media_type : 'blog' }
     { class : 'check', label : 'Videos', media_type : 'video' }
   ]
-  $scope.limitItems = 100
+  $scope.limitItems = DISPLAY_ITEMS
 
   loadCourses =  ->
     $http.get('/search.json').success( (data) ->
@@ -29,6 +31,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           # add a formatted price 
           item.price_fmt = if item.price > 0 then $filter('currency')(item.price, '$') else 'Free'
         $scope.items = data
+        $scope.filteredItems = $scope.items
       else
         $scope.items = null
       console.log('Successfully loaded search data')
@@ -37,6 +40,30 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     )
 
   loadCourses()
+
+  # Filter for media types. 
+  # Returns true if all media types are enabled or a specific type matches enabled checkbox
+  $scope.filterMediaType = (product) ->
+    result = false
+    if $scope.mediaCbAll.class == 'check'
+      result = true
+    else
+      for cbox in $scope.mediaCheckboxes
+        if cbox.class == 'check' && product.media_type == cbox.media_type
+          result = true
+          break
+    result
+
+  # apply all filters
+  filterAll = ->
+    $scope.limitItems = DISPLAY_ITEMS
+    $scope.filteredItems = $filter('filter')( $scope.items, {$:$scope.searchText} )
+    $scope.filteredItems = $filter('filter')( $scope.filteredItems, $scope.filterMediaType )
+
+  # Watch search and apply all filters
+  $scope.$watch('searchText', (newVal, oldVal) ->
+    filterAll()
+  )
 
   # modal window with course details
   $scope.openModal = (selectedCourse) ->
@@ -72,6 +99,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.mediaCbAll.class = 'check'
       for cb in $scope.mediaCheckboxes
         cb.class = 'check'
+    filterAll()
 
   # toggle single media type check box
   $scope.toggleMediaCbox = (cbox) ->
@@ -80,19 +108,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.mediaCbAll.class = 'unchecked'
     else
       cbox.class = 'check' 
+    filterAll()
     
-  # Filter for media types. 
-  # Returns true if all media types are enabled or a specific type matches enabled checkbox
-  $scope.filterMediaType = (product) ->
-    result = false
-    if $scope.mediaCbAll.class == 'check'
-      result = true
-    else
-      for cbox in $scope.mediaCheckboxes
-        if cbox.class == 'check' && product.media_type == cbox.media_type
-          result = true
-          break
-    result
+  # increase the limit of displayed items
+  $scope.moreItems = () ->
+    $scope.limitItems += DISPLAY_ITEMS
 
 # ------- controller for modal window --------------
 
