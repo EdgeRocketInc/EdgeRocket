@@ -21,10 +21,8 @@ class DashboardsController < ApplicationController
     publish_keen_io(:html, :ui_actions, {
         :user_email => current_user.email,
         :action => controller_path,
-        :method => action_name,
-        :request_format => request.format.symbol
-      }
-    )
+        :method => action_name
+    })
 
   end
 

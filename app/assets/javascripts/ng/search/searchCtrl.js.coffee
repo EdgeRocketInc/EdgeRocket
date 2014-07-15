@@ -18,13 +18,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   loadCourses =  ->
     $http.get('/search.json').success( (data) ->
-      # massage data for displaying
-      for item in data
-        # add a display rating variable 
-        item.display_rating = item.avg_rating * 5
-        # add a formatted price 
-        item.price_fmt = if item.price > 0 then $filter('currency')(item.price, '$') else 'Free'
-      $scope.items = data
+      #debugger
+      # the server may return literal null
+      if data != 'null'
+        # massage data for displaying
+        for item in data
+          # add a display rating variable 
+          item.display_rating = item.avg_rating * 5
+          # add a formatted price 
+          item.price_fmt = if item.price > 0 then $filter('currency')(item.price, '$') else 'Free'
+        $scope.items = data
+      else
+        $scope.items = null
       console.log('Successfully loaded search data')
     ).error( ->
       console.log('Error loading search data')

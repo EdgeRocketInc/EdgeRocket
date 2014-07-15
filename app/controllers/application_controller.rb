@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 	def publish_keen_io(request_format, collection, data_hash)
 	    #TODO make it async
 	    if Rails.env.production? && request.format.symbol == request_format
+          data_hash[:request_format] = request_format
 	      Keen.publish(collection, data_hash)
 	    end
 	end
