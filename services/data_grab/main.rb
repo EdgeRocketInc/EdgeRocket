@@ -12,9 +12,11 @@ class ProviderClient
 
   attr_accessor :vendor_id
   attr_accessor :json_data
+  attr_accessor :one_price
 
-  def initialize(vendor_id, json_file)
+  def initialize(vendor_id, json_file, price = nil)
   	self.vendor_id = vendor_id
+  	self.one_price = price
   	# read json data if it's provided
 	if !json_file.nil? 
 		io = IO.read(json_file)
@@ -99,15 +101,15 @@ class JsonClient < ProviderClient
 	end
 
     def description(row)
-		row['description'][0]
+		row['description'].nil? ? nil : row['description'][0]
     end
 
     def price(row)
-    	49
+    	one_price
  	end
 
 	def authors(row)
-		row['authors'][0]
+		row['authors'].nil? ? nil : row['authors'][0]
 	end
 
 	def courses
@@ -124,8 +126,9 @@ end
 
 # it maps providers according to the value in vendors table
 providers = [
-	{ vendor_id: 1, provider_class: CourseraClient },
-	{ vendor_id: 9, provider_class: JsonClient }
+	{ vendor_id: 1, provider_class: CourseraClient, price: nil },
+	{ vendor_id: 9, provider_class: JsonClient, price: 49 }, # GA
+	{ vendor_id: 14, provider_class: JsonClient, price: 25 } # Treehouse
 ]
 
 options = {:config => nil}
@@ -171,7 +174,7 @@ ActiveRecord::Base.establish_connection\
 provider = nil
 for p in providers
 	if p[:vendor_id] == options[:provider].to_i
-		provider = p[:provider_class].new(p[:vendor_id], options[:json])
+		provider = p[:provider_class].new(p[:vendor_id], options[:json], p[:price])
 		break
 	end
 end
