@@ -27,6 +27,7 @@ EdgeApp::Application.routes.draw do
   get "products/curated" => 'products#curated_index'
   get "profile/current" => 'profile#index'
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
+  get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
   get "search" => 'search#index'
   get "teams" => 'teams#index' 
   get "user_home" => 'user_home#index'

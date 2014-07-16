@@ -68,7 +68,7 @@
         <div class="panel-body panel-discussions">
           <div class="row">
             <div class="col-xs-12">
-              <textarea class="form-control textarea-discussions" placeholder="Add comment or question" ng-model="newDiscussion.title">
+              <textarea class="form-control textarea-discussions" placeholder="Add comment or question for coworkers" ng-model="newDiscussion.title">
               </textarea>
             </div>
           </div> <!-- Row -->
@@ -77,7 +77,7 @@
               <div class="pull-right">
                 <span class="" ng-if="options_json.discussions == 'gplus'">
                   <span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" ng-click="toggleGBox()"></span>
-                  <span class="glyph-label" tooltip="Also post to Google+">Google+</span>
+                  <span class="glyph-label" tooltip="Also post to Google+ and make visible to coworkers only">Google+</span>
                 </span>
                 <button class="btn btn-sm btn-success" type="button" ng-click="createDiscussion()">Submit</button>
               </div>

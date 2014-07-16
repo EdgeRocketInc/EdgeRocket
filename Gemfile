@@ -94,3 +94,6 @@ gem 'google-api-client', '~> 0.7'
 # pagination
 gem 'clean_pagination', '~> 0.0'
 gem 'rack-cors', :require => 'rack/cors'
+
+# image processing
+gem 'mini_magick', '~> 3.7'

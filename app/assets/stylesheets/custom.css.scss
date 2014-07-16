@@ -61,7 +61,7 @@ img {
 
 nav.navbar {
   font-size: 15px;
-  background-color: #004F69;
+  background-color: #003050;
 }
 
 
@@ -74,12 +74,25 @@ nav.navbar {
 }
 
 nav.navbar-default, .navbar-nav > li > .dropdown-menu {
-  background-color: #004F69; // Main bg color for navbar
+  background-color: #003050; // Main bg color for navbar
 }
 
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
+}
+
+// Profile menu navigation goes together with thumbnail
+a.dropdown-toggle.nav-profile {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  padding-left: 0px;
+}
+
+// Profile menu thumbnail
+.nav-thumb {
+  height: 45px;
+  padding-right: 5px;
 }
 
 // Vertical offset for rows

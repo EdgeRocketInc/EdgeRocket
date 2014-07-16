@@ -70,9 +70,9 @@
       <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
         	<li class="dropdown">
-            <a href="#" class="dropdown-toggle"> <!-- removed data-toggle="dropdown" because it conflicts with ui-bootstrap-0.11 -->
-              <span class="glyphicon glyphicon-user"/> 
-              <%= current_user.email %>
+            <a href="#" class="dropdown-toggle nav-profile"> <!-- removed data-toggle="dropdown" because it conflicts with ui-bootstrap-0.11 -->
+              <%= image_tag '/profile/get_profile_photo_thumb', :alt => 'Profile', :class => 'nav-thumb'  =%>
+              <%= current_user.first_name.blank? ? current_user.email : current_user.first_name %>
             </a>
             <ul class="dropdown-menu">
               <li>

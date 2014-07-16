@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_one :budget
   belongs_to :account
   has_many :discussions
+  has_one :profile 
 
   # returns the role with the highest level of access
   def best_role
