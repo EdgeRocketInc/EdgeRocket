@@ -47,20 +47,19 @@
           <div class="row {{rowClass[$last]}}" ng-repeat="pl in data.playlists">
             <div class="col-xs-12">
               <div class="inline-col-left">
+                <!--
                 <span class="glyphicon glyph-big glyphicon-{{ glyphSubscribed[$index] }}" tooltip="Subscribed"></span>
+                -->
+                &nbsp;
               </div>
               <div class="inline-col-wrap">
                 <div class="inline-col-right">
-                  <!--
                   <a id="{{ pl.id }}" href="#"
                     ng-click="togglePlaylistSubsciption($index)">
-                    <span class="glyphicon glyph-big glyph-action glyphicon-{{ glyphAction[$index] }}" tooltip="Subscribe or unscubscribe"></span>
+                    <span class="glyphicon glyph-big glyph-action glyphicon-{{ glyphAction[$index] }}" 
+                      tooltip="{{ glyphTooltip[$index] }}">
+                    </span>
                   </a>
-                  -->
-                  <button id="{{ pl.id }}" type="button" class="btn btn-xs btn-{{ btnSubscribedClass[$index] }}"
-                    ng-click="togglePlaylistSubsciption($index)">
-                    {{ btnAction[$index] }}
-                  </button>
                 </div>
                 <div class="inline-col-center">
                   <div class="text-warning">{{ pl.title }}</div>

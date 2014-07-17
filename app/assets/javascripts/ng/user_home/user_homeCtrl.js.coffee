@@ -9,10 +9,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.playlistsExist = true # TODO make dynamic
   # TODO: move 4 arrays below into one array of structures $scope.plStyle = []
   $scope.isSubscribed = []
-  $scope.btnSubscribedClass = []
-  $scope.btnAction = []
   $scope.glyphSubscribed = []
   $scope.glyphAction = []
+  $scope.glyphTooltip = []
   # discussions
   $scope.discussions = []
   $scope.newDiscussion = { title : '', actor_name : 'me', gplus : false }
@@ -27,15 +26,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         # console.log(pl.id)
         if $scope.data.subscribed_playlists[pl.id]?
           $scope.isSubscribed[i] = true
-          $scope.btnSubscribedClass[i] = 'danger'
-          $scope.glyphAction[i] = 'remove-sign red'
-          $scope.btnAction[i] = 'Unsubscribe'
+          $scope.glyphAction[i] = 'check'
+          $scope.glyphTooltip[i] = 'Uncheck to unsubscribe'
           $scope.glyphSubscribed[i] = 'ok-sign'
         else
           $scope.isSubscribed[i] = false
-          $scope.btnSubscribedClass[i] = 'success'
-          $scope.glyphAction[i] = 'plus-sign green'
-          $scope.btnAction[i] = 'Subscribe'
+          $scope.glyphAction[i] = 'unchecked'
+          $scope.glyphTooltip[i] = 'Check to subscribe'
           $scope.glyphSubscribed[i] = ''
     ).error( ->
       console.log('Error loading user_home')
@@ -72,9 +69,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       createSubscription($scope.data.playlists[index].id)
       console.log('changed pl.id=' + $scope.data.playlists[index].id + ' to true' )
     # TODO this is crazy but I can't make it work otherwise
-    $scope.glyphAction[index] = if $scope.glyphAction[index] == 'remove-sign red' then 'plus-sign green' else 'remove-sign red'
-    $scope.btnAction[index] = if $scope.btnAction[index] == 'Unsubscribe' then 'Subscribe' else 'Unsubscribe'
-    $scope.btnSubscribedClass[index] = if $scope.btnSubscribedClass[index] == 'success' then 'danger' else 'success'
+    $scope.glyphAction[index] = if $scope.glyphAction[index] == 'check' then 'unchecked' else 'check'
+    $scope.glyphTooltip[index] = if $scope.glyphAction[index] == 'check' then 'Uncheck to unsubscribe' else 'Check to subscribe'
     $scope.glyphSubscribed[index] = if $scope.glyphSubscribed[index] == 'ok-sign' then '' else 'ok-sign'
 
 
