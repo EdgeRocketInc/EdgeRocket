@@ -25,7 +25,9 @@
     <div class="col-md-8">
 
       <div class="panel panel-info">
-        <div class="panel-heading">Propel Your Learning and Success
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-plane"></span>
+          Propel Your Learning and Success
           <i class="pull-right glyphicon" ng-click="isCollapsed = !isCollapsed"
             ng-class="{'glyphicon-chevron-down': !isCollapsed, 'glyphicon-chevron-right': isCollapsed}">
           </i>
@@ -36,7 +38,10 @@
       </div>
 
 	    <div class="panel panel-info">
- 		    <div class="panel-heading">Playlists</div>
+ 		    <div class="panel-heading">
+          <span class="glyphicon glyphicon-list"></span>
+          Playlists
+        </div>
         <div class="panel-body">
           <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
           <div class="row {{rowClass[$last]}}" ng-repeat="pl in data.playlists">
@@ -46,10 +51,16 @@
               </div>
               <div class="inline-col-wrap">
                 <div class="inline-col-right">
+                  <!--
                   <a id="{{ pl.id }}" href="#"
                     ng-click="togglePlaylistSubsciption($index)">
                     <span class="glyphicon glyph-big glyph-action glyphicon-{{ glyphAction[$index] }}" tooltip="Subscribe or unscubscribe"></span>
                   </a>
+                  -->
+                  <button id="{{ pl.id }}" type="button" class="btn btn-xs btn-{{ btnSubscribedClass[$index] }}"
+                    ng-click="togglePlaylistSubsciption($index)">
+                    {{ btnAction[$index] }}
+                  </button>
                 </div>
                 <div class="inline-col-center">
                   <div class="text-warning">{{ pl.title }}</div>
@@ -64,7 +75,10 @@
     </div>
     <div class="col-md-4">
 	    <div class="panel panel-info" ng-if="options_json.discussions">
-		    <div class="panel-heading">Discussions</div>
+		    <div class="panel-heading">
+          <span class="glyphicon glyphicon-comment"></span>
+          Discussions
+        </div>
         <div class="panel-body panel-discussions">
           <div class="row">
             <div class="col-xs-12">
@@ -95,7 +109,10 @@
 	    </div>
 
       <div class="panel panel-info" ng-if="options_json.recommendations">
- 		    <div class="panel-heading">Recommended Courses</div>
+ 		    <div class="panel-heading">
+          <span class="glyphicon glyphicon-heart-empty"></span>
+          Recommended Courses
+        </div>
  		    <div class="panel-body">
           <div>
             <a href="https://generalassemb.ly/online/videos/three-strategies-for-designing-persuasive-presentations" class="course-link" target="_blank">Designing Persuasive Presentations</a>

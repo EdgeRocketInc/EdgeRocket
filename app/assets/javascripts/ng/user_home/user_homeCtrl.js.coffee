@@ -10,6 +10,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # TODO: move 4 arrays below into one array of structures $scope.plStyle = []
   $scope.isSubscribed = []
   $scope.btnSubscribedClass = []
+  $scope.btnAction = []
   $scope.glyphSubscribed = []
   $scope.glyphAction = []
   # discussions
@@ -26,13 +27,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         # console.log(pl.id)
         if $scope.data.subscribed_playlists[pl.id]?
           $scope.isSubscribed[i] = true
-          $scope.btnSubscribedClass[i] = 'btn-default'
+          $scope.btnSubscribedClass[i] = 'danger'
           $scope.glyphAction[i] = 'remove-sign red'
+          $scope.btnAction[i] = 'Unsubscribe'
           $scope.glyphSubscribed[i] = 'ok-sign'
         else
           $scope.isSubscribed[i] = false
-          $scope.btnSubscribedClass[i] = 'btn-default'
+          $scope.btnSubscribedClass[i] = 'success'
           $scope.glyphAction[i] = 'plus-sign green'
+          $scope.btnAction[i] = 'Subscribe'
           $scope.glyphSubscribed[i] = ''
     ).error( ->
       console.log('Error loading user_home')
@@ -70,6 +73,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('changed pl.id=' + $scope.data.playlists[index].id + ' to true' )
     # TODO this is crazy but I can't make it work otherwise
     $scope.glyphAction[index] = if $scope.glyphAction[index] == 'remove-sign red' then 'plus-sign green' else 'remove-sign red'
+    $scope.btnAction[index] = if $scope.btnAction[index] == 'Unsubscribe' then 'Subscribe' else 'Unsubscribe'
+    $scope.btnSubscribedClass[index] = if $scope.btnSubscribedClass[index] == 'success' then 'danger' else 'success'
     $scope.glyphSubscribed[index] = if $scope.glyphSubscribed[index] == 'ok-sign' then '' else 'ok-sign'
 
 
