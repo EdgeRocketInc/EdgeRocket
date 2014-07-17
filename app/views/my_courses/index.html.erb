@@ -93,7 +93,7 @@
                       <img ng-src="{{c.product.vendor.logo_asset_url}}" class="img-provider-logo" 
                         tooltip="{{c.product.vendor.name}}" />
                     </td>
-                    <td class="course-col course-col-50px">
+                    <td class="course-col course-col-60px">
                         <span class="glyphicon"
                           ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
                           tooltip="Assigned by {{c.assigned_by}}">
@@ -101,7 +101,10 @@
                         <span class="glyphicon {{mediaTypes[c.product.media_type].glyph}}"
                           tooltip="{{mediaTypes[c.product.media_type].text}}">
                         </span>
-                        <span class="label-duration" ng-if="c.product.duration">{{c.product.duration}}h</span>
+                        <div class="label-duration" ng-if="c.product.duration">
+                          {{c.product.duration_object.hours}}h
+                          {{c.product.duration_object.minutes}}m
+                        </div>
                     </td>
                     <td class="course-col course-col-100px" ng-if="cg.status != 'compl'">
 

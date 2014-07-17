@@ -15,7 +15,27 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       'glyph' : 'glyphicon-cloud',
       'text' : 'Online'
     }
+    'book': {
+      'glyph' : 'glyphicon-book',
+      'text' : 'Book'
+    }
+    'blog': {
+      'glyph' : 'glyphicon-bookmark',
+      'text' : 'Article'
+    }
   }
+
+  # TODO: it's a duplicate function, make it common/reusable
+  # convert duration in hours with fraction to an object wtih hours and minutes
+  toDurationObject = (duration_hours) ->
+    hh = null
+    mm = null   
+    if duration_hours
+      hh = Math.floor(duration_hours)
+      mm = (duration_hours - hh) * 60
+      mm = Math.round(mm)
+    duration_obj = { hours : hh, minutes : mm }
+
 
   loadMyCourses =  ->
     $http.get('/my_courses.json').success( (data) ->
@@ -41,6 +61,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         for c in cg.my_courses
           # TODO make it less ugly by refactoring the whole JSON structure
           c.product.vendor = (v for v in data.vendors when v.id is c.product.vendor_id)[0]
+          c.product.duration_object = toDurationObject(c.product.duration)
           #console.log('vendor=' + c.product.vendor.name)
           #debugger
       # massage playlists
