@@ -102,7 +102,12 @@
               Comment on: "<a href="/products/{{disc_post.product.id}}">{{disc_post.product.name}}</a>" by {{disc_post.product.authors}}
             </div>
             <div class="voffset2">{{ disc_post.title }}</div>
-            <div class="text-success text-right">{{disc_post.user.first_name}} {{disc_post.user.last_name}}</div>
+            <div class="text-success text-right" ng-if="disc_post.user.first_name == null || disc_post.user.first_name == ''">
+              {{disc_post.user.email}}
+            </div>
+            <div class="text-success text-right"  ng-if="disc_post.user.first_name != null && disc_post.user.first_name != ''">
+              {{disc_post.user.first_name}} {{disc_post.user.last_name}}
+            </div>
           </div>
         </div>
 	    </div>

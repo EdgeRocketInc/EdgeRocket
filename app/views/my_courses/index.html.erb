@@ -98,7 +98,7 @@
                           ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
                           tooltip="Assigned by {{c.assigned_by}}">
                         </span>
-                        <span class="glyphicon {{mediaTypes[c.product.media_type].glyph}}"
+                        <span class="glyphicon gray {{mediaTypes[c.product.media_type].glyph}}"
                           tooltip="{{mediaTypes[c.product.media_type].text}}">
                         </span>
                         <div class="label-duration" ng-if="c.product.duration">
