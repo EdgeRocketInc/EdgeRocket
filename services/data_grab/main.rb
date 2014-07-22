@@ -1,3 +1,6 @@
+#!/usr/bin/ruby
+# main script for pulling catalog data from multiple providers
+
 require 'rubygems' 
 require 'bundler/setup' 
 
@@ -7,119 +10,7 @@ require 'logger'
 require 'optparse'
 require 'yaml'
 require 'byebug'
-
-class ProviderClient
-
-  attr_accessor :vendor_id
-  attr_accessor :json_data
-  attr_accessor :one_price
-
-  def initialize(vendor_id, json_file, price = nil)
-  	self.vendor_id = vendor_id
-  	self.one_price = price
-  	# read json data if it's provided
-	if !json_file.nil? 
-		io = IO.read(json_file)
-		self.json_data = JSON.parse( io )
-	end
-  end
-
-  def origin(row)
-    raise "Abstract method called"
-  end
-
-  def name(row)
-    raise "Abstract method called"
-  end
-
-  def description(row)
-    raise "Abstract method called"
-  end
-
-  def price(row)
-    raise "Abstract method called"
-  end
-
-  def authors(row)
-    raise "Abstract method called"
-  end
-
-  def courses
-    raise "Abstract method called"
-  end
-
-  def instructors
-    raise "Abstract method called"
-  end
-end
-
-# using Coursera API
-class CourseraClient < ProviderClient
-
-	def origin(row)
-		course_url = 'https://www.coursera.org/course/' + row['shortName']
-	end
-
-	def name(row)
-		row['name']
-	end
-
-    def description(row)
-		row['shortDescription']
-    end
-
-    def price(row)
-    	nil
- 	end
-
-	def authors(row)
-		row['instructor']
-	end
-
- 	def courses
-		courses = RestClient.get "https://api.coursera.org/api/catalog.v1/courses?fields=instructor,shortDescription&includes=instructors", {:accept => :json}
-		courses_json = JSON.parse(courses)
-		courses_json['elements']		
- 	end
-
- 	def instructors
-		instructors = RestClient.get "https://api.coursera.org/api/catalog.v1/instructors", {:accept => :json}
-		instructors_json = JSON.parse(instructors)
-		instructors_json['elements']		
- 	end
-end
-
-# Using scraped data passed as JSON
-class JsonClient < ProviderClient
-
-	def origin(row)
-		row['origin'][0]
-	end
-
-	def name(row)
-		row['name'][0]
-	end
-
-    def description(row)
-		row['description'].nil? ? nil : row['description'][0]
-    end
-
-    def price(row)
-    	one_price
- 	end
-
-	def authors(row)
-		row['authors'].nil? ? nil : row['authors'][0]
-	end
-
-	def courses
-		json_data['data']
-	end
-
-	def instructors
-		nil
-	end
-end
+require './providers'
 
 class Product < ActiveRecord::Base
 end
@@ -128,7 +19,8 @@ end
 providers = [
 	{ vendor_id: 1, provider_class: CourseraClient, price: nil },
 	{ vendor_id: 9, provider_class: JsonClient, price: 49 }, # GA
-	{ vendor_id: 14, provider_class: JsonClient, price: 25 } # Treehouse
+	{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse
+	{ vendor_id: 3, provider_class: UdemyClient, price: nil } # Udemy
 ]
 
 options = {:config => nil}
