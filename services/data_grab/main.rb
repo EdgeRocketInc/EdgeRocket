@@ -20,6 +20,7 @@ providers = [
 	{ vendor_id: 1, provider_class: CourseraClient, price: nil },
 	{ vendor_id: 9, provider_class: JsonClient, price: 49 }, # GA
 	{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse
+	{ vendor_id: 11, provider_class: JsonClient, price: nil }, # Code School 
 	{ vendor_id: 3, provider_class: UdemyClient, price: nil } # Udemy
 ]
 
