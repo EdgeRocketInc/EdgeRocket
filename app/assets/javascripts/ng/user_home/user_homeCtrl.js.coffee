@@ -147,7 +147,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.options_json.gbox_class = 'check'
 
   $scope.companyOverview = () ->
-    $scope.company_overview = $scope.user.account['overview']
+    $scope.company_overview = if $scope.user then $scope.user.account['overview'] else ''
     $sce.trustAsHtml($scope.company_overview)
     
 

@@ -1,5 +1,7 @@
 EdgeApp::Application.routes.draw do
 
+  get 'company/index'
+
   # Don't alloow users to sign up themselves, but allow changing passwords
   devise_for :users, :skip => [:registrations]
     as :user do
@@ -14,7 +16,8 @@ EdgeApp::Application.routes.draw do
   root 'welcome#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get "account" => 'company#account', constraints: { format: 'json' }
+  get "company" => 'company#index', constraints: { format: 'html' }
   get "dashboard" => 'dashboards#show'
   get "discussions" => 'discussions#index'
   get "discussions/:id" => 'discussions#show'
@@ -29,33 +32,34 @@ EdgeApp::Application.routes.draw do
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
   get "search" => 'search#index'
-  get "teams" => 'teams#index' 
+  get "teams" => 'teams#index'
   get "user_home" => 'user_home#index'
   get "users/current" => 'user_home#get_user'
   get "vendors" => 'products#vendors'
   get "welcome/edit_password" => 'welcome#edit_password'
 
-  post "playlist_subscription" => 'user_home#subscribe'
-  post "course_subscription" => 'my_courses#subscribe'
-  post "users/preferences" => 'user_home#create_preferences'
-  post "discussions" => 'discussions#create_discussion'
-  post "playlists/:id/courses/:course_id" => 'playlists#add_course'
-  post "employees" => 'employees#create'
-  post "products/:product_id/reviews" => "discussions#create_review"
+  post "playlist_subscription" => 'user_home#subscribe', constraints: { format: 'json' }
+  post "course_subscription" => 'my_courses#subscribe', constraints: { format: 'json' }
+  post "users/preferences" => 'user_home#create_preferences', constraints: { format: 'json' }
+  post "discussions" => 'discussions#create_discussion', constraints: { format: 'json' }
+  post "playlists/:id/courses/:course_id" => 'playlists#add_course', constraints: { format: 'json' }
+  post "employees" => 'employees#create', constraints: { format: 'json' }
+  post "products/:product_id/reviews" => "discussions#create_review", constraints: { format: 'json' }
   
-  put "course_subscription/:id" => 'my_courses#update_subscribtion'
-  put "employees/:id" => 'employees#update'
-  put "employees/:id/password" => 'employees#change_password'
-  put "my_courses/:id/rating" => 'my_courses#update_rating'
-  put "playlist_items/ranks" => 'playlists#update_ranks'
+  put "account/:id" => 'company#update_account', constraints: { format: 'json' }
+  put "course_subscription/:id" => 'my_courses#update_subscribtion', constraints: { format: 'json' }
+  put "employees/:id" => 'employees#update', constraints: { format: 'json' }
+  put "employees/:id/password" => 'employees#change_password', constraints: { format: 'json' }
+  put "my_courses/:id/rating" => 'my_courses#update_rating', constraints: { format: 'json' }
+  put "playlist_items/ranks" => 'playlists#update_ranks', constraints: { format: 'json' }
 
-  post "profile/upload" => 'profile#upload'
-  post "profile" => 'profile#update'
+  post "profile/upload" => 'profile#upload', constraints: { format: 'json' }
+  post "profile" => 'profile#update', constraints: { format: 'json' }
 
-  delete "course_subscription/:id" => 'my_courses#unsubscribe'
-  delete "playlist_subscription/:id" => 'user_home#unsubscribe'
-  delete "playlists/:id/courses/:course_id" => 'playlists#remove_course'
-  delete "employees/:id" => 'employees#destroy'
+  delete "course_subscription/:id" => 'my_courses#unsubscribe', constraints: { format: 'json' }
+  delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
+  delete "playlists/:id/courses/:course_id" => 'playlists#remove_course', constraints: { format: 'json' }
+  delete "employees/:id" => 'employees#destroy', constraints: { format: 'json' }
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

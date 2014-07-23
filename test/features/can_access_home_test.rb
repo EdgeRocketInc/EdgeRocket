@@ -45,6 +45,11 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     click_button 'Save Changes'
     assert_content page, "Profile changed successfully"
 
+    visit '/company'
+    assert_content page, "welcome"
+    click_button 'Save Changes'
+    assert_content page, "welcome"
+
     # The snap-ci did not execute it
     #assert_content page, "Test if CI can fail on this"
 

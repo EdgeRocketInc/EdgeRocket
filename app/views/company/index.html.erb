@@ -1,0 +1,41 @@
+<div class="container-fluid">
+
+  <form name="mainform" role="form" >
+
+  <div class="panel panel-info" ng-controller="CompanyCtrl"> 
+    <div class="panel-heading">
+      Edit {{ account.company_name }} welcome message:
+    </div>
+
+    <div class="panel-body">
+
+    	<div class="row">
+        	<div class="col-sm-12" >
+				<textarea id="overview" cols=40 rows=10 class="form-control" placeholder="Welcome to the company" 
+				  ng-model="account.overview">
+				</textarea>
+			</div>
+		</div>
+
+		<div class="row voffset3">
+			<div class="col-sm-12">
+			  <div class="pull-right">
+			    <button class="btn btn-sm btn-success" ng-click="updateAccount()">
+			      Save Changes
+			    </button>
+			  </div>
+			</div>
+		</div>
+
+      <div class="row" ng-if="status.done==true">
+        <div class="col-sm-12">
+          <span class="text-{{status.textClass}}">* {{ status.message }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div> <!-- Panel -->
+
+  </form>
+
+</div>
