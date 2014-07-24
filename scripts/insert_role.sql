@@ -1,0 +1,1 @@
+﻿insert into roles(user_id, name) values(1,'SA') 
