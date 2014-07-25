@@ -20,8 +20,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   # will set to index when editing an item
   # the value of index is not used at this time, it works as long as it's >= 0
-  $scope.editModeIndex = -1 
-  $scope.addingMode = false
+  $scope.uiMode = { adding : false, editIndex : -1 }
 
   $scope.gridOptions = { 
     data : 'products',
@@ -107,8 +106,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.addProduct = () ->
     console.log('switching to adding mode')
-    $scope.addingMode = true
-    $scope.editModeIndex = -1
+    $scope.uiMode = { adding : true, editIndex : -1 }
     clearEditForm()
 
 
@@ -144,8 +142,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       new_prd.id = data.product.id
       new_prd.vendor = { name : $scope.newProduct.theVendor }
       $scope.products.push(new_prd)
-      $scope.editModeIndex = -1
-      $scope.addingMode = false
+      $scope.uiMode = { adding : false, editIndex : -1 }
       clearEditForm()
     ).error( ->
       console.error('Failed to create product')
@@ -156,8 +153,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     # find the record and switch to edit more
     for p,i in $scope.products
       if p.id == product_id
-        $scope.addingMode = false
-        $scope.editModeIndex = i
+        $scope.uiMode = { adding : false, editIndex : i }
         $scope.newProduct.id = product_id
         $scope.newProduct.name = p.name
         $scope.newProduct.description = p.description
@@ -186,7 +182,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
               if pl_item.playlist_id == pl.id
                 $scope.newProduct.thePlaylists.push(pl)
 
-        console.log('editing index=' + $scope.editModeIndex + ' name:' + p.name)
+        console.log('editing index=' + $scope.uiMode.editIndex + ' name:' + p.name)
         break
 
   # Update the product in DB and UI
@@ -233,8 +229,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           p.playlist_items = updated_item.playlist_items
           break
       # switch to non-editing mode
-      $scope.editModeIndex = -1
-      $scope.addingMode = false
+      $scope.uiMode = { adding : false, editIndex : -1 }
       clearEditForm()
     ).error( ->
       console.error('Failed to update product')
@@ -243,13 +238,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # Cancel edit and adding modes
   $scope.cancelEditingProduct = () ->
     console.log('cancel editing')
-    $scope.editModeIndex = -1
-    $scope.addingMode = false
+    $scope.uiMode = { adding : false, editIndex : -1 }
 
   $scope.removeProduct = (product_id) ->
     $http.delete('/products/' + product_id + '.json', null).success( (data) ->
-      $scope.editModeIndex = -1
-      $scope.addingMode = false
+      $scope.uiMode = { adding : false, editIndex : -1 }
       # find and remove record from internal array
       for p,i in $scope.products
         if p.id == product_id

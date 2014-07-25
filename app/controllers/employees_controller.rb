@@ -8,18 +8,27 @@ class EmployeesController < ApplicationController
   def index
     u = current_user
     account = u.account
-    @users = account ? account.users.order('email') : nil
+    users = account ? account.users.order('email') : nil
+    @users_json = users.as_json(methods: :best_role)
   end
 
-  # POST /users
   # POST /users.json
+  # Creates a new user record and adds a user role if provided
   def create
+
+    # get a user role parameter and put it aside to use later
+    user_role = params[:employee].nil? ? nil : params[:employee][:best_role]
+    params[:employee].delete(:user_role)
 
     @user = User.new(user_params)
     @user.account_id = current_user.account_id
+    if @user.save
+      # we can add a role if it's not a regular user
+      Role.insert_role(user_role, @user.id)
+    end
 
     respond_to do |format|
-      if @user.save
+      if @user.errors.empty?
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created }
       else
@@ -29,8 +38,8 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
+  # Update user record and roles
   def update
 
     # If password is blank it means don't update it
@@ -38,8 +47,18 @@ class EmployeesController < ApplicationController
       params[:employee].delete(:password)
     end
 
+    # get a user role parameter and put it aside to use later
+    user_role = params[:employee].nil? ? nil : params[:employee][:best_role]
+    params[:employee].delete(:user_role)
+
+    if @user.update(user_params)
+      # we can remove and then add roles now
+      Role.where("user_id=?", @user.id).destroy_all
+      Role.insert_role(user_role, @user.id)
+    end
+
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.errors.empty?
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -94,7 +113,7 @@ class EmployeesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       # TODO: figure out how to pass and recieve :user instead of :employee
-      params.require(:employee).permit(:id, :email, :first_name, :last_name, :password, :reset_required)
+      params.require(:employee).permit(:id, :email, :first_name, :last_name, :password, :reset_required, :user_role)
     end
 
 end

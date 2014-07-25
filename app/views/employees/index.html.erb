@@ -36,29 +36,44 @@
 <!-- Main content area -->
 <div class="container-fluid" ng-controller="EmployeesCtrl">
 
+  <div class="gridStyle" ng-grid="gridOptions"></div>
+
+  <div class="row voffset3" ng-if="uiMode.editIndex < 0 && uiMode.adding == false">
+    <div class="col-sm-6">
+      <span class="error red" ng-if="serverError">* {{serverError}}</span>
+    </div>
+    <div class="col-sm-6">
+      <div class="pull-right">
+        <button class="btn btn-sm btn-success" ng-click="addUser()">
+          Add User
+        </button>
+      </div>
+    </div>
+  </div> <!-- Row -->
+
   <!-- A row to enter values for User record -->
-  <div class="row">
+  <div class="row voffset3" ng-if="uiMode.editIndex >= 0 || uiMode.adding == true">
     <div class="col-lg-12">
 
       <div class="panel panel-info"> <!-- Employees New mode -->
-        <div class="panel-heading" ng-if="editModeIndex < 0">Add User</div>
-        <div class="panel-heading" ng-if="editModeIndex >= 0">Edit User</div>
+        <div class="panel-heading" ng-if="uiMode.adding == true">Add User</div>
+        <div class="panel-heading" ng-if="uiMode.adding == false">Edit User</div>
         <div class="panel-body">
     
           <form role="form" name="addForm">
 
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                   <input type="text" class="form-control-user form-control" name="newEmplEmail" 
                     placeholder="User Email" ng-model="newUser.email" required>
                   </input>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                   <input type="text" class="form-control-user form-control" name="newEmplFirstName" 
                     placeholder="First Name" ng-model="newUser.first_name">
                   </input>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                   <input type="text" class="form-control form-control-user" 
                     placeholder="Last Name" ng-model="newUser.last_name">
                   </input>
@@ -66,37 +81,45 @@
               </div> <!-- Row -->
 
               <div class="row voffset2">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                   <input type="password" class="form-control form-control-user" name="newEmplPassword" 
                     placeholder="User Password" ng-model="newUser.password">
                   </input>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-4">
                   <input type="password" class="form-control form-control-user" name="newEmplPassword2" 
                     placeholder="Confirm Password" ng-model="newUser.password2">
                   </input>
                 </div>
-                <div class="col-md-4 text-cell">
+                <div class="col-sm-4 text-cell">
                   <span class="glyphicon glyphicon-{{newUser.reset_required_class}} glyph-big glyph-action" ng-click="toggleResetRequired()"></span>
                   <span class="glyph-label">Require password reset</span>
                 </div>
               </div> <!-- Row -->
 
+              <div class="row voffset2">
+                <div class="col-sm-4">
+                  <select class="form-control" name="selectRole" ng-model="newUser.theRole" ng-options="role.name for role in userRoles">
+                        <option value="">-- choose role --</option>
+                  </select>
+                </div>
+              </div> <!-- Row -->
+
               <div class="row voffset3">
-                <div class="col-md-6">
+                <div class="col-sm-6">
                   <span class="error red" ng-show="addForm.newEmplEmail.$error.required">* Email required</span>
                   <br/>
                   <span class="error red" ng-show="addForm.newEmplPassword.$error.required">* Password required, 8 characters minimum</span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
                   <div class="pull-right">
-                    <button class="btn btn-sm btn-success" ng-click="createUser()" ng-if="editModeIndex < 0">
-                      Create new User
+                    <button class="btn btn-sm btn-success" ng-click="createUser()" ng-if="uiMode.editIndex < 0">
+                      Create
                     </button>
-                    <button class="btn btn-sm btn-success" ng-click="updateUser()" ng-if="editModeIndex >= 0">
+                    <button class="btn btn-sm btn-success" ng-click="updateUser()" ng-if="uiMode.editIndex >= 0">
                       Save Changes
                     </button>
-                    <button class="btn btn-sm btn-warning" ng-click="cancelEditingUser()" ng-if="editModeIndex >= 0">
+                    <button class="btn btn-sm btn-warning" ng-click="cancelEditingUser()" ng-if="uiMode.editIndex >= 0 || uiMode.adding == true">
                       Cancel
                     </button>
                   </div>
@@ -109,7 +132,5 @@
       
     </div>
   </div> <!-- Row -->
-
-  <div class="gridStyle" ng-grid="gridOptions"></div>
 
 </div>
