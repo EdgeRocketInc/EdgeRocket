@@ -6,6 +6,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 @EmployeesCtrl = ($scope, $http, $modal, $log) ->
 
+  MIN_PASS_LEN = 8
+
   $scope.userRoles = [
     { value : 'user', name : 'Standard User' }
     { value : 'Admin', name : 'Administrator' }
@@ -16,6 +18,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.newUser = {
     # will be filled out by clearEditForm call
   }
+  $scope.validation = { message : null }
 
 
   # This method is called when a grid is selected
@@ -40,7 +43,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   }  
 
   clearEditForm = ->
-    id : null
+    $scope.newUser.id = null
     $scope.newUser.email = ''
     $scope.newUser.first_name = ''
     $scope.newUser.last_name = ''
@@ -48,6 +51,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $scope.newUser.password2 = ''
     $scope.newUser.reset_required_class = 'unchecked'
     $scope.newUser.theRole = null
+    $scope.validation.message = null
 
   loadUsers =  ->
     $http.get('/employees.json').success( (data) ->
@@ -68,60 +72,68 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # Create new user in DB and add to UI
   $scope.createUser = () ->
     console.log('Creating:' + $scope.newUser.email)
-    # convert display structure to API payload
-    new_u = { 
-      id : null, 
-      email : $scope.newUser.email,
-      first_name : $scope.newUser.first_name,
-      last_name : $scope.newUser.last_name,
-      password : $scope.newUser.password,
-      reset_required : if $scope.newUser.reset_required_class == 'check' then true else false
-      best_role : if $scope.newUser.theRole then $scope.newUser.theRole.value else null
-    }
-    # POST and send a request
-    $http.post('/employees.json', new_u).success( (data) ->
-      console.log('Successfully created user')
-      # use new user ID
-      new_u.id = data.id
-      $scope.users.push(new_u)
-      $scope.uiMode = { adding : false, editIndex : -1 }
-      clearEditForm()
-    ).error( ->
-      console.error('Failed to add user')
-    )
+    if $scope.newUser.password == null || $scope.newUser.password.length < MIN_PASS_LEN
+      $scope.validation = { message: "Password must have 8 or more characters" }
+    else if $scope.newUser.password != $scope.newUser.password2
+      $scope.validation = { message: "Password confirmation does not match" }
+    else
+      # convert display structure to API payload
+      new_u = { 
+        id : null, 
+        email : $scope.newUser.email,
+        first_name : $scope.newUser.first_name,
+        last_name : $scope.newUser.last_name,
+        password : $scope.newUser.password,
+        reset_required : if $scope.newUser.reset_required_class == 'check' then true else false
+        best_role : if $scope.newUser.theRole then $scope.newUser.theRole.value else null
+      }
+      # POST and send a request
+      $http.post('/employees.json', new_u).success( (data) ->
+        console.log('Successfully created user')
+        # use new user ID
+        new_u.id = data.id
+        $scope.users.push(new_u)
+        $scope.uiMode = { adding : false, editIndex : -1 }
+        clearEditForm()
+      ).error( ->
+        console.error('Failed to add user')
+      )
 
   # Update the user in DB and UI
   $scope.updateUser = () ->
-    # convert display structure to API payload
-    updated_u = { 
-      id : $scope.newUser.id, 
-      email : $scope.newUser.email,
-      first_name : $scope.newUser.first_name,
-      last_name : $scope.newUser.last_name,
-      password : $scope.newUser.password,
-      reset_required : if $scope.newUser.reset_required_class == 'check' then true else false
-      best_role : if $scope.newUser.theRole then $scope.newUser.theRole.value else null
-    }
-    console.log('Updating: ' + updated_u.email)
-    # POST and send a request
-    $http.put('/employees/' + updated_u.id + '.json', updated_u).success( (data) ->
-      console.log('Successfully updated user')
-      # find the user record and update it
-      for u,i in $scope.users
-        if u.id == updated_u.id
-          u.email = $scope.newUser.email
-          u.first_name = $scope.newUser.first_name
-          u.last_name = $scope.newUser.last_name
-          u.reset_required = updated_u.reset_required
-          u.best_role = updated_u.best_role
-          console.log('editing index=' + $scope.uiMode.editIndex + ' email:' + u.email)
-          break
-      # switch to non-editing mode
-      $scope.uiMode = { adding : false, editIndex : -1 }
-      clearEditForm()
-    ).error( ->
-      console.error('Failed to update user')
-    )
+    if $scope.newUser.password != $scope.newUser.password2
+      $scope.validation = { message: "Password confirmation does not match" }
+    else
+      # convert display structure to API payload
+      updated_u = { 
+        id : $scope.newUser.id, 
+        email : $scope.newUser.email,
+        first_name : $scope.newUser.first_name,
+        last_name : $scope.newUser.last_name,
+        password : $scope.newUser.password,
+        reset_required : if $scope.newUser.reset_required_class == 'check' then true else false
+        best_role : if $scope.newUser.theRole then $scope.newUser.theRole.value else null
+      }
+      console.log('Updating: ' + updated_u.email)
+      # POST and send a request
+      $http.put('/employees/' + updated_u.id + '.json', updated_u).success( (data) ->
+        console.log('Successfully updated user')
+        # find the user record and update it
+        for u,i in $scope.users
+          if u.id == updated_u.id
+            u.email = $scope.newUser.email
+            u.first_name = $scope.newUser.first_name
+            u.last_name = $scope.newUser.last_name
+            u.reset_required = updated_u.reset_required
+            u.best_role = updated_u.best_role
+            console.log('editing index=' + $scope.uiMode.editIndex + ' email:' + u.email)
+            break
+        # switch to non-editing mode
+        $scope.uiMode = { adding : false, editIndex : -1 }
+        clearEditForm()
+      ).error( ->
+        console.error('Failed to update user')
+      )
 
   # Remove user from DB and UI
   $scope.removeUser = (user_id) ->
@@ -138,6 +150,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   # Switch to Edit mode
   $scope.editUser = (user_id) ->
+    $scope.validation.message = null
     # find the user record and switch to edit more
     for u,i in $scope.users
       if u.id == user_id

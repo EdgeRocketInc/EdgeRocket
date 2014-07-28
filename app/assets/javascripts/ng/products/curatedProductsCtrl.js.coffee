@@ -15,7 +15,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   ]
 
   $scope.newProduct = { 
-    # will be fille out by clearEditForm call
+    # will be filled out by clearEditForm call
   }
 
   # will set to index when editing an item

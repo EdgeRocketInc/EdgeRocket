@@ -105,16 +105,16 @@
 
               <div class="row voffset3">
                 <div class="col-md-6">
-                  <span class="error red" ng-show="addForm.newEmplEmail.$error.required">* Email required</span>
-                  <br/>
-                  <span class="error red" ng-show="addForm.newEmplPassword.$error.required">* Password required, 8 characters minimum</span>
+                  <span class="error red" ng-show="addForm.newTitle.$error.required">* Title required</span>
                 </div>
                 <div class="col-md-6">
                   <div class="pull-right">
-                    <button class="btn btn-sm btn-success" ng-click="createPlaylist()" ng-if="editModeIndex < 0">
+                    <button class="btn btn-sm btn-success" ng-click="createPlaylist()" 
+                      ng-disabled="addForm.newTitle.$error.required" ng-show="editModeIndex < 0">
                       Create
                     </button>
-                    <button class="btn btn-sm btn-success" ng-click="updatePlaylist()" ng-if="editModeIndex >= 0">
+                    <button class="btn btn-sm btn-success" ng-click="updatePlaylist()" 
+                      ng-disabled="addForm.newTitle.$error.required" ng-if="editModeIndex >= 0">
                       Save Changes
                     </button>
                     <button class="btn btn-sm btn-warning" ng-click="cancelEditingPlaylist()" ng-if="editModeIndex >= 0 || addingMode == true">
