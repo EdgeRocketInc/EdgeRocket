@@ -166,7 +166,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         # select the user role
         $scope.newUser.theRole = null
         for ur in $scope.userRoles
-          if u.best_role.toLowerCase() == ur.value.toLowerCase()
+          if u.best_role != null && u.best_role.toLowerCase() == ur.value.toLowerCase()
             $scope.newUser.theRole = ur
             break
 
