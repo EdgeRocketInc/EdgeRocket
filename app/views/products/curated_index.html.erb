@@ -130,6 +130,13 @@
                       ng-model="newProduct.thePlaylists" ng-options="pl.title for pl in allPlaylists">
                   </select>
                 </div>
+                <div class="col-sm-6" ng-if="user.best_role=='sysop'">
+                  <label>Belongs to Company:</label>
+                  <select class="form-control" name="selectAccounts"
+                      ng-model="newProduct.theAccount" ng-options="acc.company_name for acc in allAccounts">
+                    <option value="">-- Global Item --</option>
+                  </select>
+                </div>
               </div> <!-- Row -->
 
               <div class="row voffset3">

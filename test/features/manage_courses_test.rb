@@ -48,4 +48,30 @@ class ManageCoursesTest < Capybara::Rails::TestCase
     #sleep 1000
 
   end
+
+
+  test "Courses in sysop mode" do
+
+    Capybara.current_driver = :selenium
+
+    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.')
+    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
+    @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
+
+    visit root_path
+    fill_in "user_email", with: 'sysop-test@edgerocket.co'
+    fill_in "user_password", with: '12345678'
+    click_button 'Sign in'
+
+    visit '/products/curated'
+    assert_content page, "Course Title"
+    assert_content page, "Provider"
+    click_button 'Add Item'
+    fill_in "newTitle", with: 'New Product Sysop'
+    select "ABC Co.", :from => 'selectAccounts'
+    click_button 'Create'
+    #assert_content page, 'New Product Sysop'
+    #sleep 1000
+
+  end
 end

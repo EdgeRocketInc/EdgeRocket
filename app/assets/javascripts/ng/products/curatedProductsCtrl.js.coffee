@@ -13,6 +13,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     { value : 'online', name : 'Online Course' }
     { value : 'video', name : 'Video' }
   ]
+  # Accounts 
+  $scope.allAccounts = [ ]
 
   $scope.newProduct = { 
     # will be filled out by clearEditForm call
@@ -48,6 +50,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $scope.newProduct.theMediaType = null
     $scope.newProduct.theDuration = { hours : null, minutes : null }
     $scope.newProduct.thePlaylists = []
+    $scope.newProduct.theAccount = []
+    $scope.allAccounts = []
     $scope.serverError = null
 
   loadVendors =  ->
@@ -73,6 +77,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('Successfully loaded playlists')
     ).error( ->
       console.log('Error loading playlists')
+    )
+
+  loadUser =  ->
+    $http.get('/users/current.json').success( (data) ->
+      $scope.user = data
+      console.log('Successfully loaded user')
+    ).error( ->
+      console.log('Error loading user')
     )
 
   # return viendor id based on the passed name
@@ -103,12 +115,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   clearEditForm()
   loadProducts()
   loadPlaylists()
+  loadUser()
 
   $scope.addProduct = () ->
     console.log('switching to adding mode')
     $scope.uiMode = { adding : true, editIndex : -1 }
     clearEditForm()
-
+    # use the current user's account by default
+    $scope.newProduct.theAccount = $scope.user.account
+    # Include the Sysop's account in the list by default
+    if $scope.user.best_role == 'sysop'
+      $scope.allAccounts.push( $scope.user.account )
 
   # Add selected playlists to the array of playlist items
   addProductToPlaylist = (pl_items, selected_playlists) ->
@@ -133,6 +150,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       duration : toDurationHours($scope.newProduct.theDuration)
       manual_entry : true
       playlist_items : [] # will populate below
+      account_id : if $scope.newProduct.theAccount then $scope.newProduct.theAccount.id else null
     }
     addProductToPlaylist(new_prd.playlist_items, $scope.newProduct.thePlaylists)
     # POST and send a request
@@ -141,6 +159,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       # use new product ID
       new_prd.id = data.product.id
       new_prd.vendor = { name : $scope.newProduct.theVendor }
+      new_prd.account = $scope.newProduct.theAccount
       $scope.products.push(new_prd)
       $scope.uiMode = { adding : false, editIndex : -1 }
       clearEditForm()
@@ -149,6 +168,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     )
 
   $scope.editProduct = (product_id) ->
+    #debugger
     clearEditForm()    
     # find the record and switch to edit more
     for p,i in $scope.products
@@ -182,6 +202,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
               if pl_item.playlist_id == pl.id
                 $scope.newProduct.thePlaylists.push(pl)
 
+        # If sysop mode, deal with the product scope
+        if $scope.user.best_role == 'sysop' 
+          if p.account_id != null
+            # if it belongs to a company add add that company and select it
+            $scope.allAccounts.push(p.account)
+            $scope.newProduct.theAccount = p.account
+          else
+            # if it's global (no company), add the current company, and select global
+            $scope.allAccounts.push( $scope.user.account )
+            $scope.newProduct.theAccount = null
+
         console.log('editing index=' + $scope.uiMode.editIndex + ' name:' + p.name)
         break
 
@@ -205,6 +236,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       duration : toDurationHours($scope.newProduct.theDuration)
       manual_entry : true
       playlist_items : [] # will populate below
+      account_id : if $scope.newProduct.theAccount then $scope.newProduct.theAccount.id else null
     }
     addProductToPlaylist(updated_item.playlist_items, $scope.newProduct.thePlaylists)
     console.log('Updating: ' + updated_item.name)
@@ -227,6 +259,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           p.media_type = updated_item.media_type
           p.duration = updated_item.duration
           p.playlist_items = updated_item.playlist_items
+          p.account_id = updated_item.account_id
           break
       # switch to non-editing mode
       $scope.uiMode = { adding : false, editIndex : -1 }

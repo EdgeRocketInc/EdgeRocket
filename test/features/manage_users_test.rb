@@ -39,4 +39,5 @@ class ManageCoursesTest < Capybara::Rails::TestCase
     assert_content page, 'test-user-auto-1@edgerocket.co'
 
   end
+  
 end

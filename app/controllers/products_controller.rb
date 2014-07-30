@@ -13,7 +13,13 @@ class ProductsController < ApplicationController
   # JSON see jbuilder
   def curated_index
     authorize! :manage, :all
-    @products = Product.where(:account_id => current_user.account_id).includes(:vendor, :playlist_items).order(:name)
+    @products = nil
+    # Find all non global products for sysop, but only account specific ones for other roles
+    if current_user.best_role == :sysop
+      @products = Product.where("account_id is not null or manual_entry=?", true).includes(:vendor, :playlist_items, :account).order(:name)
+    else
+      @products = Product.where(:account_id => current_user.account_id).includes(:vendor, :playlist_items, :account).order(:name)
+    end
   end
 
   # GET /vendors
@@ -34,11 +40,6 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
-    # if it's manually entered prodcut, we should set the account to current user's company
-    if @product.manual_entry == true
-      @product.account_id = current_user.account_id
-    end
 
     @product.save
 
@@ -150,6 +151,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :authors, :origin, :price, :price_free, :keywords, :school, :description, :media_type, :duration, :vendor_id)
+      params.require(:product).permit(:name, :authors, :origin, :price, :price_free, :keywords, \
+        :school, :description, :media_type, :duration, :vendor_id, :account_id)
     end
 end

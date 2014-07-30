@@ -31,7 +31,7 @@ class Ability
 
     if user 
       case user.best_role 
-      when :SA, :admin
+      when :SA, :admin, :sysop
         can :manage, :all
       else
         can :read, :all

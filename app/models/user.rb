@@ -14,16 +14,24 @@ class User < ActiveRecord::Base
 
   # returns the role with the highest level of access
   def best_role
-    current_role = :user
-    # not the best implementation, but okay for now assuming that roles table does not have explicit user roles
-    roles.each { |r|
-      if r.name == 'SA'
-	       current_role = :SA
-      elsif r.name == 'Admin' && current_role != :SA
-	       current_role = :admin
-     end
+    # array of roles in priority order
+    role_priorities = [
+      { name: 'Sysop', role: :sysop, priority: 0 },
+      { name: 'SA', role: :SA, priority: 1 },
+      { name: 'Admin', role: :admin, priority: 2 },
+      { name: nil, role: :user, priority: 3 }
+    ]
+    # default role with the lowest priority
+    current_role = role_priorities[3]
+    # figure out the best role
+    roles.each { |ur|
+      role_priorities.each { |rp|
+        if rp[:name] == ur.name && rp[:priority] < current_role[:priority]
+          current_role = rp
+        end
+      }
     }
-    current_role
+    current_role[:role]
   end
 
 end
