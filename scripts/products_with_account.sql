@@ -1,0 +1,1 @@
+select p.name, a.company_name from products p join accounts a on a.id=p.account_id where account_id is not null order by 2;
