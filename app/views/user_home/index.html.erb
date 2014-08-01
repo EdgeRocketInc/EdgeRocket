@@ -4,16 +4,27 @@
     <h4>Preferences</h4>
   </div>
   <div class="modal-body">
-    It&#39;s the first time you logged in. Please answer several questions. What is your education?
-    <ul>
-      <li class="list-leaf" ng-repeat="thing in education">
-        <input type="radio" value="{{thing.id}}" ng-model="$parent.selected" name="stuff"/>
-          {{thing.name}}
-      </li>
-    </ul>
+    <p>Please indicate the business and technical topics that you are interested in (you can select all that apply):</p>
+    <div class="row">
+      <div class="col-xs-4" ng-repeat="col in [0,1,2]">
+        <ul class="padding-left3">
+          <li class="list-leaf" ng-repeat="thing in skills[col]">
+            <input type="checkbox" value="{{thing.id}}" ng-model="thing.checked" name="stuff"/>
+              {{thing.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-8">
+        <input type="text" placeholder="other" class="padding-left3" ng-model="otherSkill"></input>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-success" ng-click="done(selected)">Done  </button>
+      <button class="btn btn-success" ng-click="done()"  ng-show="surveySaved!=true">Submit</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()" ng-show="surveySaved!=true">Skip this time</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()" ng-show="surveySaved==true">Close</button>
   </div>
 </script>
 

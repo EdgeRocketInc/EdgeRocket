@@ -48,7 +48,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         # set checkbox for G+
         $scope.options_json.gbox_class = if $scope.options_json.discussions == 'gplus' then 'check' else null
         loadDiscussions()
-      if $scope.options_json.survey && $scope.user.sign_in_count <= 1 && !$scope.user.user_preferences?
+      # if sruvey flag is enabled for this company and user hasn't save survey yet, then start a survey
+      # later we may also present it on the first login only - $scope.user.sign_in_count <= 1
+      if $scope.options_json.survey && !$scope.user.user_preferences?
         console.log('Starting survey...')
         startSurvey()
     ).error( ->
@@ -98,19 +100,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     modalInstance = $modal.open({
       templateUrl: 'userSurvey.html',
       controller: SurveyModalCtrl
+      size: 'lg'
     })
 
     modalInstance.result.then (ed_id) ->
       console.log('result ' + ed_id)
-      # Create data object to POST and send a request
-      data =
-        education:
-          id: ed_id
-      $http.post('/users/preferences.json', data).success( (data) ->
-        console.log('Successfully set preferences')
-      ).error( ->
-        console.error('Failed to set preferences')
-      )
 
   loadDiscussions = () ->
     $http.get('/discussions.json').success( (data) ->
@@ -154,18 +148,61 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 # controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->
   console.log('modal ctrl')
-  $scope.education = [
-    { id: 'high', name: 'High School' },
-    { id: 'bs', name: 'BS' },
-    { id: 'ms', name: 'MS' },
-    { id: 'phd', name: 'Ph.D.' },
-    { id: 'etc', name: 'Other' },
+  $scope.surveySaved = false # true when sruvey has been saved
+  $scope.skills = [
+    [ { id: 'marketing', name: 'Marketing' }
+      { id: 'social_media', name: 'Social Media Marketing' }
+      { id: 'seo', name: 'SEO/SEM' }
+      { id: 'copywriting', name: 'Copywriting' }
+      { id: 'cs', name: 'Computer Science' }
+      { id: 'computer_networking', name: 'Computer Networking' }
+      { id: 'data_centers', name: 'Data Centers' }
+      { id: 'data_security', name: 'Data Security' }
+      { id: 'data_science', name: 'Data Science' }
+      { id: 'web_dev', name: 'Web Development' } ]
+    [ { id: 'dbms', name: 'Databases' }
+      { id: 'soft_dev_methods', name: 'Software Dev. Methodologies' }# name: 'Software Development Methodologies' }
+      { id: 'management', name: 'Management' }
+      { id: 'leadership', name: 'Leadership' }
+      { id: 'communications', name: 'Communications' }
+      { id: 'sales', name: 'Sales' }
+      { id: 'hiring', name: 'Hiring & Interviewing' }
+      { id: 'presentations', name: 'Effective Presentations' }
+      { id: 'negotiation', name: 'Negotiation' }
+      { id: 'strategy', name: 'Strategy' } ]
+    [ { id: 'ops', name: 'Operations' }
+      { id: 'pmp', name: 'Project Management' } 
+      { id: 'accounting', name: 'Accounting' }
+      { id: 'finance', name: 'Finance' }
+      { id: 'spreadsheets', name: 'Spreadsheets' }
+      { id: 'ux', name: 'UX/UI' }
+      { id: 'graphic_design', name: 'Graphic Design' }
+      { id: 'video_dev', name: 'Video Development' }
+      { id: 'product_management', name: 'Product Management' } ]
   ]
-  $scope.selected = ''
+  $scope.otherSkill = null
 
-  $scope.done = (s) ->
-    console.log('selected = ' + s)
-    $modalInstance.close(s)
+  $scope.done = () ->
+    #debugger
+    data = { skills: [] }
+    for skillset in @skills
+      for skill in skillset
+        if skill.checked == true
+          #console.log('skill ' + skill.id)
+          data.skills.push( { id: skill.id } )
+    if @otherSkill != null
+      data.skills.push( {other_skill: @otherSkill} )
+    # save right here
+    # Create data object to POST and send a request
+    $http.post('/users/preferences.json', data).success( (data) ->
+      console.log('Successfully set preferences')
+      $scope.surveySaved = true
+    ).error( ->
+      console.error('Failed to set preferences')
+    )
+
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
 
 @IndexCtrl.$inject = ['$scope', '$http', '$modal', '$sce']
 @SurveyModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
