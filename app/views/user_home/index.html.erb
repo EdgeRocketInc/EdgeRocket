@@ -17,14 +17,17 @@
     </div>
     <div class="row">
       <div class="col-xs-4 col-xs-offset-8">
-        <input type="text" placeholder="other" class="padding-left3" ng-model="otherSkill"></input>
+        <input type="text" placeholder="other" class="padding-left3 input-sm" ng-model="otherSkill"></input>
       </div>
     </div>
   </div>
-  <div class="modal-footer">
-      <button class="btn btn-success" ng-click="done()"  ng-show="surveySaved!=true">Submit</button>
-      <button class="btn btn-sm btn-warning" ng-click="cancel()" ng-show="surveySaved!=true">Skip this time</button>
-      <button class="btn btn-sm btn-warning" ng-click="cancel()" ng-show="surveySaved==true">Close</button>
+  <div class="modal-footer" ng-show="surveySaved==true">
+      <span class="text-success pull-left">* Your preferences were saved</span>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()">Close</button>
+  </div>
+  <div class="modal-footer" ng-show="surveySaved!=true">
+      <button class="btn btn-success" ng-click="done()">Submit</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()">Skip this time</button>
   </div>
 </script>
 
