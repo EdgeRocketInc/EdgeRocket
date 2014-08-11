@@ -77,10 +77,22 @@ class PlaylistsController < ApplicationController
 
   # POST /playlists/1/courses/1
   #
-  # Add course to the playlist
+  # Add course to the playlist and to all users who are subscribed to this playlist
   def add_course
     course = Product.find(params[:course_id])
     @playlist.products << course
+
+    # Add it to playlist's users too
+    @playlist.users.each { |pl_user|
+      subscribed_by = (pl_user.id==current_user.id) ? 'Self' : 'Manager'
+      result = MyCourse.subscribe(pl_user.id, course.id, 'reg', subscribed_by)
+      # Send email to the user if he got a new course
+      #byebug
+      if result && pl_user.id != current_user.id
+        # TODO email
+      end
+    }
+
     respond_to do |format|
       format.html { redirect_to playlists_url }
       format.json { head :no_content }

@@ -67,6 +67,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       # massage playlists
       for pl in data.my_playlists
         pl.checked = 'expand'
+        # calculate if it's a new playlist
+        days_old = (Date.now() - Date.parse(pl.updated_at)) / _MS_PER_DAY
+        pl.isNew = days_old < _DAYS_OLD
       $scope.data = data
       $scope.options_json = angular.fromJson($scope.data.account.options)
       # set checkbox for G+

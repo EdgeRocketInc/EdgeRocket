@@ -26,3 +26,7 @@
 //= require angular-sanitize
 //= require ui-bootstrap-tpls-0.11.0.min
 //= require ng-grid-2.0.11.min
+
+
+var _MS_PER_DAY = 1000 * 60 * 60 * 24 // ms in a day
+var _DAYS_OLD = 7

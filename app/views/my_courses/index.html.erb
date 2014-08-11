@@ -157,6 +157,7 @@
             <accordion close-others="false">
               <accordion-group is-open="status.open" ng-repeat="pl in data.my_playlists">
                 <accordion-heading>
+                  <span class="badge" ng-show="pl.isNew==true">new</span>
                   <span class="text-warning">{{pl.title}}</span>
                   <i class="pull-right glyphicon"
                     ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">

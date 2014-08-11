@@ -23,6 +23,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.data = data
       console.log('Successfully loaded user_home')
       for pl, i in $scope.data.playlists
+        days_old = (Date.now() - Date.parse(pl.updated_at)) / _MS_PER_DAY
+        pl.isNew = days_old < _DAYS_OLD
         # console.log(pl.id)
         if $scope.data.subscribed_playlists[pl.id]?
           $scope.isSubscribed[i] = true

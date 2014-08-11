@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="modal-footer" ng-show="surveySaved==true">
-      <span class="text-success pull-left">* Thanks! Based on your preferences, we'll send you an email with EdgeRocket content recommendations.</span>
+      <span class="text-success pull-left">* Thanks! Based on your preferences, we&#39;ll send you an email with EdgeRocket content recommendations.</span>
       <button class="btn btn-sm btn-warning" ng-click="cancel()">Close</button>
   </div>
   <div class="modal-footer" ng-show="surveySaved!=true">
@@ -65,6 +65,7 @@
                 <span class="glyphicon glyph-big glyphicon-{{ glyphSubscribed[$index] }}" tooltip="Subscribed"></span>
                 -->
                 &nbsp;
+                <span class="badge" ng-show="pl.isNew">new</span>
               </div>
               <div class="inline-col-wrap">
                 <div class="inline-col-right">
