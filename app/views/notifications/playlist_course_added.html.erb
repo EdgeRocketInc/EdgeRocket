@@ -1,1 +1,2 @@
-<h3><%= @greeting %> : <%= @product.name %> </h3>
+<h3><%= @greeting %> <%= @playlist.title %>:</h3>
+<h4><%= link_to @product.name, @hostname + '/products/' + @product.id.to_s %> </h4>

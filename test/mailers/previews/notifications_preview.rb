@@ -5,8 +5,9 @@ class NotificationsPreview < ActionMailer::Preview
   def playlist_course_added
 	user = User.find(101)
 	product = Product.find(2001)
+	playlist = Playlist.find(1001)
 
-	Notifications.playlist_course_added user, product
+	Notifications.playlist_course_added user, playlist, product, 'http://localhost'
   end
 
 end
