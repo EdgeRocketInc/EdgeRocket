@@ -29,8 +29,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.updateProfile = (user, profile) ->
     updated_u = {
-      first_name : user.first_name,
+      first_name : user.first_name
       last_name : user.last_name
+      best_role : user.best_role
     }
     new_p = {
       title : if $scope.profile then $scope.profile.title else ''
