@@ -88,8 +88,8 @@ class PlaylistsController < ApplicationController
       result = MyCourse.subscribe(pl_user.id, course.id, 'reg', subscribed_by)
       # Send email to the user if he got a new course
       #byebug
-      if result && pl_user.id != current_user.id
-        # TODO email
+      if result == true && pl_user.id != current_user.id
+        Notifications.playlist_course_added pl_user, course
       end
     }
 
@@ -122,7 +122,6 @@ class PlaylistsController < ApplicationController
   # Update ranking order of the courses in the playlist
   def update_ranks
     ranks = params[:ranks]
-    #debugger
     ranks.each { |rank|
       PlaylistItem.update(rank['id'], :rank => rank['rank'])
     }
