@@ -16,22 +16,34 @@ class PlaylistsControllerTest < ActionController::TestCase
 
   test "should create playlist" do
     assert_difference('Playlist.count') do
-      post :create, playlist: { mandatory: @playlist.mandatory, title: @playlist.title, description: @playlist.description }
+      post :create, playlist: { mandatory: @playlist.mandatory, title: @playlist.title, description: @playlist.description }, :format => 'json'
     end
 
-    assert_redirected_to playlist_path(assigns(:playlist))
+    assert_response :success
   end
 
   test "should update playlist" do
-    patch :update, id: @playlist, playlist: { mandatory: @playlist.mandatory, title: @playlist.title, description: @playlist.description }
-    assert_redirected_to playlist_path(assigns(:playlist))
+    patch :update, id: @playlist, playlist: { mandatory: @playlist.mandatory, title: @playlist.title, description: @playlist.description }, :format => 'json'
+    assert_response :success
   end
 
   test "should destroy playlist" do
     assert_difference('Playlist.count', -1) do
-      delete :destroy, id: @playlist
+      delete :destroy, id: @playlist, :format => 'json'
     end
 
-    assert_redirected_to playlists_path
+    assert_response :success
   end
+
+  test "should add course to playlist" do
+    post :add_course, {id: @playlist, course_id: 2001, :format => 'json'}
+    assert_response :success
+  end
+
+  test "should remove course from playlist" do
+    post :remove_course, {id: @playlist, course_id: 2001, :format => 'json'}
+    assert_response :success
+  end
+
+
 end

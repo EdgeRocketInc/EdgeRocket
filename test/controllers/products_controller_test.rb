@@ -18,6 +18,12 @@ class ProductsControllerTest < ActionController::TestCase
     end
   end
 
+  test "should create product with playlists" do
+    assert_difference('Product.count') do
+      post :create, product: { name: 'course abc', playlist_items: [ {playlist_id: 1001} ] }, :format => 'json'
+    end
+  end
+
   test "should show product" do
     get :show, id: @product
     assert_response :success
@@ -31,23 +37,24 @@ class ProductsControllerTest < ActionController::TestCase
   test "should update product json" do
     patch :update, id: @product, product: { name: @product.name }, \
       playlist_items: [ {playlist_id: 1001} ], :format => 'json'
+    assert_response :success
   end
 
   test "should not destroy product with dependency" do
     assert_difference('Product.count', 0) do
-      delete :destroy, id: @product
+      delete :destroy, id: @product, :format => 'json'
     end
 
-    assert_redirected_to products_path
+    assert_response 422
   end
 
   test "should destroy product without dependencies" do
     @product = Product.find(3021) # no dependencies
     assert_difference('Product.count', -1) do
-      delete :destroy, id: @product
+      delete :destroy, id: @product, :format => 'json'
     end
 
-    assert_redirected_to products_path
+    assert_response :success
   end
 
 end

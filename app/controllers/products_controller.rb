@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+
+  include PlaylistsOperations
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
@@ -36,11 +39,13 @@ class ProductsController < ApplicationController
     end
   end
 
-  # POST /products
   # POST /products.json
+  # JSON only
+  #
+  # Create a new product item and add it to the playlist if needed
+  #
   def create
     @product = Product.new(product_params)
-
     @product.save
 
     if @product.errors.empty?
@@ -49,23 +54,22 @@ class ProductsController < ApplicationController
       playlists = params[:playlist_items]
       if !playlists.nil?
         playlists.each { |pl|
-          new_pl_item = PlaylistItem.new
-          new_pl_item.playlist_id = pl[:playlist_id]
-          new_pl_item.product_id = @product.id
-          new_pl_item.save
+          # find the playlist to get an object with its relationships
+          pl_record = Playlist.find(pl[:playlist_id])
+          if !pl_record.nil?
+            add_course_to_playlist(pl_record, @product, current_user)
+          end
         }
       end
     end
 
     respond_to do |format|
       if @product.errors.empty?
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { 
           @product_json = @product.as_json
           render action: 'show', status: :created, location: @product 
         }
       else
-        format.html { render action: 'new' }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -87,10 +91,11 @@ class ProductsController < ApplicationController
         playlists.each { |pl|
           existing_index = existing_playlists.index { |epl| epl.playlist_id==pl[:playlist_id] }
           if existing_index.nil?
-            new_pl_item = PlaylistItem.new
-            new_pl_item.playlist_id = pl[:playlist_id]
-            new_pl_item.product_id = @product.id
-            new_pl_item.save
+            # find the playlist to get an object with its relationships
+            pl_record = Playlist.find(pl[:playlist_id])
+            if !pl_record.nil?
+              add_course_to_playlist(pl_record, @product, current_user)
+            end
           end
         }
       end

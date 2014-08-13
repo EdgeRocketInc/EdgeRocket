@@ -1,4 +1,7 @@
 class PlaylistsController < ApplicationController
+
+  include PlaylistsOperations
+
   before_action :set_playlist, only: [:show, :edit, :update, :destroy, :courses, :add_course, :remove_course]
   before_filter :authenticate_user!
 
@@ -24,48 +27,40 @@ class PlaylistsController < ApplicationController
   def edit
   end
 
-  # POST /playlists
   # POST /playlists.json
+  # JSON only
   def create
     @playlist = Playlist.new(playlist_params)
     @playlist.account_id = current_user.account_id
 
     respond_to do |format|
       if @playlist.save
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully created.' }
         format.json { render action: 'show', status: :created, location: @playlist }
       else
-        format.html { render action: 'new' }
         format.json { render json: @playlist.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /playlists/1
   # PATCH/PUT /playlists/1.json
   def update
     respond_to do |format|
       if @playlist.update(playlist_params)
-        format.html { redirect_to @playlist, notice: 'Playlist was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
         format.json { render json: @playlist.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /playlists/1
   # DELETE /playlists/1.json
   def destroy
     @playlist.destroy
     respond_to do |format|
-      format.html { redirect_to playlists_url }
       format.json { head :no_content }
     end
   end
 
-  # GET /playlists/1/courses
   # GET /playlists/1/courses.json
   #
   # List courses in the playlist
@@ -75,32 +70,23 @@ class PlaylistsController < ApplicationController
   end
 
 
-  # POST /playlists/1/courses/1
+  # POST /playlists/:id/courses/:course_id.json
+  # JSON only
   #
-  # Add course to the playlist and to all users who are subscribed to this playlist
+  # Add course to playlist
+  #
   def add_course
     course = Product.find(params[:course_id])
-    @playlist.products << course
 
-    # Add it to playlist's users too
-    @playlist.users.each { |pl_user|
-      subscribed_by = (pl_user.id==current_user.id) ? 'Self' : 'Manager'
-      result = MyCourse.subscribe(pl_user.id, course.id, 'reg', subscribed_by)
-      # Send email to the user if he got a new course
-      #byebug
-      if result == true && pl_user.id != current_user.id
-        Notifications.playlist_course_added(pl_user, @playlist, course, request.host_with_port).deliver
-      end
-    }
+    add_course_to_playlist(@playlist, course, current_user)
 
     respond_to do |format|
-      format.html { redirect_to playlists_url }
       format.json { head :no_content }
     end
   end
 
 
-  # DELETE /playlists/1/courses/1
+  # DELETE /playlists/1/courses/1.json
   #
   # Remove course from the playlist
   def remove_course
@@ -112,12 +98,11 @@ class PlaylistsController < ApplicationController
       # we keep going here, just in case if there are duplicate links
     }
     respond_to do |format|
-      format.html { redirect_to playlists_url }
       format.json { head :no_content }
     end
   end
 
-  # PUT /playlists/1/ranks
+  # PUT /playlists/1/ranks.json
   #
   # Update ranking order of the courses in the playlist
   def update_ranks
@@ -126,7 +111,6 @@ class PlaylistsController < ApplicationController
       PlaylistItem.update(rank['id'], :rank => rank['rank'])
     }
     respond_to do |format|
-      format.html { redirect_to playlists_url }
       format.json { head :no_content }
     end
   end
