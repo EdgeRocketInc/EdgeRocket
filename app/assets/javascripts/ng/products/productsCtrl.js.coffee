@@ -19,6 +19,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   }
   $scope.reviews = null
   $scope.newReview = { title : '', actor_name : 'me', gplus : false }
+  $scope.enrolled = false
+  $scope.showAlert = true
 
   # Load product/course details
   loadProduct =  ->
@@ -37,6 +39,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   loadMyCourse =  ->
     $http.get('/my_courses/' + $scope.product_id + '.json').success( (data) ->
       $scope.my_course = data.my_course
+      $scope.enrolled = if $scope.my_course==null then false else true
       console.log('Successfully loaded my course')
       setDisplayRating()
     ).error( ->
@@ -144,5 +147,23 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.options_json.gbox_class = 'unchecked'
     else
       $scope.options_json.gbox_class = 'check'
+
+  $scope.closeAlert = ->
+    $scope.showAlert = false
+
+  # Add this course to the user's wishlist
+  $scope.enroll = ->
+    # Create data object to POST and send a request
+    data =
+      course_id: $scope.product_id
+      status: 'wish'
+      assigned_by: 'Self'
+    $http.post('/course_subscription.json', data).success( (data) ->
+      console.log('Successfully created subscription')
+      $scope.enrolled = true
+      $scope.showAlert = true
+    ).error( ->
+      console.error('Failed to create new subscription')
+    )
 
 @ProductsCtrl.$inject = ['$scope', '$http', '$modal', '$log', '$window']
