@@ -181,16 +181,31 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $scope.currentCourses = []
 
   $scope.removeCourse = (course_id) ->
-    $http.delete('/playlists/' + $scope.currentPlaylist.id + '/courses/' + course_id + '.json', null).success( (data) ->
-      console.log('Successfully removed course from playlist')
-      # find and remove record from internal array
-      for p,i in $scope.currentCourses
-        if p.product_id == course_id
-          $scope.currentCourses.splice(i,1)
-          break
-    ).error( ->
-      console.error('Failed to remove course from playlist')
-    )
+
+    $scope.modal_params = {
+      course_id: course_id
+    }
+    # prompt user to submit a comment
+    modalInstance = $modal.open({
+      templateUrl: 'promptItemModal.html',
+      controller: PromptItemModalCtrl
+      resolve:
+        modal_params: () ->
+          return $scope.modal_params
+    })
+
+    modalInstance.result.then (course_id) ->
+
+      $http.delete('/playlists/' + $scope.currentPlaylist.id + '/courses/' + course_id + '.json', null).success( (data) ->
+        console.log('Successfully removed course from playlist')
+        # find and remove record from internal array
+        for p,i in $scope.currentCourses
+          if p.product_id == course_id
+            $scope.currentCourses.splice(i,1)
+            break
+      ).error( ->
+        console.error('Failed to remove course from playlist')
+      )
 
   $scope.saveRanks = ->
     console.log('updating ranks')
@@ -207,4 +222,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.rankErrorMessage = '* Error updating ranks'
     )
 
+# controller for modal window (promptItemModal)
+@PromptItemModalCtrl = ($scope, $modalInstance, $window, $http, modal_params) ->
+  console.log('Prompt modal ctrl')
+  $scope.modal_params = modal_params
+
+  $scope.proceed = () ->
+    console.log('proceed with the action...')
+    $modalInstance.close($scope.modal_params.course_id)
+
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
+
+@PromptItemModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'modal_params'] 
 @PlaylistsCtrl.$inject = ['$scope', '$http', '$modal', '$log']

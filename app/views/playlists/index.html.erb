@@ -1,3 +1,20 @@
+<!-- Modal prompt to confirm deletion of an item window -->
+<script type="text/ng-template" id="promptItemModal.html">
+  <div class="modal-header">
+    <h4>Warning</h4>
+  </div>
+  <div class="modal-body">
+
+    Deleting an item from Playlits will remove it from the playlist, but it will not remove it from users who arleady have this item in their list of courses.
+    Do you want to proceed?
+
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-sm btn-danger" ng-click="proceed()">Yes, delete it</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()">No, don&#39;t do anyting</button>
+  </div>
+</script>
+
 <!-- Grid Cell template for Mandatory  -->
 <script type="text/ng-template" id="cellMandatory.html">
   <div class="ngCellText text-center">
@@ -31,7 +48,7 @@
   </div>
 </script>
 
-
+<!-- Main content area -->
 <div class="container-fluid" ng-controller="PlaylistsCtrl">
   <div class="row" ng-if="!playlistMode">
     <div class="col-lg-12">
