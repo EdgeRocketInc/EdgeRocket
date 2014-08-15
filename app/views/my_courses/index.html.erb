@@ -80,7 +80,7 @@
                     <td class="course-col course-col-25px">
                       <a href="{{c.product.origin}}" class="" target="_blank">
                         <span class="glyphicon glyphicon-play-circle glyph-big pull-right"
-                          tooltip="Go to course">
+                          tooltip="Go to course" tooltip-append-to-body="true">
                         </span>
                       </a>
                     </td>
@@ -91,15 +91,15 @@
                     </td>
                     <td class="course-col text-right">
                       <img ng-src="{{c.product.vendor.logo_asset_url}}" class="img-provider-logo" 
-                        tooltip="{{c.product.vendor.name}}" />
+                        tooltip="{{c.product.vendor.name}}" tooltip-append-to-body="true"/>
                     </td>
                     <td class="course-col course-col-60px">
                         <span class="glyphicon"
                           ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
-                          tooltip="Assigned by {{c.assigned_by}}">
+                          tooltip="Assigned by {{c.assigned_by}}" tooltip-append-to-body="true">
                         </span>
                         <span class="glyphicon gray {{mediaTypes[c.product.media_type].glyph}}"
-                          tooltip="{{mediaTypes[c.product.media_type].text}}">
+                          tooltip="{{mediaTypes[c.product.media_type].text}}" tooltip-append-to-body="true">
                         </span>
                         <div class="label-duration" ng-if="c.product.duration">
                           {{c.product.duration_object.hours}}h
@@ -118,13 +118,13 @@
 
                     <td class="course-col course-col-100px text-right">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-success btn-xs" tooltip="Move to Completed"
-                          ng-click="courseComplete(cg,$index)" ng-if="cg.status != 'compl'">C</button>
-                        <button type="button" class="btn btn-primary btn-xs" tooltip="Move to In Progress"
+                        <button type="button" class="btn btn-success btn-xs" tooltip="Move to Completed" tooltip-append-to-body="true"
+                          ng-click="courseComplete(cg,$index)" ng-if="cg.status != 'compl'" >C</button>
+                        <button type="button" class="btn btn-primary btn-xs" tooltip="Move to In Progress" tooltip-append-to-body="true"
                           ng-click="courseWip(cg,$index)" ng-if="cg.status != 'wip'">I</button>
-                        <button type="button" class="btn btn-warning btn-xs" tooltip="Move to Assigned"
+                        <button type="button" class="btn btn-warning btn-xs" tooltip="Move to Assigned" tooltip-append-to-body="true"
                           ng-click="courseRegister(cg,$index)" ng-if="cg.status != 'reg'">A</button>
-                        <button type="button" class="btn btn-info btn-xs" tooltip="Move to Wishlist"
+                        <button type="button" class="btn btn-info btn-xs" tooltip="Move to Wishlist" tooltip-append-to-body="true"
                           ng-click="courseWishlist(cg,$index)" ng-if="cg.status != 'wish'">W</button>
                       </div>                  
                     </td>
@@ -170,6 +170,7 @@
                   </div>
                 </accordion-heading>
                 <div class="accordion-course text-info course-row" ng-repeat="pl_item in pl.playlist_items | orderBy:'rank':false">
+                    <span class="badge" ng-show="pl_item.isNew==true">new</span>
                     <a href="/products/{{pl_item.product_id}}" class="course-link" tooltip="Course Details">
                       {{pl_item.product.name}}
                     </a>

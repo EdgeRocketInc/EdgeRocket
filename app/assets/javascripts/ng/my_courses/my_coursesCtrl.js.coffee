@@ -36,6 +36,27 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       mm = Math.round(mm)
     duration_obj = { hours : hh, minutes : mm }
 
+  # returns true if given date is newer than _MS_PER_DAY days
+  isNewDate = (ds) ->
+    days_old = (Date.now() - Date.parse(ds)) / _MS_PER_DAY
+    days_old < _DAYS_OLD
+
+  # massage playlists and items to format data for the view
+  massagePlaylists = ->
+    for pl in $scope.data.my_playlists
+      #debugger
+      pl.checked = 'expand'
+      # calculate if it's a new playlist
+      pl.isNew = isNewDate(pl.updated_at)
+      for pl_item in pl.playlist_items
+        # calculate if it's a new item
+        # first check when the item was added to the playlist
+        if pl_item.created_at
+          pl_item.isNew = isNewDate(pl_item.created_at)
+        # then check when the product itself was updated
+        if pl_item.isNew != true
+          pl_item.isNew = isNewDate(pl_item.product.updated_at)
+
 
   loadMyCourses =  ->
     $http.get('/my_courses.json').success( (data) ->
@@ -64,16 +85,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           c.product.duration_object = toDurationObject(c.product.duration)
           #console.log('vendor=' + c.product.vendor.name)
           #debugger
-      # massage playlists
-      for pl in data.my_playlists
-        pl.checked = 'expand'
-        # calculate if it's a new playlist
-        days_old = (Date.now() - Date.parse(pl.updated_at)) / _MS_PER_DAY
-        pl.isNew = days_old < _DAYS_OLD
       $scope.data = data
       $scope.options_json = angular.fromJson($scope.data.account.options)
       # set checkbox for G+
       $scope.options_json.gbox_class = if $scope.options_json.discussions == 'gplus' then 'check' else null
+      massagePlaylists()
       console.log('Successfully loaded user_home')
     ).error( ->
       console.log('Error loading user_home')
