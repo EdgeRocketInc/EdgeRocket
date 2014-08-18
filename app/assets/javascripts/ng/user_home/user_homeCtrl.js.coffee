@@ -9,7 +9,6 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.playlistsExist = true # TODO make dynamic
   # TODO: move 4 arrays below into one array of structures $scope.plStyle = []
   $scope.isSubscribed = []
-  $scope.glyphSubscribed = []
   $scope.glyphAction = []
   $scope.glyphTooltip = []
   # discussions
@@ -30,12 +29,10 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           $scope.isSubscribed[i] = true
           $scope.glyphAction[i] = 'check'
           $scope.glyphTooltip[i] = 'Uncheck to unsubscribe'
-          $scope.glyphSubscribed[i] = 'ok-sign'
         else
           $scope.isSubscribed[i] = false
           $scope.glyphAction[i] = 'unchecked'
           $scope.glyphTooltip[i] = 'Check to subscribe'
-          $scope.glyphSubscribed[i] = ''
     ).error( ->
       console.log('Error loading user_home')
     )
@@ -65,34 +62,49 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.togglePlaylistSubsciption = (index) ->
     console.log('click index ' + index + ' subscirbed[i] = ' + $scope.isSubscribed[index] )
     if $scope.isSubscribed[index] == true
-      $scope.isSubscribed[index] = false
-      deleteSubscription($scope.data.playlists[index].id)
-      console.log('changed to false' )
+      # open modal prompt
+      promptModalInstance = $modal.open({
+        templateUrl: 'unsubPromptModal.html',
+        controller: UnsubPromptModalCtrl
+      })
+      promptModalInstance.result.then (ed_id) ->
+        console.log('prompt' + ed_id)
+        deleteSubscription($scope.data.playlists[index].id, index)
     else
-      $scope.isSubscribed[index] = true
-      createSubscription($scope.data.playlists[index].id)
+      # when subscribing, we subscribe first and then just let the user know
+      createSubscription($scope.data.playlists[index].id, index)
+
       console.log('changed pl.id=' + $scope.data.playlists[index].id + ' to true' )
-    # TODO this is crazy but I can't make it work otherwise
-    $scope.glyphAction[index] = if $scope.glyphAction[index] == 'check' then 'unchecked' else 'check'
-    $scope.glyphTooltip[index] = if $scope.glyphAction[index] == 'check' then 'Uncheck to unsubscribe' else 'Check to subscribe'
-    $scope.glyphSubscribed[index] = if $scope.glyphSubscribed[index] == 'ok-sign' then '' else 'ok-sign'
+      # open modal confirmation
+      confirmModalInstance = $modal.open({
+        templateUrl: 'subConfirmModal.html',
+        controller: SubConfirmModalCtrl
+      })
+      confirmModalInstance.result.then (ed_id) ->
+        console.log('confirm ' + ed_id)
 
 
-  createSubscription = (playlistId) ->
+  createSubscription = (playlistId, index) ->
     # Create data object to POST and send a request
     data =
       playlist_id: playlistId
 
     $http.post('/playlist_subscription.json', data).success( (data) ->
       console.log('Successfully subscribed to playlist')
+      $scope.isSubscribed[index] = true
+      $scope.glyphAction[index] = 'check'
+      $scope.glyphTooltip[index] = 'Uncheck to unsubscribe'
     ).error( ->
       console.error('Failed to subscribe to playlist')
     )
     return true
 
-  deleteSubscription = (playlistId) ->
+  deleteSubscription = (playlistId, index) ->
     $http.delete('/playlist_subscription/' + playlistId + '.json').success( (data) ->
       console.log('Successfully unsubscribed to playlist')
+      $scope.isSubscribed[index] = false
+      $scope.glyphAction[index] = 'unchecked'
+      $scope.glyphTooltip[index] = 'Check to subscribe'
     ).error( ->
       console.error('Failed to unsubscribe to playlist')
     )
@@ -147,7 +159,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $sce.trustAsHtml($scope.company_overview)
     
 
-# controller for modal window
+# --- controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->
   console.log('modal ctrl')
   $scope.surveySaved = false # true when sruvey has been saved
@@ -185,7 +197,6 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.otherSkill = null
 
   $scope.done = () ->
-    #debugger
     data = { skills: [] }
     for skillset in @skills
       for skill in skillset
@@ -206,5 +217,32 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
 
+
+# --- controller for modal window
+@SubConfirmModalCtrl = ($scope, $modalInstance, $window, $http) ->
+  console.log('modal sub confirm ctrl')
+
+  $scope.go_to_my = () ->
+    #debugger
+    $modalInstance.close('goto')
+
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
+
+
+# --- controller for modal window
+@UnsubPromptModalCtrl = ($scope, $modalInstance, $window, $http) ->
+  console.log('modal unsub prompt ctrl')
+
+  $scope.proceed = () ->
+    #debugger
+    $modalInstance.close('proceed')
+
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
+
+
 @IndexCtrl.$inject = ['$scope', '$http', '$modal', '$sce']
 @SurveyModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
+@SubConfirmModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
+@UnsubPromptModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
