@@ -38,7 +38,7 @@
     <h4>Subscribed to Playlist</h4>
   </div>
   <div class="modal-body">
-    You&#39;ve subscribed to this Playlist! Access the Playlist content on <a href="/my_courses">My Courses</a> page
+    You&#39;ve subscribed to "{{ thePlaylistName }}" Playlist! Access the Playlist content on <a href="/my_courses">My Courses</a> page
   </div>
   <div class="modal-footer">
       <button class="btn btn-sm btn-success" ng-click="go_to_my()">Go to My Courses</button>
@@ -53,7 +53,7 @@
     <h4 class="text-danger">Warning</h4>
   </div>
   <div class="modal-body">
-    Are you sure you want to unsubscribe from this Playlist?
+    Are you sure you want to unsubscribe from "{{ thePlaylistName }}" Playlist?
   </div>
   <div class="modal-footer">
       <button class="btn btn-sm btn-danger" ng-click="proceed()">Yes, unsubscribe</button>

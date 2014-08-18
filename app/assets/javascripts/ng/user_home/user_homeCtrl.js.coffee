@@ -4,7 +4,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-@IndexCtrl = ($scope, $http, $modal, $sce) ->
+@IndexCtrl = ($scope, $http, $modal, $sce, $window) ->
 
   $scope.playlistsExist = true # TODO make dynamic
   # TODO: move 4 arrays below into one array of structures $scope.plStyle = []
@@ -61,11 +61,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.togglePlaylistSubsciption = (index) ->
     console.log('click index ' + index + ' subscirbed[i] = ' + $scope.isSubscribed[index] )
+    #debugger
     if $scope.isSubscribed[index] == true
       # open modal prompt
       promptModalInstance = $modal.open({
-        templateUrl: 'unsubPromptModal.html',
+        templateUrl: 'unsubPromptModal.html'
         controller: UnsubPromptModalCtrl
+        resolve:
+          pl_name: () ->
+            return $scope.data.playlists[index].title
       })
       promptModalInstance.result.then (ed_id) ->
         console.log('prompt' + ed_id)
@@ -77,11 +81,15 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.log('changed pl.id=' + $scope.data.playlists[index].id + ' to true' )
       # open modal confirmation
       confirmModalInstance = $modal.open({
-        templateUrl: 'subConfirmModal.html',
+        templateUrl: 'subConfirmModal.html'
         controller: SubConfirmModalCtrl
+        resolve:
+          pl_name: () ->
+            return $scope.data.playlists[index].title
       })
       confirmModalInstance.result.then (ed_id) ->
         console.log('confirm ' + ed_id)
+        $window.location.href = '/my_courses'
 
 
   createSubscription = (playlistId, index) ->
@@ -219,11 +227,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 
 # --- controller for modal window
-@SubConfirmModalCtrl = ($scope, $modalInstance, $window, $http) ->
+@SubConfirmModalCtrl = ($scope, $modalInstance, $window, $http, pl_name) ->
   console.log('modal sub confirm ctrl')
+  #debugger
+  $scope.thePlaylistName = pl_name
 
   $scope.go_to_my = () ->
-    #debugger
     $modalInstance.close('goto')
 
   $scope.cancel = ->
@@ -231,18 +240,19 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 
 # --- controller for modal window
-@UnsubPromptModalCtrl = ($scope, $modalInstance, $window, $http) ->
+@UnsubPromptModalCtrl = ($scope, $modalInstance, $window, $http, pl_name) ->
   console.log('modal unsub prompt ctrl')
+  #debugger
+  $scope.thePlaylistName = pl_name
 
   $scope.proceed = () ->
-    #debugger
     $modalInstance.close('proceed')
 
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
 
 
-@IndexCtrl.$inject = ['$scope', '$http', '$modal', '$sce']
+@IndexCtrl.$inject = ['$scope', '$http', '$modal', '$sce', '$window']
 @SurveyModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
-@SubConfirmModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
-@UnsubPromptModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http']
+@SubConfirmModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'pl_name']
+@UnsubPromptModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'pl_name']
