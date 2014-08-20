@@ -13,7 +13,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     }
     'online': {
       'glyph' : 'glyphicon-cloud',
-      'text' : 'Online'
+      'text' : 'Online Course'
     }
     'book': {
       'glyph' : 'glyphicon-book',
