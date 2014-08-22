@@ -1,7 +1,7 @@
 README
 ======
 
-NOTE: this app is under root in the admitriyev's heroku branch in github, and it should be used from that branch only
+NOTE: Use master-heroku branch!
 
 Ruby version 
 ------------
