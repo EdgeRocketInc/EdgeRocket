@@ -7,8 +7,8 @@ development:
     database: heroku
     port: 5432
     host: localhost
-    username: postgres
-    password: ER0cket!
+    username: gschool
+    password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -21,8 +21,8 @@ test:
     database: heroku_test
     port: 5432
     host: localhost
-    username: postgres
-    password: ER0cket!
+    username: gschool
+    password: 
 
 # staging env on heroku
 stage:
