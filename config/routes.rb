@@ -2,7 +2,7 @@ EdgeApp::Application.routes.draw do
 
   get 'company/index'
 
-  # Don't alloow users to sign up themselves, but allow changing passwords
+  # Don't allow users to sign up themselves, but allow changing passwords
   devise_for :users, :skip => [:registrations]
     as :user do
       #get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
@@ -31,6 +31,7 @@ EdgeApp::Application.routes.draw do
   get "profile/current" => 'profile#index'
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
+  get "sign_up" => 'pending_users#new'
   get "search" => 'search#index'
   get "teams" => 'teams#index'
   get "user_home" => 'user_home#index'
