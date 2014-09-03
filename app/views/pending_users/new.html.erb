@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 center voffset3">
+      <%= image_tag('ER_final_logo-crop-224x43.png') %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 center voffset3">
+      <div class="panel panel-primary">
+        <%= form_for(@pending_user, url: sign_up_path) do |f| %>
+          <div class="panel-body">
+            <%= f.text_field :first_name, autofocus: true, class: 'form-control voffset1', placeholder: 'First Name' %>
+            <%= f.text_field :last_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Last Name' %>
+            <%= f.text_field :company_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Company Name' %>
+            <%= f.email_field :email, autofocus: true, class: 'form-control voffset1', placeholder: 'Email' %>
+            <%= f.password_field :encrypted_password, autocomplete: "off", class: 'form-control voffset2', placeholder: 'Password' %>
+            <%= f.password_field :confirm_password, autocomplete: "off", class: 'form-control voffset2', placeholder: 'Confirm Password' %>
+            <div class="voffset2">
+              <%= f.submit "Sign up", class: 'btn btn-primary form-control' %>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 center voffset3">
+      <div class="alert alert-warning">Access is restricted at this time, please
+        <a style="color: blue" href="http://edgerocket.co/#subscribe">subscribe</a> to receive updates about EdgeRocket
+        launch!
+      </div>
+    </div>
+  </div>
+</div>

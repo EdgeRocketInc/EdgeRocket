@@ -39,6 +39,7 @@ EdgeApp::Application.routes.draw do
   get "vendors" => 'products#vendors'
   get "welcome/edit_password" => 'welcome#edit_password'
 
+  post "sign_up" => 'pending_users#create'
   post "playlist_subscription" => 'user_home#subscribe', constraints: { format: 'json' }
   post "course_subscription" => 'my_courses#subscribe', constraints: { format: 'json' }
   post "users/preferences" => 'user_home#create_preferences', constraints: { format: 'json' }
