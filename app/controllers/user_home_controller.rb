@@ -94,15 +94,17 @@ class UserHomeController < ApplicationController
   # create new set of user preferences for current user
   # JSON: {anything}
   def create_preferences
-    u = current_user
     prefs = { :skills => params[:skills] }  # TODO make it real
-    u.preferences = prefs.to_json
-    if u.save
+    survey = Survey.new(
+      user_id: current_user.id,
+      preferences: prefs.to_json)
+
+    if survey.save
       Notifications.survey_completed(u).deliver
     end
 
 
-    result = { 'user_ud' => u.id }
+    result = { 'user_id' => current_user.id }
 
     respond_to do |format|
         format.json { render json: result.as_json }
@@ -121,7 +123,9 @@ class UserHomeController < ApplicationController
         json_result = u.as_json
         json_result['account'] = @account.as_json(methods: :options)
         json_result['sign_in_count'] = u.sign_in_count #ugly but works
-        json_result['user_preferences'] = u.preferences #ugly but works
+        unless u.survey == nil
+          json_result['user_preferences'] = u.survey.preferences #ugly but works
+        end
         json_result['best_role'] = u.best_role
         render json: json_result.as_json
       }

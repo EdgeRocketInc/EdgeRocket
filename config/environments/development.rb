@@ -5,6 +5,8 @@ ENV['KEEN_WRITE_KEY']='e601c128f0ecc2b72613a9e82aeb90f9c77898fcb211cc46f5e43d98e
 #KEEN_WRITE_KEY=yyyyyyyyyyyyyyy
 #KEEN_READ_KEY=zzzzzzzzzzzzzzz
 
+
+
 EdgeApp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -39,5 +41,8 @@ EdgeApp::Application.configure do
 
   # Disable request forgery protection in development environment.
   # DO NOT COMMIT set to false
-  config.action_controller.allow_forgery_protection = true 
+  config.action_controller.allow_forgery_protection = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 end
