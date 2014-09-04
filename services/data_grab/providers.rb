@@ -46,6 +46,11 @@ class ProviderClient
   def instructors
     raise "Abstract method called"
   end
+
+  def school
+    raise "Abstract method called"
+  end
+
 end
 
 # using Coursera API
@@ -59,7 +64,7 @@ class CourseraClient < ProviderClient
 		row['name']
 	end
 
-    def description(row)
+  def description(row)
 		row['shortDescription']
     end
 
@@ -82,6 +87,11 @@ class CourseraClient < ProviderClient
 		instructors_json = JSON.parse(instructors)
 		instructors_json['elements']		
  	end
+
+  def school(row)
+    nil
+  end
+
 end
 
 # using Udemy API
@@ -151,6 +161,10 @@ class UdemyClient < ProviderClient
     nil
   end
 
+  def school(row)
+    nil
+  end
+
   private 
 
   def get_course(course_key)
@@ -195,4 +209,9 @@ class JsonClient < ProviderClient
 	def instructors
 		nil
 	end
+
+  def school(row)
+    row['school'][0]
+  end
+
 end

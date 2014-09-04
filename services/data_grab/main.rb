@@ -108,6 +108,7 @@ courses_json.each_with_index { |crs, i|
 				}
 			end
 		end
+		prd.school = provider.school(crs)
 		prd.origin = course_url
 		prd.media_type = 'online'
 		prd.manual_entry = false
