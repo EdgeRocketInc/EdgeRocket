@@ -4,7 +4,8 @@ EdgeRocket
 EdgeRocket source
 
 Branches:
-* master - everything (keep in mind that web/edge_app is split into heroku branch, but is not kept up-to-date, so don't check in there
-* split - do not use!
-* heroku (subtree of edge_app directory in master branch) - for pushing to Heroku, because it needs a root of the tree for some reason
 
+Historically this repo started in master branch, and then it was split into master-branch using git tree split. Currently here are these branches:
+
+* master - contains scripts and services
+* master-heroku - contains the Rails web app for pushing to Heroku, because Heroku needsed it in the root of the tree for some reason
