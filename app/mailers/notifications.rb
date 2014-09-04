@@ -25,4 +25,16 @@ class Notifications < ActionMailer::Base
     mail to: 'support@edgerocket.co', subject: @greeting
   end
 
+  def account_requested(pending_user)
+    @email = pending_user.email
+    @first_name = pending_user.first_name
+    @subject = "Account request has been received"
+
+    mail to: @email, subject: @subject
+  end
+
+  def account_request_received
+
+  end
+
 end
