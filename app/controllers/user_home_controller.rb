@@ -97,7 +97,10 @@ class UserHomeController < ApplicationController
     u = current_user
     prefs = { :skills => params[:skills] }  # TODO make it real
     u.preferences = prefs.to_json
-    u.save
+    if u.save
+      Notifications.survey_completed(u).deliver
+    end
+
 
     result = { 'user_ud' => u.id }
 

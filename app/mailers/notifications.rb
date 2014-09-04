@@ -17,5 +17,12 @@ class Notifications < ActionMailer::Base
     mail to: @user.email, subject: @greeting
   end
 
+  def survey_completed(user)
+    @email = user.email
+    @survey_json = user.preferences
+    @greeting = "A new survey has been completed by #{@email}!"
+
+    mail to: 'support@edgerocket.co', subject: @greeting
+  end
 
 end
