@@ -99,6 +99,8 @@ class UserHomeController < ApplicationController
     u.preferences = prefs.to_json
     u.save
 
+    Notifications.survey_completed(u).deliver
+
     result = { 'user_ud' => u.id }
 
     respond_to do |format|
