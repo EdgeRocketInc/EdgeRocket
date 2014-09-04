@@ -33,6 +33,7 @@ EdgeApp::Application.routes.draw do
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
   get "sign_up" => 'pending_users#new'
   get "search" => 'search#index'
+  get "system/surveys" => ''
   get "teams" => 'teams#index'
   get "user_home" => 'user_home#index'
   get "users/current" => 'user_home#get_user'
