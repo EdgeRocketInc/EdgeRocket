@@ -323,6 +323,17 @@ span.input-group-btn .btn-post-discussions {
   color: #5cb85c;
 }
 
+// Remove margin form alerts
+
+div.alert.alert-danger {
+  margin-bottom: 0;
+  &:last-of-type {
+    margin-bottom: 21px;
+  }
+}
+
+
+
 // Text for cells to align with big glyphs
 
 .text-cell {

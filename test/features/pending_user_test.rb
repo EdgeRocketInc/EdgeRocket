@@ -30,7 +30,7 @@ class PendingUserTest < Capybara::Rails::TestCase
 
     user = User.create!(
       email: pending_user.email,
-      password: 'password'
+      password: 'dumbpass'
     )
     user.update_column(:encrypted_password, pending_user.encrypted_password)
 
@@ -40,6 +40,7 @@ class PendingUserTest < Capybara::Rails::TestCase
     click_button 'Sign in'
 
     assert_content page, "Playlists"
+
   end
 
 end

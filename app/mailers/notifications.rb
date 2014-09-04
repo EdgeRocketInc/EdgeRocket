@@ -16,4 +16,6 @@ class Notifications < ActionMailer::Base
 
     mail to: @user.email, subject: @greeting
   end
+
+
 end
