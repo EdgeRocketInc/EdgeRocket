@@ -6,6 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Account.destroy_all
+Vendor.destroy_all
+User.destroy_all
+Role.destroy_all
+
 Account.create(id: 1, company_name: 'EdgeRocket, Inc.', 
 	options: '{"budget_management":true,"survey":true,"discussions":"gplus","recommendations":true,"dashboard_demo":true}',
 	overview: 'EdgeRocket ecnourages employees to take as many classes as possible')
@@ -53,7 +58,7 @@ User.create(id: 11, email: 'Jose.Calderon@TechCorp.com', password: 'TechCorp!', 
 User.create(id: 20, email: 'admin@TrackVia.com', password: 'TrackVia!', account_id: 3)
 User.create(id: 21, email: 'employee@TrackVia.com', password: 'TrackVia!', account_id: 3)
 
-Role.create(id: 1, name: 'SA', user_id: 0)
+Role.create(id: 0, name: 'Sysop', user_id: 0)
 Role.create(id: 2, name: 'Admin', user_id: 1)
 Role.create(id: 11, name: 'Admin', user_id: 11)
 Role.create(id: 20, name: 'Admin', user_id: 20)

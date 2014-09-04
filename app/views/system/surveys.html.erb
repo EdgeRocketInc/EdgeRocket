@@ -1,0 +1,15 @@
+<h1>Sysop Survey Page</h1>
+<ul>
+  <% @survey.each do |survey| %>
+    <% if survey.processed == false %>
+      <li><%= survey.user.email %> | <%= survey.preferences %></li>
+    <% end %>
+  <% end %>
+</ul><br>
+<ul>
+  <% @survey.each do |survey| %>
+    <% if survey.processed == true %>
+      <li><%= survey.user.email %> | <%= survey.preferences %></li>
+    <% end %>
+  <% end %>
+</ul>
