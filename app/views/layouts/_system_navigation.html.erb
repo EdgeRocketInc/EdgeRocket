@@ -1,0 +1,46 @@
+<% if !params[:controller].starts_with?('devise') %>
+  <nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to image_tag('ER_final_logo-crop-224x43.png', alt: 'My EdgeRocket homepage', width: '100px'), '/user_home', class: 'navbar-brand' %>
+
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Surveys", system_surveys_path %></li>
+          <li><%= link_to "Pending Users", system_pending_users_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle nav-profile"> <!-- removed data-toggle="dropdown" because it conflicts with ui-bootstrap-0.11 -->
+                <%= image_tag '/profile/get_profile_photo_thumb', :alt => 'Profile', :class => 'nav-thumb'  %>
+                <%= current_user.first_name.blank? ? current_user.email : current_user.first_name %>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to("Log out", {controller: "devise/sessions", action: "destroy"}, method: :delete) %>
+                </li>
+                <li>
+                  <%= link_to("Change Password", {controller: "welcome", action: "edit_password" }) %>
+                </li>
+                <li>
+                  <%= link_to("Manage Profile", {controller: "profile", action: "index" }) %>
+                </li>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+<% end %>

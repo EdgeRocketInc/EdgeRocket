@@ -14,6 +14,23 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     DatabaseCleaner.clean
   end
 
+  test "can complete survey" do
+
+    Capybara.current_driver = :selenium
+
+    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
+    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
+
+    visit root_path
+
+    fill_in 'user_email', with: 'sysop-test@edgerocket.co'
+    fill_in 'user_password', with: '12345678'
+    click_button 'Sign in'
+
+    within(".modal-footer") {click_button "Submit"}
+    within(".modal-footer") {assert_content page,"Thanks! Based on your preferences,"}
+  end
+
   test "all user pages sanity" do
 
     Capybara.current_driver = :selenium

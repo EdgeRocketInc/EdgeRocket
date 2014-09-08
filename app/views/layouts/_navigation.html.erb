@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to image_tag('ER_final_logo-crop-224x43.png', alt: 'My EdgeRocket homepage', width: '100px'), '/user_home', class: 'navbar-brand' =%>
+      <%= link_to image_tag('ER_final_logo-crop-224x43.png', alt: 'My EdgeRocket homepage', width: '100px'), '/user_home', class: 'navbar-brand' %>
 	
     </div>
 
@@ -17,50 +17,50 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<%= 'active' if params[:controller] == 'user_home' %>">
-          <%= link_to("Home", controller: "user_home", action: "index") =%>
+          <%= link_to("Home", controller: "user_home", action: "index") %>
         </li>
         <li class="<%= 'active' if params[:controller] == 'my_courses' %>">
-          <%= link_to("My Courses", controller: "my_courses", action: "index") =%>
+          <%= link_to("My Courses", controller: "my_courses", action: "index") %>
         </li>
         <%  
           if !current_user.account.nil? && !current_user.account.options.blank?
             opt = ActiveSupport::JSON.decode(current_user.account.options)
             if opt['disable_search'].blank? || opt['disable_search'] == false %>
             <li class="<%= 'active' if params[:controller] == 'search' %>">
-              <%= link_to("Search", controller: "search", action: "index") =%>
+              <%= link_to("Search", controller: "search", action: "index") %>
             </li>
 
         <%  end
            if opt['disable_plans'].blank? || opt['disable_plans'] == false %>
           <li class="<%= 'active' if params[:controller] == 'plans' %>">
-            <%= link_to("Plan", controller: "plans", action: "index") =%>
+            <%= link_to("Plan", controller: "plans", action: "index") %>
           </li>
         <%  end
            end %>
 	<% if can? :manage, :all %>
 	       <li class="<%= 'active' if params[:controller] == 'dashboards' %>">
-        	  <%= link_to("Company Dashboard", controller: "dashboards", action: "show") =%>
+        	  <%= link_to("Company Dashboard", controller: "dashboards", action: "show") %>
 	       </li>
 	       <li class="dropdown">
             <!-- removed data-toggle="dropdown" from <a> below because it conflicts with ui-bootstrap-0.11 -->
         	  <a href="#" class="dropdown-toggle">Manage <b class="caret"></b></a>  
 	          <ul class="dropdown-menu" role="menu">
             <li class="<%= 'active' if params[:controller] == 'playlists' %>">
-                <%= link_to("Playlists", controller: "playlists", action: "index") =%>
+                <%= link_to("Playlists", controller: "playlists", action: "index") %>
             </li>
             <li class="<%= 'active' if params[:controller] == 'products' %>">
-                <%= link_to("Add Item/Course", controller: "products", action: "curated_index") =%>
+                <%= link_to("Add Item/Course", controller: "products", action: "curated_index") %>
             </li>
             <li class="<%= 'active' if params[:controller] == 'employees' %>">
-                <%= link_to("Users", controller: "employees", action: "index") =%>
+                <%= link_to("Users", controller: "employees", action: "index") %>
             </li>
             <!-- TODO future
         		<li class="<%= 'active' if params[:controller] == 'teams' %>">
-         			<%= link_to("My Team", controller: "teams", action: "index") =%>
+         			<%= link_to("My Team", controller: "teams", action: "index") %>
 	       		</li>
             -->
         		<li class="<%= 'active' if params[:controller] == 'company' %>">
-          			<%= link_to("Edit Home", controller: "company", action: "index") =%>
+          			<%= link_to("Edit Home", controller: "company", action: "index") %>
 	        	</li>
         	  </ul>
 	       </li>
@@ -70,18 +70,18 @@
 	<% if user_signed_in? %>
         	<li class="dropdown">
             <a href="#" class="dropdown-toggle nav-profile"> <!-- removed data-toggle="dropdown" because it conflicts with ui-bootstrap-0.11 -->
-              <%= image_tag '/profile/get_profile_photo_thumb', :alt => 'Profile', :class => 'nav-thumb'  =%>
+              <%= image_tag '/profile/get_profile_photo_thumb', :alt => 'Profile', :class => 'nav-thumb'  %>
               <%= current_user.first_name.blank? ? current_user.email : current_user.first_name %>
             </a>
             <ul class="dropdown-menu">
               <li>
-                  <%= link_to("Log out", {controller: "devise/sessions", action: "destroy"}, method: :delete) =%>
+                  <%= link_to("Log out", {controller: "devise/sessions", action: "destroy"}, method: :delete) %>
               </li>
               <li>
-                  <%= link_to("Change Password", {controller: "welcome", action: "edit_password" }) =%>
+                  <%= link_to("Change Password", {controller: "welcome", action: "edit_password" }) %>
               </li>
               <li>
-                  <%= link_to("Manage Profile", {controller: "profile", action: "index" }) =%>
+                  <%= link_to("Manage Profile", {controller: "profile", action: "index" }) %>
               </li>
             </ul>
           </li>

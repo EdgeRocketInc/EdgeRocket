@@ -6,6 +6,10 @@ class SystemController < ApplicationController
     @survey = Survey.order(created_at: :asc)
   end
 
+  def pending_users
+    @pending_users = PendingUser.all
+  end
+
   private
 
   def ensure_sysop_user
