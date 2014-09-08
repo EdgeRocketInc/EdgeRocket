@@ -3,7 +3,7 @@ class PendingUser < ActiveRecord::Base
 
   validates_presence_of(:first_name, :last_name)
   validates_uniqueness_of :email
-  validate :email_in_use, :validate_password
+  validate :validate_password
 
   private
 
@@ -11,16 +11,11 @@ class PendingUser < ActiveRecord::Base
     self.encrypted_password = Devise.bcrypt(User, encrypted_password)
   end
 
-  def email_in_use
-    @user ||= User.find_by(email: email)
-    errors.add(:base, 'Email has already been taken') if @user
-  end
-
   def validate_password
     @user = User.new(email: email, password: encrypted_password)
     @user.valid?
-    @user.errors.full_messages.each do |error|
-      self.errors[:base].push error
+    @user.errors.each do |column, error|
+      self.errors.add(column, error)
     end
   end
 

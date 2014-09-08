@@ -24,7 +24,7 @@ class PendingUsersController < ApplicationController
     params.require(:pending_user).permit(:first_name, :last_name, :company_name, :email, :encrypted_password)
   end
 
-  def password_error(pending_user)
+  def password_matching_error?(pending_user)
     pending_user.errors[:base] = "Passwords must match" unless passwords_match?
   end
 
@@ -33,9 +33,9 @@ class PendingUsersController < ApplicationController
   end
 
   def render_error_messages(pending_user)
-    password_error(pending_user)
+    password_matching_error?(pending_user)
     pending_user.errors.full_messages.each.with_index(1) do |message, index|
-      flash.now["error#{index}"] = message
+      flash.now["error #{index}"] = message
     end
   end
 
