@@ -49,7 +49,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         loadDiscussions()
       # if sruvey flag is enabled for this company and user hasn't save survey yet, then start a survey
       # later we may also present it on the first login only - $scope.user.sign_in_count <= 1
-      if $scope.options_json.survey && !$scope.user.user_preferences?
+      if $scope.options_json.survey && !$scope.user.user_preferences
         console.log('Starting survey...')
         startSurvey()
     ).error( ->
