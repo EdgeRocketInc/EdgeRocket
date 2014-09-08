@@ -1,9 +1,14 @@
 class SystemController < ApplicationController
 
   before_filter :ensure_sysop_user
+  layout "system"
 
   def surveys
-    @survey = Survey.order(created_at: :asc)
+    @surveys = Survey.order(created_at: :asc)
+    respond_to do |format|
+      format.html
+      format.json {render json: @surveys}
+    end
   end
 
   def pending_users
