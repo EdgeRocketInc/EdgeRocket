@@ -28,6 +28,8 @@ class SelfSignUpTest < Capybara::Rails::TestCase
     click_button 'Sign up'
 
     assert_content page, "Thank you for your interest. We will contact you shortly."
+
+
   end
 
   test "user sees error messages" do
