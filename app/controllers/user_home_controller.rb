@@ -123,7 +123,6 @@ class UserHomeController < ApplicationController
         json_result['account'] = @account.as_json(methods: :options)
         json_result['sign_in_count'] = u.sign_in_count #ugly but works
         unless u.survey == nil
-          p 'hi'
           json_result['user_preferences'] = u.survey.preferences #ugly but works
         end
         json_result['best_role'] = u.best_role
