@@ -183,7 +183,13 @@ end
 class JsonClient < ProviderClient
 
 	def origin(row)
-		row['origin'][0]
+    # if origin field is present, then use it, if not, then it's expected that 
+    # a hidden source field was provided by crawler
+    if row['origin'].nil?
+      row['_pageUrl']
+    else
+		  row['origin'][0]
+    end
 	end
 
 	def name(row)
@@ -211,7 +217,7 @@ class JsonClient < ProviderClient
 	end
 
   def school(row)
-    row['school'][0]
+    row['school'].nil? ? nil : row['school'][0]
   end
 
 end
