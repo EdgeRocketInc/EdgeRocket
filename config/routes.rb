@@ -61,6 +61,10 @@ EdgeApp::Application.routes.draw do
   post "profile/upload" => 'profile#upload', constraints: { format: 'json' }
   post "profile" => 'profile#update', constraints: { format: 'json' }
 
+  patch "system/surveys/undo" => 'system#undo_processing'
+  patch "system/surveys" => 'system#processing'
+
+
   delete "course_subscription/:id" => 'my_courses#unsubscribe', constraints: { format: 'json' }
   delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
   delete "playlists/:id/courses/:course_id" => 'playlists#remove_course', constraints: { format: 'json' }

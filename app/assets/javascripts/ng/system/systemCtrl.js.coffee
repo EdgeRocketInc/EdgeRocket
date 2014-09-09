@@ -5,6 +5,7 @@ EdgeRocket.config [
   (provider) ->
     provider.defaults.stripTrailingSlashes = false
     provider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content")
+    provider.defaults.headers.patch = {'Content-Type': 'application/json;charset=utf-8'}
 ]
 
 EdgeRocket.factory 'surveysFactory', ($resource) ->
@@ -12,9 +13,29 @@ EdgeRocket.factory 'surveysFactory', ($resource) ->
 
 @SystemSurveysCtrl = ($scope, $http, surveysFactory) ->
 
-    $scope.surveys = surveysFactory.query()
+    getSurveys = ->
+      $scope.surveys = surveysFactory.get ->
+        $scope.unprocessedSurveys = $scope.surveys.unprocessed
+        $scope.processedSurveys = $scope.surveys.processed
 
-    $scope.gridOptions = {
-      data: 'surveys',
-      columnDefs: [{field: 'processed', displayName: 'Processed'}, {field: 'created_at', displayName: 'Date Submitted'}]
+    getSurveys()
+
+    $scope.process = (id) ->
+      $http({ method: 'PATCH', url: '/system/surveys', data: id:id}).success ->
+        getSurveys()
+
+    $scope.undoProcess = (id) ->
+      $http({ method: 'PATCH', url: '/system/surveys/undo', data: id:id}).success ->
+        getSurveys()
+
+
+    $scope.unprocessedSurveysTable = {
+      data: 'unprocessedSurveys',
+      columnDefs: [{field: 'email', displayName: 'Users Email'}, {field: 'date', displayName: 'Date Completed'}, {field: 'fullName', displayName: 'Name'}, { field : 'id', displayName : 'Process/Details', width : '15%', minWidth : '80', cellTemplate: 'cellActionsProcess.html', sortable: false }],
+      enableRowSelection: false
+    }
+    $scope.processedSurveysTable = {
+      data: 'processedSurveys',
+      columnDefs: [{field: 'email', displayName: 'Users Email'}, {field: 'date', displayName: 'Date Completed'}, {field: 'fullName', displayName: 'Name'}, { field : 'id', displayName : 'Undo/Details', width : '15%', minWidth : '80', cellTemplate: 'cellActionsUnprocess.html', sortable: false}],
+      enableRowSelection: false
     }

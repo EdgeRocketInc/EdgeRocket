@@ -4,11 +4,20 @@ class SystemController < ApplicationController
   layout "system"
 
   def surveys
-    @surveys = Survey.order(created_at: :asc)
-    respond_to do |format|
-      format.html
-      format.json {render json: @surveys}
-    end
+    @unprocessed_surveys = Survey.where(processed: false)
+    @processed_surveys = Survey.where(processed: true)
+  end
+
+  def processing
+    @survey = Survey.find(params["id"])
+    @survey.update!({:processed => true})
+    render json: @survey
+  end
+
+  def undo_processing
+    @survey = Survey.find(params["id"])
+    @survey.update!({:processed => false})
+    render json: @survey
   end
 
   def pending_users

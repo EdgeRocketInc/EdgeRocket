@@ -1,5 +1,33 @@
-<h1>Sysop Survey Page</h1>
-<div ng-controller="SystemSurveysCtrl">
-  <div class="gridStyle" ng-grid="gridOptions">
+<!-- Grid Cell template for Actions -->
+<script type="text/ng-template" id="cellActionsProcess.html">
+  <div class="ngCellText text-center">
+    <span class="glyphicon glyphicon-check glyph-big glyph-action"
+          ng-click="process(row.entity.id)" tooltip="Process Survey" tooltip-append-to-body="true">
+    </span>
+    <span class="glyphicon glyphicon-new-window glyph-big glyph-action"
+          ng-click="" tooltip="View Details" tooltip-append-to-body="true">
+    </span>
+  </div>
+</script>
+
+<script type="text/ng-template" id="cellActionsUnprocess.html">
+  <div class="ngCellText text-center">
+    <span class="glyphicon glyphicon-repeat glyph-big glyph-action"
+          ng-click="undoProcess(row.entity.id)" tooltip="Undo Process Survey" tooltip-append-to-body="true">
+    </span>
+    <span class="glyphicon glyphicon-new-window glyph-big glyph-action"
+          ng-click="" tooltip="View Details" tooltip-append-to-body="true">
+    </span>
+  </div>
+</script>
+
+<div class="container-fluid" ng-controller="SystemSurveysCtrl">
+  <h1>Sysop Survey Page</h1>
+  <h3>Unprocessed Surveys</h3>
+  <div class="gridStyle" ng-grid="unprocessedSurveysTable">
+  </div>
+  <br/>
+  <h3>Processed Surveys</h3>
+  <div class="gridStyle" ng-grid="processedSurveysTable">
   </div>
 </div>
