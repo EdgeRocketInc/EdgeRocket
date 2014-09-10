@@ -1,17 +1,13 @@
-EdgeRocket = angular.module("EdgeRocket", ["ui.bootstrap", "ngResource", 'ngGrid'])
-EdgeRocket.config [
-  "$httpProvider"
-  "$resourceProvider"
-  (provider) ->
-    provider.defaults.stripTrailingSlashes = false
-    provider.defaults.headers.common["X-CSRF-Token"] = $("meta[name=csrf-token]").attr("content")
-    provider.defaults.headers.patch = {'Content-Type': 'application/json;charset=utf-8'}
-]
+EdgeRocket = angular.module("EdgeRocket", ['ui.bootstrap', 'ngResource', 'ngGrid'])
 
-EdgeRocket.factory 'surveysFactory', ($resource) ->
-  return $resource('/system/surveys.json')
+EdgeRocket.config(["$httpProvider", (provider) ->
+  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
+])
 
-@SystemSurveysCtrl = ($scope, $http, surveysFactory) ->
+@SystemSurveysCtrl = ($scope, $http, $resource) ->
+
+    # not a real factory, but is simple to work around Heroku injections
+    surveysFactory = $resource('/system/surveys.json')
 
     getSurveys = ->
       $scope.surveys = surveysFactory.get ->
@@ -40,4 +36,4 @@ EdgeRocket.factory 'surveysFactory', ($resource) ->
       enableRowSelection: false
     }
 
-@SystemSurveysCtrl.$inject = ['$scope', '$http', 'surveysFactory']
+@SystemSurveysCtrl.$inject = ['$scope', '$http', '$resource']
