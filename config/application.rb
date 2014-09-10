@@ -27,7 +27,7 @@ module EdgeApp
     # need for Twitter bootstrap and AngularJS
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.precompile += %w(yeti.js yeti.css) # Replace Bootswatch theme here
-    config.assets.precompile += %w(profile.js user_home.js angular.js angular-sanitize.js angular-charts.min.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.11.0.min.js ng-grid-2.0.11.min.js my_courses.js playlists.js teams.js employees.js products.js profile.js welcome.js company.js pending_users.js system.js)
+    config.assets.precompile += %w(profile.js user_home.js angular.js angular-sanitize.js angular-resource.js angular-charts.min.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.11.0.min.js ng-grid-2.0.11.min.js my_courses.js playlists.js teams.js employees.js products.js profile.js welcome.js company.js pending_users.js system.js)
     config.assets.compile = true
 
     # need for Devise
