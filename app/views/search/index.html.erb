@@ -38,15 +38,13 @@
 <!-- Results area -->
 <div class="container-fluid" ng-controller="SearchCtrl">
 
-  <div class="row">
+  <div class="row voffset2">
 
-    <div class="col-md-6 voffset2">
-      <div class="input-group">
-        <span class="input-group-addon">Search: </span>
-        <input type="text" class="input-sm form-control" placeholder="Text" ng-model="searchText"/>
-      </div>
+    <div class="col-md-4">
+      <input type="text" class="input-sm form-control" placeholder="Text" ng-model="searchText"/>
     </div>
-    <div class="col-md-6 voffset2">
+
+    <div class="col-md-5">
       <span class="glyphicon glyphicon-{{ mediaCbAll.class }} glyph-big glyph-action" ng-click="toggleMediaAll()"></span>
       <span class="glyph-label">Select All</span>
       <span ng-repeat="cbox in mediaCheckboxes">
@@ -54,6 +52,11 @@
         <span class="glyph-label">{{cbox.label}}</span>
       </span>
     </div>
+
+    <div class="col-md-2">
+      <button class="form-control">Search</button>
+    </div>
+
   </div>
 
   <div class="row voffset4">
@@ -134,7 +137,7 @@
 
   <div class="row voffset2" ng-if="limitItems < filteredItems.length">
     <div class="col-md-4 col-md-offset-4 center">
-      <button type="button" class="btn btn-sm btn-default form-control" ng-click="moreItems()">More...</button>
+      <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
     </div>
   </div>
 

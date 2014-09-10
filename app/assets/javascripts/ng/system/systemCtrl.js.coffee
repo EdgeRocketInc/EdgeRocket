@@ -39,3 +39,5 @@ EdgeRocket.factory 'surveysFactory', ($resource) ->
       columnDefs: [{field: 'email', displayName: 'Users Email'}, {field: 'date', displayName: 'Date Completed'}, {field: 'fullName', displayName: 'Name'}, { field : 'id', displayName : 'Undo/Details', width : '15%', minWidth : '80', cellTemplate: 'cellActionsUnprocess.html', sortable: false}],
       enableRowSelection: false
     }
+
+@SystemSurveysCtrl.$inject = ['$scope', '$http', 'surveysFactory']
