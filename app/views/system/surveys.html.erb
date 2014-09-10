@@ -1,15 +1,12 @@
 <!-- Modal Survey window -->
 <script type="text/ng-template" id="userSurvey.html">
-  <div class="modal-header">
-    <h4>Preferences</h4>
-  </div>
   <div class="modal-body">
     <p>User selected preferences</p>
     <div class="row">
       <div class="col-xs-4" ng-repeat="col in [0,1,2]">
         <ul class="padding-left3">
-          <li class="list-leaf" ng-repeat="thing in skills[col]">
-            <input type="checkbox" value="{{thing.id}}" ng-model="thing.checked" name="stuff"/>
+          <li class="list-leaf" ng-repeat="thing in skills[col]" ng-init="findChecked(thing)">
+            <input type="checkbox" value="{{thing.id}}"  ng-model="thing.checked" name="stuff" disabled />
             {{thing.name}}
           </li>
         </ul>
