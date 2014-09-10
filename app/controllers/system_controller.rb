@@ -8,6 +8,11 @@ class SystemController < ApplicationController
     @processed_surveys = Survey.where(processed: true)
   end
 
+  def one_survey
+    @survey = Survey.find(params["id"])
+    render json: @survey.preferences
+  end
+
   def processing
     @survey = Survey.find(params["id"])
     @survey.update!({:processed => true})

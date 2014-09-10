@@ -1,3 +1,30 @@
+<!-- Modal Survey window -->
+<script type="text/ng-template" id="userSurvey.html">
+  <div class="modal-header">
+    <h4>Preferences</h4>
+  </div>
+  <div class="modal-body">
+    <p>User selected preferences</p>
+    <div class="row">
+      <div class="col-xs-4" ng-repeat="col in [0,1,2]">
+        <ul class="padding-left3">
+          <li class="list-leaf" ng-repeat="thing in skills[col]">
+            <input type="checkbox" value="{{thing.id}}" ng-model="thing.checked" name="stuff"/>
+            {{thing.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-8">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" ng-show="surveySaved!=true">
+    <button class="btn btn-sm btn-warning" ng-click="cancel()">Dismiss</button>
+  </div>
+</script>
+
 <!-- Grid Cell template for Actions -->
 <script type="text/ng-template" id="cellActionsProcess.html">
   <div class="ngCellText text-center">
@@ -5,7 +32,7 @@
           ng-click="process(row.entity.id)" tooltip="Process Survey" tooltip-append-to-body="true">
     </span>
     <span class="glyphicon glyphicon-new-window glyph-big glyph-action"
-          ng-click="" tooltip="View Details" tooltip-append-to-body="true">
+          ng-click="summonModal(row.entity.id)" tooltip="View Details" tooltip-append-to-body="true">
     </span>
   </div>
 </script>
@@ -16,7 +43,7 @@
           ng-click="undoProcess(row.entity.id)" tooltip="Undo Process Survey" tooltip-append-to-body="true">
     </span>
     <span class="glyphicon glyphicon-new-window glyph-big glyph-action"
-          ng-click="" tooltip="View Details" tooltip-append-to-body="true">
+          ng-click="summonModal(row.entity.id)" tooltip="View Details" tooltip-append-to-body="true">
     </span>
   </div>
 </script>
