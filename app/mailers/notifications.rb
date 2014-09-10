@@ -33,8 +33,12 @@ class Notifications < ActionMailer::Base
     mail to: @email, subject: @subject
   end
 
-  def account_request_received
+  def account_request_received(pending_user)
+    @pending_user_email = pending_user.email
+    @pending_user_name = "#{pending_user.first_name} #{pending_user.last_name}"
+    @subject = "A new self sign-up account has been requested"
 
+    mail to: 'support@edgerocket.co', subject: @subject
   end
 
 end
