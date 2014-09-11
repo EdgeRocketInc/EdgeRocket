@@ -8,6 +8,7 @@ class NotificationsTest < ActionMailer::TestCase
     @user.id = 1
     @user.save!
 
+
     Survey.create!(
       preferences: '{"skills"=>[{"id"=>"seo"}, {"id"=>"cs"}, {"id"=>"computer_networking"}], "user_home"=>{"skills"=>[{"id"=>"seo"}, {"id"=>"cs"}, {"id"=>"computer_networking"}]}}'.to_json,
       user_id: @user.id
@@ -26,6 +27,21 @@ class NotificationsTest < ActionMailer::TestCase
   test "survey completed" do
     mail = Notifications.survey_completed(@user).deliver
     assert_equal "A new survey has been completed by test@edgerocket.co!", mail.subject
+  end
+
+  test "self sign up account requested" do
+    pending_user = PendingUser.new(
+      first_name: 'Admin',
+      last_name: 'Test',
+      email: 'admin-test@edgerocket.co',
+      encrypted_password: 'password',
+    )
+    pending_user.save
+    mail = Notifications.account_requested(pending_user).deliver
+    assert_equal "Account request has been received", mail.subject
+
+    mail = Notifications.account_request_received(pending_user).deliver
+    assert_equal "A new self sign-up account has been requested", mail.subject
   end
 
 end

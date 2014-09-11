@@ -9,6 +9,8 @@ class PendingUsersController < ApplicationController
   def create
     @pending_user = PendingUser.new(allowed_params)
     if passwords_match? && @pending_user.save
+      Notifications.account_requested(@pending_user).deliver
+      Notifications.account_request_received(@pending_user, request.host_with_port).deliver
       flash[:notice] = "Thank you for your interest. We will contact you shortly."
       redirect_to root_path
     else
