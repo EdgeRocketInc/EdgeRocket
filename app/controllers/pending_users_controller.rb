@@ -7,7 +7,9 @@ class PendingUsersController < ApplicationController
   end
 
   def create
+    p params
     @pending_user = PendingUser.new(allowed_params)
+    blank_company(@pending_user)
     if passwords_match? && @pending_user.save
       Notifications.account_requested(@pending_user).deliver
       Notifications.account_request_received(@pending_user, request.host_with_port).deliver
@@ -21,6 +23,12 @@ class PendingUsersController < ApplicationController
   end
 
   private
+
+  def blank_company(pending_user)
+    if params[:pending_user][:company_name] == "" || params[:pending_user][:company_name] == nil
+      pending_user.company_name = params[:pending_user][:email]
+    end
+  end
 
   def allowed_params
     params.require(:pending_user).permit(:first_name, :last_name, :company_name, :email, :encrypted_password)
