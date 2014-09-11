@@ -88,7 +88,10 @@ EdgeRocket.factory 'all_prefs', ->
   $scope.skills = all_prefs
   $scope.userPrefs = userPrefs.skills
   if $scope.userPrefs
-    $scope.otherSkill = userPrefs.skills[1].other_skill
+    $scope.otherSkill = userPrefs.skills[userPrefs.skills.length - 1].other_skill
+
+  console.log($scope.userPrefs)
+  console.log($scope.otherSkill)
 
   $scope.findChecked = (thing) ->
     if $scope.userPrefs
