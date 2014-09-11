@@ -84,20 +84,24 @@ EdgeRocket.factory 'all_prefs', ->
 
 # --- controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http, all_prefs, userPrefs) ->
+
   $scope.skills = all_prefs
-  $scope.userPrefs = userPrefs
-  $scope.otherSkill = null
+  $scope.userPrefs = userPrefs.skills
+  if $scope.userPrefs
+    $scope.otherSkill = userPrefs.skills[1].other_skill
+
+  $scope.findChecked = (thing) ->
+    if $scope.userPrefs
+      $scope.userPrefs.forEach (pref) ->
+        if pref.id == thing.id
+          thing.checked = true
+
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
     $scope.skills.forEach (array) ->
       array.forEach (skill) ->
         skill.checked = false
 
-  $scope.findChecked = (thing) ->
-    if $scope.userPrefs.skills
-      $scope.userPrefs.skills.forEach (pref) ->
-        if pref.id == thing.id
-          thing.checked = true
 
 
 @SystemSurveysCtrl.$inject = ['$scope', '$http', '$resource', '$modal', 'all_prefs']
