@@ -7,7 +7,6 @@ class PendingUsersController < ApplicationController
   end
 
   def create
-    p params
     @pending_user = PendingUser.new(allowed_params)
     blank_company(@pending_user)
     if passwords_match? && @pending_user.save

@@ -27,7 +27,6 @@ class SystemController < ApplicationController
 
   def pending_users
     @pending_users = PendingUser.all
-    render json: @pending_users
   end
 
   private

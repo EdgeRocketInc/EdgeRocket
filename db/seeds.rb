@@ -9,6 +9,7 @@
 Account.destroy_all
 Vendor.destroy_all
 User.destroy_all
+PendingUser.destroy_all
 Role.destroy_all
 
 Account.create(id: 1, company_name: 'EdgeRocket, Inc.', 
@@ -57,6 +58,10 @@ User.create(id: 10, email: 'Jane.Smith@TechCorp.com', password: 'TechCorp!', acc
 User.create(id: 11, email: 'Jose.Calderon@TechCorp.com', password: 'TechCorp!', account_id: 2)
 User.create(id: 20, email: 'admin@TrackVia.com', password: 'TrackVia!', account_id: 3)
 User.create(id: 21, email: 'employee@TrackVia.com', password: 'TrackVia!', account_id: 3)
+
+PendingUser.new(first_name:"Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free").save
+PendingUser.new(first_name:"Bob", last_name: "Dylan", company_name: "EdgeRocket", email: "bobdylan@edgerocket.co", encrypted_password: "password", user_type: "Enterprise").save
+
 
 Role.create(id: 0, name: 'Sysop', user_id: 0)
 Role.create(id: 2, name: 'Admin', user_id: 1)
