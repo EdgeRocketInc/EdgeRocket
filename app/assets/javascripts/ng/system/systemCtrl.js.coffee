@@ -85,13 +85,15 @@ EdgeRocket.factory 'all_prefs', ->
 # --- controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http, all_prefs, userPrefs) ->
 
+  findOther = (skills) ->
+    skills.forEach (skill) ->
+      if skill.other_skill
+        $scope.otherSkill = skill.other_skill
+
   $scope.skills = all_prefs
   $scope.userPrefs = userPrefs.skills
   if $scope.userPrefs
-    $scope.otherSkill = userPrefs.skills[userPrefs.skills.length - 1].other_skill
-
-  console.log($scope.userPrefs)
-  console.log($scope.otherSkill)
+    findOther(userPrefs.skills)
 
   $scope.findChecked = (thing) ->
     if $scope.userPrefs

@@ -22,7 +22,6 @@ class ManageCoursesTest < Capybara::Rails::TestCase
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @survey = FactoryGirl.create(:survey, :preferences => "quote", :user_id => @user.id, :created_at => Date.new(2014,12,15))
 
-
     visit root_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
@@ -35,6 +34,28 @@ class ManageCoursesTest < Capybara::Rails::TestCase
     find(".glyphicon-repeat").click
     within(".ngRow") {assert_content page, "sysop-test@edgerocket.co"}
     find(".glyphicon-check")
+  end
+
+  test "sysop user can view the processed surveys modal" do
+    Capybara.current_driver = :selenium
+
+    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
+    @survey = FactoryGirl.create(:survey, :preferences => "{\"skills\":[{\"id\":\"cs\"},{\"id\":\"soft_dev_methods\"},{\"id\":\"communications\"},{\"id\":\"hiring\"},{\"id\":\"strategy\"},{\"id\":\"ops\"},{\"id\":\"pmp\"},{\"other_skill\":\"test 12 test 34\"}]}", :user_id => @user.id, :created_at => Date.new(2014,12,15))
+
+    visit root_path
+
+    fill_in 'user_email', with: 'sysop-test@edgerocket.co'
+    fill_in 'user_password', with: '12345678'
+    click_button 'Sign in'
+    visit "/system/surveys"
+
+    find(".glyphicon-new-window").click
+    assert_equal find("#other-skill").value, "test 12 test 34"
+    within(".modal-body") {assert_equal find("#cs").checked?, true}
+    within(".modal-body") {assert_equal find("#communications").checked?, true}
+    within(".modal-body") {assert_equal find("#marketing").checked?, false}
+
   end
 
 end
