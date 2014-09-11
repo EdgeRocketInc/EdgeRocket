@@ -94,9 +94,10 @@ EdgeRocket.factory 'all_prefs', ->
         skill.checked = false
 
   $scope.findChecked = (thing) ->
-    $scope.userPrefs.skills.forEach (pref) ->
-      if pref.id == thing.id
-        thing.checked = true
+    if $scope.userPrefs.skills
+      $scope.userPrefs.skills.forEach (pref) ->
+        if pref.id == thing.id
+          thing.checked = true
 
 
 @SystemSurveysCtrl.$inject = ['$scope', '$http', '$resource', '$modal', 'all_prefs']
