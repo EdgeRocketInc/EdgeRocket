@@ -40,7 +40,7 @@ class NotificationsTest < ActionMailer::TestCase
     mail = Notifications.account_requested(pending_user).deliver
     assert_equal "Account request has been received", mail.subject
 
-    mail = Notifications.account_request_received(pending_user).deliver
+    mail = Notifications.account_request_received(pending_user, 'http://localhost').deliver
     assert_equal "A new self sign-up account has been requested", mail.subject
   end
 
