@@ -8,12 +8,6 @@ class SearchController < ApplicationController
   # GET
   def index
 
-    publish_keen_io(:html, :ui_actions, {
-        :user_email => current_user.email,
-        :action => controller_path,
-        :method => action_name
-    })
-
     if :json == request.format.symbol
       #byebug
       prd = nil
@@ -31,6 +25,23 @@ class SearchController < ApplicationController
           p['logo_asset_url'] = view_context.image_path(p['logo_file_name'])
         }
       end
+
+      publish_keen_io(:json, :ui_actions, {
+          :user_email => current_user.email,
+          :action => controller_path,
+          :method => action_name,
+          :search_inmedia => params[:inmedia],
+          :search_criteria => params[:criteria],
+          :search_items_count => prd_count
+      })
+
+    else
+
+      publish_keen_io(:html, :ui_actions, {
+          :user_email => current_user.email,
+          :action => controller_path,
+          :method => action_name
+      })
 
     end
 
