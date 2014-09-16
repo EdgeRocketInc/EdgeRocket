@@ -6,9 +6,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 @SearchCtrl = ($scope, $http, $modal, $log, $filter) ->
 
-  DISPLAY_ITEMS = 100
+  DISPLAY_ITEMS = 50 # keep in sync with back end controller
   $scope.items = []
-  $scope.filteredItems = []
   # for media type checkboxes
   $scope.mediaCbAll = { class : 'check' }
   $scope.mediaCheckboxes = [
@@ -18,12 +17,28 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     { class : 'check', label : 'Videos', media_type : 'video' }
   ]
   $scope.limitItems = DISPLAY_ITEMS
+  $scope.totalItems = 0
+  $scope.currentPage = 1
+  $scope.searchLabel = 'Loading...'
 
-  loadCourses =  ->
-    $http.get('/search.json').success( (data) ->
-      #debugger
+  loadCoursePages = (page_number, parameterQuery) ->
+    index_start = (page_number-1) * DISPLAY_ITEMS
+    index_end = (page_number * DISPLAY_ITEMS) - 1
+    range_page = index_start + '-' + index_end
+    the_url = '/search.json'
+    if parameterQuery != null
+      the_url += parameterQuery
+    $http.get(the_url, headers: {'Range': range_page, 'Range-Unit': 'items'} ).success( (data, status, headers, config) ->
       # the server may return literal null
       if data != 'null'
+        # Content-Range is provided in the header in the form 1-20/189, where 189 is the total number of items
+        content_range = headers()['content-range']
+        if content_range 
+          content_range = content_range.match(/\/([0-9]+)/)
+          $scope.totalItems = parseInt(content_range[1], 10)
+        else
+          $scope.totalItems = 0
+
         # massage data for displaying
         for item in data
           # add a display rating variable 
@@ -31,38 +46,42 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           # add a formatted price 
           item.price_fmt = if item.price > 0 then $filter('currency')(item.price, '$') else 'Free'
         $scope.items = data
-        $scope.filteredItems = $scope.items
       else
         $scope.items = null
+        $scope.totalItems = 0
+      $scope.searchLabel = 'Search'
+      #debugger
       console.log('Successfully loaded search data')
     ).error( ->
       console.log('Error loading search data')
     )
 
-  loadCourses()
-
-  # Filter for media types. 
-  # Returns true if all media types are enabled or a specific type matches enabled checkbox
-  $scope.filterMediaType = (product) ->
-    result = false
-    if $scope.mediaCbAll.class == 'check'
-      result = true
-    else
+  # Builds a search filter to pass to the server
+  # null (default) if all media types are enabled
+  # otehrwise the format is ?inmedia=v1,v2&search=text
+  buildSearchFilter = () ->
+    result = null
+    if $scope.mediaCbAll.class != 'check'
       for cbox in $scope.mediaCheckboxes
-        if cbox.class == 'check' && product.media_type == cbox.media_type
-          result = true
-          break
+        if cbox.class == 'check'
+          if result == null
+            result = '?inmedia=' + cbox.media_type
+          else
+            result = result + ',' + cbox.media_type
+    if $scope.searchText && $scope.searchText.length > 0
+      result = if result==null then '?' else result + '&'
+      result += 'criteria=' + $scope.searchText
     result
 
-  # apply all filters
-  filterAll = ->
-    $scope.limitItems = DISPLAY_ITEMS
-    $scope.filteredItems = $filter('filter')( $scope.items, {$:$scope.searchText} )
-    $scope.filteredItems = $filter('filter')( $scope.filteredItems, $scope.filterMediaType )
+  loadCourses =  ->
+    # load the 1st page of data right away
+    loadCoursePages($scope.currentPage, buildSearchFilter())
 
-  # Watch search and apply all filters
+  loadCourses()
+
+  # Watch search and change search button when changed
   $scope.$watch('searchText', (newVal, oldVal) ->
-    filterAll()
+    $scope.searchLabel = 'Update Results'
   )
 
   # modal window with course details
@@ -99,7 +118,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.mediaCbAll.class = 'check'
       for cb in $scope.mediaCheckboxes
         cb.class = 'check'
-    filterAll()
+    $scope.searchLabel = 'Update Results'
 
   # toggle single media type check box
   $scope.toggleMediaCbox = (cbox) ->
@@ -108,11 +127,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       $scope.mediaCbAll.class = 'unchecked'
     else
       cbox.class = 'check' 
-    filterAll()
+    $scope.searchLabel = 'Update Results'
     
-  # increase the limit of displayed items
-  $scope.moreItems = () ->
-    $scope.limitItems += DISPLAY_ITEMS
+  $scope.pageChanged = () ->
+    #debugger
+    console.log('go to page ' + $scope.currentPage)
+    loadCoursePages($scope.currentPage, buildSearchFilter())
+
+  $scope.doSearch = () ->
+    $scope.currentPage = 1
+    loadCoursePages($scope.currentPage, buildSearchFilter())
+    $scope.searchLabel = 'Search'
+
 
 # ------- controller for modal window --------------
 

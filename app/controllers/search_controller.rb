@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   include CleanPagination
 
-  PAGE_SIZE = 100
+  PAGE_SIZE = 50 # should be in sync with UI
 
   # GET
   def index
@@ -15,19 +15,22 @@ class SearchController < ApplicationController
     })
 
     if :json == request.format.symbol
+      #byebug
       prd = nil
-      # TODO use correct count, because Product.count may be off
-      prd_count = Product.count
-      # TODO use PAGE_SIZE as the second paramater
-      paginate prd_count, prd_count  do |limit, offset|
-        prd = Product.search_courses(current_user.account_id, limit, offset)
+      # The first query counts items, which is not the best solution, but it's ok for now
+      count_result = Product.count_courses(current_user.account_id, params[:inmedia], params[:criteria])
+      prd_count = count_result.nil? ? 0 : count_result.rows[0][0].to_i
+      paginate prd_count, PAGE_SIZE  do |limit, offset|
+        prd = Product.search_courses(current_user.account_id, limit, offset, params[:inmedia], params[:criteria])
       end
 
       # format some of the fields in the resultset
-      prd.each { |p|
-        # produce an asset path for Angular to understand and save it in the same array
-        p['logo_asset_url'] = view_context.image_path(p['logo_file_name'])
-      }
+      if !prd.nil? 
+        prd.each { |p|
+          # produce an asset path for Angular to understand and save it in the same array
+          p['logo_asset_url'] = view_context.image_path(p['logo_file_name'])
+        }
+      end
 
     end
 
