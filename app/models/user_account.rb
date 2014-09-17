@@ -1,6 +1,7 @@
 class UserAccount
-  def initialize(pending_user)
+  def initialize(pending_user,hostname)
     @pending_user = pending_user
+    @hostname = hostname
   end
 
   def save_user
@@ -16,6 +17,7 @@ class UserAccount
 
     @user.encrypted_password = @pending_user.encrypted_password
     @user.save
+    Notifications.account_confirmation_email(@user, @hostname).deliver
     @role = Role.new(name:'Admin', user_id: @user.id)
     @role.save
     @pending_user.destroy

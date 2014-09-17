@@ -44,4 +44,24 @@ class NotificationsTest < ActionMailer::TestCase
     assert_equal "A new self sign-up account has been requested", mail.subject
   end
 
+  test "owners of new accounts recieve welcome emails" do
+
+    @user.first_name = 'Bruce'
+    @user.last_name = 'Wayne'
+    @user.email = 'Wayne@batman.com'
+
+    new_account = Account.new(
+      company_name: "Wayne Enterprises",
+      options: '{"budget_management":true,"survey":true,"discussions":"gplus","recommendations":true,"dashboard_demo":true}',
+      overview: 'EdgeRocket ecnourages employees to take as many classes as possible'
+    )
+
+    new_account.save
+    @user.account_id = new_account.id
+
+    mail = Notifications.account_confirmation_email(@user, 'http://localhost').deliver
+    assert_equal "Welcome to EdgeRocket!", mail.subject
+
+  end
+
 end

@@ -23,7 +23,7 @@ class PendingUsersController < ApplicationController
 
   def create_user_from_pending
     @pending_user = PendingUser.find_by(id: params["id"])
-    user = UserAccount.new(@pending_user)
+    user = UserAccount.new(@pending_user, request.host_with_port)
     user.save_user
 
     render json: user
