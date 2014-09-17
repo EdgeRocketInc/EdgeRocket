@@ -5,11 +5,14 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 ])
 
 @SystemPendingUsersCtrl = ($scope, $http, $resource) ->
-  $scope.pendingUsersQuery = $resource('/system/pending_users.json').query()
+  $scope.getPendingUsers = ->
+    $scope.pendingUsersQuery = $resource('/system/pending_users.json').query()
+
+  $scope.getPendingUsers()
 
   $scope.approve = (id) ->
-    console.log("cool" + id)
-    $http({ method: 'POST', url: '/system/pending_users/create_users', data: id:id})
+    $http({ method: 'POST', url: '/system/pending_users/create_users', data: id:id}).success ->
+      $scope.getPendingUsers()
 
   $scope.pendingUsersTable = {
     data: 'pendingUsersQuery',
