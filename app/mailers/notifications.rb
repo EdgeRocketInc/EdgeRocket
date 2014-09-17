@@ -42,4 +42,10 @@ class Notifications < ActionMailer::Base
     mail to: 'support@edgerocket.co', subject: @subject
   end
 
+  def account_confirmation_email(account, hostname)
+
+    @account_owner_email = account.user.email
+
+  end
+
 end
