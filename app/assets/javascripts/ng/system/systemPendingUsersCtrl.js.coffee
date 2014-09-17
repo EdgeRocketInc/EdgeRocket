@@ -14,7 +14,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.approve = (id) ->
     $http({ method: 'POST', url: '/system/pending_users/create_users', data: id:id}).success ->
       $scope.getPendingUsers()
-      $('.pending-flash').empty().show().append("<h3>The pending user has been approved.</h3>")
+      $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>The pending user has been approved.</h4></div>")
       $('.pending-flash').fadeOut(4000)
 
   $scope.pendingUsersTable = {
