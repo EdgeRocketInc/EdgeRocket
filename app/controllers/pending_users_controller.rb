@@ -21,6 +21,31 @@ class PendingUsersController < ApplicationController
 
   end
 
+  def create_user_from_pending
+    @pending_user = PendingUser.find_by(id: params["id"])
+    account_exists = Account.find_by(:company_name => @pending_user.company_name)
+    if account_exists
+
+      @user = User.new(:account_id => account_exists.id, :email => @pending_user.email, :password => @pending_user.encrypted_password, :first_name => @pending_user.first_name, :last_name => @pending_user.last_name)
+      @user.save
+
+    else
+      @account = Account.new(:company_name => @pending_user.company_name)
+      @user = User.new(:account_id => @account.id, :email => @pending_user.email, :encrypted_password => @pending_user.encrypted_password, :first_name => @pending_user.first_name, :last_name => @pending_user.last_name)
+      @account.save
+      @user.save
+
+    end
+
+
+    # p @user
+    # p "*"*80
+
+
+    render json: @user
+
+  end
+
   private
 
   def blank_company(pending_user)

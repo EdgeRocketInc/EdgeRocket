@@ -9,7 +9,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.approve = (id) ->
     console.log("cool" + id)
-#    $http({ method: 'POST', url: })
+    $http({ method: 'POST', url: '/system/pending_users/create_users', data: id:id})
 
   $scope.pendingUsersTable = {
     data: 'pendingUsersQuery',

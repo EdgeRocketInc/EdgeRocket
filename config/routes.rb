@@ -51,7 +51,8 @@ EdgeApp::Application.routes.draw do
   post "playlists/:id/courses/:course_id" => 'playlists#add_course', constraints: { format: 'json' }
   post "employees" => 'employees#create', constraints: { format: 'json' }
   post "products/:product_id/reviews" => "discussions#create_review", constraints: { format: 'json' }
-  
+  post "system/pending_users/create_users" => 'pending_users#create_user_from_pending', constraints: { format: 'json' }
+
   put "account/:id" => 'company#update_account', constraints: { format: 'json' }
   put "course_subscription/:id" => 'my_courses#update_subscribtion', constraints: { format: 'json' }
   put "employees/:id" => 'employees#update', constraints: { format: 'json' }
