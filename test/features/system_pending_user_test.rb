@@ -45,6 +45,7 @@ class ManageCoursesTest < Capybara::Rails::TestCase
     visit "/system/pending_users"
     find(".glyphicon-ok").click
     assert_no_content page, "Hendrix, Jimi"
+    assert_content page, "The pending user has been approved."
 
   end
 end

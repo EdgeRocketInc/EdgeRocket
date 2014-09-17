@@ -1,6 +1,4 @@
-<h3>Congratulations <%= @user.first_name + ' ' + @user.last_name%>, welcome to EdgeRocket! The <%= @user.account.company_name %> account has been created. </h3>
-<h5>Click on this <%= link_to "link", @hostname + '/users/sign_in' %> to login.</h5>
-<p> Email: <%= @user.email %> </p>
-<p> Use the password you used when you signed up.</p>
-
-<h6>Thank You, EdgeRocket!</h6>
+<h5>Log in here: <%= link_to @hostname + '/users/sign_in', @hostname + '/users/sign_in' %> to login.</h5>
+<p>Use the username (<%= @user.email %>) and password that you designated when requesting your account.</p>
+<p>Take full advantage of the resources in EdgeRocket to accelerate your learning, growth and success!</p>
+<p>Comments or questions? Contact us at support@edgerocket.co</p>

@@ -60,7 +60,7 @@ class NotificationsTest < ActionMailer::TestCase
     @user.account_id = new_account.id
 
     mail = Notifications.account_confirmation_email(@user, 'http://localhost').deliver
-    assert_equal "Your account has been approved!", mail.subject
+    assert_equal "Welcome to EdgeRocket!", mail.subject
 
   end
 

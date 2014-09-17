@@ -46,16 +46,7 @@ class Notifications < ActionMailer::Base
     @user = user
     @hostname = hostname
 
-    mail to: @user.email, subject: 'Your account has been approved!'
-
-    # if user.role.name == 'Admin'
-    #
-    #   @account_owner_email = user.email
-    #   # @account_owner_name = full
-    #
-    #
-    # end
-
+    mail to: @user.email, subject: 'Welcome to EdgeRocket!'
 
   end
 
