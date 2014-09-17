@@ -40,20 +40,38 @@
 
   <div class="row">
 
-    <div class="col-md-6 voffset2">
-      <div class="input-group">
-        <span class="input-group-addon">Search: </span>
-        <input type="text" class="input-sm form-control" placeholder="Text" ng-model="searchText"/>
+    <form>
+  
+      <div class="col-md-10 col-md-offset-1">
+
+        <div class="row">
+          <div class="col-md-5">
+            <input type="text" class="input-sm form-control" placeholder="Text" ng-model="searchText"/>
+          </div>
+
+          <div class="col-md-6 voffset1">
+            <span class="glyphicon glyphicon-{{ mediaCbAll.class }} glyph-big glyph-action" ng-click="toggleMediaAll()"></span>
+            <span class="glyph-label">Select All</span>
+            <span ng-repeat="cbox in mediaCheckboxes">
+              <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action" ng-click="toggleMediaCbox(cbox)"></span>
+              <span class="glyph-label">{{cbox.label}}</span>
+            </span>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-12 voffset2">
+            <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
+          </div>
+
+        </div>
+
       </div>
-    </div>
-    <div class="col-md-6 voffset2">
-      <span class="glyphicon glyphicon-{{ mediaCbAll.class }} glyph-big glyph-action" ng-click="toggleMediaAll()"></span>
-      <span class="glyph-label">Select All</span>
-      <span ng-repeat="cbox in mediaCheckboxes">
-        <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action" ng-click="toggleMediaCbox(cbox)"></span>
-        <span class="glyph-label">{{cbox.label}}</span>
-      </span>
-    </div>
+
+    </form>
+
   </div>
 
   <div class="row voffset4">
@@ -113,8 +131,8 @@
     </div>
     -->
 
-    <div class="col-md-12">
-        <span class="" ng-repeat="crs in filteredItems | limitTo:limitItems"> <!-- filter:searchText | filter:filterMediaType -->
+    <div class="col-md-11 col-md-offset-1">
+        <span class="" ng-repeat="crs in items">
           <div class="well well-sm search-tile">
             <div class="rating-right">
               <rating class="orange" ng-model="crs.display_rating" max="5" readonly="true"></rating>
@@ -132,9 +150,9 @@
 
   </div>
 
-  <div class="row voffset2" ng-if="limitItems < filteredItems.length">
-    <div class="col-md-4 col-md-offset-4 center">
-      <button type="button" class="btn btn-sm btn-default form-control" ng-click="moreItems()">More...</button>
+  <div class="row voffset2">
+    <div class="col-md-8 col-md-offset-2 center">
+      <pagination total-items="totalItems" ng-model="currentPage" max-size="10" items-per-page="50" ng-change="pageChanged()"></pagination>
     </div>
   </div>
 
@@ -142,4 +160,3 @@
   </div>
 
 </div>
-
