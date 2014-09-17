@@ -35,6 +35,7 @@ class PendingUsersController < ApplicationController
 
     @user.encrypted_password = @pending_user.encrypted_password
     @user.save
+    Notifications.account_confirmation_email(@user, request.host_with_port).deliver
     @role = Role.new(name:'Admin', user_id: @user.id)
     @role.save
     @pending_user.destroy

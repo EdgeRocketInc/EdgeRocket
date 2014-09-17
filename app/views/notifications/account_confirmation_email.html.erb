@@ -1,0 +1,6 @@
+<h3>Congratulations <%= @user.first_name + ' ' + @user.last_name%>, welcome to EdgeRocket! The <%= @user.account.company_name %> account has been created. </h3>
+<h5>Click on this <%= link_to "link", @hostname + '/users/sign_in' %> to login.</h5>
+<p> Email: <%= @user.email %> </p>
+<p> Use the password you used when you signed up.</p>
+
+<h6>Thank You, EdgeRocket!</h6>
