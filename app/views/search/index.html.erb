@@ -62,6 +62,32 @@
 
         <div class="row">
 
+          <div class="col-sm-6 voffset2">
+            <!-- dropdown button -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                Providers <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#"><input type="checkbox"></input>Coursera</a></li>
+                <li><a href="#"><input type="checkbox"></input>edX</a></li>
+                <li><a href="#">Udacity</a></li>
+                <li><a href="#">Udemy</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-6 voffset2">
+            <input type="text" ng-model="searchTags" placeholder="Course/material provider"
+              typeahead="vendor.name for vendor in vendors | filter:$viewValue | limitTo:8" 
+              typeahead-editable="false" class="form-control" tooltip="Type and select from available choices">
+            </input>
+          </div>
+
+        </div>
+
+        <div class="row">
+
           <div class="col-sm-12 voffset2">
             <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
           </div>

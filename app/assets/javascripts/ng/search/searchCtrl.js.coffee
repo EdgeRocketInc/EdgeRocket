@@ -20,6 +20,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.totalItems = 0
   $scope.currentPage = 1
   $scope.searchLabel = 'Loading...'
+  $scope.searchTags = null # tags such as vendors to filter
+  $scope.vendors = null # list of vendors retrieved from DB
 
   loadCoursePages = (page_number, parameterQuery) ->
     index_start = (page_number-1) * DISPLAY_ITEMS
@@ -77,7 +79,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     # load the 1st page of data right away
     loadCoursePages($scope.currentPage, buildSearchFilter())
 
+
+  loadVendors =  ->
+    $http.get('/vendors.json').success( (data) ->
+      $scope.vendors = data
+      console.log('Successfully loaded vendors')
+    ).error( ->
+      console.log('Error loading vendors')
+    )
+
   loadCourses()
+  loadVendors()
 
   # Watch search and change search button when changed
   $scope.$watch('searchText', (newVal, oldVal) ->
