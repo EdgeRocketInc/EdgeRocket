@@ -7,7 +7,12 @@ class PendingUsersController < ApplicationController
   end
 
   def create
-    @pending_user = PendingUser.new(allowed_params)
+    if params[:type] == "member" || params[:type] == "enterprise"
+      @account_type = params[:type]
+    else
+      @account_type = "free"
+    end
+    @pending_user = PendingUser.new(allowed_params.merge(:user_type => @account_type))
     blank_company(@pending_user)
     if passwords_match? && @pending_user.save
       Notifications.account_requested(@pending_user).deliver
