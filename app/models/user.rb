@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   belongs_to :account
   has_many :discussions
   has_one :profile
-  has_one :survey
+  has_one :survey, dependent: :destroy
 
   # returns the role with the highest level of access
   def best_role

@@ -17,7 +17,7 @@ class UserAccount
     @user.encrypted_password = @pending_user.encrypted_password
     @user.save
     Notifications.account_confirmation_email(@user, @hostname).deliver
-    @role = Role.new(name:'Admin', user_id: @user.id)
+    @role = Role.new(name:'SA', user_id: @user.id)
     @role.save
     @pending_user.destroy
   end

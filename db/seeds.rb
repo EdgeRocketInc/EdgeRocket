@@ -11,6 +11,7 @@ Vendor.destroy_all
 User.destroy_all
 PendingUser.destroy_all
 Role.destroy_all
+Survey.destroy_all
 
 
 account_one = Account.create(company_name: 'EdgeRocket, Inc.',
