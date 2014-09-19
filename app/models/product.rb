@@ -57,7 +57,7 @@ private
     end
     if !search_query.nil?
       search_query_like = '%' + search_query.downcase + '%'
-      sql_query += " and (lower(p.name) like ? or lower(p.description) like ? or lower(p.authors) like ? or lower(p.keywords) like ?)" 
+      sql_query += " and (lower(p.name) like ? or lower(p.description) like ? or lower(p.authors) like ? or lower(p.keywords) like ? or lower(p.school) like ?)" 
     end
     if !is_count
       sql_query += ' order by p.manual_entry desc, p.name'
@@ -68,7 +68,7 @@ private
     if !limit.nil?
       sql_query += ' limit ' + limit.to_s
     end
-    sanitized_sql = self.sanitize_sql_array([sql_query, search_query_like, search_query_like, search_query_like, search_query_like])
+    sanitized_sql = self.sanitize_sql_array([sql_query, search_query_like, search_query_like, search_query_like, search_query_like, search_query_like])
     self.connection.select_all(sanitized_sql)
   end
 
