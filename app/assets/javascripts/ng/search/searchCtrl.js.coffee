@@ -153,10 +153,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     console.log('Error loading search product details')
   )
 
+  adminOrAbove = ->
+    $scope.user.best_role == 'admin' ||  $scope.user.best_role == 'Sysop' || $scope.user.best_role = 'SA'
+
   loadUser =  ->
     $http.get('/users/current.json').success( (data) ->
       $scope.user = data
-      if $scope.user.best_role == 'admin' ||  $scope.user.best_role == 'SA'
+      if adminOrAbove()
         $scope.user.admin_role = true
       console.log('Successfully loaded user')
     ).error( ->
