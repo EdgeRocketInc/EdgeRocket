@@ -3,6 +3,21 @@
 
 <head>
 
+    <!-- Google Analytics Content Experiment code -->
+    <script>function utmx_section(){}function utmx(){}(function(){var
+    k='84517017-0',d=document,l=d.location,c=d.cookie;
+    if(l.search.indexOf('utm_expid='+k)>0)return;
+    function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+    indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+    length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+    '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+    '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+    '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+    valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+    '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+    </script><script>utmx('url','A/B');</script>
+    <!-- End of Google Analytics Content Experiment code -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,13 +43,26 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49812409-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
 </head>
 
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -51,6 +79,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#platform">Platform</a>
+                    </li>
+                    <li>
+                        <a href="#pricing">Pricing</a>
                     </li>
                     <li>
                         <a href="https://edgerocket.herokuapp.com/">Log In</a>
@@ -109,6 +140,71 @@
     </div>
     <!-- /.content-section-a -->
 
+    <a name="pricing"></a>
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-4 text-center">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Pricing:</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-info text-center">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">FREE</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="text-info">$0</h3>
+                            <br/>
+                            <h4>Free for up to 3 team members</h4>
+                            <br/>
+                            <a href="https://edgerocket.herokuapp.com/sign_up" class="btn btn-warning">Get Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-danger text-center">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">TEAM</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h2 class="text-danger">$4</h2>
+                            <h5>per user per month</h5>
+                            <br/>
+                            <h4>Great for teams</h4>
+                            <br/>
+                            <a href="https://edgerocket.herokuapp.com/sign_up?type=team" class="btn btn-warning">Get Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-info text-center">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">ENTERPRISE</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h3 class="text-info">Contact us for pricing</h3>
+                            <br/>
+                            <h4>Unlimited users</h4>
+                            <h4>Service package included</h4>
+                            <h4>Enterprise Integrations</h4>
+                            <br/>
+                            <a href="mailto:founders@edgerocket.co" class="btn btn-warning"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
 
     <div class="banner">
 
@@ -116,9 +212,12 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>Connect with us:</h2>
+                    <h3>Connect with us:</h3>
+                    <h5>EdgeRocket Inc.</h5>
+                    <h5>2636 West 34th Avenue</h5>
+                    <h5>Denver, CO  80211</h5>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 voffset5">
                     <ul class="list-inline banner-social-buttons">
                         <li>
                             <a href="https://twitter.com/edgerocket" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
@@ -148,6 +247,10 @@
                         <li class="footer-menu-divider">&sdot;</li>
                         <li>
                             <a href="#platform">Platform</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#pricing">Pricing</a>
                         </li>
                     </ul>
                     <p class="copyright text-muted small">Copyright &copy; EdgeRocket 2014. All Rights Reserved</p>
