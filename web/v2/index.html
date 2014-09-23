@@ -163,7 +163,7 @@
                             <br/>
                             <h4>Free for up to 3 team members</h4>
                             <br/>
-                            <a href="https://edgerocket.herokuapp.com/sign_up" class="btn btn-warning">Get Now</a>
+                            <a href="https://edgerocket.herokuapp.com/sign_up" class="btn btn-warning" id="182">Get Now</a>
                         </div>
                     </div>
                 </div>
@@ -264,6 +264,14 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script>
+    // GA custom events
+    // Using jQuery Event API v1.3
+    $('#182').on('click', function() {
+        ga('send', 'event', 'get-free', 'click', 'get free click');
+    });
+    </script>
 
 </body>
 
