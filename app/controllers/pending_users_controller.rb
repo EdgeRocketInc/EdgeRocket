@@ -37,7 +37,7 @@ class PendingUsersController < ApplicationController
   private
 
   def blank_company(pending_user)
-    if params[:pending_user][:company_name] == "" || params[:pending_user][:company_name] == nil
+    if params[:pending_user][:company_name].blank?
       pending_user.company_name = params[:pending_user][:email]
     end
   end
