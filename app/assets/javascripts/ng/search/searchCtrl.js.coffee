@@ -21,6 +21,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.currentPage = 1
   $scope.searchLabel = 'Loading...'
   $scope.searchTags = null # tags such as vendors to filter
+  $scope.searchTagsList = [] # will keep adding tags to this array
   $scope.vendors = null # list of vendors retrieved from DB
 
   loadCoursePages = (page_number, parameterQuery) ->
@@ -151,6 +152,10 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     loadCoursePages($scope.currentPage, buildSearchFilter())
     $scope.searchLabel = 'Search'
 
+  # add selected item to the list of tags
+  $scope.tagSelected = (item, model, label) ->
+    console.log("tag added : " + label)
+    $scope.searchTagsList.push(label)
 
 # ------- controller for modal window --------------
 

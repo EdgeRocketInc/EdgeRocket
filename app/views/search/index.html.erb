@@ -46,7 +46,7 @@
 
         <div class="row">
           <div class="col-md-5">
-            <input type="text" class="input-sm form-control" placeholder="Text" ng-model="searchText"/>
+            <input type="text" class="form-control" placeholder="Text to search" ng-model="searchText"/>
           </div>
 
           <div class="col-md-6 voffset1">
@@ -62,28 +62,18 @@
 
         <div class="row">
 
-          <div class="col-sm-6 voffset2">
-            <!-- dropdown button -->
-            <div class="btn-group">
-              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                Providers <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#"><input type="checkbox"></input>Coursera</a></li>
-                <li><a href="#"><input type="checkbox"></input>edX</a></li>
-                <li><a href="#">Udacity</a></li>
-                <li><a href="#">Udemy</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-sm-6 voffset2">
-            <input type="text" ng-model="searchTags" placeholder="Course/material provider"
+          <div class="col-md-5 voffset2">
+            <input type="text" class="form-control" ng-model="searchTags" placeholder="Filter by course/material providers"
               typeahead="vendor.name for vendor in vendors | filter:$viewValue | limitTo:8" 
-              typeahead-editable="false" class="form-control" tooltip="Type and select from available choices">
+              typeahead-editable="false" class="form-control" tooltip="Type and select from available choices"
+              typeahead-on-select="tagSelected($item, $model, $label); searchTags='';">
             </input>
           </div>
 
+          <div class="col-md-6 voffset3">
+            <span ng-repeat="tag in searchTagsList"> <span class="label label-info">{{tag}}</span> </span>
+            <a href="#" class="label label-danger" ng-show="searchTagsList.length > 0">clear</a>
+          </div>
         </div>
 
         <div class="row">
