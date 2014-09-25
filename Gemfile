@@ -83,6 +83,8 @@ gem 'therubyracer', '~> 0.12'
 # Authentication and Authorization 
 gem 'devise', '~> 3.3'
 gem 'cancancan', '~> 1.9'
+gem 'omniauth', '~> 1.2'
+gem 'omniauth-google-oauth2', '~> 0.2'
 
 # Logging and analytics
 #gem 'em-http-request', '~> 1.1' #for async Keen IO events
