@@ -12,8 +12,8 @@
 						<%= f.email_field :email, autofocus: true, class: 'form-control voffset1', placeholder: 'Email' %>
 						<%= f.password_field :password, autocomplete: "off", class: 'form-control voffset2', placeholder: 'password' %>
 						<div class="voffset2">
-							<%= f.submit "Sign in", class: 'btn btn-primary form-control' %>
-							<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+							<%= f.submit "Sign in with Email", class: 'btn btn-primary form-control' %>
+							<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-primary form-control voffset1' %>
 						</div>
 						<div class="voffset5">
 							<%= render "devise/shared/links" %>

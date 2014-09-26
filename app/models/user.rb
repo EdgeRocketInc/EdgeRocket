@@ -47,12 +47,22 @@ class User < ActiveRecord::Base
       if registered_user
         return registered_user
       else
-        user = User.create(name: data["name"],
-          provider:access_token.provider,
-          email: data["email"],
-          uid: access_token.uid ,
-          password: Devise.friendly_token[0,20],
-        )
+        # check if there is a company account for this user's domain
+        # if account doesn't exist, then return nil because the user should not be authorized to log in
+        domain = data['email']
+        if !domain.blank?
+          domain = domain.split('@')[1]
+          account = Account.where(:domain => domain).first
+          if account
+            user = User.create(
+              provider:access_token.provider,
+              email: data["email"],
+              uid: access_token.uid ,
+              password: Devise.friendly_token[0,20],
+              account_id: account.id
+            )
+          end
+        end
       end
     end
   end
