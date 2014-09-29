@@ -50,4 +50,9 @@ class Notifications < ActionMailer::Base
 
   end
 
+  def admin_adds_user_email(user)
+    @user = user
+    mail to: @user.email, subject: 'Welcome to EdgeRocket!'
+
+  end
 end

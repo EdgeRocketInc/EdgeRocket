@@ -25,6 +25,8 @@ class EmployeesController < ApplicationController
     if @user.save
       # we can add a role if it's not a regular user
       Role.insert_role(user_role, @user.id)
+      Notifications.admin_adds_user_email(@user).deliver
+      Notifications.admin_adds_user_email(@user, request.host_with_port).deliver
     end
 
     respond_to do |format|
