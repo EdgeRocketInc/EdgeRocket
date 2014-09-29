@@ -12,7 +12,7 @@ User.destroy_all
 PendingUser.destroy_all
 Role.destroy_all
 Survey.destroy_all
-
+Skill.destroy_all
 
 account_one = Account.create(company_name: 'EdgeRocket, Inc.',
 	options: '{"budget_management":true,"survey":true,"discussions":"gplus","recommendations":true,"dashboard_demo":true}',
@@ -69,4 +69,31 @@ Role.create(id: 0, name: 'Sysop', user_id: sysop.id)
 Role.create(id: 2, name: 'Admin', user_id: admin.id)
 Role.create(id: 11, name: 'Admin', user_id: jose.id)
 Role.create(id: 20, name: 'Admin', user_id: admin_track.id)
+
+Skill.create(name: 'Marketing', vpos: 0, hpos: 0)
+Skill.create(name: 'Social Media Marketing', vpos: 1, hpos: 0)
+Skill.create(name: 'SEO/SEM', vpos: 2, hpos: 0)
+Skill.create(name: 'Computer Science', vpos: 3, hpos: 0)
+Skill.create(name: 'Computer Networking', vpos: 4, hpos: 0)
+Skill.create(name: 'Data Security', vpos: 5, hpos: 0)
+Skill.create(name: 'Data Science', vpos: 6, hpos: 0)
+Skill.create(name: 'Web Development', vpos: 7, hpos: 0)
+
+Skill.create(name: 'Database', vpos: 0, hpos: 1)
+Skill.create(name: 'Software Dev. Methodologies', vpos: 1, hpos: 1)
+Skill.create(name: 'Management', vpos: 2, hpos: 1)
+Skill.create(name: 'Leadership', vpos: 3, hpos: 1)
+Skill.create(name: 'Communications', vpos: 4, hpos: 1)
+Skill.create(name: 'Sales', vpos: 5, hpos: 1)
+Skill.create(name: 'Hiring & Interviewing', vpos: 6, hpos: 1)
+Skill.create(name: 'Effective Presentations', vpos: 7, hpos: 1)
+
+Skill.create(name: 'Negotiation', vpos: 0, hpos: 2)
+Skill.create(name: 'Strategy', vpos: 1, hpos: 2)
+Skill.create(name: 'Operations', vpos: 2, hpos: 2)
+Skill.create(name: 'Project Management', vpos: 3, hpos: 2)
+Skill.create(name: 'Finance', vpos: 4, hpos: 2)
+Skill.create(name: 'UX/UI', vpos: 5, hpos: 2)
+Skill.create(name: 'Graphic Design', vpos: 6, hpos: 2)
+Skill.create(name: 'Product Management', vpos: 7, hpos: 2)
 

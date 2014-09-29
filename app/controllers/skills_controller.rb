@@ -4,7 +4,9 @@ class SkillsController < ApplicationController
 	
 	# list the skills
 	def list
-		@skills = [
+		# @skills = [Skill.where(hpos: 0).order('vpos ASC'), Skill.where(hpos: 1).order('vpos ASC'), Skill.where(hpos: 2).order('vpos ASC')]
+
+    @skills = [
 		    [ { id: 'marketing', name: 'Marketing' },
 		      { id: 'social_media', name: 'Social Media Marketing' },
 		      { id: 'seo', name: 'SEO/SEM' },
@@ -26,7 +28,7 @@ class SkillsController < ApplicationController
 		    [ { id: 'negotiation', name: 'Negotiation' },
 		      { id: 'strategy', name: 'Strategy' } ,
 		      { id: 'ops', name: 'Operations' },
-		      { id: 'pmp', name: 'Project Management' }, 
+		      { id: 'pmp', name: 'Project Management' },
 		      # { id: 'accounting', name: 'Accounting' },
 		      { id: 'finance', name: 'Finance' },
 		      # { id: 'spreadsheets', name: 'Spreadsheets' }
