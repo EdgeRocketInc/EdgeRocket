@@ -9,6 +9,7 @@
       <div class="panel panel-primary">
         <%= form_for(@pending_user, url: sign_up_path) do |f| %>
           <div class="panel-body">
+            <%= f.hidden_field :user_type, :value => params["type"] %>
             <%= f.text_field :first_name, autofocus: true, class: 'form-control voffset1', placeholder: 'First Name' %>
             <%= f.text_field :last_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Last Name' %>
             <%= f.text_field :company_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Company Name' %>
