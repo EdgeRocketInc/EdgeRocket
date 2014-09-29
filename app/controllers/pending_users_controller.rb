@@ -7,8 +7,8 @@ class PendingUsersController < ApplicationController
   end
 
   def create
-    if params[:type] == "member" || params[:type] == "enterprise"
-      @account_type = params[:type]
+    if params[:pending_user][:user_type] == "member" || params[:pending_user][:user_type] == "enterprise" || params[:pending_user][:user_type] == "team"
+      @account_type = params[:pending_user][:user_type]
     else
       @account_type = "free"
     end
