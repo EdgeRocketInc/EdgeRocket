@@ -45,9 +45,18 @@
       <div class="col-md-10 col-md-offset-1">
 
         <div class="row">
-          <div class="col-md-5">
+
+          <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Text to search" ng-model="searchText"/>
           </div>
+
+          <div class="col-md-3">
+            <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
+          </div>
+
+        </div>
+
+        <div class="row" ng-show="false">
 
           <div class="col-md-6 voffset1">
             <span class="glyphicon glyphicon-{{ mediaCbAll.class }} glyph-big glyph-action" ng-click="toggleMediaAll()"></span>
@@ -57,10 +66,6 @@
               <span class="glyph-label">{{cbox.label}}</span>
             </span>
           </div>
-
-        </div>
-
-        <div class="row">
 
           <div class="col-md-5 voffset2">
             <input type="text" class="form-control" ng-model="searchTags" placeholder="Filter by course/material providers"
@@ -78,9 +83,6 @@
 
         <div class="row">
 
-          <div class="col-sm-12 voffset2">
-            <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
-          </div>
 
         </div>
 
@@ -91,61 +93,6 @@
   </div>
 
   <div class="row voffset4">
-    <!-- TODO: implement
-    <div class="col-md-2">
-      <div class="well well-sm">
-      <ul class="list-root">
-        <li class="list-leaf">
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Topics</span>
-          <ul class="list-root">
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Business and Management</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Marketing</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Programming</span>
-            </li>                
-          </ul>
-        </li>
-        <li class="list-leaf">
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Course Providers</span>
-          <ul class="list-root">
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Coursera</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">edX</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Udacity</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Code School</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Udemy</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Lynda</span>
-            </li>
-          </ul>
-        </li>
-        <li class="list-leaf"><span class="glyphicon glyphicon-check"></span><span class="glyph-label">Cost</span>       
-          <ul class="list-root">
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Free</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Paid</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      </div>
-    </div>
-    -->
 
     <div class="col-md-11 col-md-offset-1">
         <span class="" ng-repeat="crs in items">
