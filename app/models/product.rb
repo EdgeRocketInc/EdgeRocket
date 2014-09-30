@@ -52,9 +52,11 @@ private
     else 
       sql_query += ')'
     end
+    sql_query += ' and (media_type is null '
     if !filter.nil?
-      sql_query += ' and media_type in (' + filter + ') '
+      sql_query += ' or media_type in (' + filter + ') '
     end
+    sql_query += ' ) '
     if !search_query.nil?
       search_query_like = '%' + search_query.downcase + '%'
       sql_query += " and (lower(p.name) like ? or lower(p.description) like ?)" 

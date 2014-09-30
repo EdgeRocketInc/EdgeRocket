@@ -9,20 +9,21 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   DISPLAY_ITEMS = 50 # keep in sync with back end controller
   $scope.items = []
   # for media type checkboxes
-  $scope.mediaCbAll = { class : 'check' }
   $scope.mediaCheckboxes = [
     { class : 'check', label : 'Courses', media_type : 'online' }
     { class : 'check', label : 'Books', media_type : 'book' }
     { class : 'check', label : 'Articles', media_type : 'blog' }
     { class : 'check', label : 'Videos', media_type : 'video' }
   ]
+  # for provider checkboxes
+  $scope.providerCheckboxes = [] # will populate from vendors
+  $scope.vendors = null # list of vendors retrieved from DB
+  # pagination & search state
   $scope.limitItems = DISPLAY_ITEMS
   $scope.totalItems = 0
   $scope.currentPage = 1
   $scope.searchLabel = 'Loading...'
-  $scope.searchTags = null # tags such as vendors to filter
-  $scope.searchTagsList = [] # will keep adding tags to this array
-  $scope.vendors = null # list of vendors retrieved from DB
+  $scope.advancedSearch = false
 
   loadCoursePages = (page_number, parameterQuery) ->
     index_start = (page_number-1) * DISPLAY_ITEMS
@@ -64,13 +65,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # otehrwise the format is ?inmedia=v1,v2&search=text
   buildSearchFilter = () ->
     result = null
-    if $scope.mediaCbAll.class != 'check'
-      for cbox in $scope.mediaCheckboxes
-        if cbox.class == 'check'
-          if result == null
-            result = '?inmedia=' + cbox.media_type
-          else
-            result = result + ',' + cbox.media_type
+    for cbox in $scope.mediaCheckboxes
+      if cbox.class == 'check'
+        if result == null
+          result = '?inmedia=' + cbox.media_type
+        else
+          result = result + ',' + cbox.media_type
     if $scope.searchText && $scope.searchText.length > 0
       result = if result==null then '?' else result + '&'
       result += 'criteria=' + $scope.searchText
@@ -84,6 +84,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   loadVendors =  ->
     $http.get('/vendors.json').success( (data) ->
       $scope.vendors = data
+      for v in $scope.vendors
+        $scope.providerCheckboxes.push({ class: 'check', label: v.name, id: v.id})
       console.log('Successfully loaded vendors')
     ).error( ->
       console.log('Error loading vendors')
@@ -122,13 +124,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       )
 
   # toggle all media type checkboxes, and filter the search result accordingly
-  $scope.toggleMediaAll = ->
-    if $scope.mediaCbAll.class == 'check'
-      $scope.mediaCbAll.class = 'unchecked'
+  $scope.toggleMediaAll = (turn_on) ->
+    if turn_on == false
       for cb in $scope.mediaCheckboxes
         cb.class = 'unchecked'
     else
-      $scope.mediaCbAll.class = 'check'
       for cb in $scope.mediaCheckboxes
         cb.class = 'check'
     $scope.searchLabel = 'Update Results'
@@ -137,7 +137,24 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.toggleMediaCbox = (cbox) ->
     if cbox.class == 'check' 
       cbox.class = 'unchecked' 
-      $scope.mediaCbAll.class = 'unchecked'
+    else
+      cbox.class = 'check' 
+    $scope.searchLabel = 'Update Results'
+    
+  # toggle all provider type checkboxes, and filter the search result accordingly
+  $scope.toggleProviderAll = (turn_on) ->
+    if turn_on == false
+      for cb in $scope.providerCheckboxes
+        cb.class = 'unchecked'
+    else
+      for cb in $scope.providerCheckboxes
+        cb.class = 'check'
+    $scope.searchLabel = 'Update Results'
+
+  # toggle single provider type check box
+  $scope.toggleProviderCbox = (cbox) ->
+    if cbox.class == 'check' 
+      cbox.class = 'unchecked' 
     else
       cbox.class = 'check' 
     $scope.searchLabel = 'Update Results'
@@ -152,10 +169,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     loadCoursePages($scope.currentPage, buildSearchFilter())
     $scope.searchLabel = 'Search'
 
-  # add selected item to the list of tags
-  $scope.tagSelected = (item, model, label) ->
-    console.log("tag added : " + label)
-    $scope.searchTagsList.push(label)
+  $scope.toggleSearchMode = () ->
+    $scope.advancedSearch = !$scope.advancedSearch
 
 # ------- controller for modal window --------------
 

@@ -44,7 +44,7 @@
   
       <div class="col-md-10 col-md-offset-1">
 
-        <div class="row">
+        <div class="row" ng-if="advancedSearch==false">
 
           <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Text to search" ng-model="searchText"/>
@@ -52,37 +52,61 @@
 
           <div class="col-md-3">
             <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
+            <div class="voffset1 pull-right"><a href="#" ng-click="toggleSearchMode()">Advanced search</a></div>
           </div>
 
         </div>
 
-        <div class="row" ng-show="false">
+        <div class="row" ng-if="advancedSearch==true">
 
-          <div class="col-md-6 voffset1">
-            <span class="glyphicon glyphicon-{{ mediaCbAll.class }} glyph-big glyph-action" ng-click="toggleMediaAll()"></span>
-            <span class="glyph-label">Select All</span>
-            <span ng-repeat="cbox in mediaCheckboxes">
-              <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action" ng-click="toggleMediaCbox(cbox)"></span>
-              <span class="glyph-label">{{cbox.label}}</span>
-            </span>
+          <div class="col-md-11">
+            <input type="text" class="form-control" placeholder="Text to search" ng-model="searchText"/>
           </div>
 
-          <div class="col-md-5 voffset2">
-            <input type="text" class="form-control" ng-model="searchTags" placeholder="Filter by course/material providers"
-              typeahead="vendor.name for vendor in vendors | filter:$viewValue | limitTo:8" 
-              typeahead-editable="false" class="form-control" tooltip="Type and select from available choices"
-              typeahead-on-select="tagSelected($item, $model, $label); searchTags='';">
-            </input>
-          </div>
-
-          <div class="col-md-6 voffset3">
-            <span ng-repeat="tag in searchTagsList"> <span class="label label-info">{{tag}}</span> </span>
-            <a href="#" class="label label-danger" ng-show="searchTagsList.length > 0">clear</a>
-          </div>
         </div>
 
-        <div class="row">
+        <div class="row voffset2" ng-if="advancedSearch==true">
 
+          <div class="col-md-4">
+            <div class="well well-sm">
+              <div>
+                <span class="glyph-label-inline">Media Types: </span>
+                <a href="#" ng-click="toggleMediaAll(true)">select all</a>
+                <a href="#" class="padding-left2" ng-click="toggleMediaAll(false)">deselect all</a>
+              </div>
+              <ul class="list-unstyled list-inline voffset1">
+                <li ng-repeat="cbox in mediaCheckboxes" class="voffset1">
+                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="toggleMediaCbox(cbox)"></span>
+                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="well well-sm">
+              <div>
+                <span class="glyph-label-inline">Course Providers: </span>
+                <a href="#" ng-click="toggleProviderAll(true)">select all</a>
+                <a href="#" class="padding-left2" ng-click="toggleProviderAll(false)">deselect all</a>
+              </div>
+              <ul class="list-unstyled list-inline voffset1">
+                <li ng-repeat="cbox in providerCheckboxes" class="voffset1">
+                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="toggleProviderCbox(cbox)"></span>
+                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" ng-if="advancedSearch==true">
+
+          <div class="col-md-11">
+            <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
+            <div class="pull-right voffset1"><a href="#" ng-click="toggleSearchMode()">Simple search</a></div>
+          </div>
 
         </div>
 
