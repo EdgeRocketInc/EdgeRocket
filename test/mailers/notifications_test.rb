@@ -64,4 +64,9 @@ class NotificationsTest < ActionMailer::TestCase
 
   end
 
+  test "a notification is sent when admin creates a new user" do
+    mail = Notifications.admin_adds_user_email(@user).deliver
+    assert_equal "Welcome to EdgeRocket!", mail.subject
+  end
+
 end

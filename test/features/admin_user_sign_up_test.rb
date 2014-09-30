@@ -23,11 +23,6 @@ class AdminUserSignUpTest < Capybara::Rails::TestCase
     @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
     admin_logs_in
     admin_adds_new_user
-
-    mail = ActionMailer::Base.deliveries.last
-    assert_equal 'support@edgerocket.co', mail['from'].to_s
-    assert_equal 'support@edgerocket.co', mail['to'].to_s
-    assert_equal 'Welcome to Edgerocket!', mail['subject'].to_s
   end
 
   private
