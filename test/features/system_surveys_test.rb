@@ -43,6 +43,10 @@ class ManageCoursesTest < Capybara::Rails::TestCase
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @survey = FactoryGirl.create(:survey, :preferences => "{\"skills\":[{\"id\":\"cs\"},{\"id\":\"soft_dev_methods\"},{\"id\":\"communications\"},{\"id\":\"hiring\"},{\"id\":\"strategy\"},{\"id\":\"ops\"},{\"id\":\"pmp\"},{\"other_skill\":\"test 12 test 34\"}]}", :user_id => @user.id, :created_at => Date.new(2014,12,15))
 
+    Skill.create(name: 'Marketing', key_name: 'marketing', vpos: 0, hpos: 0)
+    Skill.create(name: 'Computer Science', key_name: 'cs', vpos: 3, hpos: 0)
+    Skill.create(name: 'Communications', key_name: 'communications', vpos: 4, hpos: 1)
+
     visit root_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
@@ -52,9 +56,10 @@ class ManageCoursesTest < Capybara::Rails::TestCase
 
     find(".glyphicon-new-window").click
     assert_equal find("#other-skill").value, "test 12 test 34"
+
+    within(".modal-body") {assert_equal page.find("#marketing").checked?, false}
     within(".modal-body") {assert_equal find("#cs").checked?, true}
     within(".modal-body") {assert_equal find("#communications").checked?, true}
-    within(".modal-body") {assert_equal find("#marketing").checked?, false}
 
   end
 

@@ -105,7 +105,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.findChecked = (thing) ->
     if $scope.userPrefs
       $scope.userPrefs.forEach (pref) ->
-        if pref.id == thing.id
+        if pref.id == thing.key_name
           thing.checked = true
 
   $scope.cancel = ->

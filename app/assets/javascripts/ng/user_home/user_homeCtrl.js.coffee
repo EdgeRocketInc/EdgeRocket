@@ -219,7 +219,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       for skill in skillset
         if skill.checked == true
           #console.log('skill ' + skill.id )
-          data.skills.push( { id: skill.id } )
+          data.skills.push( { id: skill.key_name } )
     if @otherSkill != null
       data.skills.push( {other_skill: @otherSkill} )
     # save right here
