@@ -50,6 +50,10 @@ Vendor.create(id: 22, name: 'CBTnuggets' )
 Vendor.create(id: 24, name: 'UIE', logo_file_name: 'uie.png' )
 Vendor.create(id: 26, name: 'Vimeo', logo_file_name: 'vimeo.png' )
 
+Product.create(name: 'Test Product One', authors: 'Seth and Sean', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool')
+Product.create(name: 'Test Product Two', authors: 'Sean and Seth', origin: 'Seth and Seans Awesome School', media_type: 'Microfilm', school: 'gSchool')
+Product.create(name: 'Test Product Three', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool')
+
 sysop = User.create(email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)
 admin =User.create(email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)
 User.create(email: 'peter@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)

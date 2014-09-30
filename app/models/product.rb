@@ -5,6 +5,7 @@ class Product < ActiveRecord::Base
   has_many :playlists, through: :playlist_items
 	has_many :my_courses, dependent: :restrict_with_error
   has_many :discussions, dependent: :restrict_with_error
+  has_many :recommendations
   belongs_to :vendor
   belongs_to :account
 
