@@ -90,6 +90,7 @@ gem 'omniauth-google-oauth2', '~> 0.2'
 # Logging and analytics
 #gem 'em-http-request', '~> 1.1' #for async Keen IO events
 gem 'keen', '~> 0.8'
+gem 'em-http-request', '~> 1.0'
 
 # Google API client for Google+ Domain discussions and comments
 gem 'google-api-client', '~> 0.7'
