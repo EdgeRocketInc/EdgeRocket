@@ -51,7 +51,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     assert_content page, "My Playlists"
 
     visit '/search'
-    assert_content page, "Select All"
+    assert_content page, "Advanced search"
 
     visit '/plans'
     assert_content page, "No Plans"
