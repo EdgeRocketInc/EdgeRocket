@@ -3,7 +3,7 @@ class RecommendationsController < ApplicationController
     @recommendations = Recommendation.where(skill_id: params["skill_id"]) if params["skill_id"]
     @selected = params["skill_id"].to_i
     @skills = Skill.all
-    @products = Product.all
+    @products = Product.all.order('name ASC')
   end
 
   def create

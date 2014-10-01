@@ -31,7 +31,7 @@ EdgeApp::Application.routes.draw do
   get "profile/current" => 'profile#index'
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
-  get "recommendations" => 'recommendations#index'
+  get "system/recommendations" => 'recommendations#index'
   get "sign_up" => 'pending_users#new'
   get "search" => 'search#index', constraints: { format: 'html' }
   get "search" => 'search#list', constraints: { format: 'json' }
@@ -55,7 +55,7 @@ EdgeApp::Application.routes.draw do
   post "playlists/:id/courses/:course_id" => 'playlists#add_course', constraints: { format: 'json' }
   post "employees" => 'employees#create', constraints: { format: 'json' }
   post "products/:product_id/reviews" => "discussions#create_review", constraints: { format: 'json' }
-  post "recommendations" => 'recommendations#create'
+  post "system/recommendations" => 'recommendations#create'
   post "system/pending_users/create_users" => 'pending_users#create_user_from_pending', constraints: { format: 'json' }
 
   put "account/:id" => 'company#update_account', constraints: { format: 'json' }
