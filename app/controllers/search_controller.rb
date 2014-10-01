@@ -5,17 +5,28 @@ class SearchController < ApplicationController
 
   PAGE_SIZE = 50 # should be in sync with UI
 
-  # GET
+  # GET .html
   def index
+
+      publish_keen_io(:html, :ui_actions, {
+          :user_email => current_user.email,
+          :action => controller_path,
+          :method => action_name
+      })
+
+  end
+
+  # GET .json
+  def list
 
     if :json == request.format.symbol
       #byebug
       prd = nil
       # The first query counts items, which is not the best solution, but it's ok for now
-      count_result = Product.count_courses(current_user.account_id, params[:inmedia], params[:criteria])
+      count_result = Product.count_courses(current_user.account_id, params[:inmedia], params[:criteria], params[:providers])
       prd_count = count_result.nil? ? 0 : count_result.rows[0][0].to_i
       paginate prd_count, PAGE_SIZE  do |limit, offset|
-        prd = Product.search_courses(current_user.account_id, limit, offset, params[:inmedia], params[:criteria])
+        prd = Product.search_courses(current_user.account_id, limit, offset, params[:inmedia], params[:criteria], params[:providers])
       end
 
       # format some of the fields in the resultset
@@ -31,26 +42,17 @@ class SearchController < ApplicationController
           :action => controller_path,
           :method => action_name,
           :search_inmedia => params[:inmedia],
+          :search_providers => params[:providers],
           :search_criteria => params[:criteria],
           :search_items_count => prd_count
       })
 
-    else
-
-      publish_keen_io(:html, :ui_actions, {
-          :user_email => current_user.email,
-          :action => controller_path,
-          :method => action_name
-      })
-
-    end
-
-    respond_to do |format|
-      format.html 
-      format.json { 
+      if !prd.nil?        
         render json: prd.as_json
-      }
+      end
+
     end
 
   end
+
 end

@@ -208,10 +208,19 @@ span.glyph-big {
   cursor: pointer;
 }
 
+.glyph-action-inline {
+  cursor: pointer;
+}
+
 // List items for trees
 
 .glyph-label {
   margin-left: 5px;
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.glyph-label-inline {
   margin-right: 15px;
   white-space: nowrap;
 }
