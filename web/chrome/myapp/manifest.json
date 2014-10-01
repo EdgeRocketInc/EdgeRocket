@@ -1,17 +1,17 @@
 {
   "name": "EdgeRocket",
   "description": "EdgeRocket helps you and your team discover exceptional online education resources, so you can learn, grow, and dominate",
-  "version": "0.0.0.1",
+  "version": "0.1.47",
   "manifest_version": 2,
   "icons": {
     "128": "ER_final_logo-128x128.png"
   },
   "app": {
     "urls": [
-      "http://EdgeRocket.co/"
+      "https://edgerocket.herokuapp.com/"
     ],
     "launch": {
-      "web_url": "http://EdgeRocket.co/"
+      "web_url": "https://edgerocket.herokuapp.com/"
     }
   }
 }
