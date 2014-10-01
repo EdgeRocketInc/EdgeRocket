@@ -44,26 +44,68 @@
   
       <div class="col-md-10 col-md-offset-1">
 
-        <div class="row">
-          <div class="col-md-5">
-            <input type="text" class="input-sm form-control" placeholder="Text" ng-model="searchText"/>
+        <div class="row" ng-show="advancedSearch==false">
+
+          <div class="col-md-8">
+            <input type="text" class="form-control" placeholder="Text to search" ng-model="searchText"/>
           </div>
 
-          <div class="col-md-6 voffset1">
-            <span class="glyphicon glyphicon-{{ mediaCbAll.class }} glyph-big glyph-action" ng-click="toggleMediaAll()"></span>
-            <span class="glyph-label">Select All</span>
-            <span ng-repeat="cbox in mediaCheckboxes">
-              <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action" ng-click="toggleMediaCbox(cbox)"></span>
-              <span class="glyph-label">{{cbox.label}}</span>
-            </span>
+          <div class="col-md-3">
+            <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
+            <div class="voffset1 pull-right"><a href="#" ng-click="toggleSearchMode()">Advanced search</a></div>
           </div>
 
         </div>
 
-        <div class="row">
+        <div class="row" ng-show="advancedSearch==true">
 
-          <div class="col-sm-12 voffset2">
+          <div class="col-md-11">
+            <input type="text" class="form-control" placeholder="Text to search" ng-model="searchText"/>
+          </div>
+
+        </div>
+
+        <div class="row voffset2" ng-show="advancedSearch==true">
+
+          <div class="col-md-4">
+            <div class="well well-sm">
+              <div>
+                <span class="glyph-label-inline">Media Types: </span>
+                <a href="#" ng-click="toggleMediaAll(true)">select all</a>
+                <a href="#" class="padding-left2" ng-click="toggleMediaAll(false)">deselect all</a>
+              </div>
+              <ul class="list-unstyled list-inline voffset1">
+                <li ng-repeat="cbox in mediaCheckboxes" class="voffset1">
+                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="toggleMediaCbox(cbox)"></span>
+                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <div class="well well-sm">
+              <div>
+                <span class="glyph-label-inline">Course Providers: </span>
+                <a href="#" ng-click="toggleProviderAll(true)">select all</a>
+                <a href="#" class="padding-left2" ng-click="toggleProviderAll(false)">deselect all</a>
+              </div>
+              <ul class="list-unstyled list-inline voffset1">
+                <li ng-repeat="cbox in providerCheckboxes" class="voffset1">
+                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="toggleProviderCbox(cbox)"></span>
+                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row" ng-show="advancedSearch==true">
+
+          <div class="col-md-11">
             <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
+            <div class="pull-right voffset1"><a href="#" ng-click="toggleSearchMode()">Simple search</a></div>
           </div>
 
         </div>
@@ -75,61 +117,6 @@
   </div>
 
   <div class="row voffset4">
-    <!-- TODO: implement
-    <div class="col-md-2">
-      <div class="well well-sm">
-      <ul class="list-root">
-        <li class="list-leaf">
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Topics</span>
-          <ul class="list-root">
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Business and Management</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Marketing</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Programming</span>
-            </li>                
-          </ul>
-        </li>
-        <li class="list-leaf">
-          <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Course Providers</span>
-          <ul class="list-root">
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Coursera</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">edX</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Udacity</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Code School</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Udemy</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Lynda</span>
-            </li>
-          </ul>
-        </li>
-        <li class="list-leaf"><span class="glyphicon glyphicon-check"></span><span class="glyph-label">Cost</span>       
-          <ul class="list-root">
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Free</span>
-            </li>
-            <li class="list-leaf">
-              <span class="glyphicon glyphicon-check"></span><span class="glyph-label">Paid</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      </div>
-    </div>
-    -->
 
     <div class="col-md-11 col-md-offset-1">
         <span class="" ng-repeat="crs in items">

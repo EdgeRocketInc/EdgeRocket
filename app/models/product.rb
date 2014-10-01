@@ -10,15 +10,15 @@ class Product < ActiveRecord::Base
   belongs_to :account
 
   # count courses that would be returned by search with the same parameters 
-  def self.count_courses(account_id, media_types, search_query)
-    self.search_or_count(true, account_id, nil, nil, media_types, search_query)
+  def self.count_courses(account_id, media_types, search_query, providers)
+    self.search_or_count(true, account_id, nil, nil, media_types, search_query, providers)
   end
 
   # search courses (aka products) with a filter, and include the vendor fields
   # in the result
-  def self.search_courses(account_id, limit, offset, media_types, search_query)
+  def self.search_courses(account_id, limit, offset, media_types, search_query, providers)
     #byebug
-    self.search_or_count(false, account_id, limit, offset, media_types, search_query)
+    self.search_or_count(false, account_id, limit, offset, media_types, search_query, providers)
   end
 
   # synchronize (update) avg rating for the given product
@@ -34,10 +34,11 @@ class Product < ActiveRecord::Base
 private
 
   # used by search and count methods above
-  def self.search_or_count(is_count, account_id, limit, offset, media_types, search_query)
+  # if media_type is nil, it mean any media type, if it's an empty string, it means none
+  def self.search_or_count(is_count, account_id, limit, offset, media_types, search_query, providers)
     filter = nil
     # add single quotes around each media type in the comma-separated list
-    if !media_types.nil?
+    if !media_types.blank?
       filter = media_types.split(',').inject { |p,q| q = q + "','" + p }
       filter = "'" + filter + "'"
     end
@@ -55,6 +56,15 @@ private
     end
     if !filter.nil?
       sql_query += ' and media_type in (' + filter + ') '
+    elsif !media_types.nil? && media_types.empty?
+      # empty media means none
+      sql_query += ' and media_type is null '      
+    end
+    if !providers.nil?
+      sql_query += ' and vendor_id in (' + providers + ') '
+    elsif !providers.nil? && providers.empty?
+      # empty providers param means none
+      sql_query += ' and vendor_id is null '      
     end
     if !search_query.nil?
       search_query_like = '%' + search_query.downcase + '%'
