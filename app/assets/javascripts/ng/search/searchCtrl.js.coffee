@@ -15,8 +15,10 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     { class : 'check', label : 'Articles', media_type : 'blog' }
     { class : 'check', label : 'Videos', media_type : 'video' }
   ]
+  $scope.mediaAllSelected = true # all selected initially
   # for provider checkboxes
   $scope.providerCheckboxes = [] # will populate from vendors
+  $scope.providerAllSelected = true # all selected initially
   $scope.vendors = null # list of vendors retrieved from DB
   # pagination & search state
   $scope.limitItems = DISPLAY_ITEMS
@@ -24,6 +26,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.currentPage = 1
   $scope.searchLabel = 'Loading...'
   $scope.advancedSearch = false
+  $scope.searchText = ''
 
   loadCoursePages = (page_number, parameterQuery) ->
     index_start = (page_number-1) * DISPLAY_ITEMS
@@ -65,12 +68,30 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # otehrwise the format is ?inmedia=v1,v2&search=text
   buildSearchFilter = () ->
     result = null
-    for cbox in $scope.mediaCheckboxes
-      if cbox.class == 'check'
-        if result == null
-          result = '?inmedia=' + cbox.media_type
-        else
-          result = result + ',' + cbox.media_type
+    debugger
+    if $scope.mediaAllSelected == false
+      # note that inmedia parameter may be passed without values
+      result = '?inmedia='
+      is_first = true
+      for cbox in $scope.mediaCheckboxes
+        if cbox.class == 'check'
+          if is_first == true
+            result += cbox.media_type
+            is_first = false
+          else
+            result += ',' + cbox.media_type
+    if $scope.providerAllSelected == false
+      # note that providers parameter may be passed without values
+      result = if result==null then '?' else result + '&'
+      result += 'providers='
+      is_first = true
+      for cbox in $scope.providerCheckboxes
+        if cbox.class == 'check'
+          if is_first == true
+            result += cbox.id
+            is_first = false
+          else
+            result += ',' + cbox.id
     if $scope.searchText && $scope.searchText.length > 0
       result = if result==null then '?' else result + '&'
       result += 'criteria=' + $scope.searchText
@@ -126,9 +147,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # toggle all media type checkboxes, and filter the search result accordingly
   $scope.toggleMediaAll = (turn_on) ->
     if turn_on == false
+      $scope.mediaAllSelected = false
       for cb in $scope.mediaCheckboxes
         cb.class = 'unchecked'
     else
+      $scope.mediaAllSelected = true
       for cb in $scope.mediaCheckboxes
         cb.class = 'check'
     $scope.searchLabel = 'Update Results'
@@ -136,6 +159,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # toggle single media type check box
   $scope.toggleMediaCbox = (cbox) ->
     if cbox.class == 'check' 
+      $scope.mediaAllSelected = false
       cbox.class = 'unchecked' 
     else
       cbox.class = 'check' 
@@ -144,9 +168,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # toggle all provider type checkboxes, and filter the search result accordingly
   $scope.toggleProviderAll = (turn_on) ->
     if turn_on == false
+      $scope.providerAllSelected = false
       for cb in $scope.providerCheckboxes
         cb.class = 'unchecked'
     else
+      $scope.providerAllSelected = true
       for cb in $scope.providerCheckboxes
         cb.class = 'check'
     $scope.searchLabel = 'Update Results'
@@ -154,6 +180,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # toggle single provider type check box
   $scope.toggleProviderCbox = (cbox) ->
     if cbox.class == 'check' 
+      $scope.providerAllSelected = false
       cbox.class = 'unchecked' 
     else
       cbox.class = 'check' 

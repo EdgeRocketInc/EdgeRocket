@@ -32,7 +32,8 @@ EdgeApp::Application.routes.draw do
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
   get "sign_up" => 'pending_users#new'
-  get "search" => 'search#index'
+  get "search" => 'search#index', constraints: { format: 'html' }
+  get "search" => 'search#list', constraints: { format: 'json' }
   get "system" => 'system#surveys'
   get "system/surveys" => 'system#surveys'
   get "system/one_survey" => 'system#one_survey'
