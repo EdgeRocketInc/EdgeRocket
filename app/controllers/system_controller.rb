@@ -29,6 +29,10 @@ class SystemController < ApplicationController
     @pending_users = PendingUser.all
   end
 
+  def companies
+    @companies = Account.all
+  end
+
   # Create User from pending user
   def create_user_from_pending
     @new_user = User.new

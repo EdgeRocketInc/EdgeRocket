@@ -15,7 +15,7 @@ class ManageCompaniesTest < Capybara::Rails::TestCase
   end
 
   test "system can view the page and it has records" do
-    skip
+    
     Capybara.current_driver = :selenium
 
     @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
