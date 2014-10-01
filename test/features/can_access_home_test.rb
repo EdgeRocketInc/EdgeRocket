@@ -30,6 +30,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     # clear
 
     within(".modal-footer") {click_button "Submit"}
+    sleep(1)
     within(".modal-footer") {assert_content page,"Thanks! Based on your preferences,"}
   end
 
