@@ -3,9 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  require 'em-http-request'
+
+  # Also see config/unicorn.rb 
+  Thread.new { EventMachine.run }
+
   # not needed because it's included in other layouts
   # layout 'superhero'
-
 
 	# Publish an event to the external Keen IO collector
 	def publish_keen_io(request_format, collection, data_hash)
