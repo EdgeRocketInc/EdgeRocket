@@ -31,7 +31,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     # clear
 
     within(".modal-footer") {click_button "Submit"}
-    sleep(1)
+    #sleep(1) shoul dbe fine w/p sleep
     within(".modal-footer") {assert_content page,"Thanks! Based on your preferences,"}
   end
 
