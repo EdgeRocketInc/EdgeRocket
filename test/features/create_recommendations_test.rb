@@ -15,6 +15,7 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
   end
 
   test "sysop user can visit recommendations index " do
+  Capybara.current_driver = :selenium
 
   @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
   @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
@@ -23,10 +24,15 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
   @product2 = FactoryGirl.create(:product, name: 'Test Product Two', authors: 'Sean and Seth', origin: 'Seth and Seans Awesome School', media_type: 'Microfilm', school: 'gSchool')
   @product3 = FactoryGirl.create(:product, name: 'Test Product Three', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool')
 
+
   @skill1 = FactoryGirl.create(:skill, name: 'Marketing', key_name: 'marketing', vpos: 0, hpos: 0)
   @skill2 = FactoryGirl.create(:skill, name: 'Social Media Marketing', key_name: 'social_media', vpos: 1, hpos: 0)
   @skill3 = FactoryGirl.create(:skill, name: 'SEO/SEM', key_name: 'seo', vpos: 2, hpos: 0)
   @skill4 = FactoryGirl.create(:skill, name: 'Computer Science', key_name: 'cs', vpos: 3, hpos: 0)
+
+  @recommendation1 = FactoryGirl.create(:recommendation, product_id: @product1.id, skill_id: @skill1.id)
+  @recommendation2 = FactoryGirl.create(:recommendation, product_id: @product2.id, skill_id: @skill1.id)
+  @recommendation3 = FactoryGirl.create(:recommendation, product_id: @product3.id, skill_id: @skill2.id)
 
   visit root_path
 
@@ -34,23 +40,18 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
   fill_in 'user_password', with: '12345678'
   click_button 'Sign in'
 
-  visit "/recommendations/index"
+  visit "/recommendations"
 
+  click_on "Marketing"
+  assert_content page, "Test Product One"
+  assert_content page, "Test Product Two"
 
+  click_on "Social Media Marketing"
+
+  assert_content page, "Test Product Three"
+  assert_no_content page, "Test Product One"
 
   end
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 end

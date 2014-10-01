@@ -8,7 +8,7 @@
         <% @skills.each do |skill| %>
           <tr>
             <td>
-              <%= link_to skill.name, "/recommendations/index/?skill_id=#{skill.id}" %>
+              <%= link_to skill.name, "/recommendations/?skill_id=#{skill.id}" %>
             </td>
           </tr>
         <% end %>

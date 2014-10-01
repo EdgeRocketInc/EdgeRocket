@@ -31,7 +31,7 @@ EdgeApp::Application.routes.draw do
   get "profile/current" => 'profile#index'
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
-  get "recommendations/index" => 'recommendations#index'
+  get "recommendations" => 'recommendations#index'
   get "sign_up" => 'pending_users#new'
   get "search" => 'search#index', constraints: { format: 'html' }
   get "search" => 'search#list', constraints: { format: 'json' }
