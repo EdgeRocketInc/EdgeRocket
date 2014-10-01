@@ -20,13 +20,12 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
     @account = FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
     @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
+    @skill = FactoryGirl.create(:skill, :name => 'skill-1', :hpos => 1, :vpos => 1, :key_name => 's1')
 
     visit root_path
     fill_in "user_email", with: 'sysop-test@edgerocket.co'
     fill_in "user_password", with: '12345678'
     click_button 'Sign in'
-
-
 
     # clear
 
