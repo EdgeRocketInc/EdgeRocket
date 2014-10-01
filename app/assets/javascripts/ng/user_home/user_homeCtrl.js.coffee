@@ -171,6 +171,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->
   console.log('modal ctrl')
   $scope.surveySaved = false # true when sruvey has been saved
+  ###
+  # moving  to a get call 
   $scope.skills = [
     [ { id: 'marketing', name: 'Marketing' }
       { id: 'social_media', name: 'Social Media Marketing' }
@@ -202,15 +204,22 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       # { id: 'video_dev', name: 'Video Development' }
       { id: 'product_management', name: 'Product Management' } ]
   ]
+  ###
   $scope.otherSkill = null
+  $http.get('/surveys/skills.json').success( (data) ->
+    $scope.skills = data.skills
+    console.log('Successfully loaded skills')
+  ).error( ->
+    console.log('Error loading skills')
+  )
 
   $scope.done = () ->
     data = { skills: [] }
     for skillset in @skills
       for skill in skillset
         if skill.checked == true
-          #console.log('skill ' + skill.id)
-          data.skills.push( { id: skill.id } )
+          #console.log('skill ' + skill.id )
+          data.skills.push( { id: skill.key_name } )
     if @otherSkill != null
       data.skills.push( {other_skill: @otherSkill} )
     # save right here

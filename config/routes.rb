@@ -3,7 +3,7 @@ EdgeApp::Application.routes.draw do
   get 'company/index'
 
   # Don't allow users to sign up themselves, but allow changing passwords
-  devise_for :users, :skip => [:registrations]
+  devise_for :users, :skip => [:registrations], :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
     as :user do
       #get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
       #put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
@@ -31,9 +31,11 @@ EdgeApp::Application.routes.draw do
   get "profile/current" => 'profile#index'
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
+  get "recommendations/index" => 'recommendations#index'
   get "sign_up" => 'pending_users#new'
   get "search" => 'search#index', constraints: { format: 'html' }
   get "search" => 'search#list', constraints: { format: 'json' }
+  get "surveys/skills" => 'skills#list'
   get "system" => 'system#surveys'
   get "system/surveys" => 'system#surveys'
   get "system/one_survey" => 'system#one_survey'
@@ -72,6 +74,7 @@ EdgeApp::Application.routes.draw do
   delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
   delete "playlists/:id/courses/:course_id" => 'playlists#remove_course', constraints: { format: 'json' }
   delete "employees/:id" => 'employees#destroy', constraints: { format: 'json' }
+  delete "recommendations/:id" => 'recommendations#destroy'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

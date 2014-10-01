@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-xs-5" style="border: 1px solid black">
+      <h3>Preferences</h3>
+      <br>
+      <table class="table table-striped">
+        <% @skills.each do |skill| %>
+          <tr>
+            <td>
+              <%= link_to skill.name, "/recommendations/index/?skill_id=#{skill.id}" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="col-xs-1"></div>
+
+    <div class="col-xs-6" style="border: 1px solid black">
+      <h3>Recommendations</h3>
+      <br>
+      <table class="table table-striped">
+        <% if @recommendations %>
+          <% @recommendations.each do |recommendation| %>
+          <tr>
+            <td>
+              <%= recommendation.product.name %> <div style="float: right"><a href="/recommendations/<%= recommendation.id %>" data-method="delete" class="glyphicon glyphicon-trash"></a></div>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+
+
+  </div>
+</div>

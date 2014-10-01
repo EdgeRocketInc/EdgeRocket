@@ -6,7 +6,7 @@
       <div class="col-xs-4" ng-repeat="col in [0,1,2]">
         <ul class="padding-left3">
           <li class="list-leaf" ng-repeat="thing in skills[col]" ng-init="findChecked(thing)">
-            <input type="checkbox" value="{{thing.id}}" id="{{thing.id}}"  ng-model="thing.checked" name="stuff" disabled />
+            <input type="checkbox" class="{{thing.key_name}}" value="{{thing.key_name}}" id="{{thing.key_name}}"  ng-model="thing.checked" name="stuff" disabled />
             {{thing.name}}
           </li>
         </ul>

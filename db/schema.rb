@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917213624) do
+ActiveRecord::Schema.define(version: 20140930203718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140917213624) do
     t.text     "overview"
     t.text     "options"
     t.string   "account_type"
+    t.string   "domain"
   end
 
   add_index "accounts", ["company_name"], name: "index_accounts_on_company_name", unique: true, using: :btree
@@ -126,11 +127,27 @@ ActiveRecord::Schema.define(version: 20140917213624) do
     t.binary   "photo_thumb"
   end
 
+  create_table "recommendations", force: true do |t|
+    t.integer  "skill_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "name",       limit: 5
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "skills", force: true do |t|
+    t.string   "name"
+    t.integer  "vpos"
+    t.integer  "hpos"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "key_name"
   end
 
   create_table "surveys", force: true do |t|
@@ -156,6 +173,8 @@ ActiveRecord::Schema.define(version: 20140917213624) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "reset_required"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

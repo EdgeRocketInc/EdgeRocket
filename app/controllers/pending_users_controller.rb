@@ -7,8 +7,8 @@ class PendingUsersController < ApplicationController
   end
 
   def create
-    if params[:type] == "member" || params[:type] == "enterprise"
-      @account_type = params[:type]
+    if params[:pending_user][:user_type] == "member" || params[:pending_user][:user_type] == "enterprise" || params[:pending_user][:user_type] == "team"
+      @account_type = params[:pending_user][:user_type]
     else
       @account_type = "free"
     end
@@ -37,7 +37,7 @@ class PendingUsersController < ApplicationController
   private
 
   def blank_company(pending_user)
-    if params[:pending_user][:company_name] == "" || params[:pending_user][:company_name] == nil
+    if params[:pending_user][:company_name].blank?
       pending_user.company_name = params[:pending_user][:email]
     end
   end
