@@ -39,14 +39,4 @@ class SystemController < ApplicationController
     @new_user = User.new
   end
 
-  private
-
-  def ensure_sysop_user
-    if current_user
-      redirect_to root_path unless current_user.best_role == :sysop
-    else
-      redirect_to root_path
-    end
-  end
-
 end

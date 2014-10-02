@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
           data_hash[:request_format] = request_format
 	      Keen.publish_async(collection, data_hash)
 	    end
-	end
+  end
+
+  def ensure_sysop_user
+    if current_user
+      redirect_to root_path unless current_user.best_role == :sysop
+    else
+      redirect_to root_path
+    end
+  end
 
 end
