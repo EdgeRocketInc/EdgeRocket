@@ -1,3 +1,5 @@
+EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap'])
+
 $(document).ready ->
   addProductIdToForm = (productID) ->
     $("#product-id-for-new-recommendation").val productID
