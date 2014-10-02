@@ -1,4 +1,8 @@
 class RecommendationsController < ApplicationController
+
+  before_filter :ensure_sysop_user
+  layout "system"
+
   def index
     @recommendations = Recommendation.where(skill_id: params["skill_id"]) if params["skill_id"]
     @selected = params["skill_id"].to_i

@@ -12,7 +12,6 @@ User.destroy_all
 PendingUser.destroy_all
 Role.destroy_all
 Survey.destroy_all
-Skill.destroy_all
 
 account_one = Account.create(company_name: 'EdgeRocket, Inc.',
 	options: '{"budget_management":true,"survey":true,"discussions":"gplus","recommendations":true,"dashboard_demo":true}',
