@@ -1,5 +1,9 @@
 Welcome to EdgeRocket!
-Log in here: <%= link_to @hostname + '/users/sign_in', @hostname + '/users/sign_in' %> to login.
-Use the username (email address) and password that your administrator designated when creating your account.
+
+Log in here: <%= link_to @hostname + '/users/sign_in', @hostname + '/users/sign_in' %>
+
+Use the username <%= @user.email %> and password that your administrator designated when creating your account.
+
 Take full advantage of the resources in EdgeRocket to accelerate your learning, growth and success!
+
 Comments or questions? Contact us at support@edgerocket.co.
