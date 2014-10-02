@@ -78,7 +78,7 @@ EdgeApp::Application.routes.draw do
   delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
   delete "playlists/:id/courses/:course_id" => 'playlists#remove_course', constraints: { format: 'json' }
   delete "employees/:id" => 'employees#destroy', constraints: { format: 'json' }
-  delete "recommendations/:id" => 'recommendations#destroy'
+  delete "/system/recommendations/:id" => 'recommendations#destroy'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

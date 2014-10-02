@@ -4,7 +4,7 @@
     <div class="col-xs-5" style="border: 1px solid black">
       <h3>Preferences</h3>
       <br>
-      <table class="table table-striped">
+      <table id="preferences-table" class="table table-striped">
         <% @skills.each do |skill| %>
           <% if skill.id == @selected %>
             <tr class="selected-skill">
@@ -14,7 +14,7 @@
             </tr>
           <% else %>
             <tr>
-              <td>
+              <td class="skill-for-selection">
                 <%= link_to skill.name, "/system/recommendations/?skill_id=#{skill.id}" %>
               </td>
             </tr>
@@ -28,68 +28,72 @@
     <div class="col-xs-6" style="border: 1px solid black">
       <h3>Recommendations</h3>
       <br>
-      <table class="table table-striped">
-        <% if @recommendations %>
-          <% @recommendations.each do |recommendation| %>
-            <tr>
-              <td>
-                <%= recommendation.product.name %>
-                <div style="float: right">
-                  <a href="/system/recommendations/<%= recommendation.id %>" data-method="delete" class="glyphicon glyphicon-trash"></a>
-                </div>
-              </td>
-            </tr>
+      <% if params[:skill_id] %>
+
+        <table class="table table-striped">
+          <% if @skill && @skill.recommendations %>
+            <% @skill.products.sort_by(&:name).each do |product| %>
+              <tr>
+                <td>
+                  <%= product.name %>
+                  <div style="float: right">
+                    <a href="/system/recommendations/<%= Recommendation.where(product_id: product, skill_id: @skill).first.id %>" data-method="delete" class="glyphicon glyphicon-trash"></a>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-      </table>
+        </table>
 
-      <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" style="float:right">
-        Add Item
-      </button>
+        <button id="add-item-button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal" style="float:right">
+          Add Item
+        </button>
 
-    </div>
+      </div>
+    <% end %>
 
   </div>
 </div>
 
 
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add Recommendation</h4>
-      </div>
-      <div class="modal-body">
-        <input class="col-xs-12" type="text" placeholder="course" id="recommendation-search">
-        <table class="table table-hover table-striped" id="products-table">
-          <thead>
-          <tr>
-            <td></td>
-          </tr>
-          </thead>
-          <tbody>
-          <% @products.each do |product| %>
+<div class="recommendation-modal">
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add Recommendation</h4>
+        </div>
+        <div class="modal-body">
+          <input class="col-xs-12" type="text" placeholder="course" id="recommendation-search">
+          <table class="table table-hover table-striped" id="products-table">
+            <thead>
             <tr>
-              <td>
-                <div class="product-recommendation" data-product-id="<%= product.id %>" id="<%= product.name %>"><%= product.name %></div>
-              </td>
+              <td></td>
             </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+            <% @products.each do |product| %>
+              <tr>
+                <td>
+                  <div class="product-recommendation" data-product-id="<%= product.id %>" id="<%= product.name %>"><%= product.name %></div>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
 
-      <div class="modal-footer">
-        <form method="post" action="/system/recommendations">
-          <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-          <input type="hidden" name="skill_id" value="<%= @selected %>">
-          <input type="hidden" name="product_id" value="" id="product-id-for-new-recommendation">
-          <button type="submit" class="btn btn-primary">Add to Recommended</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </form>
+        <div class="modal-footer">
+          <form method="post" action="/system/recommendations">
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="hidden" name="skill_id" value="<%= @selected %>">
+            <input type="hidden" name="product_id" value="" id="product-id-for-new-recommendation">
+            <button type="submit" class="btn btn-primary">Add to Recommended</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

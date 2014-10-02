@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
   has_many :recommendations
   belongs_to :vendor
   belongs_to :account
+  belongs_to :skill
 
   # count courses that would be returned by search with the same parameters 
   def self.count_courses(account_id, media_types, search_query, providers)
