@@ -1,7 +1,7 @@
 class PopulatingSkillsTable < ActiveRecord::Migration
   def change
-    Skill.create(name: 'Marketing', key_name: 'marketing', vpos: 0, hpos: 0)
-    Skill.create(name: 'Social Media Marketing', key_name: 'social_media', vpos: 1, hpos: 0)
+    Skill.create!(name: 'Marketing', key_name: 'marketing', vpos: 0, hpos: 0)
+    Skill.create!(name: 'Social Media Marketing', key_name: 'social_media', vpos: 1, hpos: 0)
     Skill.create(name: 'SEO/SEM', key_name: 'seo', vpos: 2, hpos: 0)
     Skill.create(name: 'Computer Science', key_name: 'cs', vpos: 3, hpos: 0)
     Skill.create(name: 'Computer Networking', key_name: 'computer_networking', vpos: 4, hpos: 0)
