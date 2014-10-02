@@ -12,7 +12,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	      # clean up the session to avoid cookie overfloew excpetion and redirect to the sign in page again
 	      #session["devise.google_data"] = request.env["omniauth.auth"]
 	      reset_session
-	      flash[:error] = 'Access Denied'
+	      flash[:error] = 'Access Denied. Please check if your company enabled Google Sign In functionality'
 	      redirect_to new_user_session_url
 	    end
   	end
