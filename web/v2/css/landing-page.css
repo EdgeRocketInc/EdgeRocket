@@ -21,7 +21,7 @@ h6 {
     font-weight: 700;
 }
 
-.lead {
+.lead, .p1 {
     font-size: 18px;
     font-weight: 400;
 }
@@ -35,13 +35,28 @@ h6 {
     background-size: cover;
 }
 
+.blog-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/banner-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
 .intro-message {
     position: relative;
     padding-top: 20%;
     padding-bottom: 20%;
 }
 
-.intro-message > h1 {
+.intro-message-blog {
+    position: relative;
+    padding-top: 5%;
+    padding-bottom: 1%;
+}
+
+.intro-message > h1, .intro-message-blog > h1 {
     margin: 0;
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
     font-size: 5em;
@@ -53,7 +68,7 @@ h6 {
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-.intro-message > h3 {
+.intro-message > h3, .intro-message-blog > h3 {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
 
@@ -197,3 +212,6 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
 .voffset8 { margin-top: 100px; }
 .voffset9 { margin-top: 150px; }
 
+img.img-blog {
+    margin-right: 20px;
+}
