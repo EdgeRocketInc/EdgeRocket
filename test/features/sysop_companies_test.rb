@@ -30,4 +30,22 @@ class ManageCompaniesTest < Capybara::Rails::TestCase
     visit "/system/companies"
     assert_content page, "ABC Co."
   end
+
+  test "companies can have nil values in the created_at date field" do
+
+    Capybara.current_driver = :selenium
+
+    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
+    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
+    @account.update(:created_at => "")
+    visit root_path
+
+    fill_in 'user_email', with: 'sysop-test@edgerocket.co'
+    fill_in 'user_password', with: '12345678'
+    click_button 'Sign in'
+
+    visit "/system/companies"
+    assert_content page, "ABC Co."
+  end
 end
