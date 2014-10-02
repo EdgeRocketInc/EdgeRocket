@@ -6,7 +6,7 @@ class RecommendationsController < ApplicationController
   def index
     @skill = Skill.find(params["skill_id"]) if params["skill_id"]
     @selected = params["skill_id"].to_i
-    @skills = Skill.all
+    @skills = Skill.all.order('name ASC')
     @products = Product.all.order('name ASC')
   end
 
