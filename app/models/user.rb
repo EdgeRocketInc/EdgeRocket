@@ -37,10 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def valid_for_authentication?
-
-
     super and self.is_active?
-
   end
 
 
