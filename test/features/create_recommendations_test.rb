@@ -88,12 +88,11 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     first(".product-recommendation").click
 
-    sleep(7)
+    sleep(10)
 
     click_on "Add to Recommended"
 
     assert_content page, "A A Test Product One"
-
 
   end
 
