@@ -57,6 +57,8 @@ EdgeApp::Application.routes.draw do
   post "products/:product_id/reviews" => "discussions#create_review", constraints: { format: 'json' }
   post "system/recommendations" => 'recommendations#create'
   post "system/pending_users/create_users" => 'pending_users#create_user_from_pending', constraints: { format: 'json' }
+  post "system/companies/disable_company" => 'company#disable_company', constraints: { format: 'json' }
+  post "system/companies/activate_company" => 'company#activate_company', constraints: { format: 'json' }
 
   put "account/:id" => 'company#update_account', constraints: { format: 'json' }
   put "course_subscription/:id" => 'my_courses#update_subscribtion', constraints: { format: 'json' }

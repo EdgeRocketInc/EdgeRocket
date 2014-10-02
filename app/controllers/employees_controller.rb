@@ -114,7 +114,7 @@ class EmployeesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       # TODO: figure out how to pass and recieve :user instead of :employee
-      params.require(:employee).permit(:id, :email, :first_name, :last_name, :password, :reset_required, :user_role)
+      params.require(:employee).permit(:id, :email, :first_name, :last_name, :password, :reset_required, :user_role, :is_active)
     end
 
 end
