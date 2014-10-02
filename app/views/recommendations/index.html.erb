@@ -29,13 +29,13 @@
       <h3>Recommendations</h3>
       <br>
       <table class="table table-striped">
-        <% if @recommendations %>
-          <% @recommendations.each do |recommendation| %>
+        <% if @skill && @skill.recommendations %>
+          <% @skill.products.sort_by(&:name).each do |product| %>
             <tr>
               <td>
-                <%= recommendation.product.name %>
+                <%= product.name %>
                 <div style="float: right">
-                  <a href="/system/recommendations/<%= recommendation.id %>" data-method="delete" class="glyphicon glyphicon-trash"></a>
+                  <a href="/system/recommendations/<%= Recommendation.where(product_id: product, skill_id: @skill).first.id %>" data-method="delete" class="glyphicon glyphicon-trash"></a>
                 </div>
               </td>
             </tr>
