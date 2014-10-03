@@ -24,9 +24,9 @@ class PendingUsersController < ApplicationController
 
       # Notify Sysops that user is being created 
       # The Welcome notification to the user is sent after user is created
-      Notifications.account_request_received(@pending_user, request.host_with_port).deliver
+      Notifications.account_request_received(@pending_user, request.protocol + request.host_with_port).deliver
 
-      user = UserAccount.new(@pending_user, request.host_with_port)
+      user = UserAccount.new(@pending_user, request.protocol + request.host_with_port)
       user.save_user(generated_password)
       
       flash[:notice] = "Thank you for signing up, please check your email and log in."
@@ -41,7 +41,7 @@ class PendingUsersController < ApplicationController
 
   def create_user_from_pending
     @pending_user = PendingUser.find_by(id: params["id"])
-    user = UserAccount.new(@pending_user, request.host_with_port)
+    user = UserAccount.new(@pending_user, request.protocol + request.host_with_port)
     user.save_user(nil)
 
     render json: user
