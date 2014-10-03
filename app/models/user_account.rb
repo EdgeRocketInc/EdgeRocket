@@ -4,7 +4,7 @@ class UserAccount
     @hostname = hostname
   end
 
-  def save_user
+  def save_user(generated_password)
     account_exists = Account.find_by(:company_name => @pending_user.company_name)
     if account_exists
       @user = User.new(:account_id => account_exists.id, :email => @pending_user.email, :password => @pending_user.encrypted_password, :first_name => @pending_user.first_name, :last_name => @pending_user.last_name)
@@ -18,7 +18,7 @@ class UserAccount
 
     @user.encrypted_password = @pending_user.encrypted_password
     @user.save
-    Notifications.account_confirmation_email(@user, @hostname).deliver
+    Notifications.account_confirmation_email(@user, @hostname, generated_password).deliver
     @role = Role.new(name:'SA', user_id: @user.id)
     @role.save
     @pending_user.destroy

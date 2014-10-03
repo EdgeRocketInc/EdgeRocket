@@ -22,12 +22,10 @@ class SelfSignUpTest < Capybara::Rails::TestCase
     fill_in "pending_user_first_name", with: 'admin'
     fill_in "pending_user_last_name", with: 'test'
     fill_in "pending_user_email", with: 'admin-test@edgerocket.co'
-    fill_in "pending_user_encrypted_password", with: 'password'
-    fill_in "pending_user_confirm_password", with: 'password'
     fill_in "pending_user_company_name", with: 'Edgerocket'
     click_button 'Sign up'
 
-    assert_content page, "Thank you for your interest. We will contact you shortly."
+    assert_content page, "Thank you"
 
 
   end
@@ -39,8 +37,6 @@ class SelfSignUpTest < Capybara::Rails::TestCase
     fill_in "pending_user_first_name", with: ''
     fill_in "pending_user_last_name", with: ''
     fill_in "pending_user_email", with: ''
-    fill_in "pending_user_encrypted_password", with: ''
-    fill_in "pending_user_confirm_password", with: ''
     fill_in "pending_user_company_name", with: ''
     click_button 'Sign up'
 

@@ -42,9 +42,10 @@ class Notifications < ActionMailer::Base
     mail to: 'support@edgerocket.co', subject: @subject
   end
 
-  def account_confirmation_email(user, hostname)
+  def account_confirmation_email(user, hostname, generated_password)
     @user = user
     @hostname = hostname
+    @generated_password = generated_password
 
     mail to: @user.email, subject: 'Welcome to EdgeRocket!'
 

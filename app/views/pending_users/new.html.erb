@@ -6,7 +6,8 @@
   </div>
   <div class="row">
     <div class="col-md-4 col-md-offset-4 center voffset3">
-      <div class="panel panel-primary">
+      <div class="panel panel-info">
+        <div class="panel-heading">Sign Up for <%= params["type"] %> account</div>
         <%= form_for(@pending_user, url: sign_up_path) do |f| %>
           <div class="panel-body">
             <%= f.hidden_field :user_type, :value => params["type"] %>
@@ -14,8 +15,6 @@
             <%= f.text_field :last_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Last Name' %>
             <%= f.text_field :company_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Company Name' %>
             <%= f.email_field :email, autofocus: true, class: 'form-control voffset1', placeholder: 'Email' %>
-            <%= f.password_field :encrypted_password, autocomplete: "off", class: 'form-control voffset2', placeholder: 'Password' %>
-            <%= f.password_field :confirm_password, autocomplete: "off", class: 'form-control voffset2', placeholder: 'Confirm Password' %>
             <div class="voffset2">
               <%= f.submit "Sign up", class: 'btn btn-primary form-control' %>
             </div>
