@@ -18,9 +18,12 @@ class RecommendationsController < ApplicationController
   end
 
   def destroy
-    recommendation = Recommendation.find(params[:id])
+    recommendation_find = Recommendation.find(params[:id])
+    recommendation = recommendation_find
     recommendation.destroy
     redirect_to :back
   end
 
 end
+
+

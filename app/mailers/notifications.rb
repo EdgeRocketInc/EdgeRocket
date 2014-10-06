@@ -54,6 +54,6 @@ class Notifications < ActionMailer::Base
     @user = user
     @hostname = hostname
     mail to: @user.email, subject: 'Welcome to EdgeRocket!'
-
   end
+
 end

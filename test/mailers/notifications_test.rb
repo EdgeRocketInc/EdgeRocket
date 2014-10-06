@@ -8,7 +8,6 @@ class NotificationsTest < ActionMailer::TestCase
     @user.id = 1
     @user.save!
 
-
     Survey.create!(
       preferences: '{"skills"=>[{"id"=>"seo"}, {"id"=>"cs"}, {"id"=>"computer_networking"}], "user_home"=>{"skills"=>[{"id"=>"seo"}, {"id"=>"cs"}, {"id"=>"computer_networking"}]}}'.to_json,
       user_id: @user.id
@@ -20,7 +19,10 @@ class NotificationsTest < ActionMailer::TestCase
   end
 
   test "playlist_course_added" do
+
     mail = Notifications.playlist_course_added @user, @pl, @product, 'http://localhost'
+    p '*'*80
+    p mail.class
     assert_equal "New course has been added to your EdgeRocket playlist", mail.subject
   end
 
