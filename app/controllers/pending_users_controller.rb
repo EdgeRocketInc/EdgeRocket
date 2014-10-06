@@ -6,7 +6,10 @@ class PendingUsersController < ApplicationController
     @pending_user = PendingUser.new
   end
 
+  # IMPORTANT: Short-cucruiting user creation to streamline the process
   def create
+    #byebug
+
     if params[:pending_user][:user_type] == "member" || params[:pending_user][:user_type] == "enterprise" || params[:pending_user][:user_type] == "team"
       @account_type = params[:pending_user][:user_type]
     else
@@ -14,10 +17,20 @@ class PendingUsersController < ApplicationController
     end
     @pending_user = PendingUser.new(allowed_params.merge(:user_type => @account_type))
     blank_company(@pending_user)
-    if passwords_match? && @pending_user.save
-      Notifications.account_requested(@pending_user).deliver
-      Notifications.account_request_received(@pending_user, request.host_with_port).deliver
-      flash[:notice] = "Thank you for your interest. We will contact you shortly."
+    # Autogenerate the password and send it to the user
+    generated_password = Devise.friendly_token.first(8)
+    @pending_user.encrypted_password = generated_password
+    if @pending_user.save
+
+      # Notify Sysops that user is being created 
+      # The Welcome notification to the user is sent after user is created
+      Notifications.account_request_received(@pending_user, request.protocol + request.host_with_port).deliver
+
+      user = UserAccount.new(@pending_user, request.protocol + request.host_with_port)
+      user.save_user(generated_password)
+      
+      flash[:notice] = "Thank you for signing up, please check your email and log in."
+
       redirect_to root_path
     else
       render_error_messages(@pending_user)
@@ -28,8 +41,8 @@ class PendingUsersController < ApplicationController
 
   def create_user_from_pending
     @pending_user = PendingUser.find_by(id: params["id"])
-    user = UserAccount.new(@pending_user, request.host_with_port)
-    user.save_user
+    user = UserAccount.new(@pending_user, request.protocol + request.host_with_port)
+    user.save_user(nil)
 
     render json: user
   end

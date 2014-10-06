@@ -1,11 +1,11 @@
-<script type="text/ng-template" id="cellActionsProcess.html">
+<script type="text/ng-template" id="cellActions.html">
   <div class="ngCellText text-center">
-    <!--<span class="glyphicon glyphicon-ok glyph-big glyph-action"-->
-          <!--ng-click="approve(row.entity.id)" tooltip="Approve" tooltip-append-to-body="true">-->
-    <!--</span>-->
-    <!--<span class="glyphicon glyphicon-remove glyph-big glyph-action"-->
-          <!--ng-click="" tooltip="Reject" tooltip-append-to-body="true">-->
-    <!--</span>-->
+    <span class="glyphicon glyphicon-ok glyph-big glyph-action"
+          ng-click="activateCompany(row.getProperty(col.field))" tooltip="Activate Company" tooltip-append-to-body="true">
+    </span>
+    <span class="glyphicon glyphicon-trash glyph-big glyph-action red"
+          ng-click="disableCompany(row.getProperty(col.field))" tooltip="Disable Company" tooltip-append-to-body="true">
+    </span>
   </div>
 </script>
 
@@ -15,3 +15,4 @@
   <div class="gridStyle" ng-grid="accountsTable">
   </div>
 </div>
+

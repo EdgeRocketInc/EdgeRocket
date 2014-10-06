@@ -25,7 +25,7 @@ class EmployeesController < ApplicationController
     if @user.save
       # we can add a role if it's not a regular user
       Role.insert_role(user_role, @user.id)
-      Notifications.admin_adds_user_email(@user, request.host_with_port).deliver
+      Notifications.admin_adds_user_email(@user, request.protocol + request.host_with_port).deliver
     end
 
     respond_to do |format|
@@ -114,7 +114,7 @@ class EmployeesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       # TODO: figure out how to pass and recieve :user instead of :employee
-      params.require(:employee).permit(:id, :email, :first_name, :last_name, :password, :reset_required, :user_role)
+      params.require(:employee).permit(:id, :email, :first_name, :last_name, :password, :reset_required, :user_role, :is_active)
     end
 
 end

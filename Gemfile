@@ -26,17 +26,19 @@ end
 group :production do
   gem 'unicorn'
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 group :stage do
   gem 'unicorn'
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 gem 'pg', '0.17.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -74,7 +76,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # Bootstrap 
-gem 'bootstrap-sass', '3.1.0'
+gem 'bootstrap-sass', '3.2'
 
 # Bootswatch & JS engine for it
 gem 'twitter-bootswatch-rails', '~> 3.1.1'
