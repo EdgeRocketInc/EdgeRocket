@@ -215,3 +215,8 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
 img.img-blog {
     margin-right: 20px;
 }
+
+.text-blog-signature {
+    color: #887979;
+    font-size: larger;
+}
