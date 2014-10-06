@@ -31,6 +31,11 @@ class NotificationsTest < ActionMailer::TestCase
     assert_equal "A new survey has been completed by test@edgerocket.co!", mail.subject
   end
 
+  test "survey completed and recommendations email automatically populated and sent" do
+    mail = Notifications.send_recommendations(@user, 'http://localhost').deliver
+    assert_equal "EdgeRocket Recommendations", mail.subject
+  end
+
   test "self sign up account requested" do
     pending_user = PendingUser.new(
       first_name: 'Admin',
