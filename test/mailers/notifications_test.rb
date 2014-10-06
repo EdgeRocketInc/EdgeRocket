@@ -21,8 +21,8 @@ class NotificationsTest < ActionMailer::TestCase
   test "playlist_course_added" do
 
     mail = Notifications.playlist_course_added @user, @pl, @product, 'http://localhost'
-    p '*'*80
-    p mail.class
+    # p '*'*80
+    # p mail.class
     assert_equal "New course has been added to your EdgeRocket playlist", mail.subject
   end
 
