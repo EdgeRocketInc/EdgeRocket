@@ -17,7 +17,8 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
   test "sysop user can visit recommendations index " do
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    @account = create_account
+    @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
 
     @product1 = FactoryGirl.create(:product, name: 'Test Product One', authors: 'Seth and Sean', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool')
@@ -58,7 +59,8 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
     skip
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
 
     @product1 = FactoryGirl.create(:product, name: 'A A Test Product One', authors: 'Seth and Sean', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool')

@@ -3,7 +3,7 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
-class ManageCompaniesTest < Capybara::Rails::TestCase
+class SysopCompaniesTest < Capybara::Rails::TestCase
   self.use_transactional_fixtures = false
 
   setup do
@@ -18,9 +18,9 @@ class ManageCompaniesTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
     visit root_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
@@ -35,9 +35,9 @@ class ManageCompaniesTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    @account = create_account
+    @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
     @account.update(:created_at => "")
     visit root_path
 

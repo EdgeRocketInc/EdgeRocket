@@ -27,7 +27,6 @@ class SelfSignUpTest < Capybara::Rails::TestCase
 
     assert_content page, "Thank you"
 
-
   end
 
   test "user sees error messages" do

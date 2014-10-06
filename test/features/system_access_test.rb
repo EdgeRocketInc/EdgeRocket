@@ -3,7 +3,7 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
-class ManageCoursesTest < Capybara::Rails::TestCase
+class SystemAccessTest < Capybara::Rails::TestCase
   self.use_transactional_fixtures = false
 
   setup do

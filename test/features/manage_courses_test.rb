@@ -54,8 +54,8 @@ class ManageCoursesTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.')
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
 
     visit root_path

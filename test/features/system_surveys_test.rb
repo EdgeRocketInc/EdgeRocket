@@ -3,7 +3,7 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
-class ManageCoursesTest < Capybara::Rails::TestCase
+class SystemSurveysTest < Capybara::Rails::TestCase
   self.use_transactional_fixtures = false
 
   setup do
@@ -18,7 +18,8 @@ class ManageCoursesTest < Capybara::Rails::TestCase
   test "sysop user can view and mark surveys as processed/unprocessed" do
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @survey = FactoryGirl.create(:survey, :preferences => "quote", :user_id => @user.id, :created_at => Date.new(2014,12,15))
 
@@ -39,7 +40,8 @@ class ManageCoursesTest < Capybara::Rails::TestCase
   test "sysop user can view the processed surveys modal" do
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @survey = FactoryGirl.create(:survey, :preferences => "{\"skills\":[{\"id\":\"cs\"},{\"id\":\"soft_dev_methods\"},{\"id\":\"communications\"},{\"id\":\"hiring\"},{\"id\":\"strategy\"},{\"id\":\"ops\"},{\"id\":\"pmp\"},{\"other_skill\":\"test 12 test 34\"}]}", :user_id => @user.id, :created_at => Date.new(2014,12,15))
 
