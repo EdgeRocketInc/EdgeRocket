@@ -26,11 +26,13 @@ end
 group :production do
   gem 'unicorn'
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 group :stage do
   gem 'unicorn'
   gem 'rails_12factor'
+  gem 'newrelic_rpm'
 end
 
 gem 'pg', '0.17.1'
