@@ -3,3 +3,4 @@ class AddIsActiveColumnToUsers < ActiveRecord::Migration
     add_column :users, :is_active, :boolean, :default => true
   end
 end
+
