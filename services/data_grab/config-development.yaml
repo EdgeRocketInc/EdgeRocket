@@ -1,7 +1,7 @@
 database:
     adapter: postgresql
     encoding: unicode
-    database: heroku
+    database: edgerocket
     port: 5432
     host: localhost
     username: postgres

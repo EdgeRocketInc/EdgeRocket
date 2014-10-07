@@ -6,3 +6,4 @@ database:
     host: ec2-54-225-101-4.compute-1.amazonaws.com
     username: zmahshfwunbaog
     password: EoC9mJSfduUlew9qBG-efLdQq7
+    timeout: 1500
