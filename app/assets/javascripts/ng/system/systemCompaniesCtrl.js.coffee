@@ -24,6 +24,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been disabled.</h4></div>")
     $('.pending-flash').fadeOut(4000)
 
+  $scope.checkIfDisabled = (company) ->
+    if row.getProperty(col.field) == true
+      "glyphicon glyphicon-trash glyph-big glyph-action red"
+    else
+      ""
 
   $scope.accountsTable = {
     data: 'companiesQuery',
@@ -34,7 +39,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       {field: 'date', displayName: 'Date'},
       {field: 'accountType', displayName: 'Account Type'},
       { field: 'domain', displayName: 'Domain'},
-      {field: 'disabled', displayName: 'Disabled'},
+      {field: 'disabled', displayName: 'Disabled', cellTemplate: 'cellDisabled.html'},
       { field: 'id', displayName: 'Activate/Disable', width: '15%', minWidth: '80', cellTemplate: 'cellActions.html'}
     ]
     enableRowSelection: false

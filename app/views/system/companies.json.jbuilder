@@ -9,7 +9,6 @@ json.array! @companies do |company|
   end
   json.accountType company.account_type
   json.domain company.domain
-  # TODO add back when ready 
-  #json.disabled company.disabled
+  json.disabled company.disabled
   json.id company.id
 end
