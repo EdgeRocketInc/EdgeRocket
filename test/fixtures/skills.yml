@@ -6,20 +6,33 @@
 #
 
 
-one: 
+one:
+  id: 1
   name: Marketing
   key_name: marketing
   vpos: 0
   hpos: 0
 
 two:
+  id: 2
   name: Social Media Marketing
   key_name: social_media
   vpos: 1
   hpos: 0
 
-#	name: SEO/SEM, key_name: seo, vpos: 2, hpos: 0
-#	name: Computer Science, key_name: cs, vpos: 3, hpos: 0
+three:
+  id: 3
+  name: SEO/SEM
+  key_name: seo
+  vpos: 2
+  hpos: 0
+
+four:
+  name: Computer Science
+  key_name: cs
+  vpos: 3
+  hpos: 0
+
 #	name: Computer Networking, key_name: computer_networking, vpos: 4, hpos: 0
 #	name: Data Security, key_name: data_security, vpos: 5, hpos: 0
 #	name: Data Science, key_name: data_science, vpos: 6, hpos: 0
@@ -35,7 +48,13 @@ skill_a1:
 #	name: Software Dev. Methodologies, key_name: soft_dev_methods, vpos: 1, hpos: 1
 #	name: Management, key_name: management, vpos: 2, hpos: 1
 #	name: Leadership, key_name: leadership, vpos: 3, hpos: 1
-#	name: Communications, key_name: communications, vpos: 4, hpos: 1
+
+skill_a5:
+  name: Communications
+  key_name: communications
+  vpos: 4
+  hpos: 1
+
 #	name: Sales, key_name: sales, vpos: 5, hpos: 1
 #	name: Hiring & Interviewing, key_name: hiring, vpos: 6, hpos: 1
 #	name: Effective Presentations, key_name: presentations, vpos: 7, hpos: 1
