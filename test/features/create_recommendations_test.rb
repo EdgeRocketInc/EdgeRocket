@@ -55,7 +55,6 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
   end
 
   test "Sysop user can associate skills and products" do
-    # TODO fix this test
 
     Capybara.current_driver = :selenium
 
@@ -95,7 +94,6 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
 
   test "Sysop user can delete an existing course recommendation" do
-    # TODO fix this test
 
     Capybara.current_driver = :selenium
 

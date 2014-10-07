@@ -29,4 +29,19 @@ class Playlist < ActiveRecord::Base
     self.where("account_id=?", company_id).order('title')
   end
 
+  # clone a given playlist with all items that belong to it for the new account_id
+  def self.clone_with_items(account_id, playlist_id)
+    original_pl = Playlist.find(playlist_id)
+    if !original_pl.nil?
+      original_pl.account_id = account_id
+      new_pl = original_pl.dup
+      if new_pl.save
+        original_pl.playlist_items.each { |pi|
+          new_pi = pi.dup
+          new_pl.playlist_items << new_pi
+        }
+      end
+    end
+  end
+
 end
