@@ -55,7 +55,6 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
   end
 
   test "Sysop user can associate skills and products" do
-    # TODO fix this test
 
     Capybara.current_driver = :selenium
 
@@ -81,6 +80,7 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     click_on "Computer Science"
     click_on "Add Item"
+    # The test fails without sleep, is there another way to fix it w/o sleep?
     sleep(4)
     first(".product-recommendation").click
 
@@ -94,7 +94,6 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
 
   test "Sysop user can delete an existing course recommendation" do
-    # TODO fix this test
 
     Capybara.current_driver = :selenium
 

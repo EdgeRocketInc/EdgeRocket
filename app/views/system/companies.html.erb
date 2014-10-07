@@ -1,17 +1,20 @@
 <script type="text/ng-template" id="cellActions.html">
-  <div class="ngCellText text-center">
-    <span class="glyphicon glyphicon-ok glyph-big glyph-action"
-          ng-click="activateCompany(row.getProperty(col.field))" tooltip="Activate Company" tooltip-append-to-body="true">
+  <div class="ngCellText text-center" ng-switch on="$parent.row.getProperty('disabled')">
+    <div ng-switch-when="false">
+         <span class="glyphicon glyphicon-remove glyph-big glyph-action red"
+               ng-click="$parent.disableCompany($parent.row.getProperty(col.field))" tooltip="Disable Company" tooltip-append-to-body="true">
     </span>
-    <span class="{{checkIfDisabled}}">
+    </div>
+    <div ng-switch-default>
+         <span class="glyphicon glyphicon-ok glyph-big glyph-action" ng-click="$parent.activateCompany($parent.row.getProperty(col.field))" tooltip="Activate Company" tooltip-append-to-body="true">
     </span>
+    </div>
   </div>
 </script>
 
 <script type="text/ng-template" id="cellDisabled.html">
   <div class="ngCellText text-center">
-    <span class="glyphicon glyphicon-trash glyph-big glyph-action red"
-          ng-click="disableCompany(row.getProperty(col.field))" tooltip="Disable Company" tooltip-append-to-body="true">
+     <span class="{{checkIfDisabled(row.getProperty(col.field))}}">
     </span>
   </div>
 </script>
@@ -19,6 +22,7 @@
 <div class="pending-flash"></div>
 <div class="container-fluid" ng-controller="SystemCompaniesCtrl">
   <h1>Sysop Companies</h1>
+
   <div class="gridStyle" ng-grid="accountsTable">
   </div>
 </div>
