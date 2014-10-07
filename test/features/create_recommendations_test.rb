@@ -37,8 +37,8 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     visit root_path
 
-    fill_in 'user_email', with: 'sysop-test@edgerocket.co'
-    fill_in 'user_password', with: '12345678'
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
     click_button 'Sign in'
 
     visit "/system/recommendations"
@@ -98,7 +98,8 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
 
     @product1 = FactoryGirl.create(:product, name: 'A A Test Product One', authors: 'Seth and Sean', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool')
@@ -117,8 +118,8 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     visit root_path
 
-    fill_in 'user_email', with: 'sysop-test@edgerocket.co'
-    fill_in 'user_password', with: '12345678'
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
     click_button 'Sign in'
 
     visit "/system/recommendations"

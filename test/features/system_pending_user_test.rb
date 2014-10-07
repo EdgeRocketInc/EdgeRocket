@@ -40,8 +40,8 @@ class SystemPendingUser < Capybara::Rails::TestCase
     @pending_user = FactoryGirl.create(:pending_user, first_name: "Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free")
     visit root_path
 
-    fill_in 'user_email', with: 'sysop-test@edgerocket.co'
-    fill_in 'user_password', with: '12345678'
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
     click_button 'Sign in'
 
     visit "/system/pending_users"
