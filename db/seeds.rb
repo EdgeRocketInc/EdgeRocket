@@ -107,4 +107,3 @@ Recommendation.create(product_id: 2, skill_id: 1)
 Recommendation.create(product_id: 3, skill_id: 2)
 Recommendation.create(product_id: 4, skill_id: 2)
 
-
