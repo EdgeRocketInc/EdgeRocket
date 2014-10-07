@@ -15,17 +15,20 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     DatabaseCleaner.clean
   end
 
+  before do
+    @account = create_account
+  end
+
   test "can complete survey" do
 
     Capybara.current_driver = :selenium
 
-    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
+    @user = create_user(@account)
     @skill = FactoryGirl.create(:skill, :name => 'skill-1', :hpos => 1, :vpos => 1, :key_name => 's1')
 
     visit root_path
-    fill_in "user_email", with: 'sysop-test@edgerocket.co'
-    fill_in "user_password", with: '12345678'
+    fill_in "user_email", with: @user.email
+    fill_in "user_password", with: @user.password
     click_button 'Sign in'
 
     # clear
@@ -40,11 +43,10 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'test@gmail.com', :password => '12345678')
-
+    @user = create_user(@account)
     visit root_path
-    fill_in "user_email", with: 'test@gmail.com'
-    fill_in "user_password", with: '12345678'
+    fill_in "user_email", with: @user.email
+    fill_in "user_password", with: @user.password
     click_button 'Sign in'
 
     assert_content page, "Playlists"
@@ -82,12 +84,12 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'admin-test@edgerocket.co', :password => '12345678')
+    @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
     visit root_path
-    fill_in "user_email", with: 'admin-test@edgerocket.co'
-    fill_in "user_password", with: '12345678'
+    fill_in "user_email", with: @user.email
+    fill_in "user_password", with: @user.password
     click_button 'Sign in'
 
     visit '/dashboard'
@@ -99,16 +101,17 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
   test "users can only login if their company is active" do
 
-    skip # it fails on the last assert
+    # skip # it fails on the last assert
     
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'admin-test@edgerocket.co', :password => '12345678', :is_active => false)
+    @other_account = FactoryGirl.create(:account, :company_name => 'other', :disabled => true, options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
+    @user = create_user(@other_account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
     visit root_path
-    fill_in "user_email", with: 'admin-test@edgerocket.co'
-    fill_in "user_password", with: '12345678'
+    fill_in "user_email", with: @user.email
+    fill_in "user_password", with: @user.password
     click_button 'Sign in'
     assert_content page, "Invalid email or password."
 

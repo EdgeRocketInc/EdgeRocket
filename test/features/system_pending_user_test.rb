@@ -3,7 +3,7 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
-class ManageCoursesTest < Capybara::Rails::TestCase
+class SystemPendingUser < Capybara::Rails::TestCase
   self.use_transactional_fixtures = false
 
   setup do
@@ -17,7 +17,8 @@ class ManageCoursesTest < Capybara::Rails::TestCase
   test "system can view the page and it has records" do
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @pending_user = FactoryGirl.create(:pending_user, first_name: "Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free")
     visit root_path
@@ -33,13 +34,14 @@ class ManageCoursesTest < Capybara::Rails::TestCase
   test "pending user will be removed from pending users and a user will be created" do
     Capybara.current_driver = :selenium
 
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678')
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @pending_user = FactoryGirl.create(:pending_user, first_name: "Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free")
     visit root_path
 
-    fill_in 'user_email', with: 'sysop-test@edgerocket.co'
-    fill_in 'user_password', with: '12345678'
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
     click_button 'Sign in'
 
     visit "/system/pending_users"

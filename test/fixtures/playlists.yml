@@ -121,3 +121,19 @@ trackvia_leadership:
   title: Leadership Development
   description: A collection of materials for emerging leaders
   mandatory: false
+
+  # === Testing playlists for cloning
+
+clone_1:
+  id: 3008
+  account_id: 1
+  title: Clone PL1
+  description: a clone
+  mandatory: false
+
+clone_2:
+  id: 3023
+  account_id: 1
+  title: Clone PL2
+  description: a clone 2
+  mandatory: false

@@ -10,6 +10,7 @@ group :development do
   gem 'sqlite3', '1.3.8'
   #gem 'debugger'
   gem 'byebug' # replaces 'debugger'
+  gem 'pry-byebug'
 end
 
 group :test do

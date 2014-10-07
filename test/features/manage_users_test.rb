@@ -3,7 +3,7 @@ require "database_cleaner"
 
 DatabaseCleaner.strategy = :truncation
 
-class ManageCoursesTest < Capybara::Rails::TestCase
+class ManageUsersTest < Capybara::Rails::TestCase
   self.use_transactional_fixtures = false
 
   setup do
@@ -18,13 +18,13 @@ class ManageCoursesTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.')
-    @user = FactoryGirl.create(:user, :email => 'admin-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
+    account = create_account
+    @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
     visit root_path
-    fill_in "user_email", with: 'admin-test@edgerocket.co'
-    fill_in "user_password", with: '12345678'
+    fill_in "user_email", with: @user.email
+    fill_in "user_password", with: @user.password
     click_button 'Sign in'
 
     # Add a user to use it later

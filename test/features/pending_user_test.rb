@@ -18,6 +18,7 @@ class PendingUserTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
+    account = create_account
 
     password = "password"
     pending_user = PendingUser.new(
@@ -30,7 +31,8 @@ class PendingUserTest < Capybara::Rails::TestCase
 
     user = User.create!(
       email: pending_user.email,
-      password: 'dumbpass'
+      password: 'dumbpass',
+      account: account
     )
     user.update_column(:encrypted_password, pending_user.encrypted_password)
 

@@ -36,12 +36,9 @@ class User < ActiveRecord::Base
     current_role[:role]
   end
 
-# TODO fails in product, please take care of this 
-#  def valid_for_authentication?
-#    super and self.is_active?
-#  end
-
-
+  def valid_for_authentication?
+     super and self.account.disabled == false
+  end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info

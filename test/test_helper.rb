@@ -6,6 +6,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/spec'
 require "minitest/rails/capybara"
+require 'support/object_creation_methods'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!

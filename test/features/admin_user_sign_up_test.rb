@@ -18,9 +18,8 @@ class AdminUserSignUpTest < Capybara::Rails::TestCase
 
     Capybara.current_driver = :selenium
 
-
-    @account = FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
-    @user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
+    @account = create_account
+    @user = create_user(@account)
     admin_logs_in
     admin_adds_new_user
   end
