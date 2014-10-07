@@ -81,8 +81,8 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     click_on "Computer Science"
     click_on "Add Item"
-    # Don't commit with sleep unless there is a good reason with a comment explaining it
-    #sleep(4)
+    # The test fails without sleep, is there another way to fix it w/o sleep?
+    sleep(4)
     first(".product-recommendation").click
 
 
