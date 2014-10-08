@@ -12,6 +12,27 @@ class NotificationsTest < ActionMailer::TestCase
       preferences: '{"skills"=>[{"id"=>"seo"}, {"id"=>"cs"}, {"id"=>"computer_networking"}], "user_home"=>{"skills"=>[{"id"=>"seo"}, {"id"=>"cs"}, {"id"=>"computer_networking"}]}}'.to_json,
       user_id: @user.id
     )
+    @vendor1 = FactoryGirl.create(:vendor, name: 'Coursera')
+    @vendor2 = FactoryGirl.create(:vendor, name: 'Youtube')
+    @vendor3 = FactoryGirl.create(:vendor, name: "Layne's awesome programming school")
+
+    @product1 = FactoryGirl.create(:product, name: 'Test Product One', authors: 'Seth and Sean', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool', vendor_id: @vendor1.id)
+    @product2 = FactoryGirl.create(:product, name: 'Test Product Two', authors: 'Sean and Seth', origin: 'Seth and Seans Awesome School', media_type: 'Microfilm', school: 'gSchool', vendor_id: @vendor2.id)
+    @product3 = FactoryGirl.create(:product, name: 'Test Product Three', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: @vendor3.id)
+
+
+    @skill1 = FactoryGirl.create(:skill, name: 'Marketing', key_name: 'marketing', vpos: 0, hpos: 0)
+    @skill2 = FactoryGirl.create(:skill, name: 'Social Media Marketing', key_name: 'social_media', vpos: 1, hpos: 0)
+    @skill3 = FactoryGirl.create(:skill, name: 'SEO/SEM', key_name: 'seo', vpos: 2, hpos: 0)
+    @skill4 = FactoryGirl.create(:skill, name: 'Computer Science', key_name: 'cs', vpos: 3, hpos: 0)
+
+    @skills = [@skill1.id, @skill2.id]
+
+    @recommendation1 = FactoryGirl.create(:recommendation, product_id: @product1.id, skill_id: @skill1.id)
+    @recommendation2 = FactoryGirl.create(:recommendation, product_id: @product2.id, skill_id: @skill1.id)
+    @recommendation3 = FactoryGirl.create(:recommendation, product_id: @product3.id, skill_id: @skill2.id)
+
+
     @product = Product.new
     @product.name = 'new course'
     @pl = Playlist.new
@@ -29,6 +50,14 @@ class NotificationsTest < ActionMailer::TestCase
   test "survey completed" do
     mail = Notifications.survey_completed(@user).deliver
     assert_equal "A new survey has been completed by test@edgerocket.co!", mail.subject
+  end
+
+  test "survey completed and recommendations email automatically populated and sent" do
+    @hostname = 'http://localhost'
+    mail = Notifications.send_recommendations(@user, @hostname, @skills).deliver
+    assert_equal "EdgeRocket Recommendations", mail.subject
+
+
   end
 
   test "self sign up account requested" do

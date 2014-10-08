@@ -94,13 +94,33 @@ class UserHomeController < ApplicationController
   # create new set of user preferences for current user
   # JSON: {anything}
   def create_preferences
-    prefs = { :skills => params[:skills] }  # TODO make it real
+   prefs = { :skills => params[:skills] }  # TODO make it real
+
+   preferred_skills = params[:skills].map {|skill| Skill.find_by_key_name(skill["id"])}
+   skills_to_send = []
+
+   preferred_skills.each do |skill|
+     if skill.recommendations != []
+       skills_to_send << skill.id
+     end
+   end
+
+   prefs.to_json
     survey = Survey.new(
       user_id: current_user.id,
       preferences: prefs.to_json)
 
+  # recommendation_email = RecommendationEmail.new(
+  #   user_id: current_user.id
+  #
+  # )
+
+
     if survey.save
+
+      Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
       Notifications.survey_completed(current_user).deliver
+
     end
 
 
