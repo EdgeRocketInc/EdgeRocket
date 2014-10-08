@@ -1,4 +1,5 @@
-require "test_helper"
+require = require "test_helper"
+require
 require "database_cleaner"
 require 'byebug'
 
