@@ -118,6 +118,7 @@ class UserHomeController < ApplicationController
 
     if survey.save
 
+      RecommendationsEmail.save_recommendations_email(current_user, skills_to_send)
       Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
       Notifications.survey_completed(current_user).deliver
 
