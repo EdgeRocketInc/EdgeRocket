@@ -107,3 +107,4 @@ gem 'mini_magick', '~> 3.7'
 
 # Rack timeout (as suggested by Heroku)
 gem 'rack-timeout'
+

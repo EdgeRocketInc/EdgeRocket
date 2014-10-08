@@ -1,5 +1,5 @@
-def create_account
-  FactoryGirl.create(:account, :company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
+def create_account(overrides = {})
+  FactoryGirl.create(:account, {:company_name => 'ABC Co.', options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}"}.merge(overrides))
 end
 
 def create_user(account)
