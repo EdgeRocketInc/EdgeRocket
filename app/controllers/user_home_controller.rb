@@ -106,7 +106,7 @@ class UserHomeController < ApplicationController
 
 
       preferred_skills.each do |skill|
-        if Skill.find(skill).recommendations != nil
+        if skill.recommendations != nil &&  skill.recommendations != []
           skills_to_send << skill.id
         end
       end
@@ -117,14 +117,8 @@ class UserHomeController < ApplicationController
       user_id: current_user.id,
       preferences: prefs.to_json)
 
-    # recommendation_email = RecommendationEmail.new(
-    #   user_id: current_user.id
-    #
-    # )
-
-
     if survey.save && (skills_to_send != [] && skills_to_send != nil)
-      
+
       survey.update!({:processed => true})
       RecommendationsEmail.save_recommendations_email(current_user, skills_to_send)
       Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
