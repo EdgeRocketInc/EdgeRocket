@@ -5,11 +5,11 @@
     <div class="row">
       <div class="col-xs-4" ng-repeat="col in [0,1,2]">
         <ul class="padding-left3">
-          <li class="list-leaf" ng-repeat="thing in skills[col]" ng-init="findChecked(thing)">
-            <input type="checkbox" class="{{thing.key_name}}" value="{{thing.key_name}}" id="{{thing.key_name}}"  ng-model="thing.checked" name="stuff" disabled />
-            {{thing.name}}
-          </li>
-        </ul>
+        <li class="list-leaf" ng-repeat="thing in skills[col]" ng-init="findChecked(thing)">
+          <input type="checkbox" class="{{thing.key_name}}" value="{{thing.key_name}}" id="{{thing.key_name}}"  ng-model="thing.checked" name="stuff" disabled />
+          {{thing.name}}
+        </li>
+      </ul>
       </div>
     </div>
     <div class="row">

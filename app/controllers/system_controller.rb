@@ -10,7 +10,12 @@ class SystemController < ApplicationController
 
   def one_survey
     @survey = Survey.find(params["id"])
+    @recommendations = @survey.recommendations_email.recommendation
+    puts "#" * 80
+    puts @recommendations
+
     render json: @survey.preferences
+    # @recommendationsemail = RecommendationsEmail.where()
   end
 
   def processing

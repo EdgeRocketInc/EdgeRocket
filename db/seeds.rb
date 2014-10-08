@@ -54,10 +54,10 @@ Vendor.create(id: 22, name: 'CBTnuggets' )
 Vendor.create(id: 24, name: 'UIE', logo_file_name: 'uie.png' )
 Vendor.create(id: 26, name: 'Vimeo', logo_file_name: 'vimeo.png' )
 
-Product.create(name: 'Test Product One', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool', vendor_id: 1)
-Product.create(name: 'Test Product Two', authors: 'Sean and Seth', origin: 'Seth and Seans Awesome School', media_type: 'Microfilm', school: 'gSchool', vendor_id: 2)
-Product.create(name: 'Test Product Three', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 3)
-Product.create(name: 'Test Product Four', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 4)
+product = Product.create(name: 'Test Product One', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool', vendor_id: 1)
+product1 = Product.create(name: 'Test Product Two', authors: 'Sean and Seth', origin: 'Seth and Seans Awesome School', media_type: 'Microfilm', school: 'gSchool', vendor_id: 2)
+product2 = Product.create(name: 'Test Product Three', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 3)
+product3 = Product.create(name: 'Test Product Four', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 4)
 Product.create(name: 'Test Product Five', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 5)
 Product.create(name: 'Test Product Six', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 6)
 Product.create(name: 'Test Product Six', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 6)
@@ -80,11 +80,6 @@ Product.create(name: 'Test Product Six', authors: 'Seth and Sean', origin: 'Seth
 Product.create(name: 'Test Product Six', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 6)
 
 
-
-
-
-
-
 sysop = User.create(email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: account_one.id, first_name: "Admin")
 admin =User.create(email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)
 User.create(email: 'peter@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)
@@ -105,8 +100,8 @@ Role.create(id: 2, name: 'Admin', user_id: admin.id)
 Role.create(id: 11, name: 'Admin', user_id: jose.id)
 Role.create(id: 20, name: 'Admin', user_id: admin_track.id)
 
-Recommendation.create(product_id: 1, skill_id: 1)
-Recommendation.create(product_id: 2, skill_id: 1)
-Recommendation.create(product_id: 3, skill_id: 2)
-Recommendation.create(product_id: 4, skill_id: 2)
+Recommendation.create(product_id: product.id, skill_id: 1)
+Recommendation.create(product_id: product1.id, skill_id: 1)
+Recommendation.create(product_id: product2.id, skill_id: 2)
+Recommendation.create(product_id: product3.id, skill_id: 2)
 

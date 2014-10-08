@@ -120,7 +120,7 @@ class UserHomeController < ApplicationController
     if survey.save && (skills_to_send != [] && skills_to_send != nil)
 
       survey.update!({:processed => true})
-      RecommendationsEmail.save_recommendations_email(current_user, skills_to_send)
+      RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
       Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
       Notifications.survey_completed(current_user).deliver
 
