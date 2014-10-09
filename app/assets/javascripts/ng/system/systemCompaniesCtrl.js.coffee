@@ -13,7 +13,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.activateCompany = (id) ->
     $http({ method: 'POST', url: '/system/companies/activate_company', data:
       id: id}).success ->
-      $scope.getCompanies()
+        $scope.getCompanies()
     $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been activated.</h4></div>")
     $('.pending-flash').fadeOut(4000)
     return false;
@@ -21,7 +21,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.disableCompany = (id) ->
     $http({ method: 'POST', url: '/system/companies/disable_company', data:
       id: id}).success ->
-      $scope.getCompanies()
+        $scope.getCompanies()
     $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been disabled.</h4></div>")
     $('.pending-flash').fadeOut(4000)
     return false;
