@@ -22,6 +22,7 @@ providers = [
 	{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse
 	{ vendor_id: 10, provider_class: JsonClient, price: nil }, # edX 
 	{ vendor_id: 11, provider_class: JsonClient, price: nil }, # Code School 
+	{ vendor_id: 6, provider_class: JsonClient, price: 25 }, # Lynda 
 	{ vendor_id: 3, provider_class: UdemyClient, price: nil } # Udemy
 ]
 

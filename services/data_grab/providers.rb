@@ -126,7 +126,8 @@ class UdemyClient < ProviderClient
   def courses
     courses = []
     # get Linkshare published links
-    query_keywords = CGI::escape('accounting excel design hire hiring marketing java php project sales security sql user harassment node javascript html css ip intellectual property startups bootstrap sigma tcp webrtc hacking linux legal')
+    #query_keywords = CGI::escape('accounting excel design hire hiring marketing java php project sales security sql user harassment node javascript html css ip intellectual property startups bootstrap sigma tcp webrtc hacking linux legal')
+    query_keywords = CGI::escape('cloud photoshop leader job resume career stress goal motivation')
     query_body = 'http://productsearch.linksynergy.com/productsearch?token=75e4b687b013d1b0480bc5fd0a56ef163ea3bc436ce45a7b6d4e60bff9fe3be9&max=100&mid=39197&keyword=&one='
     query_body += query_keywords
     pagenumber = 0
