@@ -10,12 +10,14 @@ class SystemController < ApplicationController
 
   def one_survey
     @survey = Survey.find(params["id"])
-    # @recommendations = @survey.recommendations_email.recommendation
-    # puts "#" * 80
-    # puts @recommendations
-    # render json: @recommendations
-    render json: @survey.preferences
-    # @recommendationsemail = RecommendationsEmail.where()
+    @recommendations = @survey.recommendations_email.recommendation
+    prefs = ActiveSupport::JSON.decode(@survey.preferences)
+    @response_json = {
+      skills: prefs['skills'],
+      recommendations: ActiveSupport::JSON.decode(@recommendations)
+    }
+    # not using jbuilder at this time
+    render json: @response_json.as_json
   end
 
   def processing
