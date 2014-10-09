@@ -91,4 +91,37 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     assert_no_selector('.gylphicon-ok')
   end
 
+  test "system administror can view company information" do
+    @account = create_account
+    @user = create_user(@account)
+    @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
+    visit root_path
+
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
+    click_button 'Sign in'
+
+    visit "/system/companies"
+    page.find('.glyphicon-edit').click
+
+    assert_equal find("#company_name").value, @account.company_name
+    assert_equal find("#options").value, @account.options
+    assert_content("Edit Company")
+  end
+
+  test "system adminstrator can edit company information" do
+    @account = create_account
+    @user = create_user(@account)
+    @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
+    visit root_path
+
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
+    click_button 'Sign in'
+
+    visit "/system/companies"
+    page.find('.glyphicon-edit').click
+    fill_in 'company_name', :with => "Fantastic Company"
+    click_on "Save Changes"
+  end
 end
