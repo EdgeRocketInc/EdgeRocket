@@ -14,19 +14,17 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $http({ method: 'POST', url: '/system/companies/activate_company', data:
       id: id}).success ->
         $scope.getCompanies()
-    $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been activated.</h4></div>")
-    $('.pending-flash').fadeOut(4000)
-    $scope.companiesQuery = $resource('/system/companies.json').query()
-    return false;
+        $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been activated.</h4></div>")
+        $('.pending-flash').fadeOut(4000)
+    return false
 
   $scope.disableCompany = (id) ->
     $http({ method: 'POST', url: '/system/companies/disable_company', data:
       id: id}).success ->
         $scope.getCompanies()
-    $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been disabled.</h4></div>")
-    $('.pending-flash').fadeOut(4000)
-    $scope.companiesQuery = $resource('/system/companies.json').query()
-    return false;
+        $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been disabled.</h4></div>")
+        $('.pending-flash').fadeOut(4000)
+    return false
 
   $scope.checkIfDisabled = (columnValue) ->
     if columnValue == true
@@ -34,6 +32,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     else
       ""
 
+  ###
+  # fails
   $scope.$watch($scope.companiesQuery, () ->
     $scope.accountsTable = {
       data: 'companiesQuery',
@@ -49,6 +49,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       ]
         enableRowSelection: false
     })
+  ###
 
   $scope.accountsTable = {
     data: 'companiesQuery',
