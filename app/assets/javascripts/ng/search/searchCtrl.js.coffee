@@ -68,7 +68,6 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   # otehrwise the format is ?inmedia=v1,v2&search=text
   buildSearchFilter = () ->
     result = null
-    debugger
     if $scope.mediaAllSelected == false
       # note that inmedia parameter may be passed without values
       result = '?inmedia='

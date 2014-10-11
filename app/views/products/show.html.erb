@@ -6,7 +6,9 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				<alert ng-if="enrolled==true" ng-show="showAlert==true" type="info" close="closeAlert()" class="">This course is in your list</alert>
+				<alert ng-if="enrolled==true" ng-show="showAlert==true" type="info" close="closeAlert()" class="">
+					This course is in your list
+				</alert>
 			</div>
 		</div>
 
@@ -48,34 +50,44 @@
 			<div class="col-lg-12">
 
 				<div class="panel panel-info"> 
-					<div class="panel-heading">Comments</div>
-					<div class="panel-body">
+  					<form name="commentsForm">
+						<div class="panel-heading">Comments</div>
+						<div class="panel-body">
 
-						<div class="row">
-							<div class="col-xs-12">
-								<textarea class="form-control textarea-discussions" placeholder="Post comments or reviews" ng-model="newReview.title">
-								</textarea>
-							</div>
-						</div> <!-- Row -->
-
-						<div class="row voffset1">
-							<div class="col-xs-12">
-								<div class="pull-right">
-									<span ng-if="options_json.discussions == 'gplus'">
-										<span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" ng-click="toggleGBox()"></span>
-										<span class="glyph-label">Also post to Google+</span>
-									</span>
-									<button class="btn btn-sm btn-success btn-post-discussions" type="button" ng-click="createReview()">Submit</button>
+							<div class="row">
+								<div class="col-xs-12">
+									<textarea class="form-control textarea-discussions" placeholder="Post comments or reviews" 
+										ng-model="newReview.title" name="commentText" required>
+									</textarea>
+									<div class="text-danger" ng-show="commentsForm.commentText.$error.required">
+										* Please enter comment text to submit
+									</div>
 								</div>
+							</div> <!-- Row -->
+
+							<div class="row voffset1">
+								<div class="col-xs-12">
+									<div class="pull-right">
+										<span ng-if="options_json.discussions == 'gplus'">
+											<span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" 
+												ng-click="toggleGBox()"></span>
+											<span class="glyph-label">Also post to Google+</span>
+										</span>
+										<button class="btn btn-sm btn-success btn-post-discussions" 
+											type="button" ng-click="createReview()" ng-disabled="commentsForm.commentText.$error.required">
+											Submit
+										</button>
+									</div>
+								</div>
+							</div> <!-- Row -->
+
+							<div class="well voffset1" ng-repeat="review in reviews">
+								{{ review.title }}
+								<div class="text-success text-right">{{review.user.first_name}} {{review.user.last_name}}</div>
 							</div>
-						</div> <!-- Row -->
 
-						<div class="well voffset1" ng-repeat="review in reviews">
-							{{ review.title }}
-							<div class="text-success text-right">{{review.user.first_name}} {{review.user.last_name}}</div>
 						</div>
-
-					</div>
+					</form>
 				</div>
 
 			</div>
