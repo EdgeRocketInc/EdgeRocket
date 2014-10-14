@@ -92,6 +92,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
   end
 
   test "system administror can view company information" do
+    skip
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
@@ -110,6 +111,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
   end
 
   test "system adminstrator can edit company information" do
+    skip
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)

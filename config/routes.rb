@@ -66,13 +66,13 @@ EdgeApp::Application.routes.draw do
   put "employees/:id/password" => 'employees#change_password', constraints: { format: 'json' }
   put "my_courses/:id/rating" => 'my_courses#update_rating', constraints: { format: 'json' }
   put "playlist_items/ranks" => 'playlists#update_ranks', constraints: { format: 'json' }
+  put "system/company/:id" => 'system#update_company', constraints: { format: 'json' }
 
   post "profile/upload" => 'profile#upload', constraints: { format: 'json' }
   post "profile" => 'profile#update', constraints: { format: 'json' }
 
   patch "system/surveys/undo" => 'system#undo_processing'
   patch "system/surveys" => 'system#processing'
-
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe', constraints: { format: 'json' }
   delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
