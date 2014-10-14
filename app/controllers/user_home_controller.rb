@@ -95,6 +95,8 @@ class UserHomeController < ApplicationController
   # JSON: {anything}
   def create_preferences
 
+    byebug
+
     prefs = {:skills => params[:skills]} # TODO make it real
     if !params[:skills].nil?
       preferred_skills = params[:skills].map do |skill|
@@ -105,7 +107,7 @@ class UserHomeController < ApplicationController
       skills_to_send = []
 
       preferred_skills.each do |skill|
-        if skill.recommendations != nil &&  skill.recommendations != []
+        if !skill.recommendations.nil? &&  !skill.recommendations.empty?
           skills_to_send << skill.id
         end
       end
@@ -116,7 +118,7 @@ class UserHomeController < ApplicationController
       preferences: prefs.to_json)
     
     if survey.save
-      if skills_to_send != [] && !skills_to_send.nil?
+      if !skills_to_send.empty? && !skills_to_send.nil?
         survey.update!( {:processed => true} )
         RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
         Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
