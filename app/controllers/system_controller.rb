@@ -1,3 +1,5 @@
+require 'pry'
+
 class SystemController < ApplicationController
 
   before_filter :ensure_sysop_user
@@ -44,7 +46,14 @@ class SystemController < ApplicationController
 
   def companies
     @companies = Account.all
+  end
 
+  def update_company
+    @account = Account.find(params[:id])
+    @account.update!(company_params)
+
+    flash[:notice] = 'Companies was successfully updated.'
+    render json: @account
   end
 
   # Create User from pending user
@@ -52,6 +61,9 @@ class SystemController < ApplicationController
     @new_user = User.new
   end
 
+  private
 
-
+  def company_params
+    params.require(:company).permit(:company_name, :options, :overview, :domain, :account_type)
+  end
 end

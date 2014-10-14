@@ -7,20 +7,21 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 @SystemSurveysCtrl = ($scope, $http, $resource, $modal) ->
 
 #    $scope.skills = all_prefs
+
     # not a real factory, but is simple to work around Heroku injections
     surveysFactory = $resource('/system/surveys.json')
 
     getSurveys = ->
-      $scope.surveys = surveysFactory.get ->
-        $scope.unprocessedSurveys = $scope.surveys.unprocessed
-        $scope.processedSurveys = $scope.surveys.processed
+      surveys = surveysFactory.get ->
+        $scope.unprocessedSurveys = surveys.unprocessed
+        $scope.processedSurveys = surveys.processed
 
     getSurveys()
 
     $scope.summonModal = (id) ->
       $http({ method: 'GET', url: '/system/one_survey', params: id:id}).success (data) ->
         $scope.userPrefs = data
-        modalInstance = $modal.open({
+        $modal.open({
           templateUrl: 'userSurvey.html',
           controller: SurveyModalCtrl,
           size: 'lg',
@@ -43,6 +44,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       columnDefs: [{field: 'email', displayName: 'Users Email'}, {field: 'date', displayName: 'Date Completed'}, {field: 'fullName', displayName: 'Name'}, { field : 'id', displayName : 'Process/Details', width : '15%', minWidth : '80', cellTemplate: 'cellActionsProcess.html', sortable: false }],
       enableRowSelection: false
     }
+
     $scope.processedSurveysTable = {
       data: 'processedSurveys',
       columnDefs: [{field: 'email', displayName: 'Users Email'}, {field: 'date', displayName: 'Date Completed'}, {field: 'fullName', displayName: 'Name'}, { field : 'id', displayName : 'Undo/Details', width : '15%', minWidth : '80', cellTemplate: 'cellActionsUnprocess.html', sortable: false}],
@@ -82,3 +84,4 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 @SystemSurveysCtrl.$inject = ['$scope', '$http', '$resource', '$modal']
 @SurveyModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'userPrefs']
+

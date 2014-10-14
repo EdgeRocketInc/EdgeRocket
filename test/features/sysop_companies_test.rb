@@ -109,14 +109,17 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
 
     visit "/system/companies"
 
-    # TODO should this work?
-    #page.find('.glyphicon-edit').click
-    #assert_equal find("#company_name").value, @account.company_name
-    #assert_equal find("#options").value, @account.options
-    #assert_content("Edit Company")
+    page.find('.glyphicon-edit').click
+    assert_equal find("#company_name").value, @account.company_name
+    assert_equal find("#options").value, @account.options
+    assert_content("Edit Company")
   end
 
   test "system adminstrator can edit company information" do
+    Account.destroy_all
+
+    Capybara.current_driver = :selenium
+
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
@@ -128,9 +131,9 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
 
     visit "/system/companies"
     
-    # TODO should this work?
-    #page.find('.glyphicon-edit').click
-    #fill_in 'company_name', :with => "Fantastic Company"
-    #click_on "Save Changes"
+
+    page.find('.glyphicon-edit').click
+    fill_in 'company_name', :with => "Fantastic Company"
+    click_on "Save Changes"
   end
 end
