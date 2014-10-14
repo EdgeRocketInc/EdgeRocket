@@ -2,7 +2,7 @@
 
 select p.id, name, origin from products p 
 where vendor_id = 3
--- and manual_entry='f'
+and manual_entry='f'
 and (
 	id in (select product_id from discussions where product_id=p.id)
 	or id in (select product_id from my_courses where product_id=p.id)
@@ -12,10 +12,10 @@ and (
 
 
 -- DELETE products that are NOT used
-select count(*) --p.id, name 
+DELETE
 from products p 
 where vendor_id = 3
--- and manual_entry='f'
+and manual_entry='f'
 and (
 	id not in (select product_id from discussions where product_id=p.id)
 	and id not in (select product_id from my_courses where product_id=p.id)
