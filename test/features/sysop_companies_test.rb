@@ -136,4 +136,26 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     fill_in 'company_name', :with => "Fantastic Company"
     click_on "Save Changes"
   end
+
+  test "company info is validated when edited by sys admin" do
+    Account.destroy_all
+
+    Capybara.current_driver = :selenium
+
+    @account = create_account
+    @user = create_user(@account)
+    @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
+    visit root_path
+
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
+    click_button 'Sign in'
+
+    visit "/system/companies"
+
+    page.find('.glyphicon-edit').click
+    fill_in 'options', :with => ""
+    click_on "Save Changes"
+    assert_content("Company could not be updated")
+  end
 end

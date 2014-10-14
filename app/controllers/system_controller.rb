@@ -52,13 +52,18 @@ class SystemController < ApplicationController
     @account = Account.find(params[:id])
     @account.update!(company_params)
 
-    flash[:notice] = 'Companies was successfully updated.'
     render json: @account
   end
 
   # Create User from pending user
   def create_user_from_pending
     @new_user = User.new
+  end
+
+  def reports
+    @report = Report.new
+
+    render json: @report.render
   end
 
   private
