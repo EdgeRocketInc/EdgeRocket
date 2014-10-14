@@ -87,23 +87,33 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         }
       }
 
+    if $scope.validateJson(company)
+
     # POST and send a request
-    $http.put('/system/company/' + $scope.editCompany.id, company).success((data) ->
-      $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been updated.</h4></div>")
-      $('.pending-flash').fadeOut(4000)
-      # update companies
-      $scope.getCompanies()
-      # switch to non-editing mode
-      $scope.uiMode = { editIndex: -1 }
-      $scope.clearEditForm()
-    ).error( ->
-      $('.pending-flash').empty().show().append("<div class='alert alert-notice'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company could not be updated.</h4></div>")
-      $('.pending-flash').fadeOut(4000)
-    )
+      $http.put('/system/company/' + $scope.editCompany.id, company).success((data) ->
+        $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been updated.</h4></div>")
+        $('.pending-flash').fadeOut(4000)
+        # update companies
+        $scope.getCompanies()
+        # switch to non-editing mode
+        $scope.uiMode = { editIndex: -1 }
+        $scope.clearEditForm()
+      ).error( ->
+        $('.pending-flash').empty().show().append("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company could not be updated.</h4></div>")
+        $('.pending-flash').fadeOut(4000)
+      )
+
 
   $scope.cancelEditingCompany = () ->
     $scope.uiMode = { editIndex: -1 }
     $scope.clearEditForm()
 
+  $scope.validateJson = (company) ->
+    if company.company.company_name == '' || company.company.account_type == '' || company.company.options == '' || company.constructor != Object
+      $('.pending-flash').empty().show().append("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company could not be updated.</h4></div>")
+      $('.pending-flash').fadeOut(4000)
+      return false
+    else
+      return true
 
 @SystemCompaniesCtrl.$inject = ['$scope', '$http', '$resource']
