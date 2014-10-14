@@ -53,33 +53,30 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 # --- controller for modal window
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http, userPrefs) ->
 
-  findOther = (skills) ->
-    skills.forEach (skill) ->
-      if skill.other_skill
-        $scope.otherSkill = skill.other_skill
+  $scope.selectedPrefs = userPrefs.skills
 
   $http.get('/surveys/skills.json').success( (data) ->
-    $scope.skills = data.skills
+    merged_skills = []
+    merged_skills = merged_skills.concat.apply(merged_skills, data.skills)
+    $scope.skills = merged_skills
+
+    if $scope.selectedPrefs != null
+      for preference in $scope.selectedPrefs
+        if preference.other_skill
+          preference.name = "Other Skill"
+        else
+          for skill in $scope.skills
+            if preference.id == skill.key_name
+              preference.name = skill.name
+
     console.log('Successfully loaded skills')
   ).error( ->
     console.log('Error loading skills')
   )
-#  $scope.skills = all_prefs
-  $scope.userPrefs = userPrefs.skills
-  if $scope.userPrefs
-    findOther(userPrefs.skills)
-
-  $scope.findChecked = (thing) ->
-    if $scope.userPrefs
-      $scope.userPrefs.forEach (pref) ->
-        if pref.id == thing.key_name
-          thing.checked = true
 
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
-    $scope.skills.forEach (array) ->
-      array.forEach (skill) ->
-        skill.checked = false
+
 
 
 

@@ -2,21 +2,22 @@
 <script type="text/ng-template" id="userSurvey.html">
   <div class="modal-body">
     <p>User selected preferences</p>
-    <div class="row">
-      <div class="col-xs-4" ng-repeat="col in [0,1,2]">
-        <ul class="padding-left3">
-        <li class="list-leaf" ng-repeat="thing in skills[col]" ng-init="findChecked(thing)">
-          <input type="checkbox" class="{{thing.key_name}}" value="{{thing.key_name}}" id="{{thing.key_name}}"  ng-model="thing.checked" name="stuff" disabled />
-          {{thing.name}}
-        </li>
-      </ul>
+    <div class="row" ng-repeat="pref in selectedPrefs">
+      <div class="col-xs-12">
+        {{pref.name}}
+        <!--<ul class="padding-left3">-->
+          <!--<li class="list-leaf" ng-repeat="thing in skills[col]" ng-init="findChecked(thing)">-->
+            <!--<input type="checkbox" class="{{thing.key_name}}" value="{{thing.key_name}}" id="{{thing.key_name}}"  ng-model="thing.checked" name="stuff" disabled />-->
+            <!--{{thing.name}}-->
+          <!--</li>-->
+        <!--</ul>-->
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-4 col-xs-offset-8">
-        <input type="text" placeholder="other" class="padding-left3 input-sm" ng-model="otherSkill" id="other-skill" disabled>
-      </div>
-    </div>
+    <!--<div class="row">-->
+      <!--<div class="col-xs-4 col-xs-offset-8">-->
+        <!--<input type="text" placeholder="other" class="padding-left3 input-sm" ng-model="otherSkill" id="other-skill" disabled>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
   <div class="modal-footer" ng-show="surveySaved!=true">
     <button class="btn btn-sm btn-warning" ng-click="cancel()">Dismiss</button>

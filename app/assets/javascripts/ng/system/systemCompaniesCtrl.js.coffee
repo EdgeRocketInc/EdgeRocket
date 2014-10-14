@@ -16,7 +16,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         $scope.getCompanies()
         $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been activated.</h4></div>")
         $('.pending-flash').fadeOut(4000)
-    return false;
+    return false
+
 
   $scope.disableCompany = (id) ->
     $http({ method: 'POST', url: '/system/companies/disable_company', data:
@@ -24,7 +25,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         $scope.getCompanies()
         $('.pending-flash').empty().show().append("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4>Company has been disabled.</h4></div>")
         $('.pending-flash').fadeOut(4000)
-    return false;
+    return false
 
 
   $scope.checkIfDisabled = (columnValue) ->
@@ -32,6 +33,25 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       "glyphicon glyphicon-ban-circle glyph-big red"
     else
       ""
+
+  ###
+  # fails
+  $scope.$watch($scope.companiesQuery, () ->
+    $scope.accountsTable = {
+      data: 'companiesQuery',
+      columnDefs: [
+        {field: 'companyName', displayName: 'Company Name'},
+        {field: 'overview', displayName: 'Overview'},
+        {field: 'options', displayName: 'Options'},
+        {field: 'date', displayName: 'Date', groupable: false},
+        {field: 'accountType', displayName: 'Account Type'},
+        { field: 'domain', displayName: 'Domain'},
+        {field: 'disabled', displayName: 'Disabled', cellTemplate: 'cellDisabled.html'},
+        { field: 'id', displayName: 'Activate/Disable', width: '15%', minWidth: '80', cellTemplate: 'cellActions.html'}
+      ]
+        enableRowSelection: false
+    })
+  ###
 
   $scope.accountsTable = {
     data: 'companiesQuery',

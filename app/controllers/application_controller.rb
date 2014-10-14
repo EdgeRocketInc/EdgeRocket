@@ -5,18 +5,24 @@ class ApplicationController < ActionController::Base
 
   require 'em-http-request'
 
-  # Also see config/unicorn.rb 
-  Thread.new { EventMachine.run }
+  # Moved to config/unicorn.rb 
+  #Thread.new { EventMachine.run }
 
   # not needed because it's included in other layouts
   # layout 'superhero'
 
 	# Publish an event to the external Keen IO collector
 	def publish_keen_io(request_format, collection, data_hash)
-	    if (Rails.env.production? || Rails.env.stage?) && request.format.symbol == request_format
-          data_hash[:request_format] = request_format
-	      Keen.publish_async(collection, data_hash)
-	    end
+    if (Rails.env.production? || Rails.env.stage?) && request.format.symbol == request_format
+      data_hash[:request_format] = request_format
+      begin
+        Keen.publish_async(collection, data_hash)
+      rescue Keen::Error => e
+        # it may fail when EventMachine stops running for some reason
+        # TODO: add a restart machnism
+        puts e.message 
+      end
+    end
   end
 
   def ensure_sysop_user

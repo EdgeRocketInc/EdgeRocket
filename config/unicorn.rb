@@ -29,13 +29,15 @@ after_fork do |server, worker|
   end
  
   Signal.trap("INT") { 
+    puts 'Unicorn worker intercepting INT'
     EventMachine.stop 
   }
   Signal.trap("TERM") { 
     EventMachine.stop 
-    puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
+    puts 'Unicorn worker intercepting TERM'
   }
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
+
 end

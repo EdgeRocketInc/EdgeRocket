@@ -96,14 +96,13 @@ class UserHomeController < ApplicationController
   def create_preferences
 
     prefs = {:skills => params[:skills]} # TODO make it real
-    if params[:skills] != nil
+    if !params[:skills].nil?
       preferred_skills = params[:skills].map do |skill|
         if skill["id"] != "other_skill"
           Skill.find_by_key_name(skill["id"])
         end
       end.compact
       skills_to_send = []
-
 
       preferred_skills.each do |skill|
         if skill.recommendations != nil &&  skill.recommendations != []
@@ -112,22 +111,18 @@ class UserHomeController < ApplicationController
       end
     end
 
-    prefs.to_json
     survey = Survey.new(
       user_id: current_user.id,
       preferences: prefs.to_json)
-
-    if survey.save && (skills_to_send != [] && skills_to_send != nil)
-
-      survey.update!({:processed => true})
-      RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
-      Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
-      Notifications.survey_completed(current_user).deliver
-
-    elsif survey.save
+    
+    if survey.save
+      if skills_to_send != [] && !skills_to_send.nil?
+        survey.update!( {:processed => true} )
+        RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
+        Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
+      end
       Notifications.survey_completed(current_user).deliver
     end
-
 
     result = {'user_id' => current_user.id}
 

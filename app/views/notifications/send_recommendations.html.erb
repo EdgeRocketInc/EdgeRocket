@@ -11,7 +11,10 @@
 
 <% @skills.each do |skill| %>
 
-  <% this_skill = Skill.find(skill) %>
+  <% 
+  this_skill = Skill.find(skill) 
+  if !this_skill.nil? 
+  %>
 
   <h3><%= this_skill.name %></h3>
   <ol>
@@ -19,5 +22,7 @@
       <li><%= link_to recommendation.product.name, "#{@hostname}/products/#{recommendation.product.id}" %> Source: <%= recommendation.product.vendor.name %><%= "/#{recommendation.product.authors}" if recommendation.product.authors %></li>
     <% end %>
   </ol>
+
+  <% end %>
 
 <% end %>
