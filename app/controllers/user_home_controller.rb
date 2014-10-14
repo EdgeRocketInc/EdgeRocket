@@ -27,9 +27,9 @@ class UserHomeController < ApplicationController
     end
 
     publish_keen_io(:html, :ui_actions, {
-        :user_email => current_user.email,
-        :action => controller_path,
-        :method => action_name
+      :user_email => current_user.email,
+      :action => controller_path,
+      :method => action_name
     })
 
     respond_to do |format|
@@ -61,10 +61,10 @@ class UserHomeController < ApplicationController
       MyCourse.subscribe(u.id, product.id, 'reg', 'Self')
     end
 
-    result = { 'user_ud' => u.id, 'playlist_id' => params[:playlist_id] }
+    result = {'user_ud' => u.id, 'playlist_id' => params[:playlist_id]}
 
     respond_to do |format|
-        format.json { render json: result.as_json }
+      format.json { render json: result.as_json }
     end
 
   end
@@ -83,10 +83,10 @@ class UserHomeController < ApplicationController
 
     # TODO handle exceptions
     u.playlists.delete(pl)
-    result = { 'user_ud' => u.id, 'playlist_id' => pl.id }
+    result = {'user_ud' => u.id, 'playlist_id' => pl.id}
 
     respond_to do |format|
-        format.json { render json: result.as_json }
+      format.json { render json: result.as_json }
     end
   end
 
@@ -94,17 +94,37 @@ class UserHomeController < ApplicationController
   # create new set of user preferences for current user
   # JSON: {anything}
   def create_preferences
-    prefs = { :skills => params[:skills] }  # TODO make it real
+
+    prefs = {:skills => params[:skills]} # TODO make it real
+    if !params[:skills].nil?
+      preferred_skills = params[:skills].map do |skill|
+        if skill["id"] != "other_skill"
+          Skill.find_by_key_name(skill["id"])
+        end
+      end.compact
+      skills_to_send = []
+
+      preferred_skills.each do |skill|
+        if skill.recommendations != nil &&  skill.recommendations != []
+          skills_to_send << skill.id
+        end
+      end
+    end
+
     survey = Survey.new(
       user_id: current_user.id,
       preferences: prefs.to_json)
-
+    
     if survey.save
+      if skills_to_send != [] && !skills_to_send.nil?
+        survey.update!( {:processed => true} )
+        RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
+        Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
+      end
       Notifications.survey_completed(current_user).deliver
     end
 
-
-    result = { 'user_id' => current_user.id }
+    result = {'user_id' => current_user.id}
 
     render json: result.as_json
 

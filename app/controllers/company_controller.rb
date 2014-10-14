@@ -26,7 +26,7 @@ class CompanyController < ApplicationController
   def disable_company
     company = Account.find(params["id"])
     company.update(:disabled => true)
-    disable_users(company)
+    #disable_users(company)
 
     render json: company
 
@@ -35,7 +35,7 @@ class CompanyController < ApplicationController
   def activate_company
     company = Account.find(params["id"])
     company.update(:disabled => false)
-    activate_users(company)
+    #activate_users(company)
     render json: company
   end
 

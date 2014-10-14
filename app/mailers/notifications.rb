@@ -57,4 +57,11 @@ class Notifications < ActionMailer::Base
     mail to: @user.email, subject: 'Welcome to EdgeRocket!'
   end
 
+  def send_recommendations(user, hostname, skills)
+    @user = user
+    @hostname = hostname
+    @skills = skills
+    mail to: @user.email, subject: "EdgeRocket Recommendations"
+
+  end
 end

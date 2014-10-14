@@ -10,4 +10,16 @@ class NotificationsPreview < ActionMailer::Preview
 	Notifications.playlist_course_added user, playlist, product, 'http://localhost'
   end
 
+
+
+  def send_recommendations
+    user = User.first
+    hostname = 'http://localhost'
+    skills = [1, 2]
+
+    Notifications.send_recommendations(user, hostname, skills)
+
+
+  end
+
 end

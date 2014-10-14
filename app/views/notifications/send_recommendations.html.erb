@@ -1,0 +1,23 @@
+<p>Hi <%= @user.first_name %> - thanks for using EdgeRocket!</p>
+<p>Based on preferences you indicated, the EdgeRocket team is sending recommended learning content. Click any title
+  below to access the content in EdgeRocket.</p>
+<p>The selected courses, videos and articles are drawn from leading experts and providers. The content varies in length
+  and price (most items are free or under $50), but we think you'll find all of it to be practical, engaging, and
+  valuable.</p>
+<p>Our advice: click on titles below to review the options in EdgeRocket, select a few that will be most valuable for
+  you, add them to your Wishlist, and make a goal to complete them! (And don't forget that this is just a small
+  selection of highly-rated courses -- you can always search EdgeRocket for more specific content.)</p>
+
+
+<% @skills.each do |skill| %>
+
+  <% this_skill = Skill.find(skill) %>
+
+  <h3><%= this_skill.name %></h3>
+  <ol>
+    <% this_skill.recommendations.each do |recommendation| %>
+      <li><%= link_to recommendation.product.name, "#{@hostname}/products/#{recommendation.product.id}" %> Source: <%= recommendation.product.vendor.name %><%= "/#{recommendation.product.authors}" if recommendation.product.authors %></li>
+    <% end %>
+  </ol>
+
+<% end %>

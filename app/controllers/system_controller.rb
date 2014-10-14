@@ -9,8 +9,21 @@ class SystemController < ApplicationController
   end
 
   def one_survey
+    @recommendations = nil
+    prefs = nil
     @survey = Survey.find(params["id"])
-    render json: @survey.preferences
+    if @survey
+      if @survey.recommendations_email
+        @recommendations = @survey.recommendations_email.recommendation
+      end
+      prefs = ActiveSupport::JSON.decode(@survey.preferences)
+    end    
+    @response_json = {
+      skills: prefs['skills'],
+      recommendations: @recommendations.nil? ? nil : ActiveSupport::JSON.decode(@recommendations) 
+    }
+    # not using jbuilder at this time
+    render json: @response_json.as_json
   end
 
   def processing
@@ -38,5 +51,7 @@ class SystemController < ApplicationController
   def create_user_from_pending
     @new_user = User.new
   end
+
+
 
 end

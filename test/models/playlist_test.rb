@@ -27,6 +27,12 @@ class PlaylistTest < ActiveSupport::TestCase
 
     pl2 = Playlist.find(1001)
     assert pl2.subscribed?(101) == true, 'wrong subscription 3'
- end
+  end
+
+  test "clone a list with items" do
+    assert_difference 'Playlist.count' do
+      Playlist.clone_with_items(3, 2001)
+    end
+  end
 
 end
