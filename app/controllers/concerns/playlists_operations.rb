@@ -17,7 +17,7 @@ module PlaylistsOperations
       # Send email to the user if he got a new course
       #byebug
       if result == true && pl_user.id != current_user.id
-        Notifications.playlist_course_added(pl_user, playlist, course, request.host_with_port).deliver
+        Notifications.playlist_course_added(pl_user, playlist, course, request.protocol + request.host_with_port).deliver
       end
     }
 

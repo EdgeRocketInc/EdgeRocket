@@ -29,14 +29,14 @@ class SystemController < ApplicationController
     @pending_users = PendingUser.all
   end
 
-  private
+  def companies
+    @companies = Account.all
 
-  def ensure_sysop_user
-    if current_user
-      redirect_to root_path unless current_user.best_role == :sysop
-    else
-      redirect_to root_path
-    end
+  end
+
+  # Create User from pending user
+  def create_user_from_pending
+    @new_user = User.new
   end
 
 end

@@ -4,11 +4,9 @@
 development:
     adapter: postgresql
     encoding: unicode
-    database: heroku
+    database: edgerocket
     port: 5432
     host: localhost
-    username: gschool
-    password:
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -18,11 +16,9 @@ development:
 test:
     adapter: postgresql
     encoding: unicode
-    database: heroku_test
+    database: edgerocket_test
     port: 5432
     host: localhost
-    username: gschool
-    password: 
 
 # staging env on heroku
 stage:

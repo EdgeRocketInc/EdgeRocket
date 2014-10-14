@@ -166,7 +166,8 @@ Devise.setup do |config|
   # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
-  # config.unlock_strategy = :both
+  config.lock_strategy = :none
+  config.unlock_strategy = :none
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
@@ -231,6 +232,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
+  require 'omniauth-google-oauth2'
+  config.omniauth :google_oauth2, "185907991513-q0084vjasrouvbsoimrt3ut5u8itkuf1.apps.googleusercontent.com", "5h6wz-Fz_-Q9iVuDtqfqO9Bc", { access_type: "offline", approval_prompt: "" }
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
@@ -253,4 +257,5 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
 end

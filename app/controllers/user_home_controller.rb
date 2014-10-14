@@ -110,6 +110,7 @@ class UserHomeController < ApplicationController
 
   end
 
+
   # GET
   # obtains current user's information
   def get_user

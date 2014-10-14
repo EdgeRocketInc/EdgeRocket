@@ -1,0 +1,17 @@
+<script type="text/ng-template" id="cellActionsProcess.html">
+  <div class="ngCellText text-center">
+    <span class="glyphicon glyphicon-ok glyph-big glyph-action"
+          ng-click="approve(row.entity.id)" tooltip="Approve" tooltip-append-to-body="true">
+    </span>
+    <span class="glyphicon glyphicon-remove glyph-big glyph-action"
+          ng-click="" tooltip="Reject" tooltip-append-to-body="true">
+    </span>
+  </div>
+</script>
+
+<div class="pending-flash"></div>
+<div class="container-fluid" ng-controller="SystemPendingUsersCtrl">
+  <h1>Sysop Pending Users</h1>
+  <div class="gridStyle" ng-grid="pendingUsersTable">
+  </div>
+</div>

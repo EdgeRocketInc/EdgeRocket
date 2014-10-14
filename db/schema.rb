@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904210101) do
+ActiveRecord::Schema.define(version: 20141003023524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20140904210101) do
     t.datetime "updated_at"
     t.text     "overview"
     t.text     "options"
+    t.string   "account_type"
+    t.string   "domain"
   end
 
   add_index "accounts", ["company_name"], name: "index_accounts_on_company_name", unique: true, using: :btree
@@ -55,11 +57,14 @@ ActiveRecord::Schema.define(version: 20140904210101) do
   end
 
   create_table "pending_users", force: true do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "company_name"
-    t.string "email"
-    t.string "encrypted_password"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company_name"
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "user_type"
   end
 
   create_table "playlist_items", force: true do |t|
@@ -122,11 +127,27 @@ ActiveRecord::Schema.define(version: 20140904210101) do
     t.binary   "photo_thumb"
   end
 
+  create_table "recommendations", force: true do |t|
+    t.integer  "skill_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string   "name",       limit: 5
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "skills", force: true do |t|
+    t.string   "name"
+    t.integer  "vpos"
+    t.integer  "hpos"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "key_name"
   end
 
   create_table "surveys", force: true do |t|
@@ -138,12 +159,12 @@ ActiveRecord::Schema.define(version: 20140904210101) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -152,6 +173,9 @@ ActiveRecord::Schema.define(version: 20140904210101) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "reset_required"
+    t.string   "provider"
+    t.string   "uid"
+    t.boolean  "is_active",              default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

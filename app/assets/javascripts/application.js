@@ -21,7 +21,6 @@
 //= require yeti/loader
 //= require yeti/bootswatch
 
-
 //= require angular
 //= require angular-sanitize
 //= require angular-resource
@@ -31,3 +30,7 @@
 
 var _MS_PER_DAY = 1000 * 60 * 60 * 24 // ms in a day
 var _DAYS_OLD = 7
+
+
+
+

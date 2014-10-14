@@ -3,7 +3,7 @@ EdgeApp::Application.routes.draw do
   get 'company/index'
 
   # Don't allow users to sign up themselves, but allow changing passwords
-  devise_for :users, :skip => [:registrations]
+  devise_for :users, :skip => [:registrations], :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
     as :user do
       #get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
       #put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
@@ -31,12 +31,16 @@ EdgeApp::Application.routes.draw do
   get "profile/current" => 'profile#index'
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
+  get "system/recommendations" => 'recommendations#index'
   get "sign_up" => 'pending_users#new'
-  get "search" => 'search#index'
+  get "search" => 'search#index', constraints: { format: 'html' }
+  get "search" => 'search#list', constraints: { format: 'json' }
+  get "surveys/skills" => 'skills#list'
   get "system" => 'system#surveys'
   get "system/surveys" => 'system#surveys'
   get "system/one_survey" => 'system#one_survey'
   get "system/pending_users" => 'system#pending_users'
+  get "/system/companies" => 'system#companies'
   get "teams" => 'teams#index'
   get "user_home" => 'user_home#index'
   get "users/current" => 'user_home#get_user'
@@ -51,7 +55,11 @@ EdgeApp::Application.routes.draw do
   post "playlists/:id/courses/:course_id" => 'playlists#add_course', constraints: { format: 'json' }
   post "employees" => 'employees#create', constraints: { format: 'json' }
   post "products/:product_id/reviews" => "discussions#create_review", constraints: { format: 'json' }
-  
+  post "system/recommendations" => 'recommendations#create'
+  post "system/pending_users/create_users" => 'pending_users#create_user_from_pending', constraints: { format: 'json' }
+  post "system/companies/disable_company" => 'company#disable_company', constraints: { format: 'json' }
+  post "system/companies/activate_company" => 'company#activate_company', constraints: { format: 'json' }
+
   put "account/:id" => 'company#update_account', constraints: { format: 'json' }
   put "course_subscription/:id" => 'my_courses#update_subscribtion', constraints: { format: 'json' }
   put "employees/:id" => 'employees#update', constraints: { format: 'json' }
@@ -70,6 +78,7 @@ EdgeApp::Application.routes.draw do
   delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
   delete "playlists/:id/courses/:course_id" => 'playlists#remove_course', constraints: { format: 'json' }
   delete "employees/:id" => 'employees#destroy', constraints: { format: 'json' }
+  delete "/system/recommendations/:id" => 'recommendations#destroy'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

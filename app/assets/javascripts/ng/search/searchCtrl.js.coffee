@@ -6,24 +6,46 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 @SearchCtrl = ($scope, $http, $modal, $log, $filter) ->
 
-  DISPLAY_ITEMS = 100
+  DISPLAY_ITEMS = 50 # keep in sync with back end controller
   $scope.items = []
-  $scope.filteredItems = []
   # for media type checkboxes
-  $scope.mediaCbAll = { class : 'check' }
   $scope.mediaCheckboxes = [
     { class : 'check', label : 'Courses', media_type : 'online' }
     { class : 'check', label : 'Books', media_type : 'book' }
     { class : 'check', label : 'Articles', media_type : 'blog' }
     { class : 'check', label : 'Videos', media_type : 'video' }
   ]
+  $scope.mediaAllSelected = true # all selected initially
+  # for provider checkboxes
+  $scope.providerCheckboxes = [] # will populate from vendors
+  $scope.providerAllSelected = true # all selected initially
+  $scope.vendors = null # list of vendors retrieved from DB
+  # pagination & search state
   $scope.limitItems = DISPLAY_ITEMS
+  $scope.totalItems = 0
+  $scope.currentPage = 1
+  $scope.searchLabel = 'Loading...'
+  $scope.advancedSearch = false
+  $scope.searchText = ''
 
-  loadCourses =  ->
-    $http.get('/search.json').success( (data) ->
-      #debugger
+  loadCoursePages = (page_number, parameterQuery) ->
+    index_start = (page_number-1) * DISPLAY_ITEMS
+    index_end = (page_number * DISPLAY_ITEMS) - 1
+    range_page = index_start + '-' + index_end
+    the_url = '/search.json'
+    if parameterQuery != null
+      the_url += parameterQuery
+    $http.get(the_url, headers: {'Range': range_page, 'Range-Unit': 'items'} ).success( (data, status, headers, config) ->
       # the server may return literal null
       if data != 'null'
+        # Content-Range is provided in the header in the form 1-20/189, where 189 is the total number of items
+        content_range = headers()['content-range']
+        if content_range 
+          content_range = content_range.match(/\/([0-9]+)/)
+          $scope.totalItems = parseInt(content_range[1], 10)
+        else
+          $scope.totalItems = 0
+
         # massage data for displaying
         for item in data
           # add a display rating variable 
@@ -31,38 +53,71 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           # add a formatted price 
           item.price_fmt = if item.price > 0 then $filter('currency')(item.price, '$') else 'Free'
         $scope.items = data
-        $scope.filteredItems = $scope.items
       else
         $scope.items = null
+        $scope.totalItems = 0
+      $scope.searchLabel = 'Search'
+      #debugger
       console.log('Successfully loaded search data')
     ).error( ->
       console.log('Error loading search data')
     )
 
-  loadCourses()
-
-  # Filter for media types. 
-  # Returns true if all media types are enabled or a specific type matches enabled checkbox
-  $scope.filterMediaType = (product) ->
-    result = false
-    if $scope.mediaCbAll.class == 'check'
-      result = true
-    else
+  # Builds a search filter to pass to the server
+  # null (default) if all media types are enabled
+  # otehrwise the format is ?inmedia=v1,v2&search=text
+  buildSearchFilter = () ->
+    result = null
+    debugger
+    if $scope.mediaAllSelected == false
+      # note that inmedia parameter may be passed without values
+      result = '?inmedia='
+      is_first = true
       for cbox in $scope.mediaCheckboxes
-        if cbox.class == 'check' && product.media_type == cbox.media_type
-          result = true
-          break
+        if cbox.class == 'check'
+          if is_first == true
+            result += cbox.media_type
+            is_first = false
+          else
+            result += ',' + cbox.media_type
+    if $scope.providerAllSelected == false
+      # note that providers parameter may be passed without values
+      result = if result==null then '?' else result + '&'
+      result += 'providers='
+      is_first = true
+      for cbox in $scope.providerCheckboxes
+        if cbox.class == 'check'
+          if is_first == true
+            result += cbox.id
+            is_first = false
+          else
+            result += ',' + cbox.id
+    if $scope.searchText && $scope.searchText.length > 0
+      result = if result==null then '?' else result + '&'
+      result += 'criteria=' + $scope.searchText
     result
 
-  # apply all filters
-  filterAll = ->
-    $scope.limitItems = DISPLAY_ITEMS
-    $scope.filteredItems = $filter('filter')( $scope.items, {$:$scope.searchText} )
-    $scope.filteredItems = $filter('filter')( $scope.filteredItems, $scope.filterMediaType )
+  loadCourses =  ->
+    # load the 1st page of data right away
+    loadCoursePages($scope.currentPage, buildSearchFilter())
 
-  # Watch search and apply all filters
+
+  loadVendors =  ->
+    $http.get('/vendors.json').success( (data) ->
+      $scope.vendors = data
+      for v in $scope.vendors
+        $scope.providerCheckboxes.push({ class: 'check', label: v.name, id: v.id})
+      console.log('Successfully loaded vendors')
+    ).error( ->
+      console.log('Error loading vendors')
+    )
+
+  loadCourses()
+  loadVendors()
+
+  # Watch search and change search button when changed
   $scope.$watch('searchText', (newVal, oldVal) ->
-    filterAll()
+    $scope.searchLabel = 'Update Results'
   )
 
   # modal window with course details
@@ -90,29 +145,59 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       )
 
   # toggle all media type checkboxes, and filter the search result accordingly
-  $scope.toggleMediaAll = ->
-    if $scope.mediaCbAll.class == 'check'
-      $scope.mediaCbAll.class = 'unchecked'
+  $scope.toggleMediaAll = (turn_on) ->
+    if turn_on == false
+      $scope.mediaAllSelected = false
       for cb in $scope.mediaCheckboxes
         cb.class = 'unchecked'
     else
-      $scope.mediaCbAll.class = 'check'
+      $scope.mediaAllSelected = true
       for cb in $scope.mediaCheckboxes
         cb.class = 'check'
-    filterAll()
+    $scope.searchLabel = 'Update Results'
 
   # toggle single media type check box
   $scope.toggleMediaCbox = (cbox) ->
     if cbox.class == 'check' 
+      $scope.mediaAllSelected = false
       cbox.class = 'unchecked' 
-      $scope.mediaCbAll.class = 'unchecked'
     else
       cbox.class = 'check' 
-    filterAll()
+    $scope.searchLabel = 'Update Results'
     
-  # increase the limit of displayed items
-  $scope.moreItems = () ->
-    $scope.limitItems += DISPLAY_ITEMS
+  # toggle all provider type checkboxes, and filter the search result accordingly
+  $scope.toggleProviderAll = (turn_on) ->
+    if turn_on == false
+      $scope.providerAllSelected = false
+      for cb in $scope.providerCheckboxes
+        cb.class = 'unchecked'
+    else
+      $scope.providerAllSelected = true
+      for cb in $scope.providerCheckboxes
+        cb.class = 'check'
+    $scope.searchLabel = 'Update Results'
+
+  # toggle single provider type check box
+  $scope.toggleProviderCbox = (cbox) ->
+    if cbox.class == 'check' 
+      $scope.providerAllSelected = false
+      cbox.class = 'unchecked' 
+    else
+      cbox.class = 'check' 
+    $scope.searchLabel = 'Update Results'
+    
+  $scope.pageChanged = () ->
+    #debugger
+    console.log('go to page ' + $scope.currentPage)
+    loadCoursePages($scope.currentPage, buildSearchFilter())
+
+  $scope.doSearch = () ->
+    $scope.currentPage = 1
+    loadCoursePages($scope.currentPage, buildSearchFilter())
+    $scope.searchLabel = 'Search'
+
+  $scope.toggleSearchMode = () ->
+    $scope.advancedSearch = !$scope.advancedSearch
 
 # ------- controller for modal window --------------
 
@@ -127,10 +212,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     console.log('Error loading search product details')
   )
 
+  adminOrAbove = ->
+    $scope.user.best_role == 'admin' ||  $scope.user.best_role == 'Sysop' || $scope.user.best_role = 'SA'
+
   loadUser =  ->
     $http.get('/users/current.json').success( (data) ->
       $scope.user = data
-      if $scope.user.best_role == 'admin' ||  $scope.user.best_role == 'SA'
+      if adminOrAbove()
         $scope.user.admin_role = true
       console.log('Successfully loaded user')
     ).error( ->

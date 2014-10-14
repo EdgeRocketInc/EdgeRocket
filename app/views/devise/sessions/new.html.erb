@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4 center voffset3">
-			<%= image_tag('ER_final_logo-crop-224x43.png') =%>
+			<%= image_tag('ER_final_logo-crop-224x43.png') %>
 		</div>	
 	</div>
 	<div class="row">
@@ -12,10 +12,16 @@
 						<%= f.email_field :email, autofocus: true, class: 'form-control voffset1', placeholder: 'Email' %>
 						<%= f.password_field :password, autocomplete: "off", class: 'form-control voffset2', placeholder: 'password' %>
 						<div class="voffset2">
-							<%= f.submit "Sign in", class: 'btn btn-primary form-control' %>
+							<%= f.submit "Sign in with Email", class: 'btn btn-primary form-control' %>
+						</div>
+						<div class="voffset2">
+							<%= render "devise/shared/links" %>
 						</div>
 						<div class="voffset5">
-							<%= render "devise/shared/links" %>
+							<div class="text-warning">
+								If your company enabled Single Sign In with Google,
+							</div>
+							<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-primary form-control voffset1' %>
 						</div>
 					</div>
 				<% end %>
@@ -24,7 +30,9 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4 center voffset3">
-			<div class="alert alert-warning">Access is restricted at this time, please <a style="color: blue" href="http://edgerocket.co/#subscribe">subscribe</a> to receive updates about EdgeRocket launch!</div>
+			<div class="alert alert-warning">
+				Don't have an account yet? Please <a style="color: blue" href="/sign_up/">request free account</a>
+			</div>
 		</div>
 	</div>
 </div>
