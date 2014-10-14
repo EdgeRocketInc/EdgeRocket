@@ -95,8 +95,6 @@ class UserHomeController < ApplicationController
   # JSON: {anything}
   def create_preferences
 
-    byebug
-
     prefs = {:skills => params[:skills]} # TODO make it real
     if !params[:skills].nil?
       preferred_skills = params[:skills].map do |skill|
