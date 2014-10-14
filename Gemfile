@@ -24,17 +24,9 @@ group :test do
   gem 'launchy'
 end
 
-group :production do
-  gem 'unicorn'
-  gem 'rails_12factor'
-  gem 'newrelic_rpm'
-end
-
-group :stage do
-  gem 'unicorn'
-  gem 'rails_12factor'
-  gem 'newrelic_rpm'
-end
+gem 'unicorn', group: [:production, :stage]
+gem 'rails_12factor', group: [:production, :stage]
+gem 'newrelic_rpm', group: [:production, :stage]
 
 gem 'pg', '0.17.1'
 
@@ -72,9 +64,6 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
 # Bootstrap 
 gem 'bootstrap-sass', '3.2'
