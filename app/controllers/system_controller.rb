@@ -45,7 +45,7 @@ class SystemController < ApplicationController
   end
 
   def companies
-    @companies = Account.all
+    @companies = Account.all.order(:company_name)
   end
 
   def update_company
@@ -60,10 +60,8 @@ class SystemController < ApplicationController
     @new_user = User.new
   end
 
-  def reports
-    @report = Report.new
+  def analytics
 
-    render json: @report.render
   end
 
   private

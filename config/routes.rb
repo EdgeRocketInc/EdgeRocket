@@ -41,7 +41,7 @@ EdgeApp::Application.routes.draw do
   get "system/one_survey" => 'system#one_survey'
   get "system/pending_users" => 'system#pending_users'
   get "/system/companies" => 'system#companies'
-  get "/system/reports" => 'system#reports'
+  get "/system/analytics" => 'system#analytics'
   get "teams" => 'teams#index'
   get "user_home" => 'user_home#index'
   get "users/current" => 'user_home#get_user'
