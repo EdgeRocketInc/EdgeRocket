@@ -1,5 +1,3 @@
-require 'pry'
-
 class SystemController < ApplicationController
 
   before_filter :ensure_sysop_user
