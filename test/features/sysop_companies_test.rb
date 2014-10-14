@@ -116,6 +116,10 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
   end
 
   test "system adminstrator can edit company information" do
+    Account.destroy_all
+
+    Capybara.current_driver = :selenium
+
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)

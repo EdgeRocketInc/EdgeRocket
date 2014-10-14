@@ -1,16 +1,16 @@
 <script type="text/ng-template" id="cellActions.html">
-  <div class="ngCellText text-center" ng-switch on="{{row.getProperty('disabled')}}">
-    <div ng-switch-when="false">
+  <div class="ngCellText text-center">
+    <div style='display: inline-block' ng-switch on="{{row.getProperty('disabled')}}">
+      <div style='display: inline-block' ng-switch-when="false">
       <span class="glyphicon glyphicon-remove glyph-big glyph-action red" ng-click="$parent.disableCompany($parent.row.getProperty(col.field))" tooltip="Disable Company" tooltip-append-to-body="true">
       </span>
-    </div>
-    <div ng-switch-default>
+      </div>
+      <div ng-switch-default>
       <span class="glyphicon glyphicon-ok glyph-big glyph-action" ng-click="activateCompany($parent.row.getProperty(col.field))" tooltip="Activate Company" tooltip-append-to-body="true">
       </span>
+      </div>
     </div>
-    <div>
-      <span class="glyphicon glyphicon-edit"></span>
-    </div>
+      <span class="glyphicon glyphicon-edit glyph-big glyph-action" ng-click="editCompany(row.getProperty(col.field))"></span>
   </div>
 </script>
 
@@ -27,5 +27,87 @@
 
   <div class="gridStyle" ng-grid="{{accountsTable}}">
   </div>
+
+  <div class="row voffset3" ng-if="uiMode.editIndex >= 0">
+    <div class="col-lg-12">
+
+      <div class="panel panel-info">
+        <div class="panel-heading">Edit Company</div>
+        <div class="panel-body">
+
+          <form role="form" name="addForm">
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="newCompanyName">Company Name</label>
+                <input type="text" class="form-control-user form-control" name="newCompanyName"
+                       ng-model="editCompany.companyName" id="company_name" required>
+                </input>
+                <label for="newCompanyDomain">Domain</label>
+                <input type="text" class="form-control-user form-control" name="newCompanyDomain"
+                       ng-model="editCompany.domain">
+                </input>
+              </div>
+              <div class="col-sm-6">
+                <label for="newCompanyOptions">Options</label>
+                <textarea class="form-control form-control-user" id="options" name="newCompanyOptions"
+                        ng-model="editCompany.options">
+                </textarea>
+              </div>
+            </div> <!-- Row -->
+
+            <div class="row voffset2">
+              <div class="col-sm-6">
+                <label for="newCompanyOverview">Overview</label>
+                <textarea class="form-control form-control-user" name="newCompanyOverview"
+                          ng-model="editCompany.overview">
+                </textarea>
+              </div>
+              <div class="col-sm-2">
+
+                <label for="Free">Free</label>
+                <input type="radio" class="form-control form-control-user" name="newCompanyType" value="Free"
+                        ng-model="editCompany.type">
+                </input>
+                </div>
+              <div class="col-sm-2">
+                <label for="Team">Team</label>
+                <input type="radio" class="form-control form-control-user" name="newCompanyType" value="Team"
+                       ng-value="editCompany.type">
+                </input>
+              </div>
+              <div class="col-sm-2">
+                <label for="Enterprise">Enterprise</label>
+                <input type="radio" class="form-control form-control-user" name="newCompanyType" value="Enterprise"
+                       ng-value="editCompany.type">
+                </input>
+              </div>
+            </div> <!-- Row -->
+
+            <div class="row voffset3">
+              <div class="col-sm-6">
+                <span class="error red" ng-show="addForm.editCompanyError.$error.required">* All fields required</span>
+                <br/>
+                <span class="error red" ng-show="validation.message != null">* {{validation.message}}</span>
+              </div>
+              <div class="col-sm-6">
+                <div class="pull-right">
+                  <button class="btn btn-sm btn-success" ng-click="updateCompany()"
+                          ng-disabled="addForm.editCompanyErrors.$error.required" ng-show="uiMode.editIndex >= 0">
+                    Save Changes
+                  </button>
+                  <button class="btn btn-sm btn-warning" ng-click="cancelEditingCompany()" ng-show="uiMode.editIndex >= 0">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div> <!-- Row -->
+
+          </form>
+        </div>
+      </div> <!-- Panel -->
+
+    </div>
+  </div> <!-- Row -->
 </div>
 

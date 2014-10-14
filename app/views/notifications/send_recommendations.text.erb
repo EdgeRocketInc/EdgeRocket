@@ -8,12 +8,18 @@ Our advice: click on titles below to review the options in EdgeRocket, select a 
 
 <% @skills.each do |skill| %>
 
-  <% this_skill = Skill.find(skill) %>
+  <% 
+  this_skill = Skill.find(skill) 
+  if !this_skill.nil? 
+  %>
 
   <%= this_skill.name %>
 
     <% this_skill.recommendations.each do |recommendation| %>
       <%= link_to recommendation.product.name, "#{@hostname}/products/#{recommendation.product.id}" %> Source: <%= recommendation.product.vendor.name %><%= "/#{recommendation.product.authors}" if recommendation.product.authors %>
 
+  	<% end %>
+
   <% end %>
+
 <% end %>
