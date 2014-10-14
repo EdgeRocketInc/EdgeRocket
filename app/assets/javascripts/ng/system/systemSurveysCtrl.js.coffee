@@ -55,24 +55,19 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.selectedPrefs = userPrefs.skills
 
-
-
-
   $http.get('/surveys/skills.json').success( (data) ->
     merged_skills = []
-
     merged_skills = merged_skills.concat.apply(merged_skills, data.skills)
     $scope.skills = merged_skills
 
-
-    for preference in $scope.selectedPrefs
-      if preference.other_skill
-        preference.name = "Other Skill"
-      else
-        for skill in $scope.skills
-          if preference.id == skill.key_name
-            preference.name = skill.name
-
+    if $scope.selectedPrefs != null
+      for preference in $scope.selectedPrefs
+        if preference.other_skill
+          preference.name = "Other Skill"
+        else
+          for skill in $scope.skills
+            if preference.id == skill.key_name
+              preference.name = skill.name
 
     console.log('Successfully loaded skills')
   ).error( ->
