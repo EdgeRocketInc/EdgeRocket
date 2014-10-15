@@ -1,4 +1,4 @@
-<p>Hi <%= @user.first_name %> - thanks for using EdgeRocket!</p>
+<p>Hi <%= @user.first_name.blank? ? @user.email : @user.first_name %> - thanks for using EdgeRocket!</p>
 <p>Based on preferences you indicated, the EdgeRocket team is sending recommended learning content. Click any title
   below to access the content in EdgeRocket.</p>
 <p>The selected courses, videos and articles are drawn from leading experts and providers. The content varies in length
@@ -7,7 +7,6 @@
 <p>Our advice: click on titles below to review the options in EdgeRocket, select a few that will be most valuable for
   you, add them to your Wishlist, and make a goal to complete them! (And don't forget that this is just a small
   selection of highly-rated courses -- you can always search EdgeRocket for more specific content.)</p>
-
 
 <% @skills.each do |skill| %>
 
@@ -18,9 +17,17 @@
 
   <h3><%= this_skill.name %></h3>
   <ol>
-    <% this_skill.recommendations.each do |recommendation| %>
-      <li><%= link_to recommendation.product.name, "#{@hostname}/products/#{recommendation.product.id}" %> Source: <%= recommendation.product.vendor.name %><%= "/#{recommendation.product.authors}" if recommendation.product.authors %></li>
-    <% end %>
+    <% this_skill.recommendations.each do |recommendation| 
+      if !recommendation.product.nil? 
+        prd = recommendation.product %>
+
+        <li>
+          <%= link_to prd.name, "#{@hostname}/products/#{prd.id}" %> 
+          <% if !prd.vendor.nil? %> Source: <%= prd.vendor.name %><% end %>
+          <%= " / #{prd.authors}" if !prd.authors.blank? %>
+        </li>
+    <% end
+    end %>
   </ol>
 
   <% end %>

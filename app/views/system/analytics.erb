@@ -5,7 +5,7 @@
   </div>
 
   <div class="panel-body" ng-controller="SystemAnalyticsCtrl">
-    <p>See analytics for the last</p>
+    <div class="col-sm-4"><p>See analytics for the last</p>
 
     <form role="form">
       <input id="analytics_hours" ng-model="analyticsHours" type="number" autofocus='true'/>
@@ -16,7 +16,8 @@
       <input type='submit' value="Run Query" class='btn btn-primary btn-sm' ng-click="runQuery()"/>
 
     </form>
-    <div id="analytics_chart"></div>
+    </div>
+    <div id="analytics_chart" class="col-sm-8"></div>
 
   </div>
 </div>

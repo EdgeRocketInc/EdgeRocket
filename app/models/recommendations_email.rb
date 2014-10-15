@@ -7,13 +7,17 @@ class RecommendationsEmail < ActiveRecord::Base
 
     recommendations_hash = {}
     skills.each do |skill|
-      products = Skill.find(skill).recommendations.map do |recommendation|
-        recommendation.product_id
+      skill_from_db = Skill.find(skill)
+      if !skill_from_db.nil?
+        products = skill_from_db.recommendations.map do |recommendation|
+          recommendation.product_id
+        end
+        recommendations_hash[skill] = products
       end
-      recommendations_hash[skill] = products
     end
 
     RecommendationsEmail.create!(user_id: user.id, recommendation: recommendations_hash.to_json, survey_id: survey_id)
 
   end
+  
 end

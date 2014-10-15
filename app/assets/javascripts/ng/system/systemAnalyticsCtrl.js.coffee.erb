@@ -19,13 +19,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
       query = new Keen.Query('count', {
         eventCollection: 'ui_actions',
-        timeFrame: 'this_' + $scope.analyticsHours + '_hours'
+        timeframe: 'this_' + $scope.analyticsHours + '_hours'
         groupBy: 'user_email'
       })
-     
 
       client.draw(query, document.getElementById('analytics_chart'), {
-        title: 'Custom chart title'})
+        title: 'Custom chart title'
+      })
 
 
 
