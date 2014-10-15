@@ -17,6 +17,7 @@ EdgeApp::Application.routes.draw do
 
   # Example of regular route:
   get "account" => 'company#account', constraints: { format: 'json' }
+  get "assign" => 'teams#index_assign', constraints: { format: 'html' }
   get "company" => 'company#index', constraints: { format: 'html' }
   get "dashboard" => 'dashboards#show'
   get "discussions" => 'discussions#index'
