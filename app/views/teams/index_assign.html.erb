@@ -9,14 +9,14 @@
   <div class="row">
 
     <div class="col-md-6 voffset3" >
-		<input type="text" ng-model="selectedUser" placeholder="User email"
+		<input type="text" ng-model="selectedPair.userEmail" placeholder="User email"
 			typeahead="user.email for user in users | filter:$viewValue | limitTo:8" 
 			typeahead-editable="false" class="form-control" tooltip="Type email to find user">
 		</input>
 	</div>
 
     <div class="col-md-6 voffset3">
-		<input type="text" ng-model="selectedProduct" placeholder="Course/material item"
+		<input type="text" ng-model="selectedPair.productName" placeholder="Course/material item"
 			typeahead="prd.name for prd in products | filter:$viewValue | limitTo:8" 
 			typeahead-editable="false" class="form-control" tooltip="Type course name and select a course">
 		</input>

@@ -75,15 +75,39 @@ class MyCoursesController < ApplicationController
   end
 
   # POST
+  # JSON
   # subscribe currently authenitcated user to the course
-  # JSON: {"course_id":"1003"}
+  # Depending on JSON payload, different fields are used to identify user and course:
+  #   - when course_id is provided {"course_id":"1003"}, it's used first, if it's not provided, 
+  #     then course_name is used to look up the product. If none is provided it's an error
+  #   - if user_email is not provided, the course is assgined to the current user, if it's 
+  #     provided, then it's used to identify the user to whom to assing the course
+  #   
   def subscribe
-    u = current_user
+    result = nil
+    u = nil
     prd_id = params[:course_id]
 
-    MyCourse.subscribe(u.id, prd_id, params[:status], params[:assigned_by])
+    # if product id is not provided, look it up by name
+    if prd_id.blank?
+      product = Product.find_by_name(params[:course_name])
+      if !product.nil?
+        prd_id = product.id
+      end
+    end
 
-    result = { 'user_ud' => u.id, 'course_id' => prd_id }
+    # if user email is not provided assing to the current user
+    user_email = params[:user_email]
+    if user_email.blank?
+      u = current_user
+    else
+      u = User.find_by_email(user_email)
+    end
+
+    if !prd_id.blank? && !u.nil?
+      MyCourse.subscribe(u.id, prd_id, params[:status], params[:assigned_by])
+      result = { 'user_ud' => u.id, 'course_id' => prd_id }
+    end
 
     respond_to do |format|
         format.json { render json: result.as_json }
