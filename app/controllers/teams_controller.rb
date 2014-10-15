@@ -11,4 +11,11 @@ class TeamsController < ApplicationController
     @AppVersion = EdgeApp::VERSION
   end
 
+  # GET /assign
+  # HTML only
+  #
+  # Render HTML page with assing course/item to a user functionality
+  def index_assign
+  end
+
 end
