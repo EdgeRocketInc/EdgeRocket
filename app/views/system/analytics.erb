@@ -10,14 +10,21 @@
     <form role="form">
       <input id="analytics_hours" ng-model="analyticsHours" type="number" autofocus='true'/>
 
-
       <p>hours</p>
+
+      <p>Show searches with less than</p>
+
+      <input id="analytics_searches" ng-model="analyticsSearches" type="number"/>
+
+      <p>results</p>
+
 
       <input type='submit' value="Run Query" class='btn btn-primary btn-sm' ng-click="runQuery()"/>
 
     </form>
     </div>
-    <div id="analytics_chart" class="col-sm-8"></div>
+    <div id="analytics_chart" class="col-sm-8" data-read-key="<%= ENV['KEEN_READ_KEY'] %>" data-project-id="<%= ENV['KEEN_PROJECT_ID'] %>"></div>
 
   </div>
 </div>
+

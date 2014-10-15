@@ -8,12 +8,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
 
   $scope.runQuery = () ->
-    console.log('')
-
     client = new Keen {
-      projectId: "<%= ENV['KEEN_PROJECT_ID'] %>"
-      readKey: "<%= ENV['KEEN_READ_KEY'] %>"
+      projectId: $('#analytics_chart').data('project-id')
+      readKey: $('#analytics_chart').data('read-key')
     };
+
+    #$scope.getTable(query)
+    console.log(client)
 
     Keen.ready ->
 
@@ -27,6 +28,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
         title: 'Custom chart title'
       })
 
+
+  $scope.getTable = (client) ->
+     $scope.analyticsSearches
 
 
 
