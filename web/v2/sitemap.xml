@@ -4,29 +4,37 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
   <loc>http://edgerocket.co/</loc>
-  <lastmod>2014-10-02T08:37:34+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/benefits.html</loc>
   <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://edgerocket.co/blog/</loc>
-  <lastmod>2014-10-02T09:15:57+00:00</lastmod>
   <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://edgerocket.co/blog/navigating-the-online-learning-universe/</loc>
-  <lastmod>2014-10-02T09:16:08+00:00</lastmod>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://edgerocket.co/blog/the-new-landscape-of-learning-and-thriving/</loc>
-  <lastmod>2014-10-02T09:16:14+00:00</lastmod>
-  <changefreq>weekly</changefreq>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>http://edgerocket.co/blog/why-take-online-courses-if-theyre-not-accredited/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/course-review-human-computer-interaction/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/top-new-resources-become-better-learner/</loc>
+  <changefreq>monthly</changefreq>
 </url>
 </urlset>
