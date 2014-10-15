@@ -1,0 +1,23 @@
+<div class="panel panel-info">
+
+  <div class="panel-heading">
+    Keen.io UI Actions
+  </div>
+
+  <div class="panel-body" ng-controller="SystemAnalyticsCtrl">
+    <div class="col-sm-4"><p>See analytics for the last</p>
+
+    <form role="form">
+      <input id="analytics_hours" ng-model="analyticsHours" type="number" autofocus='true'/>
+
+
+      <p>hours</p>
+
+      <input type='submit' value="Run Query" class='btn btn-primary btn-sm' ng-click="runQuery()"/>
+
+    </form>
+    </div>
+    <div id="analytics_chart" class="col-sm-8"></div>
+
+  </div>
+</div>
