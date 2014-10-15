@@ -1,8 +1,7 @@
 # Keen IO - production (Heroku/etc) project
 ENV["KEEN_PROJECT_ID"]='535a98f5ce5e431e86000026'
 ENV['KEEN_WRITE_KEY']='44c52c7597cfdc4549e98c5e6a38f029138515cc7a5100f73797353a2d2886b50a726288adc0fdf607d24fbb7c4ca9a431927922fa9a9e837f5ae5d7d279d469919d46e216b1234dc72b44d7c1b2b53e185c0ce0fa0f9bd94a1b22d8b1adc3c6327075bba1bd65da5f62c752518b7ae9'
-#KEEN_WRITE_KEY=yyyyyyyyyyyyyyy
-#KEEN_READ_KEY=zzzzzzzzzzzzzzz
+ENV["KEEN_READ_KEY"]='f5fcccc3ce07abef5ce542b12a6ebca865056fbbb98ac9f01cbdf24c692766f23d0132ada8a1fb042005e3726658b9f15f0adafae46b6769d1d702f2b944cffc308d0dbc9ba567d0dd015b5ad1aeb00735ecfe4b8dc8a6e9244eeea18b551db6bfcb88de97bf6cb834387e97272be67a'
 
 EdgeApp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
