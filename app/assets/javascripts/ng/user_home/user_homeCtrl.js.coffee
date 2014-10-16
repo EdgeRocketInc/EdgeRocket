@@ -171,6 +171,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http) ->
   console.log('modal ctrl')
   $scope.surveySaved = false # true when survey has been saved
+  $scope.showSubmit = true # true to show submit button initially, change to false as soon as clicked
   $scope.skills = [] # will get from the back end side
   $scope.otherSkill = null
   $http.get('/surveys/skills.json').success( (data) ->
@@ -181,6 +182,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   )
 
   $scope.done = () ->
+    $scope.showSubmit = false # disable submit button to prevent double clicks
     data = { skills: [] }
     for skillset in @skills
       for skill in skillset
