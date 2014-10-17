@@ -1,37 +1,78 @@
 <div class="container-fluid" ng-controller="AssignCtrl">
 
-  <div class="row">
-    <div class="col-lg-12">
-    	Assign course to user
+  <form name="assignForm">
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <span class="glyphicon glyphicon-send"></span>
+        Assign Item/Course to User
+        <div class="panel-subheading voffset1">
+          1) Start typing a part of user email and select a user 2) Start typing item/course name and select one, 3) Click assign button
+        </div>
+      </div>
+      <div class="panel-body text-center" ng-activity-indicator>
+        <!-- Loading Indicator is shown/hidden automatically -->
+        <div ng-view></div>
+      </div>
+      <div class="panel-body" ng-if="AILoading==false">
+
+        <div class="row">
+
+          <div class="col-md-6 voffset3">
+            <div class="input-group">
+          		<input type="text" ng-model="selectedPair.userEmail" placeholder="User email"
+          			typeahead="user.email for user in users | filter:$viewValue | limitTo:8" 
+          			typeahead-editable="false" class="form-control" tooltip="Type email to find user"
+                name="userEmail" required>
+          		</input>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" tooltip="Clear field" 
+                  ng-click="selectedPair.userEmail=null">x</button>
+              </span>
+            </div>
+            <div class="text-danger" ng-show="assignForm.userEmail.$error.required">
+              * Please enter user
+            </div>
+          </div>
+
+          <div class="col-md-6 voffset3">
+            <div class="input-group">
+          		<input type="text" ng-model="selectedPair.productName" placeholder="Course/material item"
+          			typeahead="prd.name for prd in products | filter:$viewValue | limitTo:8" 
+          			typeahead-editable="false" class="form-control" tooltip="Type course name and select a course"
+                name="courseName" required>
+          		</input>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" tooltip="Clear field"
+                 ng-click="selectedPair.productName=null">x</button>
+              </span>
+            </div>
+            <div class="text-danger" ng-show="assignForm.courseName.$error.required">
+              * Please enter course/item
+            </div>
+        	</div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 voffset3">
+            <span class="text-success" ng-show="enrolled==true && showAlert==true">
+              * Saved Successfully
+            </span>
+          </div>
+          <div class="col-lg-6 voffset3">
+
+              <button class="btn btn-sm btn-success pull-right" ng-click="assignCourse()"
+                ng-disabled="assignForm.$invalid || disableSave">
+                Assign course to user
+              </button>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  </div>
-
-  <div class="row">
-
-    <div class="col-md-6 voffset3" >
-		<input type="text" ng-model="selectedPair.userEmail" placeholder="User email"
-			typeahead="user.email for user in users | filter:$viewValue | limitTo:8" 
-			typeahead-editable="false" class="form-control" tooltip="Type email to find user">
-		</input>
-	</div>
-
-    <div class="col-md-6 voffset3">
-		<input type="text" ng-model="selectedPair.productName" placeholder="Course/material item"
-			typeahead="prd.name for prd in products | filter:$viewValue | limitTo:8" 
-			typeahead-editable="false" class="form-control" tooltip="Type course name and select a course">
-		</input>
-	</div>
-
-  </div>
-
-  <div class="row voffset3">
-    <div class="col-lg-12">
-
-        <button class="btn btn-sm btn-success pull-right" ng-click="assignCourse()">
-          Assign course to user
-        </button>
-
-    </div>
-  </div>
+  </form>
 
 </div>

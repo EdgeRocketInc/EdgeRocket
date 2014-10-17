@@ -51,6 +51,9 @@
             <li class="<%= 'active' if params[:controller] == 'products' %>">
                 <%= link_to("Add Item/Course", controller: "products", action: "curated_index") %>
             </li>
+            <li class="<%= 'active' if params[:controller] == 'teams' %>">
+                <%= link_to("Assign Item/Course", controller: "teams", action: "index_assign") %>
+            </li>
             <li class="<%= 'active' if params[:controller] == 'employees' %>">
                 <%= link_to("Users", controller: "employees", action: "index") %>
             </li>
