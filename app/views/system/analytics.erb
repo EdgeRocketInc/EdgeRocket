@@ -1,30 +1,34 @@
 <div class="panel panel-info">
 
   <div class="panel-heading">
-    Keen.io UI Actions
+    Keen.io Analytics
   </div>
 
   <div class="panel-body" ng-controller="SystemAnalyticsCtrl">
     <div class="col-sm-4"><p>See analytics for the last</p>
 
-    <form role="form">
-      <input id="analytics_hours" ng-model="analyticsHours" type="number" autofocus='true'/>
+      <form role="form">
+        <input id="analytics_hours" ng-model="analyticsHours" type="number" autofocus='true'/>
 
-      <p>hours</p>
+        <p>hours</p>
 
-      <p>Show searches with less than</p>
+        <p>Show searches with less than</p>
 
-      <input id="analytics_searches" ng-model="analyticsSearches" type="number"/>
+        <input id="analytics_searches" ng-model="analyticsSearches" type="number"/>
 
-      <p>results</p>
+        <p>results</p>
 
 
-      <input type='submit' value="Run Query" class='btn btn-primary btn-sm' ng-click="runQuery()"/>
+        <input type='submit' value="Run Query" class='btn btn-primary btn-sm' ng-click="runQuery()"/>
 
-    </form>
+      </form>
     </div>
-    <div id="analytics_chart" class="col-sm-8" data-read-key="<%= ENV['KEEN_READ_KEY'] %>" data-project-id="<%= ENV['KEEN_PROJECT_ID'] %>"></div>
+    <div id="analytics_chart" class="col-sm-8" data-read-key="<%= ENV['KEEN_READ_KEY'] %>" data-project-id="<%= ENV['KEEN_PROJECT_ID'] %>" ng-init="setTable()"></div>
 
+    <h1>Searches</h1>
+
+    <div class="gridStyle" ng-grid="{{searchesTable}}">
+    </div>
   </div>
 </div>
 
