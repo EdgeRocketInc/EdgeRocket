@@ -62,6 +62,6 @@ class Notifications < ActionMailer::Base
     @hostname = hostname
     @skills = skills
     mail to: @user.email, subject: "EdgeRocket Recommendations"
-
   end
+
 end

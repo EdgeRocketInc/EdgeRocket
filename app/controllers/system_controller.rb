@@ -14,13 +14,13 @@ class SystemController < ApplicationController
     @survey = Survey.find(params["id"])
     if @survey
       if @survey.recommendations_email
-        @recommendations = @survey.recommendations_email.recommendation
+        @recommendations = @survey.recommendations_email.recommendations
       end
       prefs = ActiveSupport::JSON.decode(@survey.preferences)
     end    
     @response_json = {
-      skills: prefs['skills'],
-      recommendations: @recommendations.nil? ? nil : ActiveSupport::JSON.decode(@recommendations) 
+      # skills: prefs['skills'],
+      skills: @recommendations.nil? ? nil : @recommendations #ActiveSupport::JSON.decode(@recommendations)
     }
     # not using jbuilder at this time
     render json: @response_json.as_json

@@ -4,7 +4,10 @@
     <p>User selected preferences</p>
     <div class="row" ng-repeat="pref in selectedPrefs">
       <div class="col-xs-12">
-        {{pref.name}}
+        {{pref.skill.name}}
+        <div ng-repeat="recommendation in pref.recommendations">
+          <a class="indent-left" ng-href="/products/{{recommendation.id}}">{{recommendation.name}}</a>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +29,7 @@
 </script>
 
 <script type="text/ng-template" id="cellActionsUnprocess.html">
-  <div class="ngCellText text-center">
+  <div class="ngCellText text-center" id="processed-surveys">
     <span class="glyphicon glyphicon-repeat glyph-big glyph-action"
           ng-click="undoProcess(row.entity.id)" tooltip="Undo Process Survey" tooltip-append-to-body="true">
     </span>

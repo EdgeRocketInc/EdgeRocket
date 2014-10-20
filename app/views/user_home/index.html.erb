@@ -9,7 +9,7 @@
       <div class="col-xs-4" ng-repeat="col in [0,1,2]">
         <ul class="padding-left3">
           <li class="list-leaf" ng-repeat="thing in skills[col]">
-            <input type="checkbox" value="{{thing.key_name}}" ng-model="thing.checked" name="stuff"/>
+            <input type="checkbox" value="{{thing.key_name}}" ng-model="thing.checked" name="stuff" id="{{thing.key_name}}"/>
               {{thing.name}}
           </li>
         </ul>
@@ -26,7 +26,7 @@
       <button class="btn btn-sm btn-warning" ng-click="cancel()">Close</button>
   </div>
   <div class="modal-footer" ng-show="surveySaved!=true">
-      <button class="btn btn-success" ng-click="done()" ng-disabled="showSubmit==false">Submit</button>
+      <button class="btn btn-success" ng-click="done()" ng-disabled="showSubmit==false" id="submit-survey">Submit</button>
       <button class="btn btn-sm btn-warning" ng-click="cancel()">Skip this time</button>
   </div>
 </script>

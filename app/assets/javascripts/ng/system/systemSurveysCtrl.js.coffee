@@ -56,6 +56,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 @SurveyModalCtrl = ($scope, $modalInstance, $window, $http, userPrefs) ->
 
   $scope.selectedPrefs = userPrefs.skills
+  $scope.recommendedProducts = userPrefs.recommendations
 
   $http.get('/surveys/skills.json').success( (data) ->
     merged_skills = []
