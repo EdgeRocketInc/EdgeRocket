@@ -25,6 +25,9 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     enableRowSelection: false
   }
 
+
+
+
   $scope.runQuery = () ->
 
     $scope.setClient()

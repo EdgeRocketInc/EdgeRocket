@@ -21,6 +21,8 @@
 //= require yeti/loader
 //= require yeti/bootswatch
 
+//= require analytics
+
 //= require angular
 //= require angular-sanitize
 //= require angular-resource
