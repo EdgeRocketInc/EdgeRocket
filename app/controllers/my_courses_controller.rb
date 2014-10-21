@@ -11,12 +11,6 @@ class MyCoursesController < ApplicationController
     # Completed courses are sorted inside MyCourse queries by their completion date
     # courses with other statuses are sorted by rank explicitly
 
-    my_courses = MyCourse.all_completed(u.id)
-    @course_groups << {
-      :status => 'compl',
-      :my_courses => my_courses.as_json(:include => :product)
-    }
-
     my_courses = MyCourse.all_wip(u.id)
     @course_groups << {
       :status => 'wip',
@@ -34,6 +28,12 @@ class MyCoursesController < ApplicationController
       :status => 'wish',
       :my_courses => my_courses.as_json(:include => :product)
       }
+
+    my_courses = MyCourse.all_completed(u.id)
+    @course_groups << {
+      :status => 'compl',
+      :my_courses => my_courses.as_json(:include => :product)
+    }
 
     vendors = Vendor.all.as_json
     vendors.each { |v|

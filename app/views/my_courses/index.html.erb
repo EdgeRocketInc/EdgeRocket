@@ -65,9 +65,13 @@
 
     <div class="col-lg-7">
 	    <div class="panel panel-info">
+      
   		  <div class="panel-heading">
           <span class="glyphicon glyphicon-folder-open"></span>
           &nbsp;My Courses
+          <span class="glyphicon glyphicon-question-sign pull-right" 
+            popover-placement="left" popover="You can use buttons with letters A, C, I, and W to quickly update the course status: A is for Assigned, C is for Complete, I is for In progress, and W is for Wishlist." popover-title="How to use My Courses">
+          </span>          
         </div>
         <div class="panel-body">
 
@@ -158,6 +162,9 @@
   		  <div class="panel-heading">
           <span class="glyphicon glyphicon-list"></span>
           My Playlists
+          <span class="glyphicon glyphicon-question-sign pull-right" 
+            popover-placement="left" popover="My Playlists section contains all playlists, to which you have subscribed. You can expand each playlist to see its courses, and go to course details page." popover-title="How to use My Playlists">
+          </span>
         </div>
   		  <div class="panel-body">
 			    <% if @my_playlists.length <= 0 %>
