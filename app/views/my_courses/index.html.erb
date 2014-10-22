@@ -67,11 +67,18 @@
 	    <div class="panel panel-info">
       
   		  <div class="panel-heading">
-          <span class="glyphicon glyphicon-folder-open"></span>
-          &nbsp;My Courses
           <span class="glyphicon glyphicon-question-sign pull-right" 
             popover-placement="left" popover="You can use buttons with letters A, C, I, and W to quickly update the course status: A is for Assigned, C is for Complete, I is for In progress, and W is for Wishlist." popover-title="How to use My Courses">
           </span>          
+          <span class="glyphicon glyphicon-folder-open"></span>
+          &nbsp;My Courses
+          <div class="panel-subheading voffset2">
+            Buttons: 
+              <button type="button" class="btn btn-warning btn-xs">A</button> - Assigned, 
+              <button type="button" class="btn btn-success btn-xs">C</button> - Completed, 
+              <button type="button" class="btn btn-primary btn-xs">I</button> - In Progress,
+              <button type="button" class="btn btn-info btn-xs">W</button> - Wishlist
+          </div>
         </div>
         <div class="panel-body">
 
@@ -130,7 +137,7 @@
                     </td>
 
                     <td class="course-col course-col-100px text-right">
-                      <div class="btn-group">
+                      <div class="btn-toolbar btn-toolbar-status">
                         <button type="button" class="btn btn-success btn-xs" tooltip="Move to Completed" tooltip-append-to-body="true"
                           ng-click="courseComplete(cg,$index)" ng-if="cg.status != 'compl'" >C</button>
                         <button type="button" class="btn btn-primary btn-xs" tooltip="Move to In Progress" tooltip-append-to-body="true"
@@ -160,11 +167,14 @@
     <div class="col-lg-5">
 	    <div class="panel panel-info">
   		  <div class="panel-heading">
-          <span class="glyphicon glyphicon-list"></span>
-          My Playlists
           <span class="glyphicon glyphicon-question-sign pull-right" 
             popover-placement="left" popover="My Playlists section contains all playlists, to which you have subscribed. You can expand each playlist to see its courses, and go to course details page." popover-title="How to use My Playlists">
           </span>
+          <span class="glyphicon glyphicon-list"></span>
+          My Playlists
+          <div class="panel-subheading voffset1">
+            You have subscribed to these playlists
+          </div>
         </div>
   		  <div class="panel-body">
 			    <% if @my_playlists.length <= 0 %>

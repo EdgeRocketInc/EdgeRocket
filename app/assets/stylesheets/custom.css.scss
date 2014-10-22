@@ -326,6 +326,15 @@ span.input-group-btn .btn-post-discussions {
   padding-right: 5px;
 }
 
+// Buttons for course status
+.btn-toolbar-status {
+  white-space: nowrap;
+}
+
+div.btn-toolbar > .btn-xs {
+  margin-left: 0px; 
+}
+
 // Simple alert message
 .alert-simple {
   padding: 5px;

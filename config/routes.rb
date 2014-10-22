@@ -23,6 +23,7 @@ EdgeApp::Application.routes.draw do
   get "discussions" => 'discussions#index'
   get "discussions/:id" => 'discussions#show'
   get "employees" => 'employees#index'
+  get "help" => 'help#index'
   get "my_courses" => 'my_courses#index'
   get "my_courses/:product_id" => 'my_courses#show'
   get "plans" => 'plans#index'
