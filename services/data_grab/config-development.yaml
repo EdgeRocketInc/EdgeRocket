@@ -4,5 +4,5 @@ database:
     database: edgerocket
     port: 5432
     host: localhost
-    username: postgres
-    password: ER0cket!
+    username: gschool
+#    password: ER0cket!

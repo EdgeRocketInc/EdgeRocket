@@ -77,10 +77,16 @@ class CourseraClient < ProviderClient
 	end
 
  	def courses
-		courses = RestClient.get "https://api.coursera.org/api/catalog.v1/courses?fields=instructor,shortDescription&includes=instructors", {:accept => :json}
+		courses = RestClient.get "https://api.coursera.org/api/catalog.v1/courses?fields=instructor,shortDescription,estimatedClassWorkload&includes=instructors,sessions", {:accept => :json}
 		courses_json = JSON.parse(courses)
 		courses_json['elements']		
- 	end
+  end
+
+  def sessions(session_ids)
+    session = RestClient.get "https://api.coursera.org/api/catalog.v1/sessions?ids=#{session_ids}&fields=durationString", {:accept => :json}
+    session_json = JSON.parse(session)
+    session_json['elements']
+  end
 
  	def instructors
 		instructors = RestClient.get "https://api.coursera.org/api/catalog.v1/instructors", {:accept => :json}

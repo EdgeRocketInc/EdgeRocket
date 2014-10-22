@@ -78,18 +78,56 @@ instructors_json = provider.instructors
 courses_json = provider.courses
 skipped = 0
 
+def calculate_workload(course)
+  duration_string = course["estimatedClassWorkload"]
+  duration_string.split("-")[0].to_i
+end
+
+def get_session_weeks(sessions_json)
+  total = 0
+  sessions_json.each do |session_string|
+    total += session_string["durationString"].split(" ")[0].to_i
+  end
+  total
+end
+
+def calculate_duration(workload, total_length)
+  # byebug
+  duration = workload * total_length
+  if duration == 0
+    duration = nil
+  end
+  duration
+end
+
 courses_json.each_with_index { |crs, i|
+
 	# construct the course url and then search existing record in the DB
 	course_url = provider.origin(crs)
 	existing_prd = Product.find_by_origin(course_url)
 	if existing_prd.nil?
-		#byebug
+		# byebug
 		prd = Product.new
 		prd.vendor_id = provider.vendor_id
 		prd.name = provider.name(crs) 
 		prd.description = provider.description(crs)
 		prd.price = provider.price(crs)
-		prd.authors = provider.authors(crs) 
+		prd.authors = provider.authors(crs)
+
+
+    if crs["links"]["sessions"]
+      session_ids = crs["links"]["sessions"].join(",")
+      sessions_json = provider.sessions(session_ids)
+      # byebug
+      estimated_workload = calculate_workload(crs)
+      total_length = get_session_weeks(sessions_json)
+      prd.duration = calculate_duration(estimated_workload, total_length)
+    end
+
+
+
+    # prd.duration = #calculate_duration
+
 		# in some cases, instructors field may be empty, then we need to dig into the assicoated links
 		if prd.authors.blank?
 			#puts "blank instr, linked instructors=" + crs['links']['instructors'].to_s
@@ -119,6 +157,8 @@ courses_json.each_with_index { |crs, i|
 	end
 	if (i % 100) == 0 then print '.' end
 }
+
+
 
 print "\n"
 puts('Processed ' + courses_json.length.to_s + ' records, ' + skipped.to_s + ' skipped ')
