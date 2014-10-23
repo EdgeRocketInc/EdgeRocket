@@ -79,7 +79,7 @@ instructors_json = provider.instructors
 courses_json = provider.courses
 skipped = 0
 
-courses_json.each_with_index { |crs, i|
+courses_json.each_with_index do |crs, i|
 
 	# construct the course url and then search existing record in the DB
 	course_url = provider.origin(crs)
@@ -92,6 +92,8 @@ courses_json.each_with_index { |crs, i|
 		prd.price = provider.price(crs)
 		prd.authors = provider.authors(crs)
 
+    # byebug
+
     # combines estimated workload/week (in hours) for a course with estimated weeks for all the sessions to set duration
     if crs["links"] && crs["links"]["sessions"] # for COURSERA API
       session_ids = crs["links"]["sessions"].join(",")
@@ -101,6 +103,11 @@ courses_json.each_with_index { |crs, i|
       prd.duration = calculate_duration(estimated_workload, total_length)
     elsif crs["contentInfo"] #for UDEMY API
       prd.duration = crs["contentInfo"].split(" ")[0]
+    elsif crs["duration"] # for WEB SCRAPING
+      split = crs["duration"][0].split(" ")
+      if split[1] == "mins"
+        prd.duration = split[0].to_f/60
+      end
     end
 
 		# in some cases, instructors field may be empty, then we need to dig into the assicoated links
@@ -131,7 +138,7 @@ courses_json.each_with_index { |crs, i|
 		skipped += 1
 	end
 	if (i % 100) == 0 then print '.' end
-}
+end
 
 
 
