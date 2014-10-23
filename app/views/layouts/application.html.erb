@@ -17,10 +17,22 @@
   <body>
     <header>
       <%= render 'layouts/navigation' %>
+
+      <% if !@provided_by.nil? && @provided_by==true %>
+      <div class="container-fluid">
+        <div class="row provided-by">
+          <div class="col-xs-12 text-left">
+            Provided by Atomic20
+          </div>
+        </div>
+      </div>
+      <% end %>
+
     </header>
+
     <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
     </main>
   </body>
 </html>

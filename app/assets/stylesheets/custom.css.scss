@@ -66,6 +66,7 @@ img {
 nav.navbar {
   font-size: 15px;
   background-color: #003050;
+  margin-bottom: 5px;
 }
 
 
@@ -473,4 +474,10 @@ span.badge {
 
 #analytics_chart {
   min-height: 275px;
+}
+
+.provided-by {
+  margin-bottom: 5px;
+  color: #A0A0A0;
+  font-weight: 500;
 }

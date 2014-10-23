@@ -23,10 +23,10 @@ class SearchController < ApplicationController
       #byebug
       prd = nil
       # The first query counts items, which is not the best solution, but it's ok for now
-      count_result = Product.count_courses(current_user.account_id, params[:inmedia], params[:criteria], params[:providers])
+      count_result = Product.count_courses(current_user.account_id, params[:inmedia], params[:criteria], params[:providers], params[:price])
       prd_count = count_result.nil? ? 0 : count_result.rows[0][0].to_i
       paginate prd_count, PAGE_SIZE  do |limit, offset|
-        prd = Product.search_courses(current_user.account_id, limit, offset, params[:inmedia], params[:criteria], params[:providers])
+        prd = Product.search_courses(current_user.account_id, limit, offset, params[:inmedia], params[:criteria], params[:providers], params[:price])
       end
 
       # format some of the fields in the resultset
@@ -44,6 +44,7 @@ class SearchController < ApplicationController
           :search_inmedia => params[:inmedia],
           :search_providers => params[:providers],
           :search_criteria => params[:criteria],
+          :search_price => params[:price],
           :search_items_count => prd_count
       })
 

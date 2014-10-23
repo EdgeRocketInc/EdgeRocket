@@ -11,15 +11,15 @@ class Product < ActiveRecord::Base
   belongs_to :skill
 
   # count courses that would be returned by search with the same parameters 
-  def self.count_courses(account_id, media_types, search_query, providers)
-    self.search_or_count(true, account_id, nil, nil, media_types, search_query, providers)
+  def self.count_courses(account_id, media_types, search_query, providers, price)
+    self.search_or_count(true, account_id, nil, nil, media_types, search_query, providers, price)
   end
 
   # search courses (aka products) with a filter, and include the vendor fields
   # in the result
-  def self.search_courses(account_id, limit, offset, media_types, search_query, providers)
+  def self.search_courses(account_id, limit, offset, media_types, search_query, providers, price)
     #byebug
-    self.search_or_count(false, account_id, limit, offset, media_types, search_query, providers)
+    self.search_or_count(false, account_id, limit, offset, media_types, search_query, providers, price)
   end
 
   # synchronize (update) avg rating for the given product
@@ -36,7 +36,7 @@ private
 
   # used by search and count methods above
   # if media_type is nil, it mean any media type, if it's an empty string, it means none
-  def self.search_or_count(is_count, account_id, limit, offset, media_types, search_query, providers)
+  def self.search_or_count(is_count, account_id, limit, offset, media_types, search_query, providers, price)
     filter = nil
     # add single quotes around each media type in the comma-separated list
     if !media_types.blank?
@@ -61,6 +61,7 @@ private
       # empty media means none
       sql_query += ' and media_type is null '      
     end
+    sql_query += price_condition(price) if !price.nil?
     if !providers.nil?
       sql_query += ' and vendor_id in (' + providers + ') '
     elsif !providers.nil? && providers.empty?
@@ -82,6 +83,39 @@ private
     end
     sanitized_sql = self.sanitize_sql_array([sql_query, search_query_like, search_query_like, search_query_like, search_query_like, search_query_like])
     self.connection.select_all(sanitized_sql)
+  end
+
+  # price is a string with list of comma separated parameters such as 0,lt50,gte50
+  def self.price_condition(price)
+    price_map = {
+      '0' => 'price is null or price=0',
+      'lt50' => 'price < 50',
+      'gte50' => 'price >= 50'
+    }
+    #byebug
+    if !price.nil?
+      if price.empty?
+        return ' and true=false '
+      else
+        result = ''
+        price_params = price.split(',')
+        price_params.each { |pp|
+          pm = price_map[pp]
+          if !pm.blank?
+            if result.blank?
+              result = ' and ('
+            else
+              result += ' or '
+            end
+            result += pm
+          end
+        }
+        if !result.blank?
+          result += ' ) '
+        end
+        return result
+      end
+    end
   end
 
 end

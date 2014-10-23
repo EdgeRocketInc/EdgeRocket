@@ -48,6 +48,9 @@
 
           <div class="col-md-8">
             <input type="text" class="form-control" placeholder="Text to search" ng-model="searchText"/>
+            <div class="voffset1">
+              <span class="label label-default">found {{totalItems}} items</span>
+            </div>
           </div>
 
           <div class="col-md-3">
@@ -81,6 +84,19 @@
                 </li>
               </ul>
             </div>
+            <div class="well well-sm">
+              <div>
+                <span class="glyph-label-inline">Price: </span>
+                <a href="#" ng-click="togglePriceAll(true)">select all</a>
+                <a href="#" class="padding-left2" ng-click="togglePriceAll(false)">deselect all</a>
+              </div>
+              <ul class="list-unstyled list-inline voffset1">
+                <li ng-repeat="cbox in priceCheckboxes" class="voffset1">
+                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="togglePriceCbox(cbox)"></span>
+                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div class="col-md-7">
@@ -106,6 +122,9 @@
           <div class="col-md-11">
             <button class="form-control btn-md btn-success" ng-click="doSearch()">{{searchLabel}}</button>
             <div class="pull-right voffset1"><a href="#" ng-click="toggleSearchMode()">Simple search</a></div>
+            <div class="voffset1">
+              <span class="label label-default">found {{totalItems}} items</span>
+            </div>
           </div>
 
         </div>
@@ -116,7 +135,10 @@
 
   </div>
 
-  <div class="row voffset4">
+  <div class="row voffset3">
+  </div>
+
+  <div class="row voffset1">
 
     <div class="col-md-11 col-md-offset-1">
         <span class="" ng-repeat="crs in items">

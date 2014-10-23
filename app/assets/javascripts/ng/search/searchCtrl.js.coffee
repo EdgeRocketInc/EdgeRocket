@@ -16,6 +16,13 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     { class : 'check', label : 'Videos', media_type : 'video' }
   ]
   $scope.mediaAllSelected = true # all selected initially
+  # for price type checkboxes
+  $scope.priceCheckboxes = [
+    { class : 'check', label : 'Free', price_type : '0' }
+    { class : 'check', label : '< $50', price_type : 'lt50' }
+    { class : 'check', label : '$50+', price_type : 'gte50' }
+  ]
+  $scope.priceAllSelected = true # all selected initially
   # for provider checkboxes
   $scope.providerCheckboxes = [] # will populate from vendors
   $scope.providerAllSelected = true # all selected initially
@@ -79,6 +86,18 @@ EdgeRocket.config(["$httpProvider", (provider) ->
             is_first = false
           else
             result += ',' + cbox.media_type
+    if $scope.priceAllSelected == false
+      # note that price parameter may be passed without values
+      result = if result==null then '?' else result + '&'
+      result += 'price='
+      is_first = true
+      for cbox in $scope.priceCheckboxes
+        if cbox.class == 'check'
+          if is_first == true
+            result += cbox.price_type
+            is_first = false
+          else
+            result += ',' + cbox.price_type
     if $scope.providerAllSelected == false
       # note that providers parameter may be passed without values
       result = if result==null then '?' else result + '&'
@@ -163,7 +182,28 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     else
       cbox.class = 'check' 
     $scope.searchLabel = 'Update Results'
-    
+
+  # toggle all price type checkboxes, and filter the search result accordingly
+  $scope.togglePriceAll = (turn_on) ->
+    if turn_on == false
+      $scope.priceAllSelected = false
+      for cb in $scope.priceCheckboxes
+        cb.class = 'unchecked'
+    else
+      $scope.priceAllSelected = true
+      for cb in $scope.priceCheckboxes
+        cb.class = 'check'
+    $scope.searchLabel = 'Update Results'
+
+  # toggle single price type check box
+  $scope.togglePriceCbox = (cbox) ->
+    if cbox.class == 'check' 
+      $scope.priceAllSelected = false
+      cbox.class = 'unchecked' 
+    else
+      cbox.class = 'check' 
+    $scope.searchLabel = 'Update Results'
+
   # toggle all provider type checkboxes, and filter the search result accordingly
   $scope.toggleProviderAll = (turn_on) ->
     if turn_on == false
@@ -192,8 +232,8 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.doSearch = () ->
     $scope.currentPage = 1
+    $scope.searchLabel = 'Searching...'
     loadCoursePages($scope.currentPage, buildSearchFilter())
-    $scope.searchLabel = 'Search'
 
   $scope.toggleSearchMode = () ->
     $scope.advancedSearch = !$scope.advancedSearch

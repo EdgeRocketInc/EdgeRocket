@@ -4,8 +4,216 @@
 		"selected_items":
 		[
 			[
+				"pa",
+				"params"
+			],
+			[
+				"di",
+				"disableSave"
+			],
+			[
+				"show",
+				"showSubmit"
+			],
+			[
+				"cour",
+				"course_id"
+			],
+			[
+				"user",
+				"user_email"
+			],
+			[
+				"p",
+				"productName"
+			],
+			[
+				"pr",
+				"productName"
+			],
+			[
+				"us",
+				"userEmail"
+			],
+			[
+				"selectedP",
+				"selectedPair"
+			],
+			[
+				"sele",
+				"selectedProduct"
+			],
+			[
+				"se",
+				"selectedUser"
+			],
+			[
+				"load",
+				"loadProducts"
+			],
+			[
+				"u",
+				"users"
+			],
+			[
+				"loa",
+				"loadUsers"
+			],
+			[
+				"pro",
+				"products"
+			],
+			[
+				"rec",
+				"recommendation"
+			],
+			[
+				"this",
+				"this_skill"
+			],
+			[
+				"su",
+				"survey"
+			],
+			[
+				"new",
+				"new_pi"
+			],
+			[
 				"pl",
-				"pl_name"
+				"playlist_items"
+			],
+			[
+				"acc",
+				"account_id"
+			],
+			[
+				"pla",
+				"playlist_id"
+			],
+			[
+				"Pla",
+				"Playlists"
+			],
+			[
+				"clo",
+				"clone"
+			],
+			[
+				"pe",
+				"pending_user"
+			],
+			[
+				"c",
+				"create"
+			],
+			[
+				"priv",
+				"providerCheckboxes"
+			],
+			[
+				"prod",
+				"providerAllSelected"
+			],
+			[
+				"prd",
+				"prd"
+			],
+			[
+				"med",
+				"media_types"
+			],
+			[
+				"is",
+				"is_first"
+			],
+			[
+				"po",
+				"providerCheckboxes"
+			],
+			[
+				"ad",
+				"advancedSearch"
+			],
+			[
+				"de",
+				"debugger"
+			],
+			[
+				"sea",
+				"searchTagsList"
+			],
+			[
+				"in",
+				"inmedia"
+			],
+			[
+				"cou",
+				"count_result"
+			],
+			[
+				"n",
+				"nil"
+			],
+			[
+				"sear",
+				"search_query"
+			],
+			[
+				"sa",
+				"sanitize_sql_array"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"file",
+				"filter"
+			],
+			[
+				"fil",
+				"filter"
+			],
+			[
+				"con",
+				"content-range"
+			],
+			[
+				"the",
+				"the_url"
+			],
+			[
+				"filter",
+				"filters"
+			],
+			[
+				"ind",
+				"index_end"
+			],
+			[
+				"sta",
+				"starting_item"
+			],
+			[
+				"page",
+				"page_number"
+			],
+			[
+				"tot",
+				"totalItems"
+			],
+			[
+				"content",
+				"Content-Range"
+			],
+			[
+				"hea",
+				"headers"
+			],
+			[
+				"cue",
+				"currentPage"
 			],
 			[
 				"Un",
@@ -20,14 +228,6 @@
 				"isNewDate"
 			],
 			[
-				"is",
-				"isNewDate"
-			],
-			[
-				"pla",
-				"playlists"
-			],
-			[
 				"ma",
 				"massage"
 			],
@@ -36,20 +236,8 @@
 				"enrolled"
 			],
 			[
-				"pro",
-				"product_id"
-			],
-			[
 				"sho",
 				"showAlert"
-			],
-			[
-				"cou",
-				"course_id"
-			],
-			[
-				"pr",
-				"proceed"
 			],
 			[
 				"ca",
@@ -60,16 +248,8 @@
 				"playlists"
 			],
 			[
-				"us",
-				"user"
-			],
-			[
 				"gre",
 				"greeting"
-			],
-			[
-				"su",
-				"subject"
 			],
 			[
 				"da",
@@ -100,20 +280,8 @@
 				"Communications"
 			],
 			[
-				"acc",
-				"account_id"
-			],
-			[
-				"new",
-				"newProduct"
-			],
-			[
 				"accoun",
 				"account_id"
-			],
-			[
-				"the",
-				"theAccount"
 			],
 			[
 				"ne",
@@ -122,10 +290,6 @@
 			[
 				"all",
 				"allAccounts"
-			],
-			[
-				"load",
-				"loadUser"
 			],
 			[
 				"cu",
@@ -142,10 +306,6 @@
 			[
 				"be",
 				"best_role"
-			],
-			[
-				"user",
-				"user_role"
 			],
 			[
 				"to",
@@ -184,14 +344,6 @@
 				"account_id"
 			],
 			[
-				"p",
-				"product"
-			],
-			[
-				"in",
-				"index"
-			],
-			[
 				"S",
 				"Subscribe"
 			],
@@ -204,14 +356,6 @@
 				"photo_thumb"
 			],
 			[
-				"fil",
-				"filterAll"
-			],
-			[
-				"file",
-				"filterAll"
-			],
-			[
 				"item",
 				"items"
 			],
@@ -220,20 +364,8 @@
 				"items"
 			],
 			[
-				"sea",
-				"searchText"
-			],
-			[
 				"limi",
 				"limitItems"
-			],
-			[
-				"prd",
-				"prd_count"
-			],
-			[
-				"re",
-				"respond_to"
 			],
 			[
 				"eac",
@@ -242,10 +374,6 @@
 			[
 				"exis",
 				"existing_playlists"
-			],
-			[
-				"sele",
-				"selected_playlists"
 			],
 			[
 				"addP",
@@ -276,10 +404,6 @@
 				"vendor"
 			],
 			[
-				"n",
-				"null"
-			],
-			[
 				"sql",
 				"sql_query"
 			],
@@ -290,10 +414,6 @@
 			[
 				"m",
 				"media_type"
-			],
-			[
-				"u",
-				"updated_item"
 			],
 			[
 				"up",
@@ -368,10 +488,6 @@
 				"class"
 			],
 			[
-				"med",
-				"media_type"
-			],
-			[
 				"en",
 				"enableMediaTypes"
 			],
@@ -398,132 +514,82 @@
 			[
 				"play",
 				"playlist"
-			],
-			[
-				"P",
-				"Product"
-			],
-			[
-				"ass",
-				"assert"
-			],
-			[
-				"moda",
-				"modal_params"
-			],
-			[
-				"modal",
-				"modal_params"
-			],
-			[
-				"gplus",
-				"gplus"
-			],
-			[
-				"di",
-				"div	Tag"
-			],
-			[
-				"fla",
-				"false"
-			],
-			[
-				"pa",
-				"params"
-			],
-			[
-				"chan",
-				"change_password"
-			],
-			[
-				"die",
-				"display_name"
-			],
-			[
-				"displ",
-				"display_name"
-			],
-			[
-				"dip",
-				"display"
-			],
-			[
-				"edit",
-				"edit_password"
-			],
-			[
-				"add",
-				"addingMode"
-			],
-			[
-				"editin",
-				"editModeIndex"
-			],
-			[
-				"addin",
-				"addingMode"
-			],
-			[
-				"mana",
-				"mandatory"
-			],
-			[
-				"man",
-				"Mandatory"
-			],
-			[
-				"ro",
-				"rowItem"
-			],
-			[
-				"row",
-				"rowIndex"
-			],
-			[
-				"Pla",
-				"playlist"
-			],
-			[
-				"upda",
-				"updated_u"
-			],
-			[
-				"fi",
-				"first_name"
-			],
-			[
-				"Re",
-				"reset"
-			],
-			[
-				"fl",
-				"false"
-			],
-			[
-				"name",
-				"first_name"
-			],
-			[
-				"curre",
-				"current_my_course"
-			],
-			[
-				"my_",
-				"my_crs"
-			],
-			[
-				"wi",
-				"width"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "config/database.yml",
+			"file": "app/views/layouts/application.html.erb",
 			"settings":
 			{
-				"buffer_size": 1069,
+				"buffer_size": 1237,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/stylesheets/custom.css.scss",
+			"settings":
+			{
+				"buffer_size": 6739,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/application_controller.rb",
+			"settings":
+			{
+				"buffer_size": 1177,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/search/index.html.erb",
+			"settings":
+			{
+				"buffer_size": 6393,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/assets/javascripts/ng/search/searchCtrl.js.coffee",
+			"settings":
+			{
+				"buffer_size": 10254,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/search_controller.rb",
+			"settings":
+			{
+				"buffer_size": 1751,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 396 files for \"search_courses\" (case sensitive)\n\n/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/search_controller.rb:\n   29:         prd = Product.search_courses(current_user.account_id, limit, offset, params[:inmedia], params[:criteria], params[:providers], params[:price])\n\n/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/product.rb:\n   20:   def self.search_courses(account_id, limit, offset, media_types, search_query, providers)\n\n/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/models/product_test.rb:\n   22:   	c = Product.search_courses(101, 10, 0, nil, \"data\", nil)\n   27:   	c = Product.search_courses(101, 10, 1, \"video,online,books\", nil, nil)\n   32:   	c = Product.search_courses(nil, 10, 0, \"video,online,books\", nil, nil)\n\n5 matches across 3 files\n\n\nSearching 396 files for \"search_courses\" (case sensitive)\n\n/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/search_controller.rb:\n   29:         prd = Product.search_courses(current_user.account_id, limit, offset, params[:inmedia], params[:criteria], params[:providers], params[:price])\n\n/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/product.rb:\n   20:   def self.search_courses(account_id, limit, offset, media_types, search_query, providers, price)\n\n/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/models/product_test.rb:\n   22:   	c = Product.search_courses(101, 10, 0, nil, \"data\", nil)\n   27:   	c = Product.search_courses(101, 10, 1, \"video,online,books\", nil, nil)\n   32:   	c = Product.search_courses(nil, 10, 0, \"video,online,books\", nil, nil)\n\n5 matches across 3 files\n",
+			"settings":
+			{
+				"buffer_size": 1685,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "test/models/product_test.rb",
+			"settings":
+			{
+				"buffer_size": 1202,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/product.rb",
+			"settings":
+			{
+				"buffer_size": 4004,
 				"line_ending": "Unix"
 			}
 		}
@@ -556,139 +622,150 @@
 	"expanded_folders":
 	[
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/company",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/employees",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/help",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/layouts",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/my_courses",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/search",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/teams",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/user_home",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db"
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environments"
 	],
 	"file_history":
 	[
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/application.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/search_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/my_courses/index.html.erb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/user_home/index.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/routes.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/help_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/help/index.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/help/helpCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/stylesheets/custom.css.scss",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/layouts/_navigation.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/application.js",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/application.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/layouts/application.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/help.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/my_courses/my_coursesCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/my_courses_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/stylesheets/application.css",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/teams/index_assign.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/teams_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/teams/assignCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/teams/teamsCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/my_course.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/user_home_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/show.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/user_home/user_homeCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/schema.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/database.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20141017151858_alter_recommendation_column.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/user-accounts.txt",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/playlists/index.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/manage_courses_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/curated_index.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/my_courses_controller_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/users.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/products.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/products/productsCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/employees/employeesCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/system/systemAnalyticsCtrl.js.coffee.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environments/production.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environments/stage.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environments/development.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/Gemfile",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/recommendations_email.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/mailers/notifications.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/send_recommendations.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/send_recommendations.text.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/user.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/system_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/newrelic.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/seeds.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/system/surveys.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/system/systemSurveysCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/devise/sessions/new.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/application_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/unicorn.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/search/searchCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/pending_users/new.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/employees/index.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/system/systemCompaniesCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/sysop_companies_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/account_confirmation_email.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/account_confirmation_email.text.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/system_access_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/system/companies.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/users.txt",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/playlists_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/skills.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/system_surveys_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/user_account.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/playlists.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/playlist.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/playlist_items.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/models/playlist_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/models/user_account_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/create_recommendations_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/can_access_home_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/company_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/concerns/playlists_operations.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/employees_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/pending_users_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/dashboards/show.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/layouts/sign_up.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/self_sign_up_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/account_request_received.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/account_request_received.text.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/mailers/notifications_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/system/systemPendingUsersCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/pending_user.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/initializers/devise.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/devise/shared/_links.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/devise/registrations/edit.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140324225559_add_devise_to_users.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/system/companies.json.jbuilder",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/admin_adds_user_email.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/admin_adds_user_email.text.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/omniauth_callbacks_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/layouts/system.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/recommendations.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/products_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/search/index.html.erb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/product.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/Gemfile.lock",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/models/product_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/profile_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/skills_controller.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/skills/list.json.jbuilder",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/skills_controller_test.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/products/curatedProductsCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/stylesheets/system.css.scss",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/accounts.yml",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140619193950_update_mooc_records.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/profile/uploadCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140904210101_drop_user_preferences_column.rb",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/system/systemCtrl.js.coffee",
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environment.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/company/index.html.erb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/dashboards_controller.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/ability.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/employees_controller.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/products_controller.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/my_courses/my_coursesCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/schema.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/products/curatedProductsCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/my_courses/index.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/playlists/index.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/user_home/user_homeCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/search/searchCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/stylesheets/custom.css.scss",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140815030105_add_timestamps_to_playlist_items.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/my_courses_controller.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/show.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/products/productsCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/search/index.html.erb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/playlists/playlistsCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/unicorn.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/initializers/timeout.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/Gemfile",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/products_controller_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/playlists_controller.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/playlists_controller_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/concerns/playlists_operations.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/playlist_items.yml",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/mailers/notifications_test.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/mailers/previews/notifications_preview.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/products.yml",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/mailers/notifications.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/playlist_course_added.html.erb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/notifications/playlist_course_added.text.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environments/development.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environments/production.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/teams_controller_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environment.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/environments/stage.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/initializers/devise.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/search_controller.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/profile_controller.rb",
 		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/role.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/employees/employeesCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/profile_controller_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/profile/profileCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/routes.rb",
-		"/Users/admitriyev/Projects/eraseme/sg.html",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/subscribe_playlists_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/my_course.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/application.js",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/stylesheets/discussions.css.scss",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/employees/index.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/user_home_controller.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/application_controller.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/layouts/application.html.erb",
-		"/Users/admitriyev/Projects/hci-prototype/Procfile",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/user.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/product.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/curated_index.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/manage_users_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/manage_courses_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/curated_index.json.jbuilder",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/employees/index.json.jbuilder",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/can_access_home_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/features/manage_company_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/master-heroku.sublime-project",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/company/companyCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/teams.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/helpers/dashboards_helper.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/helpers/company_helper.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/stylesheets/company.css.scss",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/controllers/teams_controller.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/search.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/er-common.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/er-common.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/devise/sessions/new.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140716193515_make_thumb_photos.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/profile.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/layouts/_navigation.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140716191717_add_photo_thumb_to_profile.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/angular.js",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/angular-sanitize.js",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/search_controller_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/devise/shared/_links.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/devise/passwords/new.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/devise/passwords/edit.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/employees_controller_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/users.yml",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/roles.yml",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/factories/accounts.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/welcome/editPasswordCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/welcome/edit_password.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/dashboards/show.json.jbuilder",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/models/my_course_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/accounts.yml",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/playlist.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/ng/dashboards/dashboardCtrl.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/dashboards/show.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/config/database.yml",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/seeds.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/Procfile",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/test_helper.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/dashboards_controller_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/vendors.json.jbuilder",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/show.json.jbuilder",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/models/account.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140626035332_add_account_id_to_product.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/fixtures/my_courses.yml",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/db/migrate/20140625191518_add_manual_entry_to_product.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/log/test.log",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/playlists/courses.json.jbuilder",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/discussions/index.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/products.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/stylesheets/products.css.scss",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/products/index.html.erb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/views/playlists/index.json.jbuilder",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/factories/roles.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/angular-sanitize.min.js",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/factories/users.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/integration/smoke_test.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/bin/rake",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/Rakefile",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/factory/user.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/helpers/application_helper.rb",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/dashboards.js.coffee",
-		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/app/assets/javascripts/angular-charts.js"
+		"/Users/admitriyev/Projects/EdgeRocket/github/master-heroku/test/controllers/profile_controller_test.rb"
 	],
 	"find":
 	{
@@ -699,6 +776,30 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.js, *.css",
+			"*.js",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml",
+			"*.erb",
+			"*.rb",
+			"*.erb",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml",
+			"*.rb",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.rb",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.erb",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.rb",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.rb",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.erb",
+			"*.rb,*.coffee,*.erb,*yml,*css,*.jbuilder,*.yml,*.js",
+			"*.rb",
+			"*.coffee",
 			"*.rb",
 			"*.erb, *.coffee",
 			"*.erb",
@@ -800,141 +901,151 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"sysop",
-			"manage",
-			":manage",
-			"best_role",
-			"Online",
-			"target",
+			"search_courses",
+			"media",
+			"Media",
+			"media",
+			"Media",
+			"help",
+			"btn",
+			"placement",
+			"popover-placement",
+			"popover-place",
+			"popover-pla",
+			"popover",
+			"popover-template",
+			"tpls",
+			"chardin",
+			"charding",
+			"data-",
+			"chardin",
+			"ng-grid",
+			"data-",
+			"ng-grid-2",
+			"assign",
 			"debugger",
-			"location",
-			"debugger",
-			"debug",
-			"glyphSubscribed",
-			"location",
-			"warning",
-			"btn-danger",
-			"btn_danger",
-			"tooltip-app",
-			"tooltip",
-			"as_json",
-			"debugger",
-			"loadmy",
-			"img",
-			"product_id",
-			"enrol",
-			"modal",
-			"@playlist",
-			"notifications",
-			"mail",
-			"byebug",
-			") ",
-			"my_play",
-			"modal",
-			"glyph",
-			"glypg",
-			"done",
-			"status",
-			"cancel",
-			"skip",
-			"selected",
-			"selec",
-			"startS",
-			"survey",
-			"paddin",
-			"surve",
-			"', '",
-			"debug",
-			"best_role",
-			"add",
-			"<option",
-			"<select",
-			"user",
-			"best_role",
-			"tolower",
-			".id",
-			"id",
-			"ng-if",
-			"newEmplPassword",
-			").destroy",
-			"destroy",
-			"delete",
-			"user_role",
-			"empty",
-			"theRole",
-			"as_json",
-			"md-4",
-			"clearEditForm",
-			"$scope.clearEditForm",
-			"editModeIndex",
-			"addingMode",
-			"editModeIndex",
-			"account",
-			"update",
-			"textarea",
-			"text area",
-			"foo",
-			"course-col-50px",
-			"label-duration",
-			"flow",
-			"btnSubscribedClass",
-			"glyphAction",
-			"button",
-			"add comment",
-			"45x",
-			"004F69",
-			"30x30",
-			"nav",
-			"get_profile_photo",
-			"send_data",
-			"photo",
-			"current_user",
-			"navigation",
-			"_navigation",
-			"glyphicon-user",
-			"filterMed",
-			"img",
-			"ng-src",
-			"img",
-			"ng-img",
-			"img",
-			"require",
-			"request_format",
-			"publish_keen_io",
-			"request_format",
-			"publish_keen_io",
-			"format",
-			"edgerocket.co",
-			"email",
-			"passwords",
-			"passwords.js",
-			"sanit",
-			"row",
-			"price_fmt",
-			"product_id",
-			"discuss",
-			"serverError",
-			"error",
-			"debugger",
-			"error",
-			"debugger",
-			" debugger",
-			"debugger",
+			"sleep",
+			"ng-grid-2",
+			"ng-grid",
+			"alert",
+			"enrolled",
+			"subscribe",
+			"div",
+			"form",
+			"required",
+			"disabled",
+			"surveySaved",
+			"create_preferences",
+			"assert",
 			"where",
-			"delete",
+			"subscribe",
+			"course_subscription",
+			"createPro",
+			"course_subscription",
+			"typeahead",
+			"'Self'",
+			"'reg'",
+			"course_subscription",
+			"keen",
+			"IAN",
+			"loadUsers",
+			"add playlist",
+			"typeahead",
+			"teams",
+			"</h3>",
+			"<h3>",
+			"</p>",
+			"<p>",
+			"byebug",
+			"save_recommendations_email",
+			"disabled",
+			"pry",
+			"surveySaved",
+			"startsurv",
+			"empty?",
+			"overflow",
+			"free account",
+			"eventmachine",
+			"keen",
+			"eventmachine",
+			"form",
+			"disabled",
 			"debugger",
-			"errors.empty",
-			"thePlaylists",
-			"playlist_ite",
-			"allPla",
-			"loadPlaylists"
+			"Welcom",
+			"techcorp",
+			"tech",
+			"\"#company_name\"",
+			"\"company_name\"",
+			"Sign in",
+			"Sing in",
+			"mandatory",
+			"product_id",
+			"skills",
+			"'",
+			")",
+			"Skill.create(",
+			"Skill.create(name: '",
+			"TODO",
+			"sleep",
+			"eventmachine",
+			"is_active",
+			"host_with_port",
+			"request.",
+			"account_confirmation_email",
+			"host",
+			"hostname",
+			"to login",
+			"panel-",
+			"empty?",
+			"empty",
+			"2",
+			"spro",
+			"sass",
+			"account_confirmation_email",
+			"save_user",
+			"pending_users/create_users",
+			"create_user_from_pending",
+			"encrypted_password",
+			"passwords_match",
+			"confirmable",
+			"ManageCompaniesTest",
+			"access denied",
+			"devise",
+			"ng-app",
+			"TODO",
+			"eventmachine",
+			"unicorn",
+			"Based on your preferences",
+			"ng-if",
+			"buildSearchFilter",
+			"form",
+			"searchText",
+			"respond_to",
+			"CbAll",
+			"paddin",
+			"Media",
+			"media",
+			"Media",
+			"tagSelected",
+			"glyph-label",
+			"vendors"
 		],
 		"highlight": true,
-		"in_selection": false,
+		"in_selection": true,
 		"preserve_case": false,
 		"regex": false,
 		"replace_history":
 		[
+			"price",
+			"Price",
+			"price",
+			"Price",
+			"",
+			"ng-show",
+			"Provider",
+			"provider",
+			"media_types",
+			"buildSearchFilter",
 			"#debugger",
 			"playlist",
 			"', name: '",
@@ -989,36 +1100,298 @@
 		"reverse": false,
 		"show_context": false,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 7,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "config/database.yml",
-					"semi_transient": true,
+					"file": "app/views/layouts/application.html.erb",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1069,
+						"buffer_size": 1237,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								180,
-								187
+								855,
+								855
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/assets/stylesheets/custom.css.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6739,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								745,
+								745
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 832.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/controllers/application_controller.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1108,
+								1108
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/search/index.html.erb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6393,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3788,
+								3788
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/assets/javascripts/ng/search/searchCtrl.js.coffee",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10254,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3434,
+								3434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/controllers/search_controller.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								812,
+								812
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 105.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1685,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										185,
+										199
+									],
+									[
+										414,
+										428
+									],
+									[
+										605,
+										619
+									],
+									[
+										672,
+										686
+									],
+									[
+										753,
+										767
+									],
+									[
+										1025,
+										1039
+									],
+									[
+										1254,
+										1268
+									],
+									[
+										1452,
+										1466
+									],
+									[
+										1519,
+										1533
+									],
+									[
+										1600,
+										1614
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								1481,
+								1481
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "test/models/product_test.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1202,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1187,
+								1187
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -1026,6 +1399,36 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/models/product.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4004,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3863,
+								3863
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 795.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1108,7 +1511,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 316.0,
+	"side_bar_width": 249.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
