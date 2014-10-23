@@ -93,13 +93,13 @@ courses_json.each_with_index { |crs, i|
 		prd.authors = provider.authors(crs)
 
     # combines estimated workload/week (in hours) for a course with estimated weeks for all the sessions to set duration
-    if crs["links"] && crs["links"]["sessions"]
+    if crs["links"] && crs["links"]["sessions"] # for COURSERA API
       session_ids = crs["links"]["sessions"].join(",")
       sessions_json = provider.sessions(session_ids)
       estimated_workload = calculate_workload(crs)
       total_length = get_session_weeks(sessions_json)
       prd.duration = calculate_duration(estimated_workload, total_length)
-    elsif crs["contentInfo"]
+    elsif crs["contentInfo"] #for UDEMY API
       prd.duration = crs["contentInfo"].split(" ")[0]
     end
 
