@@ -99,6 +99,8 @@ courses_json.each_with_index { |crs, i|
       estimated_workload = calculate_workload(crs)
       total_length = get_session_weeks(sessions_json)
       prd.duration = calculate_duration(estimated_workload, total_length)
+    elsif crs["contentInfo"]
+      prd.duration = crs["contentInfo"].split(" ")[0]
     end
 
 		# in some cases, instructors field may be empty, then we need to dig into the assicoated links
