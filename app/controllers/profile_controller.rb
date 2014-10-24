@@ -42,9 +42,14 @@ class ProfileController < ApplicationController
         new_profile.user_id = current_user.id
       end
 
-      new_profile.photo = uploaded_io.read
+      uploaded_photo = uploaded_io.read
+      # resize and save a photo
+      image_photo = MiniMagick::Image.read(uploaded_photo)
+      image_photo.thumbnail "x200"
+      image_photo.format 'png'
+      new_profile.photo = image_photo.to_blob
       # resize and save a thumb
-      image_thumb = MiniMagick::Image.read(new_profile.photo)
+      image_thumb = MiniMagick::Image.read(uploaded_photo)
       image_thumb.thumbnail "x45"
       image_thumb.format 'png'
       new_profile.photo_thumb = image_thumb.to_blob
@@ -57,11 +62,11 @@ class ProfileController < ApplicationController
 
   def get_profile_photo
     if @profile.blank? || @profile.photo.blank?
-      file = "app/assets/images/user_default.jpg"
+      file = "app/assets/images/user_default.png"
       File.open(file, "r")
-      send_file file, :type => 'image/jpg',:disposition => 'inline'
+      send_file file, :type => 'image/png',:disposition => 'inline'
     else
-      send_data @profile.photo, :type => 'image/jpg',:disposition => 'inline'
+      send_data @profile.photo, :type => 'image/png',:disposition => 'inline'
     end
   end
 
