@@ -38,7 +38,7 @@ private
 
   def provided_by
     # TODO make configurable from DB
-    @provided_by = true
+    @provided_by = false
   end
 
 end
