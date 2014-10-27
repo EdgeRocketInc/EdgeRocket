@@ -10,20 +10,19 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.statusDone = false
 
   loadData =  ->
-  $http.get('/users/current.json').success( (data) ->
-    $scope.user = data
-    console.log('User'+ $scope.user.first_name)
-
-  $http.get('/profile/current.json').success( (data) ->
-      $scope.profile = data.profile
-      console.log('Successfully loaded profile')
-      #console.log('Profile'+ JSON.stringify($scope.profile, null, 4))
+    $http.get('/users/current.json').success( (data) ->
+      $scope.user = data
+      console.log('User: '+ $scope.user.email)
+      $http.get('/profile/current.json').success( (data) ->
+          $scope.profile = data
+          console.log('Successfully loaded profile')
+          #console.log('Profile'+ JSON.stringify($scope.profile, null, 4))
+        ).error( ->
+          console.log('Error loading profile')
+        )
     ).error( ->
-      console.log('Error loading profile')
+      console.log('Error loading user')
     )
-  ).error( ->
-    console.log('Error loading user')
-  )
 
   loadData()
 

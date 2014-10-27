@@ -30,7 +30,8 @@ EdgeApp::Application.routes.draw do
   get "playlists/:id/courses" => 'playlists#courses'
   get "products/:id/reviews" => 'products#reviews'
   get "products/curated" => 'products#curated_index'
-  get "profile/current" => 'profile#index'
+  get "profile" => 'profile#index', constraints: { format: 'html' }
+  get "profile/current" => 'profile#current', constraints: { format: 'json' }
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
   get "system/recommendations" => 'recommendations#index'

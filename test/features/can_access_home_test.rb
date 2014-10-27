@@ -65,7 +65,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     visit '/welcome/edit_password'
     assert_content page, "Change Password"
 
-    visit '/profile/current'
+    visit '/profile'
     assert_content page, "User profile"
     click_button 'Save Changes'
     assert_content page, "Profile changed successfully"

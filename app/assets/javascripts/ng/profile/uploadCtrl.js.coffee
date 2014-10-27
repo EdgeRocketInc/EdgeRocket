@@ -52,7 +52,7 @@ EdgeRocket.factory "uploadService", [ "$rootScope", "$http", ($rootScope, $http)
     #debugger
 
     $http(
-      { method: 'POST', url: 'upload', data: formData, headers: {'Content-Type': undefined}, transformRequest: angular.identity}
+      { method: 'POST', url: '/profile/upload', data: formData, headers: {'Content-Type': undefined}, transformRequest: angular.identity}
     ).success( (data) ->
       console.log('Successfully uploaded image`')
     ).error( ->

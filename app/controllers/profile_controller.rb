@@ -1,9 +1,15 @@
 class ProfileController < ApplicationController
-  before_action :set_profile, only: [:index, :edit, :update, :destroy, :get_profile_photo, :get_profile_photo_thumb]
+  before_action :set_profile, only: [:current, :edit, :update, :destroy, :get_profile_photo, :get_profile_photo_thumb]
   before_filter :authenticate_user!
 
-  # GET /ptofile/current
+  # GET /ptofile
+  # HTML
   def index
+  end
+
+  # GET /ptofile/current
+  # JSON
+  def current
   end
 
   # PATCH/PUT /profile/1
@@ -11,12 +17,6 @@ class ProfileController < ApplicationController
   def update
     respond_to do |format|
       current_user.save()
-      #if current_user.update(user_params)
-      #  format.json { head :no_content }
-      #else
-      #  format.html { render action: 'edit' }
-      #  format.json { render json: crrent_user.errors, status: :unprocessable_entity }
-      #end
       if @profile.blank?
         @profile = Profile.new
         @profile.user_id = current_user.id
@@ -43,16 +43,21 @@ class ProfileController < ApplicationController
       end
 
       uploaded_photo = uploaded_io.read
-      # resize and save a photo
+      
+      # convert & resize, and save a photo
       image_photo = MiniMagick::Image.read(uploaded_photo)
       image_photo.thumbnail "x200"
       image_photo.format 'png'
       new_profile.photo = image_photo.to_blob
+      new_profile.photo_mime_type = 'image/png'
+      
       # resize and save a thumb
       image_thumb = MiniMagick::Image.read(uploaded_photo)
       image_thumb.thumbnail "x45"
       image_thumb.format 'png'
       new_profile.photo_thumb = image_thumb.to_blob
+      new_profile.thumb_mime_type = 'image/png'
+
       new_profile.save
 
       format.html { head :no_content}
@@ -61,22 +66,30 @@ class ProfileController < ApplicationController
   end
 
   def get_profile_photo
+    image_type = 'image/png' # by default
     if @profile.blank? || @profile.photo.blank?
       file = "app/assets/images/user_default.png"
       File.open(file, "r")
-      send_file file, :type => 'image/png',:disposition => 'inline'
+      send_file file, :type => image_type, :disposition => 'inline'
     else
-      send_data @profile.photo, :type => 'image/png',:disposition => 'inline'
+      if !@profile.photo_mime_type.blank?
+        image_type = @profile.photo_mime_type
+      end
+      send_data @profile.photo, :type => image_type, :disposition => 'inline'
     end
   end
 
   def get_profile_photo_thumb
+    image_type = 'image/png' # by default
     if @profile.blank? || @profile.photo_thumb.blank?
       file = "app/assets/images/user_default_thumb.png"
       File.open(file, "r")
-      send_file file, :type => 'image/png',:disposition => 'inline'
+      send_file file, :type => image_type, :disposition => 'inline'
     else
-      send_data @profile.photo_thumb, :type => 'image/png',:disposition => 'inline'
+      if !@profile.thumb_mime_type.blank?
+        image_type = @profile.thumb_mime_type
+      end
+      send_data @profile.photo_thumb, :type => image_type, :disposition => 'inline'
     end
   end
 

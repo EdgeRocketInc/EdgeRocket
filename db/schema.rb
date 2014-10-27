@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017151858) do
+ActiveRecord::Schema.define(version: 20141025060004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,14 +118,24 @@ ActiveRecord::Schema.define(version: 20141017151858) do
   add_index "products", ["account_id"], name: "index_products_on_account_id", using: :btree
   add_index "products", ["name"], name: "index_products_on_name", using: :btree
 
+  create_table "products_users", id: false, force: true do |t|
+    t.integer "user_id",    null: false
+    t.integer "product_id", null: false
+  end
+
+  add_index "products_users", ["product_id", "user_id"], name: "index_products_users_on_product_id_and_user_id", using: :btree
+  add_index "products_users", ["user_id", "product_id"], name: "index_products_users_on_user_id_and_product_id", using: :btree
+
   create_table "profiles", force: true do |t|
     t.string   "title"
     t.string   "employee_identifier"
     t.binary   "photo"
-    t.integer  "user_id",             null: false
+    t.integer  "user_id",                                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.binary   "photo_thumb"
+    t.string   "photo_mime_type"
+    t.string   "thumb_mime_type",     default: "image/png"
   end
 
   create_table "recommendations", force: true do |t|
