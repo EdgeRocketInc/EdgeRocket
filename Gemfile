@@ -92,7 +92,7 @@ gem 'clean_pagination', '~> 0.0'
 gem 'rack-cors', :require => 'rack/cors'
 
 # image processing
-gem 'mini_magick' # too many bugs in '4.0.0.rc'
+gem 'mini_magick', '~> 3.7' # too many bugs in '4.0.0.rc'
 
 # Rack timeout (as suggested by Heroku)
 gem 'rack-timeout'

@@ -300,7 +300,7 @@ DEPENDENCIES
   jquery-rails (= 3.0.4)
   keen (~> 0.8)
   launchy
-  mini_magick
+  mini_magick (~> 3.7)
   minitest
   minitest-rails-capybara
   newrelic_rpm
