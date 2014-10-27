@@ -95,5 +95,5 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'mini_magick', '~> 3.7' # too many bugs in '4.0.0.rc'
 
 # Rack timeout (as suggested by Heroku)
-gem 'rack-timeout'
+gem 'rack-timeout', '~> 0.0.4'
 
