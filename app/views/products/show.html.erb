@@ -26,7 +26,8 @@
 							</rating>
 						</div>
 
-						<img ng-src="{{ course.vendor.logo_asset_url }}" class="img-provider-logo"></img>
+						<img ng-src="{{ course.vendor.logo_asset_url }}" ng-show="course.vendor.logo_asset_url" 
+							class="img-provider-logo"></img>
 						<div class="">{{ course.authors }}</div>
 						<div class="">{{ course.school }}</div>
 						<div ng-if="course.description != null && course.description != ''" class="well">{{ course.description }}</div>

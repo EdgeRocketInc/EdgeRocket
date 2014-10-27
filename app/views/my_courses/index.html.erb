@@ -110,12 +110,13 @@
                       </a>
                     </td>
                     <td class="course-col text-right">
-                      <img ng-src="{{c.product.vendor.logo_asset_url}}" class="img-provider-logo" 
+                      <img ng-src="{{c.product.vendor.logo_asset_url}}" 
+                        class="img-provider-logo" ng-show="c.product.vendor.logo_asset_url" 
                         tooltip="{{c.product.vendor.name}}" tooltip-append-to-body="true"/>
                     </td>
                     <td class="course-col course-col-60px">
                         <span class="glyphicon"
-                          ng-class="{'glyphicon-exclamation-sign yellow': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
+                          ng-class="{'glyphicon-exclamation-sign orange': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
                           tooltip="Assigned by {{c.assigned_by}}" tooltip-append-to-body="true">
                         </span>
                         <span class="glyphicon gray {{mediaTypes[c.product.media_type].glyph}}"
