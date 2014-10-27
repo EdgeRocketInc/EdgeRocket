@@ -36,9 +36,16 @@ class ApplicationController < ActionController::Base
 
 private
 
+  # This methods is ised to confgire co-bradning logos and other options
   def provided_by
-    # TODO make configurable from DB
-    @provided_by = false
+    if !current_user.nil? && !current_user.account.nil? && !current_user.account.logo_filename.blank?
+      @provided_by = false
+      @logo_filename = current_user.account.logo_filename
+    else
+      @provided_by = false
+      # ideally, the default logo name  should be moved to the view or database
+      @logo_filename = nil # 'ER_final_logo-x41.png'
+    end
   end
 
 end

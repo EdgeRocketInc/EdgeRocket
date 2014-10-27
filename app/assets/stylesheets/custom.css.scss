@@ -75,7 +75,7 @@ nav.navbar {
 }
 
 .navbar-inverse {
-//  background-color: #005F7E;
+  //  background-color: #005F7E;
 }
 
 nav.navbar-default, .navbar-nav > li > .dropdown-menu {
@@ -83,8 +83,9 @@ nav.navbar-default, .navbar-nav > li > .dropdown-menu {
 }
 
 // override for the 'Home' navigation link
-.navbar-brand {
+a.navbar-brand {
   font-size: inherit;
+  padding-top: 2px;
 }
 
 // Profile menu navigation goes together with thumbnail
