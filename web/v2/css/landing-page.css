@@ -234,3 +234,17 @@ img.img-blog {
     font-size: 18px;
     font-weight: 400;    
 }
+
+.text-price {
+    font-size: 28px;
+}
+
+.text-featured {
+    font-size: 32px;
+}
+
+ .text-li {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+ }
