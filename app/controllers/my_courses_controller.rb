@@ -87,6 +87,7 @@ class MyCoursesController < ApplicationController
     result = nil
     u = nil
     prd_id = params[:course_id]
+    send_email = nil
 
     # if product id is not provided, look it up by name
     if prd_id.blank?
@@ -95,18 +96,25 @@ class MyCoursesController < ApplicationController
         prd_id = product.id
       end
     end
-
-    # if user email is not provided assing to the current user
+    
+    # if user email is not provided, assign to the current user
     user_email = params[:user_email]
     if user_email.blank?
       u = current_user
     else
       u = User.find_by_email(user_email)
+      send_email = params[:send_email]
     end
 
     if !prd_id.blank? && !u.nil?
-      MyCourse.subscribe(u.id, prd_id, params[:status], params[:assigned_by])
+      subscription = MyCourse.subscribe(u.id, prd_id, params[:status], params[:assigned_by])
+      # send email notification only if requested by submitter
+      if send_email == true && subscription == true 
+        Notifications.course_assigned(u, product, request.protocol + request.host_with_port).deliver
+      end
+
       result = { 'user_ud' => u.id, 'course_id' => prd_id }
+
     end
 
     respond_to do |format|

@@ -64,4 +64,13 @@ class Notifications < ActionMailer::Base
     mail to: @user.email, subject: "EdgeRocket Recommendations"
   end
 
+  def course_assigned(user, product, hostname)
+    @user = user
+    @product = product
+    @hostname = hostname
+    @greeting = "A manager has assigned you a new course"
+
+    mail to: @user.email, subject: @greeting
+    
+  end
 end

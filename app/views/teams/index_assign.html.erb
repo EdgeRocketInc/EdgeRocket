@@ -55,6 +55,13 @@
         </div>
 
         <div class="row">
+          <div class="col-lg-12 voffset3">
+            <span class="glyphicon glyphicon-{{sendEmail}} glyph-big glyph-action" ng-click="toggleEmail()"></span>
+            <span class="glyph-label">Notify user by email</span>
+          </div>          
+        </div>
+
+        <div class="row">
           <div class="col-lg-6 voffset3">
             <span class="text-success" ng-show="enrolled==true && showAlert==true">
               * Course has been assigned to user
@@ -68,7 +75,9 @@
               </button>
 
           </div>
+
         </div>
+
 
       </div>
 

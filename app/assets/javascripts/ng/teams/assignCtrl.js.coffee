@@ -13,6 +13,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 	$scope.enrolled = false
 	$scope.showAlert = false
 	$scope.disableSave = false # disable while processing requests
+	$scope.sendEmail = 'check'
 
 	loadAllData =  ->
 		$http.get('/employees.json').success( (data) ->
@@ -45,6 +46,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 				user_email: $scope.selectedPair.userEmail
 				status: 'reg'
 				assigned_by: 'Manager'
+				send_email: if $scope.sendEmail == 'check' then true else false
 			$scope.disableSave = true
 			$http.post('/course_subscription.json', data).success( (data) ->
 				console.log('Successfully created subscription')
@@ -57,5 +59,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 			)
 		else
 			console.error('User or product not selected')
+
+	$scope.toggleEmail = () ->
+	    if $scope.sendEmail == 'check'
+	      $scope.sendEmail = 'unchecked'
+	    else
+	      $scope.sendEmail = 'check'
 
 @AssignCtrl.$inject = ['$scope', '$http', '$modal', '$log', '$activityIndicator']

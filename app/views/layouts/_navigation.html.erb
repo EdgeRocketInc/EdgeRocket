@@ -12,14 +12,16 @@
       <% 
         if @logo_filename.nil?
           logo_filename = 'ER_final_logo-x41.png'
+          logo_class = 'navbar-brand'
         else
           logo_filename = @logo_filename
+          logo_class = 'navbar-brand navbar-brand-2nd'
       %>
-          <%= link_to image_tag('ER_final_logo-vertical-x41.png', alt: 'My EdgeRocket homepage', height: '41px'), '/user_home', class: 'navbar-brand' %>
+          <%= link_to image_tag('ER_final_logo-vertical-x41and.png', alt: 'My EdgeRocket homepage', height: '41px'), '/user_home', class: 'navbar-brand' %>
           <%
         end
       %>
-      <%= link_to image_tag(logo_filename, alt: 'My EdgeRocket homepage', height: '41px'), '/user_home', class: 'navbar-brand' %>
+      <%= link_to image_tag(logo_filename, alt: 'My EdgeRocket homepage', height: '41px'), '/user_home', class: logo_class %>
 	
     </div>
 
