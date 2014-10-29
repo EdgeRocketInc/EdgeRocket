@@ -47,6 +47,14 @@ class NotificationsTest < ActionMailer::TestCase
     assert_equal "New course has been added to your EdgeRocket playlist", mail.subject
   end
 
+  test "course_assigned" do
+
+    mail = Notifications.course_assigned @user, @product, 'http://localhost'
+    # p '*'*80
+    # p mail.class
+    assert_equal "A manager has assigned you a new course", mail.subject
+  end
+
   test "survey completed" do
     mail = Notifications.survey_completed(@user).deliver
     assert_equal "A new survey has been completed by test@edgerocket.co!", mail.subject
