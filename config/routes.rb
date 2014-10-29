@@ -34,6 +34,8 @@ EdgeApp::Application.routes.draw do
   get "profile/current" => 'profile#current', constraints: { format: 'json' }
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
   get "profile/get_profile_photo_thumb" => 'profile#get_profile_photo_thumb'
+  get "public/products/:id" => 'public/public_product#show', constraints: { format: 'html' }
+  get "public/products/:id" => 'public/public_product#show_json', constraints: { format: 'json' }
   get "system/recommendations" => 'recommendations#index'
   get "sign_up" => 'pending_users#new'
   get "search" => 'search#index', constraints: { format: 'html' }

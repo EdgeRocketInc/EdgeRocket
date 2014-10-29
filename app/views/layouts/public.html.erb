@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="EdgeRocket">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "EdgeRocket" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "EdgeRocket" %>">
+    <%= stylesheet_link_tag "application", media: "all" %>
+
+    <!-- Change Bootswatch theme here -->
+    <%= stylesheet_link_tag "yeti", media: "all" %>
+    
+    <%= javascript_include_tag "application", 'public/' + controller_name if controller_name != 'sessions' && controller_name != 'passwords' %>
+    <%= csrf_meta_tags %>
+    <!-- verify production site -->
+    <meta name="google-site-verification" content="OB6N5Il_5SxjzATMTkiKrKoFp7wHJmBti7hJbyajoHo" />
+  </head>
+  <body>
+    <header>
+    </header>
+
+    <main role="main">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </main>
+  </body>
+</html>
