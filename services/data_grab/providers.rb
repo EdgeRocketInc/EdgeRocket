@@ -1,6 +1,12 @@
 require 'cgi' # CGI for HTTP requests
 require 'nokogiri'
 
+# for Youtube
+require 'google/api_client'
+require 'google/api_client/client_secrets'
+require 'google/api_client/auth/installed_app'
+
+
 # Course Providers
 
 class ProviderClient
@@ -13,10 +19,10 @@ class ProviderClient
   	self.vendor_id = vendor_id
   	self.one_price = price
   	# read json data if it's provided
-	if !json_file.nil? 
-		io = IO.read(json_file)
-		self.json_data = JSON.parse( io )
-	end
+  	if !json_file.nil? 
+  		io = IO.read(json_file)
+  		self.json_data = JSON.parse( io )
+  	end
   end
 
   def origin(row)
@@ -47,7 +53,7 @@ class ProviderClient
     raise "Abstract method called"
   end
 
-  def school
+  def school(row)
     raise "Abstract method called"
   end
 
@@ -66,9 +72,9 @@ class CourseraClient < ProviderClient
 
   def description(row)
 		row['shortDescription']
-    end
+  end
 
-    def price(row)
+  def price(row)
     	nil
  	end
 
@@ -203,12 +209,12 @@ class JsonClient < ProviderClient
 		row['name'][0]
 	end
 
-    def description(row)
-		row['description'].nil? ? nil : row['description'][0]
-    end
+  def description(row)
+	row['description'].nil? ? nil : row['description'][0]
+  end
 
-    def price(row)
-    	one_price
+  def price(row)
+  	one_price
  	end
 
 	def authors(row)
@@ -225,6 +231,76 @@ class JsonClient < ProviderClient
 
   def school(row)
     row['school'].nil? ? nil : row['school'][0]
+  end
+
+end
+
+
+class YoutubeClient < ProviderClient
+  
+  def initialize(vendor_id, json_file, price = nil)
+    super
+
+    # Initialize Google API 
+    @client = Google::APIClient.new(
+      :application_name => 'EdgeRocket data grab',
+      :application_version => '0.1.70'
+    )
+
+    # Initialize Google+ API. Note this will make a request to the
+    # discovery service every time, so be sure to use serialization
+    # in your production code. Check the samples for more details.
+    @youtube = @client.discovered_api('youtube', 'v3')
+
+    # Load client secrets from your client_secrets.json.
+    client_secrets = Google::APIClient::ClientSecrets.load
+
+    # Run installed application flow. Check the samples for a more
+    # complete example that saves the credentials between runs.
+    flow = Google::APIClient::InstalledAppFlow.new(
+      :client_id => client_secrets.client_id,
+      :client_secret => client_secrets.client_secret,
+      :scope => ['https://www.googleapis.com/auth/youtube']
+    )
+    @client.authorization = flow.authorize
+  end
+
+  def courses
+    # Make an API call.
+    result = @client.execute(
+      :api_method => @youtube.search.list,
+      :parameters => {'channelId' => 'UCCv1RvQh98t3M9nXVxkn5bw', 'Max results' => 100, 'part' => 'id,snippet'}
+    )
+
+    result.data["items"]
+  end
+
+  def instructors
+    nil
+  end
+
+  def origin(row)
+    "https://www.youtube.com/watch?v=" + row["id"]["videoId"]
+  end
+
+  def name(row)
+    row["snippet"]["title"]
+  end
+
+  def description(row)
+    row["snippet"]["description"]
+  end
+
+  def price(row)
+    0
+  end
+
+  def authors(row)
+    nil
+  end
+
+  def school(row)
+    nil
   end
 
 end

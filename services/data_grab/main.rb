@@ -19,6 +19,7 @@ end
 # it maps providers according to the value in vendors table
 providers = [
 	{ vendor_id: 1, provider_class: CourseraClient, price: nil },
+	{ vendor_id: 2, provider_class: YoutubeClient, price: 0 },
 	{ vendor_id: 9, provider_class: JsonClient, price: 49 }, # GA
 	{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse
 	{ vendor_id: 10, provider_class: JsonClient, price: nil }, # edX 
