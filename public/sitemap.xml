@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>http://edgerocket.co/</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/benefits.html</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/services.html</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/navigating-the-online-learning-universe/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/the-new-landscape-of-learning-and-thriving/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/why-take-online-courses-if-theyre-not-accredited/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/course-review-human-computer-interaction/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/top-new-resources-become-better-learner/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://edgerocket.co/blog/the-best-motivation-after-compensation/</loc>
+  <changefreq>monthly</changefreq>
+</url>
+</urlset>
