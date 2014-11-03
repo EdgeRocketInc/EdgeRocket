@@ -33,7 +33,7 @@ class SystemSurveysTest < Capybara::Rails::TestCase
     @recommendation1 = FactoryGirl.create(:recommendation, product_id: 2001, skill_id: 1)
     @recommendation2 = FactoryGirl.create(:recommendation, product_id: 2002, skill_id: 1)
     #
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
     fill_in 'user_password', with: '12345678'
@@ -68,7 +68,7 @@ class SystemSurveysTest < Capybara::Rails::TestCase
   #   @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
   #   @survey = FactoryGirl.create(:survey, :preferences => "quote", :user_id => @user.id, :created_at => Date.new(2014,12,15))
   #
-  #   visit root_path
+  #   visit app_path
   #
   #   fill_in 'user_email', with: 'sysop-test@edgerocket.co'
   #   fill_in 'user_password', with: '12345678'

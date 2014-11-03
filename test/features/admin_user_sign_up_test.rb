@@ -27,7 +27,7 @@ class AdminUserSignUpTest < Capybara::Rails::TestCase
   private
 
   def admin_logs_in
-    visit root_path
+    visit app_path
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
     fill_in 'user_password', with: '12345678'
     click_button 'Sign in'

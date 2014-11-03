@@ -31,7 +31,7 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
     @recommendation2 = FactoryGirl.create(:recommendation, product_id: @product2.id, skill_id: 1)
     @recommendation3 = FactoryGirl.create(:recommendation, product_id: @product3.id, skill_id: 2)
 
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password
@@ -60,7 +60,7 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     @product1 = FactoryGirl.create(:product, name: 'A A Test Product One', authors: 'Seth and Sean', origin: 'Seth and Seans Awesome School', media_type: 'IMAX', school: 'gSchool')
 
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
     fill_in 'user_password', with: '12345678'
@@ -97,7 +97,7 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
     @recommendation2 = FactoryGirl.create(:recommendation, product_id: @product2.id, skill_id: 1) #@skill1.id)
     @recommendation3 = FactoryGirl.create(:recommendation, product_id: @product3.id, skill_id: 3) #@skill2.id)
 
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password

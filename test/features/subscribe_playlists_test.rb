@@ -22,7 +22,7 @@ class SubscribePlaylistsTest < Capybara::Rails::TestCase
     @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
-    visit root_path
+    visit app_path
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: @user.password
     click_button 'Sign in'

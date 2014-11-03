@@ -1,7 +1,5 @@
 EdgeApp::Application.routes.draw do
 
-  get 'company/index'
-
   # Don't allow users to sign up themselves, but allow changing passwords
   devise_for :users, :skip => [:registrations], :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
     as :user do
@@ -13,9 +11,10 @@ EdgeApp::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  #root 'welcome#index'
 
   # Example of regular route:
+  get "app" => 'welcome#index', constraints: { format: 'html' }
   get "account" => 'company#account', constraints: { format: 'json' }
   get "assign" => 'teams#index_assign', constraints: { format: 'html' }
   get "company" => 'company#index', constraints: { format: 'html' }

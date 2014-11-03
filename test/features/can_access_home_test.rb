@@ -27,7 +27,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
   #   @user = create_user(@account)
   #   @skill = FactoryGirl.create(:skill, :name => 'skill-1', :hpos => 1, :vpos => 1, :key_name => 's1')
   #
-  #   visit root_path
+  #   visit app_path
   #   fill_in "user_email", with: @user.email
   #   fill_in "user_password", with: @user.password
   #   click_button 'Sign in'
@@ -45,7 +45,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     Capybara.current_driver = :selenium
 
     @user = create_user(@account)
-    visit root_path
+    visit app_path
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: @user.password
     click_button 'Sign in'
@@ -88,7 +88,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
-    visit root_path
+    visit app_path
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: @user.password
     click_button 'Sign in'
@@ -110,7 +110,7 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
     @user = create_user(@other_account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
-    visit root_path
+    visit app_path
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: @user.password
     click_button 'Sign in'

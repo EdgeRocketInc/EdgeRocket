@@ -24,7 +24,7 @@ class SystemAccessTest < Capybara::Rails::TestCase
     user = FactoryGirl.create(:user, :email => 'admin-test@edgerocket.co', :password => '12345678', :account_id => account.id)
     role = FactoryGirl.create(:role, :name => 'Admin', :user_id => user.id)
 
-    visit root_path
+    visit app_path
     fill_in "user_email", with: 'admin-test@edgerocket.co'
     fill_in "user_password", with: '12345678'
     click_button 'Sign in'
@@ -38,7 +38,7 @@ class SystemAccessTest < Capybara::Rails::TestCase
     user = FactoryGirl.create(:user, :email => 'sysop-test@edgerocket.co', :password => '12345678', :account_id => account.id)
     role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => user.id)
 
-    visit root_path
+    visit app_path
     fill_in "user_email", with: 'sysop-test@edgerocket.co'
     fill_in "user_password", with: '12345678'
     click_button 'Sign in'

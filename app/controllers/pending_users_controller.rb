@@ -31,7 +31,7 @@ class PendingUsersController < ApplicationController
       
       flash[:notice] = "Thank you for signing up, please check your email and log in."
 
-      redirect_to root_path
+      redirect_to app_path
     else
       render_error_messages(@pending_user)
       render :new

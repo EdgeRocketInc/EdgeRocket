@@ -21,7 +21,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     account = create_account
     @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
     fill_in 'user_password', with: '12345678'
@@ -39,7 +39,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @account.update(:created_at => "")
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
     fill_in 'user_password', with: '12345678'
@@ -57,7 +57,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     @other_account = create_account({disabled: true, company_name: 'Other Company'})
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password
@@ -77,7 +77,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password
@@ -100,7 +100,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password
@@ -123,7 +123,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password
@@ -145,7 +145,7 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password

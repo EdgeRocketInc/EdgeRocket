@@ -21,7 +21,7 @@ class SystemPendingUser < Capybara::Rails::TestCase
     @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @pending_user = FactoryGirl.create(:pending_user, first_name: "Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free")
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
     fill_in 'user_password', with: '12345678'
@@ -38,7 +38,7 @@ class SystemPendingUser < Capybara::Rails::TestCase
     @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
     @pending_user = FactoryGirl.create(:pending_user, first_name: "Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free")
-    visit root_path
+    visit app_path
 
     fill_in 'user_email', with: @user.email
     fill_in 'user_password', with: @user.password

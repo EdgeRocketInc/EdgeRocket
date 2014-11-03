@@ -36,7 +36,7 @@ class PendingUserTest < Capybara::Rails::TestCase
     )
     user.update_column(:encrypted_password, pending_user.encrypted_password)
 
-    visit "/"
+    visit app_path
     fill_in "user_email", with: 'admin-test@edgerocket.co'
     fill_in "user_password", with: 'password'
     click_button 'Sign in'

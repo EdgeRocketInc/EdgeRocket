@@ -28,9 +28,9 @@ class ApplicationController < ActionController::Base
 
   def ensure_sysop_user
     if current_user
-      redirect_to root_path unless current_user.best_role == :sysop
+      redirect_to app_path unless current_user.best_role == :sysop
     else
-      redirect_to root_path
+      redirect_to app_path
     end
   end
 
@@ -46,6 +46,15 @@ private
       # ideally, the default logo name  should be moved to the view or database
       @logo_filename = nil # 'ER_final_logo-x41.png'
     end
+  end
+
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    app_path
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+    app_path
   end
 
 end
