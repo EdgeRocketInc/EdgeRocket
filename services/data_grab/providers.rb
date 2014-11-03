@@ -218,7 +218,12 @@ class JsonClient < ProviderClient
  	end
 
 	def authors(row)
-		row['authors'].nil? ? nil : row['authors'][0]
+    aa = row['authors']
+		if aa.nil? 
+      return nil
+    else 
+      return aa[0][0..254]
+    end
 	end
 
 	def courses
