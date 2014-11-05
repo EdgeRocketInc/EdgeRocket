@@ -17,10 +17,6 @@ class CodeSchoolClient < ProviderClient
     desc.text
   end
 
-  def price(row)
-    nil
-  end
-
   def authors(row)
     link = origin(row)
     page = Nokogiri::HTML(open(link))

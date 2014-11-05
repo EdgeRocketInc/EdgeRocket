@@ -38,7 +38,7 @@ class ProviderClient
   end
 
   def price(row)
-    raise "Abstract method called"
+    one_price
   end
 
   def authors(row)

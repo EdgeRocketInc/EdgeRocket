@@ -24,8 +24,8 @@ providers = [
 	{ vendor_id: 9, provider_class: JsonClient, price: 49 }, # GA
 	{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse
 	{ vendor_id: 10, provider_class: JsonClient, price: nil }, # edX 
-	#{ vendor_id: 11, provider_class: JsonClient, price: nil }, # Code School via Import.IO/JSON 
-	{ vendor_id: 11, provider_class: CodeSchoolClient, price: nil }, # Code School via Nokogiri
+	#{ vendor_id: 11, provider_class: JsonClient, price: 29 }, # Code School via Import.IO/JSON 
+	{ vendor_id: 11, provider_class: CodeSchoolClient, price: 29 }, # Code School via Nokogiri
 	{ vendor_id: 6, provider_class: JsonClient, price: 25 }, # Lynda 
 	{ vendor_id: 3, provider_class: UdemyClient, price: nil } # Udemy
 ]
