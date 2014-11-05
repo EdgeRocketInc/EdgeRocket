@@ -29,7 +29,8 @@ class UserHomeController < ApplicationController
     publish_keen_io(:html, :ui_actions, {
       :user_email => current_user.email,
       :action => controller_path,
-      :method => action_name
+      :method => action_name,
+      :user_agent => request.env['HTTP_USER_AGENT'] # TODO: use UserAgent gem
     })
 
     respond_to do |format|
