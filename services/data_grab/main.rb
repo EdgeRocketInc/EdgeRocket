@@ -13,6 +13,7 @@ require 'byebug'
 require_relative 'providers'
 require_relative 'coursera_helper_methods'
 require_relative 'provider-codeschool'
+require_relative 'provider-treehouse'
 
 class Product < ActiveRecord::Base
 end
@@ -22,7 +23,8 @@ providers = [
 	{ vendor_id: 1, provider_class: CourseraClient, price: nil },
 	{ vendor_id: 2, provider_class: YoutubeClient, price: 0 },
 	{ vendor_id: 9, provider_class: JsonClient, price: 49 }, # GA
-	{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse
+	#{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse via Import.IO/JSON 
+	{ vendor_id: 14, provider_class: TreehouseClient, price: 25 }, # Treehouse via Nokogiri
 	{ vendor_id: 10, provider_class: JsonClient, price: nil }, # edX 
 	#{ vendor_id: 11, provider_class: JsonClient, price: 29 }, # Code School via Import.IO/JSON 
 	{ vendor_id: 11, provider_class: CodeSchoolClient, price: 29 }, # Code School via Nokogiri
@@ -94,24 +96,7 @@ courses_json.each_with_index do |crs, i|
 		prd.description = provider.description(crs)
 		prd.price = provider.price(crs)
 		prd.authors = provider.authors(crs)
-
-    # byebug
-
-    # combines estimated workload/week (in hours) for a course with estimated weeks for all the sessions to set duration
-    if crs["links"] && crs["links"]["sessions"] # for COURSERA API
-      session_ids = crs["links"]["sessions"].join(",")
-      sessions_json = provider.sessions(session_ids)
-      estimated_workload = calculate_workload(crs)
-      total_length = get_session_weeks(sessions_json)
-      prd.duration = calculate_duration(estimated_workload, total_length)
-    elsif crs["contentInfo"] #for UDEMY API
-      prd.duration = crs["contentInfo"].split(" ")[0]
-    elsif crs["duration"] # for WEB SCRAPING
-      split = crs["duration"][0].split(" ")
-      if split[1] == "mins"
-        prd.duration = split[0].to_f/60
-      end
-    end
+		prd.duration = provider.duration(crs)
 
 		# in some cases, instructors field may be empty, then we need to dig into the assicoated links
 		if prd.authors.blank?

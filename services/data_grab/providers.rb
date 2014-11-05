@@ -57,6 +57,10 @@ class ProviderClient
     raise "Abstract method called"
   end
 
+  def duration(row)
+    raise "Abstract method called"
+  end
+
 end
 
 # using Coursera API
@@ -102,6 +106,19 @@ class CourseraClient < ProviderClient
 
   def school(row)
     nil
+  end
+
+  # combines estimated workload/week (in hours) for a course with estimated weeks for all the sessions to set duration
+  def duration(row)
+    d = nil
+    if row["links"] && row["links"]["sessions"] # for COURSERA API
+      session_ids = row["links"]["sessions"].join(",")
+      sessions_json = provider.sessions(session_ids)
+      estimated_workload = calculate_workload(row)
+      total_length = get_session_weeks(sessions_json)
+      d = calculate_duration(estimated_workload, total_length)
+    end
+    return d
   end
 
 end
@@ -189,6 +206,14 @@ class UdemyClient < ProviderClient
       course_json = JSON.parse(course)
   end
 
+  def duration(row)
+    d = nil
+    if row["contentInfo"] #for UDEMY API
+      d = row["contentInfo"].split(" ")[0]
+    end
+    return d
+  end
+
 end
 
 
@@ -236,6 +261,17 @@ class JsonClient < ProviderClient
 
   def school(row)
     row['school'].nil? ? nil : row['school'][0]
+  end
+
+  def duration(row)
+    d = nil
+    if row["duration"] # for WEB SCRAPING
+      split = row["duration"][0].split(" ")
+      if split[1] == "mins"
+        prd.duration = split[0].to_f/60
+      end
+    end
+    return d
   end
 
 end
