@@ -69,7 +69,7 @@ private
       sql_query += ' and vendor_id is null '      
     end
     if !search_query.nil?
-      sql_query += " and to_tsvector(coalesce(p.name,'')||coalesce(p.description,'')||coalesce(p.authors,'')||coalesce(p.keywords,'')||coalesce(p.school,'')) @@ to_tsquery(?) "
+      sql_query += " and to_tsvector(coalesce(p.name,'')||coalesce(p.description,'')||coalesce(p.authors,'')||coalesce(p.keywords,'')||coalesce(p.school,'')) @@ plainto_tsquery(?) "
     end
     if !is_count
       sql_query += ' order by p.manual_entry desc, p.name'
