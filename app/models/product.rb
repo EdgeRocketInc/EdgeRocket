@@ -69,8 +69,7 @@ private
       sql_query += ' and vendor_id is null '      
     end
     if !search_query.nil?
-      search_query_like = '%' + search_query.downcase + '%'
-      sql_query += " and (lower(p.name) like ? or lower(p.description) like ? or lower(p.authors) like ? or lower(p.keywords) like ? or lower(p.school) like ?)" 
+      sql_query += " and to_tsvector(coalesce(p.name,'')||coalesce(p.description,'')||coalesce(p.authors,'')||coalesce(p.keywords,'')||coalesce(p.school,'')) @@ to_tsquery(?) "
     end
     if !is_count
       sql_query += ' order by p.manual_entry desc, p.name'
@@ -81,8 +80,14 @@ private
     if !limit.nil?
       sql_query += ' limit ' + limit.to_s
     end
-    sanitized_sql = self.sanitize_sql_array([sql_query, search_query_like, search_query_like, search_query_like, search_query_like, search_query_like])
-    self.connection.select_all(sanitized_sql)
+    sanitized_sql = self.sanitize_sql_array([sql_query, search_query])
+    # avoid syntax errors especially possible in full text search
+    begin
+      self.connection.select_all(sanitized_sql)
+    rescue ActiveRecord::StatementInvalid => e
+      # TODO: consider retrying it with reparsed query
+      nil
+    end
   end
 
   # price is a string with list of comma separated parameters such as 0,lt50,gte50

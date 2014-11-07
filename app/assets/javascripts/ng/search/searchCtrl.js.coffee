@@ -44,7 +44,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       the_url += parameterQuery
     $http.get(the_url, headers: {'Range': range_page, 'Range-Unit': 'items'} ).success( (data, status, headers, config) ->
       # the server may return literal null
-      if data != 'null'
+      if data != 'null' && data != ''
         # Content-Range is provided in the header in the form 1-20/189, where 189 is the total number of items
         content_range = headers()['content-range']
         if content_range 
@@ -112,7 +112,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
             result += ',' + cbox.id
     if $scope.searchText && $scope.searchText.length > 0
       result = if result==null then '?' else result + '&'
-      result += 'criteria=' + $scope.searchText
+      result += 'criteria=' + encodeURIComponent($scope.searchText)
     result
 
   loadCourses =  ->
