@@ -1,7 +1,17 @@
 class MyCoursesController < ApplicationController
   before_filter :authenticate_user!
 
+  # GET .html
   def index
+    publish_keen_io(:html, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
+  end
+
+  # GET .json
+  def list
     @course_groups = Array.new
     u = current_user
 
@@ -52,14 +62,13 @@ class MyCoursesController < ApplicationController
       end
     end
 
-    publish_keen_io(:html, :ui_actions, {
+    publish_keen_io(:json, :ui_actions, {
         :user_email => current_user.email,
         :action => controller_path,
         :method => action_name
     })
 
     respond_to do |format|
-      format.html
       format.json {
         # combine all aobject into one JSON result
         json_result = Hash.new()
@@ -113,6 +122,12 @@ class MyCoursesController < ApplicationController
         Notifications.course_assigned(u, product, request.protocol + request.host_with_port).deliver
       end
 
+      publish_keen_io(:json, :ui_actions, {
+          :user_email => current_user.email,
+          :action => controller_path,
+          :method => action_name
+      })
+
       result = { 'user_ud' => u.id, 'course_id' => prd_id }
 
     end
@@ -134,6 +149,13 @@ class MyCoursesController < ApplicationController
     pcompl = MyCourse.calc_percent_complete(new_status)
     d = DateTime.now
     MyCourse.update(mc_id, :status => new_status, :percent_complete => pcompl, :completion_date => d)
+
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
+
     result = { 'id' => mc_id, 'percent_complete' => pcompl, 'completion_date' => d }
 
     respond_to do |format|

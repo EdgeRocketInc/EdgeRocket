@@ -23,7 +23,8 @@ EdgeApp::Application.routes.draw do
   get "discussions/:id" => 'discussions#show'
   get "employees" => 'employees#index'
   get "help" => 'help#index'
-  get "my_courses" => 'my_courses#index'
+  get "my_courses" => 'my_courses#index', constraints: { format: 'html' }
+  get "my_courses" => 'my_courses#list', constraints: { format: 'json' }
   get "my_courses/:product_id" => 'my_courses#show'
   get "plans" => 'plans#index'
   get "playlists/:id/courses" => 'playlists#courses'

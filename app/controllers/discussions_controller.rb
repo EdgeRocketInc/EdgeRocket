@@ -85,6 +85,12 @@ private
       end
     end
   
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
+
     # Return result
     @result = {}
   end
@@ -99,7 +105,7 @@ private
 
       # TODO use proper version constants
       gplus_client = Google::APIClient.new(:application_name => 'EdgeRocket', :application_version => '0.1.0')
-      
+            
       # Load private key
       private_key = Google::APIClient::KeyUtils.load_from_pkcs12(KEY_FILE, KEY_SECRET)
 

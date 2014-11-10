@@ -7,9 +7,9 @@ class MyCoursesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get index json" do
+  test "should get list json" do
     sign_in User.find(103)
-    get :index, {format: 'json'}
+    get :list, {format: 'json'}
     assert_response :success
   end
 

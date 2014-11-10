@@ -80,11 +80,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           cg.section_open = true
         #console.log('status=' + status + ' Class=' + cg.statusClass)
         for c in cg.my_courses
-          # TODO make it less ugly by refactoring the whole JSON structure
-          c.product.vendor = (v for v in data.vendors when v.id is c.product.vendor_id)[0]
-          c.product.duration_object = toDurationObject(c.product.duration)
-          #console.log('vendor=' + c.product.vendor.name)
-          #debugger
+          if c.product
+            # TODO make it less ugly by refactoring the whole JSON structure
+            c.product.vendor = (v for v in data.vendors when v.id is c.product.vendor_id)[0]
+            c.product.duration_object = toDurationObject(c.product.duration)
+            #console.log('vendor=' + c.product.vendor.name)
+            #debugger
       $scope.data = data
       $scope.options_json = angular.fromJson($scope.data.account.options)
       # set checkbox for G+

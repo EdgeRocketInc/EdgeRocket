@@ -28,6 +28,12 @@ class EmployeesController < ApplicationController
       Notifications.admin_adds_user_email(@user, request.protocol + request.host_with_port).deliver
     end
 
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
+
     respond_to do |format|
       if @user.errors.empty?
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -85,6 +91,12 @@ class EmployeesController < ApplicationController
     else
       u.errors[:base] << 'Wrong current password'
     end
+
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
 
     respond_to do |format|
       if u.errors.empty?
