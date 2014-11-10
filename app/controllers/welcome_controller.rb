@@ -11,6 +11,13 @@ class WelcomeController < ApplicationController
     else	
       redirect_to controller: 'devise/sessions', action: 'new'
     end
+
+    publish_keen_io(:html, :ui_actions, {
+        :user_email => current_user.nil? : nil : current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
+
   end
 
   def edit_password
