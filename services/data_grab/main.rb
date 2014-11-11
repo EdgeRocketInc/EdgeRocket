@@ -97,6 +97,7 @@ courses_json.each_with_index do |crs, i|
 		prd.price = provider.price(crs)
 		prd.authors = provider.authors(crs)
 		prd.duration = provider.duration(crs)
+		prd.media_type = provider.media_type
 
 		# in some cases, instructors field may be empty, then we need to dig into the assicoated links
 		if prd.authors.blank?
@@ -119,7 +120,6 @@ courses_json.each_with_index do |crs, i|
 		end
 		prd.school = provider.school(crs)
 		prd.origin = course_url
-		prd.media_type = 'online'
 		prd.manual_entry = false
 		prd.save
 	else 

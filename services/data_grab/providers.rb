@@ -61,6 +61,10 @@ class ProviderClient
     raise "Abstract method called"
   end
 
+  def media_type
+    'online'
+  end
+
 end
 
 # using Coursera API
@@ -278,7 +282,17 @@ end
 
 
 class YoutubeClient < ProviderClient
-  
+
+  # channels to pull
+  ALL_CHANNELS = [
+    'UCWo4IA01TXzBeGJJKWHOG9g', # HBR 
+    'UCGwuxdEeCf0TIA2RbPOj-8g', # Stanford 
+    'UCCv1RvQh98t3M9nXVxkn5bw', # Gitomer 
+    'UCC69dxCZQB9VURlHQ8wesPA', # Inc
+    'UCqeXB2WsPdzcdCdP-bUc52g', # Fast Company
+    'UCbmNph6atAoGfqLoCL_duAg' # Talks at Google
+  ]
+
   def initialize(vendor_id, json_file, price = nil)
     super
 
@@ -307,13 +321,46 @@ class YoutubeClient < ProviderClient
   end
 
   def courses
-    # Make an API call.
-    result = @client.execute(
-      :api_method => @youtube.search.list,
-      :parameters => {'channelId' => 'UCCv1RvQh98t3M9nXVxkn5bw', 'Max results' => 100, 'part' => 'id,snippet'}
-    )
+    
+    # will save all courses from multiple calls
+    all_courses = []
 
-    result.data["items"]
+    #byebug
+
+    for channel in ALL_CHANNELS do
+      page_num = 0
+      page_token = nil 
+      # get multiple pages
+      while page_num < 2
+        # Make an API to search for a channel
+        result = @client.execute(
+          :api_method => @youtube.search.list,
+          :parameters => {
+            'channelId' => channel, 
+            'type' => 'video',
+            'maxResults' => 50, 
+            'part' => 'id,snippet',
+            'pageToken' => page_token,
+            'order' => 'date'
+          }
+        )
+        if result
+          all_courses += result.data['items']
+          page_token = result.data['nextPageToken']
+          if page_token.blank?
+            break
+          end
+        else
+          break
+        end
+        page_num += 1
+      end
+    end
+
+    #byebug
+
+    all_courses
+
   end
 
   def instructors
@@ -321,7 +368,12 @@ class YoutubeClient < ProviderClient
   end
 
   def origin(row)
-    "https://www.youtube.com/watch?v=" + row["id"]["videoId"]
+    if !row['id'].nil? && !row["id"]["videoId"].nil?
+      "https://www.youtube.com/watch?v=" + row["id"]["videoId"]
+    else
+      # byebug
+      puts 'NULL row : ' + row.to_s
+    end
   end
 
   def name(row)
@@ -337,11 +389,21 @@ class YoutubeClient < ProviderClient
   end
 
   def authors(row)
+    # TODO need to send a separate request to get contentDetails
     nil
   end
 
   def school(row)
     nil
+  end
+
+  def duration(row)
+    # TODO need to send a separate request to get contentDetails
+    nil
+  end
+
+  def media_type
+    'video'
   end
 
 end
