@@ -4,35 +4,55 @@
 	<!-- Main content area -->
 	<div class="container-fluid" ng-controller="PublicProductCtrl">
 
-
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-md-12">
 
 				<div class="panel panel-info"> 
-					<div class="panel-heading" ng-show="found">{{ course.name }}</div>
-					<div class="panel-heading" ng-show="!found">Item not found</div>
-					<div class="panel-body">
-						<!-- Rating -->
-						<div class="rating-right" ng-show="found">
-					    	<div class="">{{rating.description}}</div>
-							<rating class="{{rating.color}}" ng-model="rating.display" max="5" readonly="rating.read_only" 
-								on-leave="leavingRating()">
-							</rating>
+					<div class="panel-heading" ng-show="found">
+
+						<div class="row">
+							<div class="col-md-10 col-xs-9">
+								{{ course.name }}
+							</div>
+							<div class="col-md-2 col-xs-3">
+								<!-- Rating -->
+								<div class="rating-right" tooltip="The rating is available to registered users">
+									<rating class="{{rating.color}}" ng-model="rating.display" max="5" readonly="rating.read_only" 
+										on-leave="leavingRating()">
+									</rating>
+								</div>
+							</div>
 						</div>
 
-						<img ng-src="{{ course.vendor.logo_asset_url }}" ng-show="course.vendor.logo_asset_url" 
-							class="img-provider-logo"></img>
-						<div class="">{{ course.authors }}</div>
-						<div class="">{{ course.school }}</div>
-						<div ng-if="course.description != null && course.description != ''" class="well">{{ course.description }}</div>
-						<div class="text-right" ng-show="found">
-							<span>{{ course.price | currency }}</span>
-							<span ng-if="course.price > 0 && course.price_free"> / </span>
-							<span class="label label-info" ng-if="course.price_free">Free</span>
+					</div>
+
+					<div class="panel-heading" ng-show="!found">Item not found</div>
+					
+					<div class="panel-body">
+
+						<div class="row">
+							<div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-0">
+								<img ng-src="{{ course.vendor.logo_asset_url }}" ng-show="course.vendor.logo_asset_url" 
+									class="img-provider-logo"></img>
+								<div class="indent-left voffset2 text-muted small">{{ course.authors }}</div>
+								<div class="indent-left voffset1 text-muted">{{ course.school }}</div>
+								<div class="indent-left voffset2" ng-show="found">
+									<span ng-if="course.price > 0">{{ course.price | currency }}</span>
+									<span ng-if="course.price > 0 && course.price_free"> / </span>
+									<span class="label label-info" ng-if="course.price_free">Free</span>
+								</div>
+							</div>
+							<div class="col-md-7 col-sm-9 voffset3">
+								<div ng-if="course.description != null && course.description != ''" class="well">{{ course.description }}</div>
+							</div>
 						</div>
-						<div class="text-right voffset5">
-    						<button class="btn btn-sm btn-success" ng-click="goto()" ng-show="found">Go to course</button>
-							<a href="/app" class="btn btn-sm btn-warning">Sign In</a>
+						<div class="row voffset3">
+							<div class="col-md-12">
+								<div class="text-right">
+		    						<button class="btn btn-sm btn-success" ng-click="goto()" ng-show="found">Go to course</button>
+									<a href="/app" class="btn btn-sm btn-warning">Sign in to EdgeRocket</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
