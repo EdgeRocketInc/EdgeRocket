@@ -1,6 +1,7 @@
 <!-- Modal Survey window -->
 <script type="text/ng-template" id="userSurvey.html">
   <div class="modal-header">
+    <small class="pull-right text-muted"> It takes less than 1 minute</small
     <h4>Preferences</h4>
   </div>
   <div class="modal-body">
@@ -89,7 +90,7 @@
                   <a id="{{ pl.id }}" href="#"
                     ng-click="togglePlaylistSubsciption($index)">
                     <span class="glyphicon glyph-big glyph-action glyphicon-{{ glyphAction[$index] }}" 
-                      tooltip="{{ glyphTooltip[$index] }}">
+                      tooltip="{{ glyphTooltip[$index] }}" tooltip-append-to-body="true">
                     </span>
                   </a>
                 </div>
