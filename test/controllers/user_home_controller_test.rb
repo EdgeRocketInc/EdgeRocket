@@ -7,9 +7,9 @@ class UserHomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get index json" do
+  test "should get user_playlists json" do
     sign_in User.find(101)
-    get :index, :format => 'json'
+    get :user_playlists_json, :format => 'json'
     assert_response :success
   end
 

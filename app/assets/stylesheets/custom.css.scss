@@ -66,7 +66,9 @@ img {
 nav.navbar {
   font-size: 15px;
   background-color: #003050;
-  margin-bottom: 5px;
+
+  // keep default marking at the bottom unless we need more branding later
+  //margin-bottom: 5px;
 }
 
 
@@ -478,6 +480,11 @@ span.badge {
   margin-left: 20px;
 }
 
+.indent-left2 {
+  margin-left: 35px;
+}
+
+
 #analytics_chart {
   min-height: 275px;
 }
@@ -486,4 +493,30 @@ span.badge {
   margin-bottom: 5px;
   color: #A0A0A0;
   font-weight: 500;
+}
+
+// User home page tiles
+.home-font {
+  font-family: 'Cabin', sans-serif;
+  color: #737373;
+  font-size: larger;
+}
+
+a.btn-default {
+  background-color: white;
+  border: 0;
+}
+
+ol.breadcrumb {
+  background-color: white;
+  border: 0;
+  margin-bottom: 8px;
+}
+
+div.panel.panel-info {
+  border-color: transparent;
+}
+
+div.panel-heading {
+  border-bottom: transparent;
 }

@@ -1,14 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1'
+gem 'rails' #, '~> 4.1'
 
 group :development do
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '1.3.8'
-  #gem 'debugger'
   gem 'byebug' # replaces 'debugger'
   gem 'pry-byebug'
 end

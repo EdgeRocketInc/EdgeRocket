@@ -30,7 +30,7 @@ class SystemAccessTest < Capybara::Rails::TestCase
     click_button 'Sign in'
 
     visit "system/surveys"
-    assert_content page, "Recommended Courses"
+    assert_content page, "Company Playlists"
   end
 
   test "systems page can be viewed by a user at sysop role level" do

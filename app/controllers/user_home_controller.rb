@@ -1,9 +1,27 @@
 class UserHomeController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET
+  # GET .html
   def index
+    publish_keen_io(:html, :ui_actions, {
+      :user_email => current_user.email,
+      :action => controller_path,
+      :method => action_name,
+      :user_agent => request.env['HTTP_USER_AGENT'] # TODO: use UserAgent gem
+    })
+  end
 
+  # GET .html
+  def user_playlists
+    publish_keen_io(:html, :ui_actions, {
+      :user_email => current_user.email,
+      :action => controller_path,
+      :method => action_name,
+    })
+  end
+
+  # GET .json
+  def user_playlists_json
     u = current_user
 
     # --- Company section
@@ -26,15 +44,13 @@ class UserHomeController < ApplicationController
       }
     end
 
-    publish_keen_io(:html, :ui_actions, {
+    publish_keen_io(:json, :ui_actions, {
       :user_email => current_user.email,
       :action => controller_path,
       :method => action_name,
-      :user_agent => request.env['HTTP_USER_AGENT'] # TODO: use UserAgent gem
     })
 
     respond_to do |format|
-      format.html
       format.json {
         # combine all objects into one JSON result
         json_result = Hash.new()
@@ -43,6 +59,7 @@ class UserHomeController < ApplicationController
         render json: json_result.as_json
       }
     end
+
   end
 
   # POST

@@ -4,6 +4,7 @@
 #
 #= require_self
 #= require_tree ./ng/search
+#= require URI
 
 # later if needed include 
 # require d3

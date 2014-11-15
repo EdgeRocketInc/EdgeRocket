@@ -32,172 +32,57 @@
   </div>
 </script>
 
-
-<!-- Modal Subscribe confirmation window -->
-<script type="text/ng-template" id="subConfirmModal.html">
-  <div class="modal-header">
-    <h4>Subscribed to Playlist</h4>
-  </div>
-  <div class="modal-body">
-    You&#39;ve subscribed to "{{ thePlaylistName }}" Playlist! Access the Playlist content on <a href="/my_courses">My Courses</a> page
-  </div>
-  <div class="modal-footer">
-      <button class="btn btn-sm btn-success" ng-click="go_to_my()">Go to My Courses</button>
-      <button class="btn btn-sm btn-success" ng-click="cancel()">Back to Home page</button>
-  </div>
-</script>
-
-
-<!-- Modal Unsubscribe prompt window -->
-<script type="text/ng-template" id="unsubPromptModal.html">
-  <div class="modal-header">
-    <h4 class="text-danger">Warning</h4>
-  </div>
-  <div class="modal-body">
-    Are you sure you want to unsubscribe from "{{ thePlaylistName }}" Playlist?
-  </div>
-  <div class="modal-footer">
-      <button class="btn btn-sm btn-danger" ng-click="proceed()">Yes, unsubscribe</button>
-      <button class="btn btn-sm btn-warning" ng-click="cancel()">No, don&#39;t do anyting</button>
-  </div>    
-</script>
-
-
 <!-- Main content area -->
 <div class="container-fluid" ng-controller="IndexCtrl">
-  <div class="row">
-    <div class="col-md-7">
 
-	    <div class="panel panel-info">
- 		    <div class="panel-heading">
-          <span class="glyphicon glyphicon-question-sign pull-right" 
-            popover-placement="left" popover="Company Playlists are collections of courses and learning items. When you subscribe to a playlist, all courses associated with it will be visible on My Courses page." popover-title="How to use Company Playlists">
-          </span>
-          <span class="glyphicon glyphicon-list"></span>
-          Company Playlists
-          <div class="panel-subheading voffset1">Subscribe to playlists below, then go to <a href="/my_courses">My Courses</a> to view and access content.</div>
-        </div>
-        <div class="panel-body panel-body-scroll">
-          <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
-          <div class="row {{rowClass[$last]}}" ng-repeat="pl in data.playlists">
-            <div class="col-xs-12">
-              <div class="inline-col-left">
-                &nbsp;
-                <span class="badge" ng-show="pl.isNew">new</span>
-              </div>
-              <div class="inline-col-wrap">
-                <div class="inline-col-right">
-                  <a id="{{ pl.id }}" href="#"
-                    ng-click="togglePlaylistSubsciption($index)">
-                    <span class="glyphicon glyph-big glyph-action glyphicon-{{ glyphAction[$index] }}" 
-                      tooltip="{{ glyphTooltip[$index] }}" tooltip-append-to-body="true">
-                    </span>
-                  </a>
-                </div>
-                <div class="inline-col-center">
-                  <div class="text-warning">{{ pl.title }}</div>
-                  <div class="text-success">{{ pl.description }}</div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- row -->
-        </div>
-	    </div>
-
-      <div class="panel panel-info" ng-if="options_json.recommendations">
-        <div class="panel-heading">
-          <span class="glyphicon glyphicon-heart-empty"></span>
-          Recommended Courses
-        </div>
-        <div class="panel-body">
-          <div>
-            <a href="https://generalassemb.ly/online/videos/three-strategies-for-designing-persuasive-presentations" class="course-link" target="_blank">Designing Persuasive Presentations</a>
-            <div class="pull-right">
-              <%= image_tag 'ga-lockup.png', class: "img-provider-logo" %>
-              <span class="glyphicon glyphicon-time" tooltip="Duration" style="padding-left: 10px;"></span> 1h | self-paced
-            </div>
-            <blockquote class="blockquote-reverse">
-              “I’ve wanted to get better at presentations for a long time, and this course really helped me - I highly recommend it.”
-              <footer>Steve Johnson, Engineering Manager</footer>
-            </blockquote>
-          </div>
-
-          <div>
-            <a href="https://www.edx.org/course/harvardx/harvardx-cs50x-introduction-computer-1022#.U2qkFq1dX-Q" class="course-link" target="_blank">Computer Science (CS50)</a>
-            <div class="pull-right">
-              <%= image_tag 'edx-logo-header.png', class: "img-provider-logo" %>
-              <span class="glyphicon glyphicon-time" tooltip="Duration" style="padding-left: 10px;"></span> 12w | self-paced
-            </div>
-            <blockquote class="blockquote-reverse">
-              “This course is challenging, and it’s excellent.  The  Harvard professor is terrific.  Really helped improve my understanding of basic technical concepts.  I may become an engineer - watch out!”
-              <footer>Doug Lewis, Sales Rep</footer>
-            </blockquote>
-          </div>
-          <div class="text-right"><button class="btn btn-success btn-sm">Recommend</button></div>
+  <form>
+    <div class="row">
+      <div class="col-md-7 col-lg-6 col-lg-offset-1">
+        <a href="/user_playlists" class="btn btn-default indent-left voffset3" 
+          tooltip="The playlists are curated collections of content about specific job functions or important topics." 
+          tooltip-append-to-body="true">
+          <img src="/assets/ic_list_grey600_48dp.png"/>
+          <span class="text-large indent-left home-font">Company Playlists</span>
+        </a>
+        <br/>
+        <a href="/my_courses" class="btn btn-default indent-left voffset3"
+          tooltip="You can see all your courses with detailed informaiton, and update their status on this screen." 
+          tooltip-append-to-body="true">
+          <img src="/assets/ic_school_grey600_48dp.png"/>
+          <span class="text-large indent-left home-font">My Courses</span>
+        </a>
+        <br/>
+        <a href="/user_discussions" class="btn btn-default indent-left voffset3"
+          tooltip="Comment, and rate courses; discuss them with your team." 
+          tooltip-append-to-body="true">
+          <img src="/assets/ic_question_answer_grey600_48dp.png"/>
+          <span class="text-large indent-left home-font">Discussions and Recommendations</span>
+        </a>
+        <br/>
+        <div class="indent-left voffset3">
+          <input type="text" class="indent-left2" placeholder="Keywords to search" ng-model="search.text"
+            tooltip="Search courses" 
+            tooltip-append-to-body="true" />
+          <a href="#" class="btn btn-default"
+            tooltip="Proceed to search" 
+            tooltip-append-to-body="true"
+            ng-click="gotoSearch(search.text)">
+            <img class="" src="/assets/ic_search_grey600_48dp.png"/>
+          </a>
         </div>
       </div>
 
-    </div>
+      <div class="col-md-5 col-lg-4 voffset4">
 
-    <div class="col-md-5">
-
-      <div class="panel panel-info">
         <div class="panel-heading">
-          <span class="glyphicon glyphicon-plane"></span>
-          Propel Your Learning and Success
-          <i class="pull-right glyphicon" ng-click="isCollapsed = !isCollapsed"
-            ng-class="{'glyphicon-chevron-down': !isCollapsed, 'glyphicon-chevron-right': isCollapsed}">
-          </i>
+          <img src="/assets/ER_final_logo-vertical-x41.png" />
+          <span class="text-large home-font">Propel Your Learning and Success</span>
         </div>
-        <div class="panel-body" collapse="isCollapsed" id="bind-html-with-trust">
-          <div ng-bind-html="companyOverview()"></div>
-        </div>
+        <hr/>
+        <div ng-bind-html="companyOverview()"></div>
+
       </div>
 
-	    <div class="panel panel-info" ng-if="options_json.discussions">
-		    <div class="panel-heading">
-          <span class="glyphicon glyphicon-question-sign pull-right" 
-            popover-placement="left" popover="You can see general discussions or comments on a specific course here. All discussions or comments are visible to employees of the same company. They are not published outside of the company." popover-title="How to use Discussions">
-          </span>
-          <span class="glyphicon glyphicon-comment"></span>
-          Discussions
-          <div class="panel-subheading voffset1">View and add comments on learning content; comments are viewable by users in your company</div>
-        </div>
-        <div class="panel-body panel-discussions">
-          <div class="row">
-            <div class="col-xs-12">
-              <textarea class="form-control textarea-discussions" placeholder="Add comment or question for coworkers" ng-model="newDiscussion.title">
-              </textarea>
-            </div>
-          </div> <!-- Row -->
-          <div class="row voffset1">
-            <div class="col-xs-12">
-              <div class="pull-right">
-                <span class="" ng-if="options_json.discussions == 'gplus'">
-                  <span class="glyphicon glyphicon-{{options_json.gbox_class}} glyph-big glyph-action" ng-click="toggleGBox()"></span>
-                  <span class="glyph-label" tooltip="Also post to Google+ and make visible to coworkers only">Google+</span>
-                </span>
-                <button class="btn btn-sm btn-success" type="button" ng-click="createDiscussion()">Submit</button>
-              </div>
-            </div>
-          </div> <!-- Row -->
-
-          <div class="well" ng-repeat="disc_post in discussions">
-            <div class="text-info" ng-if="disc_post.product_id != null">
-              Comment on: "<a href="/products/{{disc_post.product.id}}">{{disc_post.product.name}}</a>" by {{disc_post.product.authors}}
-            </div>
-            <div class="voffset2">{{ disc_post.title }}</div>
-            <div class="text-success text-right" ng-if="disc_post.user.first_name == null || disc_post.user.first_name == ''">
-              {{disc_post.user.email}}
-            </div>
-            <div class="text-success text-right"  ng-if="disc_post.user.first_name != null && disc_post.user.first_name != ''">
-              {{disc_post.user.first_name}} {{disc_post.user.last_name}}
-            </div>
-          </div>
-        </div>
-	    </div>
-
     </div>
-
-  </div>
+  </form>
 </div>

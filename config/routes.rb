@@ -48,7 +48,11 @@ EdgeApp::Application.routes.draw do
   get "/system/companies" => 'system#companies'
   get "/system/analytics" => 'system#analytics'
   get "teams" => 'teams#index'
-  get "user_home" => 'user_home#index'
+  get "user_home" => 'user_home#index', constraints: { format: 'html' }
+  get "user_playlists" => 'user_home#user_playlists', constraints: { format: 'html' }
+  get "user_playlists" => 'user_home#user_playlists_json', constraints: { format: 'json' }
+  get "user_discussions" => 'user_home#user_discussions', constraints: { format: 'html' }
+  get "user_discussions" => 'user_home#user_discussions_json', constraints: { format: 'json' }
   get "users/current" => 'user_home#get_user'
   get "vendors" => 'products#vendors'
   get "welcome/edit_password" => 'welcome#edit_password'

@@ -4,7 +4,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
 ])
 
-@SearchCtrl = ($scope, $http, $modal, $log, $filter) ->
+@SearchCtrl = ($scope, $http, $modal, $log, $filter, $location) ->
 
   DISPLAY_ITEMS = 50 # keep in sync with back end controller
   $scope.items = []
@@ -33,7 +33,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
   $scope.currentPage = 1
   $scope.searchLabel = 'Loading...'
   $scope.advancedSearch = false
-  $scope.searchText = ''
+
+  # obtain search text from the URL parameter if it's provided
+  search_uri = new URI($location.absUrl())
+  search_criteria = search_uri.search(true).criteria
+  $scope.searchText = if search_criteria then search_criteria else ''
 
   loadCoursePages = (page_number, parameterQuery) ->
     index_start = (page_number-1) * DISPLAY_ITEMS
@@ -300,5 +304,5 @@ EdgeRocket.config(["$httpProvider", (provider) ->
       console.error('Failed to add to playlist')
     )
 
-@SearchCtrl.$inject = ['$scope', '$http', '$modal', '$log', '$filter']
+@SearchCtrl.$inject = ['$scope', '$http', '$modal', '$log', '$filter', '$location']
 @ModalInstanceCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'course']

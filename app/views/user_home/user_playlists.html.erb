@@ -1,0 +1,85 @@
+<!-- Modal Subscribe confirmation window -->
+<script type="text/ng-template" id="subConfirmModal.html">
+  <div class="modal-header">
+    <h4>Subscribed to Playlist</h4>
+  </div>
+  <div class="modal-body">
+    You&#39;ve subscribed to "{{ thePlaylistName }}" Playlist! Access the Playlist content on <a href="/my_courses">My Courses</a> page
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-sm btn-success" ng-click="go_to_my()">Go to My Courses</button>
+      <button class="btn btn-sm btn-success" ng-click="cancel()">Back to Home page</button>
+  </div>
+</script>
+
+
+<!-- Modal Unsubscribe prompt window -->
+<script type="text/ng-template" id="unsubPromptModal.html">
+  <div class="modal-header">
+    <h4 class="text-danger">Warning</h4>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to unsubscribe from "{{ thePlaylistName }}" Playlist?
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-sm btn-danger" ng-click="proceed()">Yes, unsubscribe</button>
+      <button class="btn btn-sm btn-warning" ng-click="cancel()">No, don&#39;t do anyting</button>
+  </div>    
+</script>
+
+
+<!-- Main content area -->
+<div class="container-fluid" ng-controller="PlaylistsCtrl">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="/user_home">Home</a></li>
+        <li class="active">Company Playlists</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+
+	    <div class="panel panel-info">
+ 		    <div class="panel-heading">
+          <span class="glyphicon glyphicon-question-sign pull-right" 
+            popover-placement="left" popover="Company Playlists are collections of courses and learning items. When you subscribe to a playlist, all courses associated with it will be visible on My Courses page." popover-title="How to use Company Playlists">
+          </span>
+          <span class="glyphicon glyphicon-list"></span>
+          Company Playlists
+          <div class="panel-subheading voffset1">Subscribe to playlists below, then go to <a href="/my_courses">My Courses</a> to view and access content.</div>
+        </div>
+        <div class="panel-body panel-body-scroll">
+          <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
+          <div class="row {{rowClass[$last]}}" ng-repeat="pl in data.playlists">
+            <div class="col-xs-12">
+              <div class="inline-col-left">
+                &nbsp;
+                <span class="badge" ng-show="pl.isNew">new</span>
+              </div>
+              <div class="inline-col-wrap">
+                <div class="inline-col-right">
+                  <a id="{{ pl.id }}" href="#"
+                    ng-click="togglePlaylistSubsciption($index)">
+                    <span class="glyphicon glyph-big glyph-action glyphicon-{{ glyphAction[$index] }}" 
+                      tooltip="{{ glyphTooltip[$index] }}" tooltip-append-to-body="true">
+                    </span>
+                  </a>
+                </div>
+                <div class="inline-col-center">
+                  <div class="text-warning">{{ pl.title }}</div>
+                  <div class="text-success">{{ pl.description }}</div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- row -->
+        </div>
+	    </div>
+
+    </div>
+
+  </div>
+</div>
