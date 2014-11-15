@@ -71,7 +71,7 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
     click_on "Computer Science"
     click_on "Add Item"
     # The test fails without sleep, is there another way to fix it w/o sleep?
-    sleep(0.1)
+    sleep(0.2)
     first(".product-recommendation").click
 
     click_on "Add to Recommended"
