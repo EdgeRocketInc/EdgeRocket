@@ -39,33 +39,29 @@
     <div class="row">
       <div class="col-md-7 col-lg-6 col-lg-offset-1">
         <a href="/user_playlists" class="btn btn-default indent-left voffset3" 
-          tooltip="The playlists are curated collections of content about specific job functions or important topics." 
-          tooltip-append-to-body="true">
+        popover-placement="right" popover="The playlists are curated collections of content about specific job functions or important topics." popover-title="How to use Playlists" popover-trigger="mouseenter">
           <%= image_tag('ic_list_grey600_48dp.png') =%>
           <span class="text-large indent-left home-font">Company Playlists</span>
         </a>
         <br/>
         <a href="/my_courses" class="btn btn-default indent-left voffset3"
-          tooltip="You can see all your courses with detailed informaiton, and update their status on this screen." 
-          tooltip-append-to-body="true">
+          popover-placement="right" popover="You can see all your courses with detailed informaiton, and update their status on this screen." popover-title="How to use My Courses" popover-trigger="mouseenter">
           <%= image_tag('ic_school_grey600_48dp.png') =%>
           <span class="text-large indent-left home-font">My Courses</span>
         </a>
         <br/>
         <a href="/user_discussions" class="btn btn-default indent-left voffset3"
-          tooltip="Comment, and rate courses; discuss them with your team." 
-          tooltip-append-to-body="true">
+          popover-placement="right" popover="Comment, and rate courses; discuss them with your team." popover-title="How to use Discussions" popover-trigger="mouseenter">
           <%= image_tag('ic_question_answer_grey600_48dp.png') =%>
-          <span class="text-large indent-left home-font">Discussions and Recommendations</span>
+          <span class="text-large indent-left home-font">Discussions & Comments</span>
         </a>
         <br/>
         <div class="indent-left voffset3">
           <input type="text" class="indent-left2" placeholder="Keywords to search" ng-model="search.text"
-            tooltip="Search courses" 
+            tooltip="Enter text or keywords" 
             tooltip-append-to-body="true" />
           <a href="#" class="btn btn-default"
-            tooltip="Proceed to search" 
-            tooltip-append-to-body="true"
+            popover-placement="right" popover="Proceed to Search" popover-trigger="mouseenter"
             ng-click="gotoSearch(search.text)">
             <%= image_tag('ic_search_grey600_48dp.png') =%>
           </a>
