@@ -14,6 +14,7 @@ require_relative 'providers'
 require_relative 'coursera_helper_methods'
 require_relative 'provider-codeschool'
 require_relative 'provider-treehouse'
+require_relative 'provider-edx'
 
 class Product < ActiveRecord::Base
 end
@@ -25,7 +26,8 @@ providers = [
 	{ vendor_id: 9, provider_class: JsonClient, price: 49 }, # GA
 	#{ vendor_id: 14, provider_class: JsonClient, price: 25 }, # Treehouse via Import.IO/JSON 
 	{ vendor_id: 14, provider_class: TreehouseClient, price: 25 }, # Treehouse via Nokogiri
-	{ vendor_id: 10, provider_class: JsonClient, price: nil }, # edX 
+	# { vendor_id: 10, provider_class: JsonClient, price: nil }, # edX via Import.IO/JSON
+	{ vendor_id: 10, provider_class: EdxClient, price: nil }, # edX via its API
 	#{ vendor_id: 11, provider_class: JsonClient, price: 29 }, # Code School via Import.IO/JSON 
 	{ vendor_id: 11, provider_class: CodeSchoolClient, price: 29 }, # Code School via Nokogiri
 	{ vendor_id: 6, provider_class: JsonClient, price: 25 }, # Lynda 
