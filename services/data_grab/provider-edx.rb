@@ -11,24 +11,28 @@ class EdxClient < ProviderClient
   end
 
   def description(row)
+    desc = nil
     page = get_course_html(row)
-    course = page.css('div.course-detail-subtitle.copy-lead')
-    if course.nil? 
-      return nil
-    else
-      !course.text.nil? ? course.text : nil
+    if !page.nil?
+      course = page.css('div.course-detail-subtitle.copy-lead')
+      if !course.nil? 
+        desc = course.text
+      end
     end
+    return desc
   end
 
   def authors(row)
+    authors = nil
     page = get_course_html(row)
-    authors = page.css('h4.staff-title')
-    if authors.nil? || authors[0].nil?
-      return nil
-    else
-      # TODO add all authors
-      !authors[0].text.nil? ? authors[0].text : nil
+    if !page.nil?
+      authors = page.css('h4.staff-title')
+      if !authors.nil? && !authors[0].nil?
+        # TODO add all authors
+        authors = authors[0].text
+      end
     end
+    return authors
   end
 
   def courses
@@ -63,6 +67,7 @@ private
         course_html = Nokogiri::HTML(open(origin(row)))
       rescue OpenURI::HTTPError => e
         puts "Error when getting HTML page for: " + origin(row)
+        course_html = nil
       end
       if !course_html.nil? 
         # insert this HTML into the row to use later
