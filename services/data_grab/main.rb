@@ -92,38 +92,42 @@ courses_json.each_with_index do |crs, i|
 	course_url = provider.origin(crs)
 	existing_prd = Product.find_by_origin(course_url)
 	if existing_prd.nil?
-		prd = Product.new
-		prd.vendor_id = provider.vendor_id
-		prd.name = provider.name(crs) 
-		prd.description = provider.description(crs)
-		prd.price = provider.price(crs)
-		prd.authors = provider.authors(crs)
-		prd.duration = provider.duration(crs)
-		prd.media_type = provider.media_type
+		begin
+			prd = Product.new
+			prd.vendor_id = provider.vendor_id
+			prd.name = provider.name(crs) 
+			prd.description = provider.description(crs)
+			prd.price = provider.price(crs)
+			prd.authors = provider.authors(crs)
+			prd.duration = provider.duration(crs)
+			prd.media_type = provider.media_type
 
-		# in some cases, instructors field may be empty, then we need to dig into the assicoated links
-		if prd.authors.blank?
-			#puts "blank instr, linked instructors=" + crs['links']['instructors'].to_s
-			if !crs['links'].blank? && !crs['links']['instructors'].blank?
-				# find instructors in the pre-fetched list
-				crs['links']['instructors'].each { |linked_instructor|
-					instructors_json.each { |instr|
-						if instr['id'] == linked_instructor
-							#puts "linked instructor " + instr['firstName'] + ' ' + instr['lastName']
-							if prd.authors.blank?
-								prd.authors = instr['firstName'] + ' ' + instr['lastName']
-							else
-								prd.authors += ', ' + instr['firstName'] + ' ' + instr['lastName']
+			# in some cases, instructors field may be empty, then we need to dig into the assicoated links
+			if prd.authors.blank?
+				#puts "blank instr, linked instructors=" + crs['links']['instructors'].to_s
+				if !crs['links'].blank? && !crs['links']['instructors'].blank?
+					# find instructors in the pre-fetched list
+					crs['links']['instructors'].each { |linked_instructor|
+						instructors_json.each { |instr|
+							if instr['id'] == linked_instructor
+								#puts "linked instructor " + instr['firstName'] + ' ' + instr['lastName']
+								if prd.authors.blank?
+									prd.authors = instr['firstName'] + ' ' + instr['lastName']
+								else
+									prd.authors += ', ' + instr['firstName'] + ' ' + instr['lastName']
+								end
 							end
-						end
+						}
 					}
-				}
+				end
 			end
+			prd.school = provider.school(crs)
+			prd.origin = course_url
+			prd.manual_entry = false
+			prd.save
+		rescue 
+			puts "Error in URL: " + course_url
 		end
-		prd.school = provider.school(crs)
-		prd.origin = course_url
-		prd.manual_entry = false
-		prd.save
 	else 
 		skipped += 1
 	end
