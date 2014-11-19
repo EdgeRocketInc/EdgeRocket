@@ -27,9 +27,10 @@ EdgeApp::Application.routes.draw do
   get "my_courses" => 'my_courses#list', constraints: { format: 'json' }
   get "my_courses/:product_id" => 'my_courses#show'
   get "plans" => 'plans#index'
+  get "products/curated" => 'products#curated_index' # must be before /:id
+  get "products/:id" => 'products#show_html', constraints: { format: 'html' }
   get "playlists/:id/courses" => 'playlists#courses'
   get "products/:id/reviews" => 'products#reviews'
-  get "products/curated" => 'products#curated_index'
   get "profile" => 'profile#index', constraints: { format: 'html' }
   get "profile/current" => 'profile#current', constraints: { format: 'json' }
   get "profile/get_profile_photo" => 'profile#get_profile_photo'
@@ -57,18 +58,19 @@ EdgeApp::Application.routes.draw do
   get "vendors" => 'products#vendors'
   get "welcome/edit_password" => 'welcome#edit_password'
 
-  post "sign_up" => 'pending_users#create'
-  post "playlist_subscription" => 'user_home#subscribe', constraints: { format: 'json' }
   post "course_subscription" => 'my_courses#subscribe', constraints: { format: 'json' }
-  post "users/preferences" => 'user_home#create_preferences', constraints: { format: 'json' }
   post "discussions" => 'discussions#create_discussion', constraints: { format: 'json' }
-  post "playlists/:id/courses/:course_id" => 'playlists#add_course', constraints: { format: 'json' }
   post "employees" => 'employees#create', constraints: { format: 'json' }
+  post "playlist_subscription" => 'user_home#subscribe', constraints: { format: 'json' }
+  post "playlists/:id/courses/:course_id" => 'playlists#add_course', constraints: { format: 'json' }
   post "products/:product_id/reviews" => "discussions#create_review", constraints: { format: 'json' }
+  post "products/:id/goto" => "products#post_goto", constraints: { format: 'json' }
+  post "sign_up" => 'pending_users#create'
   post "system/recommendations" => 'recommendations#create'
   post "system/pending_users/create_users" => 'pending_users#create_user_from_pending', constraints: { format: 'json' }
   post "system/companies/disable_company" => 'company#disable_company', constraints: { format: 'json' }
   post "system/companies/activate_company" => 'company#activate_company', constraints: { format: 'json' }
+  post "users/preferences" => 'user_home#create_preferences', constraints: { format: 'json' }
 
   put "account/:id" => 'company#update_account', constraints: { format: 'json' }
   put "course_subscription/:id" => 'my_courses#update_subscribtion', constraints: { format: 'json' }
@@ -80,22 +82,21 @@ EdgeApp::Application.routes.draw do
 
   post "profile/upload" => 'profile#upload', constraints: { format: 'json' }
   post "profile" => 'profile#update', constraints: { format: 'json' }
-
   patch "system/surveys/undo" => 'system#undo_processing'
   patch "system/surveys" => 'system#processing'
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe', constraints: { format: 'json' }
+  delete "employees/:id" => 'employees#destroy', constraints: { format: 'json' }
   delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
   delete "playlists/:id/courses/:course_id" => 'playlists#remove_course', constraints: { format: 'json' }
-  delete "employees/:id" => 'employees#destroy', constraints: { format: 'json' }
   delete "/system/recommendations/:id" => 'recommendations#destroy'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  resources :products
-  resources :playlists
+  resources :products, constraints: { format: 'json' }
+  resources :playlists # TODO: , constraints: { format: 'json' }
 
   # Example resource route with options:
   #   resources :products do

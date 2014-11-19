@@ -101,6 +101,12 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 
   $scope.goto = ->
     #debugger
+    # Post an event to KeenIO via ER server
+    $http.post('/products/' + $scope.course.id + '/goto.json', null).success( (data) ->
+      console.log('product clicked')
+    ).error( ->
+      console.error('Failed to post prduct click event')
+    )
     $window.open($scope.course.origin)
 
   $scope.backToMyCourses = ->

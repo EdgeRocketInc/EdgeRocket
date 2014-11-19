@@ -2,13 +2,17 @@ class ProductsController < ApplicationController
 
   include PlaylistsOperations
 
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :show_html, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
-  # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
+    @products = Product.all.order(:name)
   end
 
   # GET /products/curated
@@ -31,8 +35,25 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1
+  # .html
+  def show_html
+    publish_keen_io(:html, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name,
+        :product_id => @product.id
+    })
+  end
+
   # GET /products/1.json
   def show
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name,
+        :product_id => @product.id
+    })
+
     @product_json = @product.as_json(include: :vendor)
     if !@product_json['vendor'].nil?
       @product_json['vendor']['logo_asset_url'] = view_context.image_path(@product_json['vendor']['logo_file_name'])
@@ -75,7 +96,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
 
@@ -146,6 +166,25 @@ class ProductsController < ApplicationController
   def reviews
     reviews = Discussion.product_reviews(current_user.account_id, params[:id])
     @reviews_json = reviews.as_json(:include => :user)
+  end
+
+  # POST /products/1/goto.json
+  # JSON only
+  #
+  # Post a product click event to KeenIO
+  #
+  def post_goto
+
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name,
+        :product_id => params[:id]
+    })
+
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   private

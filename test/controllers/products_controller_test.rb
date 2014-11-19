@@ -6,8 +6,8 @@ class ProductsControllerTest < ActionController::TestCase
     sign_in User.find(103)
   end
 
-  test "should get index" do
-    get :index
+  test "should get index json" do
+    get :index, :format => 'json'
     assert_response :success
     assert_not_nil assigns(:products)
   end
@@ -25,7 +25,12 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should show product" do
-    get :show, id: @product
+    get :show_html, id: @product
+    assert_response :success
+  end
+
+  test "should show product json" do
+    get :show, id: @product, :format => 'json'
     assert_response :success
   end
 
@@ -56,5 +61,11 @@ class ProductsControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "should post goto event" do
+    post :post_goto, id: @product, :format => 'json'
+    assert_response :success
+  end
+
 
 end
