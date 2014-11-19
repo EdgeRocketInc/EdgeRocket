@@ -269,7 +269,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     )
 
   loadPlaylists =  ->
-    $http.get('/user_home.json').success( (data) ->
+    $http.get('/user_playlists.json').success( (data) ->
       $scope.pl_data = data
       console.log('Successfully loaded playlists')
     ).error( ->
@@ -284,6 +284,11 @@ EdgeRocket.config(["$httpProvider", (provider) ->
     $modalInstance.close($scope.course)
 
   $scope.goto = ->
+    $http.post('/products/' + $scope.course.id + '/goto.json', null).success( (data) ->
+      console.log('product clicked')
+    ).error( ->
+      console.error('Failed to post prduct click event')
+    )
     $window.open($scope.course.origin)
     $modalInstance.dismiss('goto')
 
