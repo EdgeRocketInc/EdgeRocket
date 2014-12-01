@@ -6,67 +6,67 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 <url>
-  <loc>https://edgerocket.co/</loc>
+  <loc>http://edgerocket.co/</loc>
   <changefreq>weekly</changefreq>
   <priority>1.0</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/benefits.html</loc>
+  <loc>http://edgerocket.co/benefits.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/services.html</loc>
+  <loc>http://edgerocket.co/services.html</loc>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/</loc>
+  <loc>http://edgerocket.co/blog/</loc>
   <changefreq>weekly</changefreq>
   <priority>0.5</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/navigating-the-online-learning-universe/</loc>
+  <loc>http://edgerocket.co/blog/navigating-the-online-learning-universe/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/the-new-landscape-of-learning-and-thriving/</loc>
+  <loc>http://edgerocket.co/blog/the-new-landscape-of-learning-and-thriving/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/why-take-online-courses-if-theyre-not-accredited/</loc>
+  <loc>http://edgerocket.co/blog/why-take-online-courses-if-theyre-not-accredited/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/course-review-human-computer-interaction/</loc>
+  <loc>http://edgerocket.co/blog/course-review-human-computer-interaction/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/top-new-resources-become-better-learner/</loc>
+  <loc>http://edgerocket.co/blog/top-new-resources-become-better-learner/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/the-best-motivation-after-compensation/</loc>
+  <loc>http://edgerocket.co/blog/the-best-motivation-after-compensation/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/my-mother-had-me-tested/</loc>
+  <loc>http://edgerocket.co/blog/my-mother-had-me-tested/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/the-times-they-are-a-changin/</loc>
+  <loc>http://edgerocket.co/blog/the-times-they-are-a-changin/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
 <url>
-  <loc>https://edgerocket.co/blog/the-cost-to-keep-em/</loc>
+  <loc>http://edgerocket.co/blog/the-cost-to-keep-em/</loc>
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
