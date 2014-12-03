@@ -7,7 +7,13 @@ class UserAccount
   def save_user(generated_password)
     account_exists = Account.find_by(:company_name => @pending_user.company_name)
     if account_exists
-      @user = User.new(:account_id => account_exists.id, :email => @pending_user.email, :password => @pending_user.encrypted_password, :first_name => @pending_user.first_name, :last_name => @pending_user.last_name)
+      @user = User.new(
+        :account_id => account_exists.id, 
+        :email => @pending_user.email, 
+        :password => @pending_user.encrypted_password, 
+        :first_name => @pending_user.first_name, 
+        :last_name => @pending_user.last_name
+      )
     else
       @account = Account.new(:company_name => @pending_user.company_name, :account_type => @pending_user.user_type)
       
@@ -26,11 +32,17 @@ class UserAccount
     end
 
     @user.encrypted_password = @pending_user.encrypted_password
-    @user.save
-    Notifications.account_confirmation_email(@user, @hostname, generated_password).deliver
-    @role = Role.new(name:'SA', user_id: @user.id)
-    @role.save
-    @pending_user.destroy
+    if @user.save
+      Notifications.account_confirmation_email(@user, @hostname, generated_password).deliver
+      # Add SA role to new users with new accounts only!
+      if !account_exists
+        @role = Role.new(name:'SA', user_id: @user.id)
+        @role.save
+      end
+      @pending_user.destroy
+    else
+      # TODO crtitical error
+    end
   end
 
 end
