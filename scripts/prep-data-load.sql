@@ -1,7 +1,7 @@
 -- KEEP products that are used
 
 select p.id, name, origin from products p 
-where vendor_id = 11
+where vendor_id = 10
 and manual_entry='f'
 and (
 	id in (select product_id from discussions where product_id=p.id)
@@ -12,10 +12,10 @@ and (
 
 
 -- DELETE products that are NOT used
---DELETE
+DELETE
 --select count(*)
 from products p 
-where vendor_id = 11
+where vendor_id = 10
 and manual_entry='f'
 and (
 	id not in (select product_id from discussions where product_id=p.id)
