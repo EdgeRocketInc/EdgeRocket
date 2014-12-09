@@ -15,6 +15,7 @@ require_relative 'coursera_helper_methods'
 require_relative 'provider-codeschool'
 require_relative 'provider-treehouse'
 require_relative 'provider-edx'
+require_relative 'provider-udemy'
 
 class Product < ActiveRecord::Base
 end
@@ -125,8 +126,8 @@ courses_json.each_with_index do |crs, i|
 			prd.origin = course_url
 			prd.manual_entry = false
 			prd.save
-		rescue 
-			puts "Error in URL: " + course_url
+		rescue Exception => e
+			puts "Error " + e.message + " in URL: " + course_url
 		end
 	else 
 		skipped += 1
