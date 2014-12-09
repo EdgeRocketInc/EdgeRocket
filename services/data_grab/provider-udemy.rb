@@ -71,7 +71,10 @@ class UdemyClient < ProviderClient
   end
 
   def school(row)
-    row['owner'].nil? ? nil : row['owner']['title']
+    # The problem with the owner filed is that it's the same ad Authors
+    # TODO figure out how to get the right name of the school
+    #row['owner'].nil? ? nil : row['owner']['title']
+    nil
   end
 
   def duration(row)
