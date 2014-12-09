@@ -16,6 +16,7 @@ require_relative 'provider-codeschool'
 require_relative 'provider-treehouse'
 require_relative 'provider-edx'
 require_relative 'provider-udemy'
+require_relative 'provider-refactoru'
 
 class Product < ActiveRecord::Base
 end
@@ -32,7 +33,8 @@ providers = [
 	#{ vendor_id: 11, provider_class: JsonClient, price: 29 }, # Code School via Import.IO/JSON 
 	{ vendor_id: 11, provider_class: CodeSchoolClient, price: 29 }, # Code School via Nokogiri
 	{ vendor_id: 6, provider_class: JsonClient, price: 25 }, # Lynda 
-	{ vendor_id: 3, provider_class: UdemyClient, price: nil } # Udemy
+	{ vendor_id: 3, provider_class: UdemyClient, price: nil }, # Udemy
+	{ vendor_id: 3001, provider_class: RefactorUClient, price: nil } # RefactorU
 ]
 
 options = {:config => nil}
