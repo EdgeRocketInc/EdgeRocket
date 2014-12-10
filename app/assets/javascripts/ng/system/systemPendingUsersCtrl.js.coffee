@@ -1,9 +1,3 @@
-EdgeRocket = angular.module("EdgeRocket", ['ui.bootstrap', 'ngResource', 'ngGrid'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 @SystemPendingUsersCtrl = ($scope, $http, $resource) ->
 
   $scope.getPendingUsers = ->

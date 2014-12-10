@@ -1,9 +1,3 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'ngGrid'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 # This controller is for managing curated (manually entered) products 
 @CuratedProductsCtrl = ($scope, $http, $modal, $log) ->
 

@@ -9,6 +9,12 @@ class UserHomeController < ApplicationController
       :method => action_name,
       :user_agent => request.env['HTTP_USER_AGENT'] # TODO: use UserAgent gem
     })
+
+    # if user has not done the survey, render the interests page
+    if current_user.survey.nil?
+      # TODO
+      #render 'interests'
+    end
   end
 
   # GET .html

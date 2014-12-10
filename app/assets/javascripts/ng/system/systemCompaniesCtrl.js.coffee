@@ -1,9 +1,3 @@
-EdgeRocket = angular.module("EdgeRocket", ['ui.bootstrap', 'ngResource', 'ngGrid'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 @SystemCompaniesCtrl = ($scope, $http, $resource) ->
   $scope.getCompanies = ->
     $scope.companiesQuery = $resource('/system/companies.json').query()

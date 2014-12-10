@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails' #, '~> 4.1'
+gem 'rails', '~> 4.1.6'
 
 group :development do
   gem 'byebug' # replaces 'debugger'
@@ -40,7 +40,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '3.0.4'
+# There is a conflict with Rails and Jquery2 in this version at this time.
+gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '2.2.0'
@@ -66,12 +67,12 @@ end
 gem 'bootstrap-sass', '3.2'
 
 # Bootswatch & JS engine for it
-gem 'twitter-bootswatch-rails', '~> 3.1.1'
-gem 'twitter-bootswatch-rails-helpers', '~> 3.1'
+gem 'twitter-bootswatch-rails', '~> 3.2'
+gem 'twitter-bootswatch-rails-helpers', '~> 3.2'
 gem 'therubyracer', '~> 0.12'		
 
 # Authentication and Authorization 
-gem 'devise', '~> 3.3'
+gem 'devise', '~> 3.4.1'
 gem 'cancancan', '~> 1.9'
 gem 'omniauth', '~> 1.2'
 gem 'omniauth-google-oauth2', '~> 0.2'

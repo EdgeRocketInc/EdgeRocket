@@ -1,3 +1,0 @@
-// Superhero
-// Bootswatch
-// bootswatch.js
