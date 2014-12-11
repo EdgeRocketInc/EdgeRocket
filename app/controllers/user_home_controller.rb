@@ -12,8 +12,7 @@ class UserHomeController < ApplicationController
 
     # if user has not done the survey, render the interests page
     if current_user.survey.nil?
-      # TODO
-      #render 'interests'
+      render 'interests'
     end
   end
 

@@ -1,4 +1,4 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'ngSanitize', 'ngResource', 'ngGrid', 'ngActivityIndicator', 'angularCharts'])
+EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'ngSanitize', 'ngResource', 'ngGrid', 'ngActivityIndicator', 'angularCharts', 'ngMaterial'])
 
 EdgeRocket.config(['$controllerProvider', ($controllerProvider) ->
   $controllerProvider.allowGlobals()
