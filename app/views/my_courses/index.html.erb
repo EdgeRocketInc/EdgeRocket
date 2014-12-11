@@ -121,7 +121,10 @@
 			    <span ng-if="data.my_playlists==null || data.my_playlists.length==0" class="label label-warning">No Playlists</span>
           <accordion ng-if="data.my_playlists.length > 0" close-others="false">
             <accordion-group is-open="status.open" ng-repeat="pl in data.my_playlists">
-
+              <accordion-heading>
+                <span class="badge" ng-show="pl.isNew==true">new</span>
+                <span class="text-warning">{{pl.title}}</span>
+              </accordion-heading>
             </accordion-group>
           </accordion>
 		    </div>
