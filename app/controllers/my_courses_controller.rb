@@ -73,6 +73,7 @@ class MyCoursesController < ApplicationController
         # combine all aobject into one JSON result
         json_result = Hash.new()
         json_result['account'] = @account
+        # TODO sort playlits items by rank
         json_result['my_playlists'] = \
           @my_playlists.as_json(methods: :percent_complete, :include => { :playlist_items => {:include => :product}})
         json_result['course_groups'] = @course_groups
