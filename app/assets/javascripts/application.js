@@ -20,7 +20,7 @@
 
 //= require analytics
 
-//= require ui-bootstrap-tpls-0.11.0.min
+//= require ui-bootstrap-tpls-0.12.0.min
 //= require ng-grid-2.0.11.min
 //= require ngActivityIndicator.min
 //= require angular-charts.min
