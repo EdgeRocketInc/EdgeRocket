@@ -95,6 +95,72 @@
 				  <span ng-if="data.course_groups==null || data.course_groups.length==0" class="label label-warning">No Courses</span>
           <accordion ng-if="data.course_groups.length > 0" close-others="false">
             <accordion-group is-open="cg.section_open" ng-repeat="cg in data.course_groups">
+              <accordion-heading>
+                <span class="{{cg.statusClass}}">{{ cg.statusText }}</span>
+                <i class="pull-right glyphicon"
+                  ng-class="{'glyphicon-chevron-down': cg.section_open, 'glyphicon-chevron-right': !cg.section_open}">
+                </i>
+              </accordion-heading>
+
+              <div class="table-responsive">
+              <table class="table width-100pct">
+                <tr class="" ng-repeat="c in cg.my_courses">
+                  <td class="course-col course-col-25px">
+                    <a href="{{c.product.origin}}" class="" target="_blank">
+                      <span class="glyphicon glyphicon-play-circle glyph-big pull-right"
+                        tooltip="Go to course" tooltip-append-to-body="true">
+                      </span>
+                    </a>
+                  </td>
+                  <td class="course-col">
+                    <a href="/products/{{c.product.id}}" class="course-link" tooltip="Course Details">
+                      {{c.product.name}}
+                    </a>
+                  </td>
+                  <td class="course-col text-right">
+                    <img ng-src="{{c.product.vendor.logo_asset_url}}" 
+                      class="img-provider-logo" ng-show="c.product.vendor.logo_asset_url" 
+                      tooltip="{{c.product.vendor.name}}" tooltip-append-to-body="true"/>
+                  </td>
+                  <td class="course-col course-col-60px">
+                      <span class="glyphicon"
+                        ng-class="{'glyphicon-exclamation-sign orange': c.assigned_by != 'Self', 'glyphicon-user blue': c.assigned_by == 'Self'}"
+                        tooltip="Assigned by {{c.assigned_by}}" tooltip-append-to-body="true">
+                      </span>
+                      <span class="glyphicon gray {{mediaTypes[c.product.media_type].glyph}}"
+                        tooltip="{{mediaTypes[c.product.media_type].text}}" tooltip-append-to-body="true">
+                      </span>
+                      <div class="label-duration" ng-if="c.product.duration">
+                        {{c.product.duration_object.hours}}h
+                        {{c.product.duration_object.minutes}}m
+                      </div>
+                  </td>
+                  <td class="course-col course-col-100px" ng-if="cg.status != 'compl'">
+
+                    <progressbar class="course-progress" animate="false" max="100"
+                      value="c.percent_complete" type="success">
+                    </progressbar>
+                  </td>
+                  <td class="course-col" ng-if="cg.status == 'compl'">
+                    <span class="green">{{c.completion_date | date:'yyyy-MM-dd'}}</span>
+                  </td>
+
+                  <td class="course-col course-col-100px text-right">
+                    <div class="btn-toolbar btn-toolbar-status">
+                      <button type="button" class="btn btn-success btn-xs" tooltip="Move to Completed" tooltip-append-to-body="true"
+                        ng-click="courseComplete(cg,$index)" ng-if="cg.status != 'compl'" >C</button>
+                      <button type="button" class="btn btn-primary btn-xs" tooltip="Move to In Progress" tooltip-append-to-body="true"
+                        ng-click="courseWip(cg,$index)" ng-if="cg.status != 'wip'">I</button>
+                      <button type="button" class="btn btn-warning btn-xs" tooltip="Move to Assigned" tooltip-append-to-body="true"
+                        ng-click="courseRegister(cg,$index)" ng-if="cg.status != 'reg'">A</button>
+                      <button type="button" class="btn btn-info btn-xs" tooltip="Move to Wishlist" tooltip-append-to-body="true"
+                        ng-click="courseWishlist(cg,$index)" ng-if="cg.status != 'wish'">W</button>
+                    </div>                  
+                  </td>
+
+                </tr>
+              </table>
+              </div>
 
             </accordion-group>
           </accordion>
@@ -135,6 +201,10 @@
                 </div>
               </accordion-heading>
               <div class="accordion-course text-info course-row" ng-repeat="pl_item in pl.playlist_items">
+                  <span class="badge" ng-show="pl_item.isNew==true">new</span>
+                  <a href="/products/{{pl_item.product_id}}" class="course-link" tooltip="Course Details">
+                    {{pl_item.product.name}}
+                  </a>
               </div>
             </accordion-group>
           </accordion>
