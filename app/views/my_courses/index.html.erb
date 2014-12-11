@@ -124,6 +124,15 @@
               <accordion-heading>
                 <span class="badge" ng-show="pl.isNew==true">new</span>
                 <span class="text-warning">{{pl.title}}</span>
+                <i class="pull-right glyphicon"
+                  ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
+                </i>
+                <progressbar class="course-progress" max="100"
+                  value="pl.percent_complete" type="success" animate="false">
+                </progressbar>
+                <div class="accordion-description text-success">
+                  {{pl.description}}
+                </div>
               </accordion-heading>
             </accordion-group>
           </accordion>
