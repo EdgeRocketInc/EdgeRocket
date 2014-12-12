@@ -1,90 +1,25 @@
 <!-- Main content area -->
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="InterestsCtrl">
 
   <form>
 
-    <div class="row">
+    <div class="row" ng-repeat="row in [0,1,2]">
 
-      <div class="col-md-3">
+      <div class="col-md-3" ng-repeat="col in [0,1,2,3]">
         <div class="well well-tile">
-          <md-checkbox ng-model="cbTmp" aria-label="Communications">
-            Communications
-          </md-checkbox>
-          
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Computer Science
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Data Science
-        </div>
-      </div>
-      
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Information Security
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Communications
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Computer Science
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Data Science
-        </div>
-      </div>
-      
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Information Security
-        </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Communications
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Computer Science
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Data Science
-        </div>
-      </div>
-      
-      <div class="col-md-3">
-        <div class="well well-tile">
-          Information Security
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <img ng-src="{{ interests[(row*3)+col].img_url }}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-10">
+              <div class="tile-name">{{ interests[(row*3)+col].name }}</div>
+            </div>
+            <div class="col-xs-2">
+              <md-checkbox ng-model="cbTmp" aria-label="{{ interests[(row*3)+col].name }}" class="tile-checkbox" />
+            </div>
+          </div>
         </div>
       </div>
 
