@@ -6,3 +6,4 @@
 #= require_tree ./ng/dashboards
 #= require d3
 #= require angular-charts.min
+#= require vega.min
