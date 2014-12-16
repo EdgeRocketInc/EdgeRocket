@@ -17,6 +17,7 @@ require_relative 'provider-treehouse'
 require_relative 'provider-edx'
 require_relative 'provider-udemy'
 require_relative 'provider-refactoru'
+require_relative 'provider-coursera'
 
 class Product < ActiveRecord::Base
 end
