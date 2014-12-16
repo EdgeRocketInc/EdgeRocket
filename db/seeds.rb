@@ -14,17 +14,18 @@ Role.destroy_all
 Survey.destroy_all
 Product.destroy_all
 Recommendation.destroy_all
+MyCourse.destroy_all
 
 account_one = Account.create(company_name: 'EdgeRocket, Inc.',
 	options: '{"budget_management":true,"survey":true,"discussions":"gplus","recommendations":true,"dashboard_demo":true}',
 	overview: 'EdgeRocket ecnourages employees to take as many classes as possible',
   disabled: false,
   account_type: 'Free')
-account_two = Account.create(id:2, company_name: 'TechCorp',
+account_two = Account.create(company_name: 'TechCorp',
 	options: '{"budget_management":true,"survey":false,"discussions":"builtin","recommendations":true,"dashboard_demo":true}',
 	overview: 'TechCorp will reimburse you for up to $200 of online courses per calendar year, subject to your manager’s approval. Questions about EdgeRocket usage can be addressed to your manager, or to Linda Kim in HR.',
   disabled: false)
-account_three = Account.create(id:3, company_name: 'TrackVia',
+account_three = Account.create(company_name: 'TrackVia',
 	options: '{"budget_management":false,"survey":false,"discussions":"gplus","recommendations":false,"disable_search":true,"disable_plans":true,"dashboard_demo":false}',
 	overview: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed dapibus erat. Pellentesque at elementum massa. Praesent aliquam, ligula ut tempus venenatis, est purus sagittis lectus, vel cursus risus elit in ligula. In placerat mollis diam, sit amet accumsan massa egestas id. Mauris posuere dapibus metus quis vestibulum. Maecenas varius diam velit, fermentum porta risus placerat dictum',
   disabled: false)
@@ -80,13 +81,12 @@ Product.create(name: 'Test Product Six', authors: 'Seth and Sean', origin: 'Seth
 Product.create(name: 'Test Product Six', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 6)
 Product.create(name: 'Test Product Six', authors: 'Seth and Sean', origin: 'Seth and Seans Radical School', media_type: 'Chalkboard', school: 'gSchool', vendor_id: 6)
 
-
 sysop = User.create(email: 'superadmin@edgerocket.co', password: 'ER0cket!', account_id: account_one.id, first_name: "Admin")
 admin =User.create(email: 'admin@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)
-User.create(email: 'peter@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)
-User.create(email: 'alexey@edgerocket.co', password: 'ER0cket!', account_id: account_one.id)
-User.create(email: 'aleksey@dmitriyev.name', password: 'ER0cket!', account_id: account_one.id)
-User.create(email: 'peter@dmitriyev.name', password: 'ER0cket!', account_id: account_one.id)
+user1 = User.create(email: 'peter@edgerocket.co', password: 'ER0cket!', account_id: account_one.id, first_name: "Peter", last_name: "Something")
+user2 = User.create(email: 'alexey@edgerocket.co', password: 'ER0cket!', account_id: account_one.id, first_name: "Alexey", last_name: "Something")
+user3 = User.create(email: 'aleksey@dmitriyev.name', password: 'ER0cket!', account_id: account_one.id, first_name: "Sean", last_name: "Something")
+user4 = User.create(email: 'peter@dmitriyev.name', password: 'ER0cket!', account_id: account_one.id)
 User.create(email: 'Jane.Smith@TechCorp.com', password: 'TechCorp!', account_id: account_two.id)
 jose = User.create(email: 'Jose.Calderon@TechCorp.com', password: 'TechCorp!', account_id: account_two.id)
 admin_track = User.create(email: 'admin@TrackVia.com', password: 'TrackVia!', account_id: account_three.id)
@@ -94,7 +94,6 @@ User.create(email: 'employee@TrackVia.com', password: 'TrackVia!', account_id: a
 
 PendingUser.new(first_name:"Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free").save
 PendingUser.new(first_name:"Bob", last_name: "Dylan", company_name: "EdgeRocket", email: "bobdylan@edgerocket.co", encrypted_password: "password", user_type: "Enterprise").save
-
 
 Role.create(id: 0, name: 'Sysop', user_id: sysop.id)
 Role.create(id: 2, name: 'Admin', user_id: admin.id)
@@ -106,3 +105,12 @@ Recommendation.create(product_id: product1.id, skill_id: 1)
 Recommendation.create(product_id: product2.id, skill_id: 2)
 Recommendation.create(product_id: product3.id, skill_id: 2)
 
+MyCourse.create(user_id: user1.id, product_id: product1.id)
+MyCourse.create(user_id: user1.id, product_id: product1.id, completion_date: Date.today)
+MyCourse.create(user_id: user1.id, product_id: product1.id, completion_date: Date.today)
+MyCourse.create(user_id: user2.id, product_id: product1.id)
+MyCourse.create(user_id: user2.id, product_id: product1.id, completion_date: Date.today)
+MyCourse.create(user_id: user2.id, product_id: product1.id)
+MyCourse.create(user_id: user3.id, product_id: product1.id, completion_date: Date.today)
+MyCourse.create(user_id: user3.id, product_id: product1.id)
+MyCourse.create(user_id: user3.id, product_id: product1.id, completion_date: Date.today)

@@ -76,5 +76,7 @@
 			</div>
 		</div>
 
-	</div>
+    <%= bar_chart assigned_vs_completed_path, stacked: true, discrete: true, library: {hAxis: {title: "# Courses", tickOptions: {formatString: '%.0f'}}, title: "Courses Assigned vs. Completed", bar: {groupWidth: "20%"}} %>
+
+  </div>
 </div>

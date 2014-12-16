@@ -90,4 +90,8 @@ class MyCourse < ActiveRecord::Base
     pc.as_json
   end
 
+  def completed?
+    completion_date.present?
+  end
+
 end

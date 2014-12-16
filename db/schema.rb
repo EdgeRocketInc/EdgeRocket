@@ -119,14 +119,6 @@ ActiveRecord::Schema.define(version: 20141027194327) do
   add_index "products", ["account_id"], name: "index_products_on_account_id", using: :btree
   add_index "products", ["name"], name: "index_products_on_name", using: :btree
 
-  create_table "products_users", id: false, force: true do |t|
-    t.integer "user_id",    null: false
-    t.integer "product_id", null: false
-  end
-
-  add_index "products_users", ["product_id", "user_id"], name: "index_products_users_on_product_id_and_user_id", using: :btree
-  add_index "products_users", ["user_id", "product_id"], name: "index_products_users_on_user_id_and_product_id", using: :btree
-
   create_table "profiles", force: true do |t|
     t.string   "title"
     t.string   "employee_identifier"
