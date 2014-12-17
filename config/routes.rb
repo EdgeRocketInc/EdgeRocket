@@ -19,7 +19,7 @@ EdgeApp::Application.routes.draw do
   get "assign" => 'teams#index_assign', constraints: { format: 'html' }
   get "company" => 'company#index', constraints: { format: 'html' }
   get "dashboard" => 'dashboards#show'
-  get "dashboard/assigned_vs_completed" => 'dashboards#assigned_vs_completed', as: "assigned_vs_completed"
+  get "dashboard/assigned_vs_completed/:page" => 'dashboards#assigned_vs_completed', as: "assigned_vs_completed"
   get "discussions" => 'discussions#index'
   get "discussions/:id" => 'discussions#show'
   get "employees" => 'employees#index'

@@ -14,7 +14,6 @@ $(document).ready ->
       else
         $(this).hide()
 
-
   $("#recommendation-search").bind "keyup", ->
     searchTerm = $(this).val()
     changeProductsDisplayed searchTerm
