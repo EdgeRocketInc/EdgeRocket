@@ -17,13 +17,13 @@ class DashboardsController < ApplicationController
     @account = current_user.account
     @group_count = @account.nil? ? {} : MyCourse.joins(:user).where("users.account_id=?", @account.id).group(:status).count
     @courses_per_user_json = @account.nil? ? {} : MyCourse.courses_per_user(@account.id)
+    @num_users = @account.users.count
 
     publish_keen_io(:html, :ui_actions, {
         :user_email => current_user.email,
         :action => controller_path,
         :method => action_name
     })
-
   end
 
   def assigned_vs_completed

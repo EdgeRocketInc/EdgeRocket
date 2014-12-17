@@ -78,13 +78,22 @@
 
     <div class="col-lg-6" ng-if="options_json.dashboard_demo">
       <div class="panel panel-info">
-        <div class="panel-heading assigned-vs-completed" data-page="1">Courses Assigned vs. Completed</div>
+        <div class="panel-heading assigned-vs-completed" data-page="1" data-total-users="<%= @num_users %>">Courses Assigned vs. Completed</div>
         <div class="panel-body panel-chart">
           <div class="assigned-completed-chart">
             <%= bar_chart assigned_vs_completed_path(1), stacked: true, discrete: true, library: {hAxis: {title: "# Courses", tickOptions: {formatString: '%.0f'}}, bar: {groupWidth: "30%"}} %>
           </div>
-          <button id="previous-page-assigned-completed">Previous Page</button>
-          <button id="next-page-assigned-completed">Next Page</button>
+
+
+          <div id="current-page-info"></div>
+
+          <nav>
+            <ul class="pager">
+              <li><button id="previous-page-assigned-completed" class="btn btn-primary btn-xs">Previous</button></li>
+              <li><button id="next-page-assigned-completed" class="btn btn-primary btn-xs">Next</button></li>
+            </ul>
+          </nav>
+
         </div>
       </div>
     </div>
