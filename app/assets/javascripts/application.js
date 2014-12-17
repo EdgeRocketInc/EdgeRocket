@@ -22,7 +22,7 @@
 //= require yeti/bootswatch
 
 //= require analytics
-//= require dashboards
+//= require dashboards-charts
 
 //= require angular
 //= require angular-sanitize
