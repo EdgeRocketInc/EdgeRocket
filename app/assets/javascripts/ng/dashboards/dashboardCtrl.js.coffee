@@ -1,4 +1,4 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'angularCharts'])
+EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'angularCharts', ''])
 
 EdgeRocket.config(["$httpProvider", (provider) ->
   provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
@@ -59,7 +59,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
           x : g.number_of_courses + ' courses', 
           y : g.number_of_users 
         }
-        $scope.usersChartData.data.push(piece) 
+        $scope.usersChartData.data.push(piece)
       $scope.options_json = angular.fromJson(data.account.options)
       console.log('Successfully loaded dashboards')
      ).error( ->

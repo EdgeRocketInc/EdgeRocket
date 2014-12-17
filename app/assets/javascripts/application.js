@@ -22,6 +22,7 @@
 //= require yeti/bootswatch
 
 //= require analytics
+//= require dashboards
 
 //= require angular
 //= require angular-sanitize
@@ -35,6 +36,7 @@ var _MS_PER_DAY = 1000 * 60 * 60 * 24 // ms in a day
 var _DAYS_OLD = 7
 
 $(document).ready(function () {
+
   !function (a, b) {
     if (void 0 === b[a]) {
       b["_" + a] = {}, b[a] = function (c) {
@@ -57,6 +59,5 @@ $(document).ready(function () {
     }
   }("Keen", this);
 });
-
 
 
