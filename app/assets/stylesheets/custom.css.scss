@@ -130,6 +130,7 @@ a.dropdown-toggle.nav-profile {
 .padding-left2 { padding-left: 10px }
 .padding-left3 { padding-left: 15px }
 
+.padding-bottom1 { padding-bottom: 5px }
 .padding-bottom3 { padding-bottom: 15px }
 
 // Common widths
@@ -525,6 +526,12 @@ div.panel-heading {
 
 // --- INTERESTS ----
 
+.tile-text {
+  font-weight: 300;  
+  height: 120px;
+  overflow-y: scroll;
+}
+
 .tile-count {
   padding-top: 3px;
   font-size: small;
@@ -533,6 +540,8 @@ div.panel-heading {
 
 .tile-name {
   font-weight: 600;
+  height: 50px;
+  overflow-y: scroll;
 }
 
 .tile-checkbox {
@@ -541,5 +550,10 @@ div.panel-heading {
 
 div.header-1 {
   font-size: 18px;
+  font-weight: 600;
+}
+
+div.header-2 {
+  font-size: 16px;
   font-weight: 600;
 }
