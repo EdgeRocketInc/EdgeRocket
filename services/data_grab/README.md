@@ -1,2 +1,1 @@
-Use this query to identify and delete prodcut records before inserting new ones:
- moved to scripts
+Data service obtains data from different sources and adds it to the local Db
