@@ -1,3 +1,3 @@
 $('.assigned-completed-chart').html(
-  "<%= escape_javascript(bar_chart @data, stacked: true, discrete: true, library: {hAxis: {title: "# Courses", tickOptions: {formatString: "%.0f"}}, bar: {groupWidth: "30%"}})  %>"
+  "<%= escape_javascript(bar_chart @data, stacked: true, discrete: true, height: "525px", library: {legend: {position: 'top'}, chartArea: {height: 450, left: 130}, colors: ["red", "blue"], hAxis: {title: "# Courses", tickOptions: {formatString: "%.0f"}}, bar: {groupWidth: "30%"}})  %>"
 );

@@ -28,7 +28,7 @@ class DashboardsController < ApplicationController
 
   def assigned_vs_completed
     page = params[:page].to_i
-    if page < 2
+    if params[:first] == "true"
       render json: current_user.account.assigned_and_completed_by_user(page)
     else
       @data = current_user.account.assigned_and_completed_by_user(page)

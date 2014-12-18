@@ -81,7 +81,7 @@
         <div class="panel-heading assigned-vs-completed" data-page="1" data-total-users="<%= @num_users %>">Courses Assigned vs. Completed</div>
         <div class="panel-body panel-chart">
           <div class="assigned-completed-chart">
-            <%= bar_chart assigned_vs_completed_path(1), stacked: true, discrete: true, library: { colors: ["red", "blue"], hAxis: {title: "# Courses", tickOptions: {formatString: '%.0f'}}, bar: {groupWidth: "30%"}} %>
+            <%= bar_chart assigned_vs_completed_path(1, first: "true"), stacked: true, discrete: true, height: "525px", library: {legend: {position: 'top'}, chartArea: {height: 450, left: 130}, colors: ["red", "blue"], hAxis: {title: "# Courses", tickOptions: {formatString: '%.0f'}}, bar: {groupWidth: "40%"}} %>
           </div>
 
 

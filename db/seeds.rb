@@ -92,6 +92,16 @@ jose = User.create(email: 'Jose.Calderon@TechCorp.com', password: 'TechCorp!', a
 admin_track = User.create(email: 'admin@TrackVia.com', password: 'TrackVia!', account_id: account_three.id)
 User.create(email: 'employee@TrackVia.com', password: 'TrackVia!', account_id: account_three.id)
 
+user_count = 0
+until user_count == 20
+  temp_user = User.create(email: "example#{user_count}@example.name", password: 'ER0cket!', account_id: account_one.id, first_name: "Person#{user_count}", last_name: "Personton")
+  MyCourse.create(user_id: temp_user.id, product_id: product1.id, completion_date: Date.today)
+  MyCourse.create(user_id: temp_user.id, product_id: product1.id)
+  MyCourse.create(user_id: temp_user.id, product_id: product1.id)
+  MyCourse.create(user_id: temp_user.id, product_id: product1.id, completion_date: Date.today)
+  user_count += 1
+end
+
 PendingUser.new(first_name:"Jimi", last_name: "Hendrix", company_name: "EdgeRocket", email: "jimihendrix@edgerocket.co", encrypted_password: "password", user_type: "Free").save
 PendingUser.new(first_name:"Bob", last_name: "Dylan", company_name: "EdgeRocket", email: "bobdylan@edgerocket.co", encrypted_password: "password", user_type: "Enterprise").save
 

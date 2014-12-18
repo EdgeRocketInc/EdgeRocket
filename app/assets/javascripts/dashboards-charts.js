@@ -5,7 +5,8 @@ $(document).ready(function(){
   var pageNum = parseInt(formContainer.attr('data-page'));
 
   $('#next-page-assigned-completed').click(function(){
-
+    var totalUsers = parseInt(formContainer.attr('data-total-users'));
+    var pageNum = parseInt(formContainer.attr('data-page'));
     var newPage = pageNum + 1;
 
     $.ajax({
@@ -13,12 +14,15 @@ $(document).ready(function(){
       success: function(){
         console.log("Successfully rendered next page.");
         formContainer.attr('data-page', newPage);
+        setPaginationInfo(newPage, totalUsers);
       }
     })
 
   });
 
   $('#previous-page-assigned-completed').click(function(){
+    var totalUsers = parseInt(formContainer.attr('data-total-users'));
+    var pageNum = parseInt(formContainer.attr('data-page'));
 
     if (pageNum > 1) {
       var newPage = pageNum - 1;
@@ -28,6 +32,7 @@ $(document).ready(function(){
         success: function () {
           console.log("Successfully rendered next page.");
           formContainer.attr('data-page', newPage);
+          setPaginationInfo(newPage, totalUsers);
         }
       })
     }
@@ -35,7 +40,10 @@ $(document).ready(function(){
   });
 
   var setPaginationInfo = function(currentPage, totalUsers){
-    var pageStart = (currentPage - 1) * 19 + 1;
+    console.log("SETTING PAGINATION");
+    debugger;
+
+    var pageStart = (currentPage - 1) * 20 + 1;
     var pageEnd = currentPage * 19 + 1;
 
     if (pageEnd > totalUsers){
@@ -51,5 +59,4 @@ $(document).ready(function(){
   };
 
   setPaginationInfo(pageNum, totalUsers);
-
 });

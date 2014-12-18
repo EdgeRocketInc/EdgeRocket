@@ -29,6 +29,7 @@ class Account < ActiveRecord::Base
       end
     end
     final
+    # byebug
   end
 
   private
@@ -44,7 +45,6 @@ class Account < ActiveRecord::Base
     if page_end < num_users
       page_of_users = users[page_start..page_end]
     else
-      page_start - page_length > 0 ? page_start : page_start = 0
       page_of_users = users[page_start..num_users-1]
     end
     page_of_users
