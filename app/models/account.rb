@@ -7,14 +7,14 @@ class Account < ActiveRecord::Base
   def assigned_and_completed_by_user(page)
 
     final = [
-      {name: "Assigned", data: {}},
+      {name: "Assigned", data: {}, color: "green"},
       {name: "Completed", data: {}}
     ]
 
     page_of_users = get_page_of_users(page)
 
     page_of_users.each do |user|
-      name = user.name
+      name = get_name_or_email(user)
       final[0][:data][name] = 0 if final[0][:data][name] == nil
       final[1][:data][name] = 0 if final[1][:data][name] == nil
 
@@ -48,6 +48,10 @@ class Account < ActiveRecord::Base
       page_of_users = users[page_start..num_users-1]
     end
     page_of_users
+  end
+
+  def get_name_or_email(user)
+    user.name.present? ? user.name : user.email
   end
 
 end
