@@ -41,7 +41,6 @@ $(document).ready(function(){
 
   var setPaginationInfo = function(currentPage, totalUsers){
     console.log("SETTING PAGINATION");
-    debugger;
 
     var pageStart = (currentPage - 1) * 20 + 1;
     var pageEnd = currentPage * 19 + 1;
