@@ -36,7 +36,7 @@ class Account < ActiveRecord::Base
 
   def get_page_of_users(page)
     page_length = 19
-    page_start = (page-1) * page_length
+    page == 1 ? page_start = (page-1) * page_length : page_start = (page-1) * page_length + 1
     page_end = page * page_length
 
     current_users = users
