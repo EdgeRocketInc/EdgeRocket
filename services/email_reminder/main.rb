@@ -70,9 +70,9 @@ users.each { |u|
 	email = SendGrid::Mail.new do |m|
 	  m.to      = u.email
 	  m.from    = 'support@edgerocket.co'
-	  m.subject = ''
-	  m.html    = ''
-	  m.text    = ''
+	  m.subject = ' '
+	  m.html    = ' '
+	  m.text    = ' '
 	  m.smtpapi = header
 	end
 
