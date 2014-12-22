@@ -10,6 +10,7 @@ require 'logger'
 require 'optparse'
 require 'yaml'
 require 'byebug'
+require_relative '../models/product'
 require_relative 'providers'
 require_relative 'provider-codeschool'
 require_relative 'provider-treehouse'
@@ -17,9 +18,6 @@ require_relative 'provider-edx'
 require_relative 'provider-udemy'
 require_relative 'provider-refactoru'
 require_relative 'provider-coursera'
-
-class Product < ActiveRecord::Base
-end
 
 # it maps providers according to the value in vendors table
 providers = [

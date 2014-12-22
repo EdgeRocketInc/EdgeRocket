@@ -34,7 +34,11 @@ GEM
     pg (0.17.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    sendgrid-ruby (0.0.3)
+      rest-client
+      smtpapi
     slop (3.6.0)
+    smtpapi (0.0.9)
     thread_safe (0.3.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -49,3 +53,5 @@ DEPENDENCIES
   netrc (~> 0.7)
   pg (= 0.17.1)
   rest-client (~> 1.6)
+  sendgrid-ruby
+  smtpapi

@@ -1,2 +1,2 @@
 logger START EMAIL REMINDER JOB
-ruby main.rb
+ruby main.rb -c ../config/config-production.yaml
