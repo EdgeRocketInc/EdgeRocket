@@ -38,4 +38,8 @@ class CodeSchoolClient < ProviderClient
     nil
   end
 
+  def duration(row)
+    nil
+  end
+
 end
