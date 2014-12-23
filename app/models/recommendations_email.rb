@@ -21,7 +21,10 @@ class RecommendationsEmail < ActiveRecord::Base
     recommendation_hash = JSON.parse(recommendation)
 
     recommendation_hash.map do |skill_id, product_id|
-      {skill: Skill.find(skill_id), recommendations: Product.find(product_id)}
+      # The skills or product may not be present at the database
+      a_skill = Skill.find_by_id(skill_id)
+      a_product = Product.find_by_id(product_id)
+      {skill: a_skill, recommendations: a_product}
     end
   end
   
