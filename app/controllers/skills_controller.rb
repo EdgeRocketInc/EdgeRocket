@@ -5,10 +5,10 @@ class SkillsController < ApplicationController
 	# list the skills
 	def list
 		skills = Skill.all.order('name ASC')
-		@skills = skills.as_json
+		@skills = skills.as_json(:include => :recommendations)
 		@skills.each { |skill|
-			skill['img_url'] = '/assets/ic_forum_grey600_48dp.png'
-			skill['num_items'] = 12
+			skill['img_url'] = skill['image'].blank? ? nil : view_context.image_path(skill['image'])
+			skill['num_items'] = skill['recommendations'].nil? ? 0 : skill['recommendations'].count
 		}
 	end
 end
