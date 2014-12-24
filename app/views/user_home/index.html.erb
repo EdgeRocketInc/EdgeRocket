@@ -22,15 +22,22 @@
       </div>
 
       <div class="row padding-bottom3">
-        <div class="col-xs-12">
+        <div class="col-xs-6">
           <div class="header-1">Courses</div>
+        </div>
+        <div class="col-xs-6 text-right">
+          <ul class="list-inline">
+            <li>All</li>
+            <li><a>In progress</a></li>
+            <li><a>Completed</a></li>
+          </ul>
         </div>
       </div>
 
-      <div class="row" ng-repeat="row in [0,1,2]">
+      <div class="row" ng-repeat="row in [0]">
 
         <div class="col-md-4" ng-repeat="col in [0]">
-          <div class="well well-sm well-tile">
+          <div class="well well-sm well-tile tile-required">
             <div class="row">
               <div class="col-xs-1">
                 <span class="glyphicon glyphicon-facetime-video"></span>
@@ -56,18 +63,18 @@
                 <div class="tile-count">&#9656; 12 comments</div>
               </div>
               <div class="col-xs-6 text-right voffset3">
-                <span class="glyphicon glyphicon-exclamation-sign glyph-action"></span>
-                <span class="glyphicon glyphicon-play-circle glyph-action"></span>
+                <span class="glyphicon glyphicon-exclamation-sign glyph-big"></span>
+                <span class="glyphicon glyphicon-play-circle glyph-action glyph-big"></span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="col-md-4" ng-repeat="col in [0]">
-          <div class="well well-sm well-tile">
+          <div class="well well-sm well-tile tile-required">
             <div class="row">
               <div class="col-xs-1">
-                <span class="glyphicon glyphicon-facetime-video"></span>
+                <span class="glyphicon glyphicon-bookmark"></span>
               </div>
               <div class="col-xs-9">
                 <div class="tile-name">
@@ -90,8 +97,8 @@
                 <div class="tile-count">&#9656; 12 comments</div>
               </div>
               <div class="col-xs-6 text-right voffset3">
-                <span class="glyphicon glyphicon-exclamation-sign glyph-action"></span>
-                <span class="glyphicon glyphicon-play-circle glyph-action"></span>
+                <span class="glyphicon glyphicon-exclamation-sign glyph-big"></span>
+                <span class="glyphicon glyphicon-play-circle glyph-action glyph-big"></span>
               </div>
             </div>
           </div>
@@ -101,7 +108,7 @@
           <div class="well well-sm well-tile">
             <div class="row">
               <div class="col-xs-1">
-                <span class="glyphicon glyphicon-facetime-video"></span>
+                <span class="glyphicon glyphicon-cloud"></span>
               </div>
               <div class="col-xs-9">
                 <div class="tile-name">
@@ -124,8 +131,78 @@
                 <div class="tile-count">&#9656; 12 comments</div>
               </div>
               <div class="col-xs-6 text-right voffset3">
-                <span class="glyphicon glyphicon-exclamation-sign glyph-action"></span>
-                <span class="glyphicon glyphicon-play-circle glyph-action"></span>
+                <span class="glyphicon glyphicon-play-circle glyph-action glyph-big"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" ng-repeat="row in [0]">
+
+        <div class="col-md-4" ng-repeat="col in [0]">
+          <div class="well well-sm well-tile">
+            <div class="row">
+              <div class="col-xs-1">
+                <span class="glyphicon glyphicon-facetime-video"></span>
+              </div>
+              <div class="col-xs-9">
+                <div class="tile-name">
+                  The Red Hot Market for Learning Technology Platforms
+                </div>
+              </div>
+              <div class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-resize-full"></span>
+              </div>
+            </div>
+            <div class="row voffset1">
+              <div class="col-xs-12">
+                <div class="tile-text">
+                  Bersin by Deloitte just released our newest research on the corporate Learning Management Systems market and the numbers are astounding. The market is well over $2.5 billion and grew by over 21% this year. These are big numbers, especially since the market grew by only 13% the prior year.
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 voffset2">
+                <div class="tile-count">&#9656; 12 comments</div>
+              </div>
+              <div class="col-xs-6 text-right voffset3">
+                <span class="glyphicon glyphicon-play-circle glyph-action glyph-big"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4" ng-repeat="col in [0]">
+          <div class="well well-sm well-tile tile-completed">
+            <div class="row">
+              <div class="col-xs-1">
+                <span class="glyphicon glyphicon-facetime-video"></span>
+              </div>
+              <div class="col-xs-9">
+                <div class="tile-name">
+                  1 Hour Video Workshop - Build a CSS Web Page in Dreamweaver
+                </div>
+              </div>
+              <div class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-resize-full"></span>
+              </div>
+            </div>
+            <div class="row voffset1">
+              <div class="col-xs-12">
+                <div class="tile-text">
+                  A step-by-step 1 hour video intensive shows the total beginner how build a modern CSS web page from start to finish.
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 voffset2">
+                <div class="tile-count">&#9656; 12 comments</div>
+              </div>
+              <div class="col-xs-6 text-right voffset3">
+                <span class="glyphicon glyphicon-ok-sign glyph-big darkgreen"></span>
+                <span class="glyphicon glyphicon-play-circle glyph-action glyph-big"></span>
               </div>
             </div>
           </div>
@@ -168,9 +245,17 @@
           <div class="header-2 padding-bottom1">
             Interests
           </div>
-          <div>
-            You have chosen <a>Leadership & Management</a>, <a>Human Resources</a>, and <a>Process Improvement</a> as your interests.
-          </div>
+          <ul class="list-unstyled voffset3">
+            <li>Leadership & Management
+              <span class="glyphicon glyphicon-trash glyph-action red pull-right" />
+            </li>
+            <li>Human Resources
+              <span class="glyphicon glyphicon-trash glyph-action red pull-right" />
+            </li>
+            <li>Process Improvement
+              <span class="glyphicon glyphicon-trash glyph-action red pull-right" />
+            </li>
+          </ul>
           <md-button class="md-primary pull-right">
             Edit Interests
           </md-button>

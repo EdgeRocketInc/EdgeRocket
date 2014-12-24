@@ -40,6 +40,10 @@ textarea {
   color: rgb(40, 184, 40);
 }
 
+.darkgreen {
+  color: #5D8B5E;
+}
+
 .gray {
   color: #929292;
 }
@@ -526,10 +530,19 @@ div.panel-heading {
 
 // --- INTERESTS ----
 
+div.tile-required {
+  background-color: pink;
+}
+
+div.tile-completed {
+  background-color: #E5E5E5;
+}
+
+
 .tile-text {
   font-weight: 300;  
   height: 120px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .tile-count {
@@ -541,7 +554,7 @@ div.panel-heading {
 .tile-name {
   font-weight: 600;
   height: 50px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .tile-checkbox {
