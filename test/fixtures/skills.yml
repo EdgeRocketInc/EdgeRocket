@@ -28,42 +28,22 @@ three:
   hpos: 0
 
 four:
+  id: 4
   name: Computer Science
   key_name: cs
   vpos: 3
   hpos: 0
 
-#	name: Computer Networking, key_name: computer_networking, vpos: 4, hpos: 0
-#	name: Data Security, key_name: data_security, vpos: 5, hpos: 0
-#	name: Data Science, key_name: data_science, vpos: 6, hpos: 0
-#	name: Web Development, key_name: web_dev, vpos: 7, hpos: 0
-
 skill_a1:
+  id: 10
   name: Database 
   key_name: dbms
   vpos: 0
   hpos: 1
 
-
-#	name: Software Dev. Methodologies, key_name: soft_dev_methods, vpos: 1, hpos: 1
-#	name: Management, key_name: management, vpos: 2, hpos: 1
-#	name: Leadership, key_name: leadership, vpos: 3, hpos: 1
-
 skill_a5:
+  id: 5
   name: Communications
   key_name: communications
   vpos: 4
   hpos: 1
-
-#	name: Sales, key_name: sales, vpos: 5, hpos: 1
-#	name: Hiring & Interviewing, key_name: hiring, vpos: 6, hpos: 1
-#	name: Effective Presentations, key_name: presentations, vpos: 7, hpos: 1
-
-#	name: Negotiation, key_name: negotiation, vpos: 0, hpos: 2
-#	name: Strategy, key_name: strategy, vpos: 1, hpos: 2
-#	name: Operations, key_name: ops, vpos: 2, hpos: 2
-#	name: Project Management, key_name: pmp, vpos: 3, hpos: 2
-#	name: Finance, key_name: finance, vpos: 4, hpos: 2
-#	name: UX/UI, key_name: ux, vpos: 5, hpos: 2
-#	name: Graphic Design, key_name: graphic_design, vpos: 6, hpos: 2
-#	name: Product Management, key_name: product_management, vpos: 7, hpos: 2

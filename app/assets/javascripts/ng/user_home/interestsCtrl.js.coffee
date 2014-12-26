@@ -36,6 +36,22 @@
     interest = !interest
 
   $scope.done = ->
-    $window.location.href = "/user_home"
+    data = { skills: [] }
+    for skill in $scope.interests
+      if skill.cb == true
+        #console.log('skill ' + skill.id )
+        data.skills.push( { id: skill.key_name } )
+    # save right here
+    # Create data object to POST and send a request
+    $http.post('/users/preferences.json', data).success( (data) ->
+      console.log('Successfully set preferences')
+      $scope.surveySaved = true
+      $window.location.href = "/user_home"
+    ).error( ->
+      console.error('Failed to set preferences')
+      # even if there is an error, users can proceed and not get stuck on the screen
+      # TODO consider error reporting to the user
+      $window.location.href = "/user_home"
+    )
 
 @InterestsCtrl.$inject = ['$scope', '$http', '$modal', '$sce', '$window']

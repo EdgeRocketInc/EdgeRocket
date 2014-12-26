@@ -70,4 +70,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def count_incomplete_courses
+    num = my_courses.where.not(:status => 'compl').count
+    num
+  end
+
 end

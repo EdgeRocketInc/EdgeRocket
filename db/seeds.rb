@@ -14,6 +14,7 @@ Role.destroy_all
 Survey.destroy_all
 Product.destroy_all
 Recommendation.destroy_all
+Skill.destroy_all
 
 account_one = Account.create(company_name: 'EdgeRocket, Inc.',
 	options: '{"budget_management":true,"survey":true,"discussions":"gplus","recommendations":true,"dashboard_demo":true}',
@@ -101,8 +102,20 @@ Role.create(id: 2, name: 'Admin', user_id: admin.id)
 Role.create(id: 11, name: 'Admin', user_id: jose.id)
 Role.create(id: 20, name: 'Admin', user_id: admin_track.id)
 
-Recommendation.create(product_id: product.id, skill_id: 1)
-Recommendation.create(product_id: product1.id, skill_id: 1)
-Recommendation.create(product_id: product2.id, skill_id: 2)
-Recommendation.create(product_id: product3.id, skill_id: 2)
+Skill.create(id: 100, name: 'Communication Skills', key_name: 'communications', image: 'ic_forum_grey600_48dp.png')
+Skill.create(id: 101, name: 'Data Science', key_name: 'data_science', image: 'ic_storage_grey600_48dp.png')
+Skill.create(id: 102, name: 'Digital Marketing', key_name: 'marketing', image: 'ic_play_shopping_bag_grey600_48dp.png')
+Skill.create(id: 103, name: 'Effective Presentations', key_name: 'presentations', image: 'ic_camera_roll_grey600_48dp.png')
+Skill.create(id: 104, name: 'Finance', key_name: 'finance', image: 'ic_account_balance_grey600_48dp.png')
+Skill.create(id: 105, name: 'Leadership & Management', key_name: 'leadership', image: 'ic_people_grey600_48dp.png')
+Skill.create(id: 106, name: 'Operations', key_name: 'ops', image: 'ic_business_grey600_48dp.png')
+Skill.create(id: 107, name: 'Project Management', key_name: 'pmp', image: 'ic_assignment_grey600_48dp.png')
+Skill.create(id: 108, name: 'Sales', key_name: 'sales', image: 'ic_description_grey600_48dp.png')
+Skill.create(id: 109, name: 'Software Engineering', key_name: 'cs', image: 'ic_description_grey600_48dp.png')
+Skill.create(id: 110, name: 'UX/UI & Design', key_name: 'ux', image: 'ic_description_grey600_48dp.png')
+Skill.create(id: 111, name: 'Web Development', key_name: 'web_dev', image: 'ic_description_grey600_48dp.png')
 
+Recommendation.create(product_id: product.id, skill_id: 100)
+Recommendation.create(product_id: product1.id, skill_id: 100)
+Recommendation.create(product_id: product2.id, skill_id: 101)
+Recommendation.create(product_id: product3.id, skill_id: 101)
