@@ -53,12 +53,12 @@
 <url>
   <loc>http://edgerocket.co/blog/the-best-motivation-after-compensation/</loc>
   <changefreq>monthly</changefreq>
-  <priority>0.3</priority>
+  <priority>0.1</priority>
 </url>
 <url>
   <loc>http://edgerocket.co/blog/my-mother-had-me-tested/</loc>
   <changefreq>monthly</changefreq>
-  <priority>0.3</priority>
+  <priority>0.1</priority>
 </url>
 <url>
   <loc>http://edgerocket.co/blog/the-times-they-are-a-changin/</loc>
@@ -80,4 +80,10 @@
   <changefreq>monthly</changefreq>
   <priority>0.3</priority>
 </url>
+<url>
+  <loc>http://edgerocket.co/blog/7-tips-to-set-smart-learning-goals/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.3</priority>
+</url>
+
 </urlset>
