@@ -1,7 +1,17 @@
 /* universal */
 
+$main-bg-color: #F4F4F4;
+
 html {
   overflow-y: scroll;
+}
+
+main {
+  background-color: $main-bg-color;
+}
+
+body.main-bg {
+  background-color: $main-bg-color;
 }
 
 section {
@@ -510,7 +520,7 @@ span.badge {
 }
 
 a.btn-default {
-  background-color: white;
+  background-color: $main-bg-color;
   border: 0;
 }
 

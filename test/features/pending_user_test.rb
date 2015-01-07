@@ -41,7 +41,7 @@ class PendingUserTest < Capybara::Rails::TestCase
     fill_in "user_password", with: 'password'
     click_button 'Sign in'
 
-    assert_content page, "Playlists"
+    assert_content page, "Welcome to EdgeRocket"
 
   end
 
