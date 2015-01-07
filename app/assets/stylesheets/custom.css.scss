@@ -1,6 +1,7 @@
 /* universal */
 
-$main-bg-color: #F4F4F4;
+$main-bg-color: #FFF;
+$v2-bg-color: #F4F4F4;
 
 html {
   overflow-y: scroll;
@@ -544,6 +545,10 @@ div.panel-heading {
 }
 
 // --- INTERESTS ----
+
+div.well-tile {
+  background-color: $v2-bg-color;  
+}
 
 div.tile-required {
   background-color: pink;
