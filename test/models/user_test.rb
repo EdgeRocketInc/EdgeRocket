@@ -13,5 +13,11 @@ class UserTest < ActiveSupport::TestCase
     assert u.best_role == :admin, 'expected admin'
     u = User.find(103)
     assert u.best_role == :user
-   end
+  end
+
+  test "count incomplete courses" do
+    u = User.find(101)
+    assert u.count_incomplete_courses() > 0
+  end
+
 end

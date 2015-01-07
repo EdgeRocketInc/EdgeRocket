@@ -1,9 +1,3 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'angularCharts'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 @DashboardCtrl = ($scope, $http, $window) ->
 
   # CHARTS - activity

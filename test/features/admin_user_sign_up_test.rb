@@ -31,7 +31,7 @@ class AdminUserSignUpTest < Capybara::Rails::TestCase
     fill_in 'user_email', with: 'sysop-test@edgerocket.co'
     fill_in 'user_password', with: '12345678'
     click_button 'Sign in'
-    assert_content page, "Propel Your Learning and Success"
+    assert_content page, "Welcome to EdgeRocket"
   end
   def admin_adds_new_user
     visit '/employees'

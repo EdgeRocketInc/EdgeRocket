@@ -5,6 +5,7 @@
   <title><%= content_for?(:title) ? yield(:title) : "EdgeRocket" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "EdgeRocket" %>">
   <%= stylesheet_link_tag "application", media: "all" %>
+  <%= render 'layouts/javascript_include' %>
   <%= javascript_include_tag controller_name if controller_name != 'sessions' && controller_name != 'passwords' %>
   <!-- Change Bootswatch theme here -->
   <%= stylesheet_link_tag "yeti", media: "all" %>

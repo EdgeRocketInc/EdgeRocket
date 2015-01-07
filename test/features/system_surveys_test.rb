@@ -39,10 +39,14 @@ class SystemSurveysTest < Capybara::Rails::TestCase
     fill_in 'user_password', with: '12345678'
     click_button 'Sign in'
 
-    find("#marketing").click
-    find("#submit-survey").click
+    find('[aria-label="Marketing"]').click
+    find("button#btn-1").click
+
+    sleep 0.5
 
     visit "/system/surveys"
+
+    sleep 1
 
     within("#processed-surveys") do
       find(".glyphicon-new-window").click

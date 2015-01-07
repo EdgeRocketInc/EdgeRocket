@@ -1,7 +1,18 @@
 /* universal */
 
+$main-bg-color: #FFF;
+$v2-bg-color: #F4F4F4;
+
 html {
   overflow-y: scroll;
+}
+
+main {
+  background-color: $main-bg-color;
+}
+
+body.main-bg {
+  background-color: $main-bg-color;
 }
 
 section {
@@ -38,6 +49,10 @@ textarea {
 
 .green {
   color: rgb(40, 184, 40);
+}
+
+.darkgreen {
+  color: #5D8B5E;
 }
 
 .gray {
@@ -129,6 +144,9 @@ a.dropdown-toggle.nav-profile {
 // Generic paddings
 .padding-left2 { padding-left: 10px }
 .padding-left3 { padding-left: 15px }
+
+.padding-bottom1 { padding-bottom: 5px }
+.padding-bottom3 { padding-bottom: 15px }
 
 // Common widths
 
@@ -298,6 +316,11 @@ div.search-tile {
 .accordion-course {
   padding-left: 25px;
   padding-bottom: 5px;
+}
+
+a:focus.accordion-toggle {
+  outline: none;
+  text-decoration: none;
 }
 
 h4.panel-title {
@@ -503,7 +526,7 @@ span.badge {
 }
 
 a.btn-default {
-  background-color: white;
+  background-color: $main-bg-color;
   border: 0;
 }
 
@@ -523,4 +546,51 @@ div.panel-heading {
 
 #current-page-info{
   text-align: center;
+}
+
+// --- INTERESTS ----
+
+div.well-tile {
+  background-color: $v2-bg-color;  
+}
+
+div.tile-required {
+  background-color: pink;
+}
+
+div.tile-completed {
+  background-color: #E5E5E5;
+}
+
+
+.tile-text {
+  font-weight: 300;  
+  height: 120px;
+  overflow-y: auto;
+}
+
+.tile-count {
+  padding-top: 3px;
+  font-size: small;
+  color: dimgray;
+}
+
+.tile-name {
+  font-weight: 600;
+  height: 50px;
+  overflow-y: auto;
+}
+
+.tile-checkbox {
+  margin: 0;
+}
+
+div.header-1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+div.header-2 {
+  font-size: 16px;
+  font-weight: 600;
 }

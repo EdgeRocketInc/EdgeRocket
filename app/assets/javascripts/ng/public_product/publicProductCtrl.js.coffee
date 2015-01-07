@@ -1,9 +1,3 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'ngGrid'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 # This controller is for displaying product details
 @PublicProductCtrl = ($scope, $http, $modal, $log, $window) ->
 

@@ -1,9 +1,3 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'ngGrid'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 @EmployeesCtrl = ($scope, $http, $modal, $log) ->
 
   MIN_PASS_LEN = 8

@@ -1,9 +1,3 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap', 'ngActivityIndicator'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-	provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 @AssignCtrl = ($scope, $http, $modal, $log, $activityIndicator) ->
 
 	#$scope.loading = true

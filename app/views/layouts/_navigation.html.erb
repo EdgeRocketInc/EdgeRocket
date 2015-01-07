@@ -50,9 +50,8 @@
 	       <li class="<%= 'active' if params[:controller] == 'dashboards' %>">
         	  <%= link_to("Company Dashboard", controller: "dashboards", action: "show") %>
 	       </li>
-	       <li class="dropdown">
-            <!-- removed data-toggle="dropdown" from <a> below because it conflicts with ui-bootstrap-0.11 -->
-        	  <a href="#" class="dropdown-toggle">Manage <b class="caret"></b></a>  
+	       <li class="dropdown" dropdown>
+        	  <a href="#" class="dropdown-toggle" dropdown-toggle>Manage <b class="caret"></b></a>  
 	          <ul class="dropdown-menu" role="menu">
             <li class="<%= 'active' if params[:controller] == 'playlists' %>">
                 <%= link_to("Playlists", controller: "playlists", action: "index") %>
@@ -80,8 +79,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 	<% if user_signed_in? %>
-        	<li class="dropdown">
-            <a href="#" class="dropdown-toggle nav-profile"> <!-- removed data-toggle="dropdown" because it conflicts with ui-bootstrap-0.11 -->
+        	<li class="dropdown" dropdown>
+            <a href="#" class="dropdown-toggle nav-profile" dropdown-toggle> 
               <%= image_tag '/profile/get_profile_photo_thumb', :alt => 'Profile', :class => 'nav-thumb'  %>
               <%= current_user.first_name.blank? ? current_user.email : current_user.first_name %>
             </a>

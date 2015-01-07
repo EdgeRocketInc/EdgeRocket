@@ -1,0 +1,64 @@
+<!-- Main content area -->
+<div class="container-fluid" ng-controller="InterestsCtrl">
+
+  <form>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="header-1">Welcome to EdgeRocket.</div>
+      </div>
+    </div>
+
+    <div class="row padding-bottom3">
+      <div class="col-xs-9">
+        <span>Help us give you and edge in your career and profession by 
+          <strong>selecting your areas of interest below.</strong>
+        </span>
+      </div>
+      <div class="col-xs-3 text-right">
+        <md-button class="md-primary" ng-disabled="selectCount<=0" ng-click="done()" id="btn-1">
+          I'm Done for Now
+        </md-button>
+      </div>
+    </div>
+
+    <div class="row" ng-repeat="row in [0,1,2]">
+
+      <div class="col-md-3" ng-repeat="col in [0,1,2,3]">
+        <div class="well well-tile" ng-if="interests[(row*4)+col]">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="tile-name">{{ interests[(row*4)+col].name }}</div>
+            </div>
+          </div>
+          <div class="row voffset1">
+            <div class="col-xs-12 text-center">
+              <img ng-src="{{ interests[(row*4)+col].img_url }}">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-2 col-xs-offset-10">
+              <md-checkbox ng-model="interests[(row*4)+col].cb" 
+                ng-click="clickInterest(interests[(row*4)+col].cb)" aria-label="{{ interests[(row*4)+col].name }}" class="tile-checkbox" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row padding-bottom3">
+      <div class="col-xs-6">
+        <span ng-show="selectCount<=0" class="text-warning">* Please select at least one</span>
+      </div>
+      <div class="col-xs-6 text-right">
+        <md-button class="md-primary" ng-disabled="selectCount<=0" ng-click="done()" id="btn-2">
+          I'm Done for Now
+        </md-button>
+      </div>
+    </div>
+
+
+  </form>
+
+</div>

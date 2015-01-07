@@ -8,7 +8,9 @@
 
     <!-- Change Bootswatch theme here -->
     <%= stylesheet_link_tag "yeti", media: "all" %>
-    
+
+    <%= render 'layouts/javascript_include' %>
+
     <%= javascript_include_tag "application", controller_name if controller_name != 'sessions' && controller_name != 'passwords' %>
     <%= csrf_meta_tags %>
     <!-- Google fonts -->
@@ -17,7 +19,7 @@
     <meta name="google-site-verification" content="OB6N5Il_5SxjzATMTkiKrKoFp7wHJmBti7hJbyajoHo" />
     <%= javascript_include_tag "https://code.highcharts.com/highcharts.js", "chartkick" %>
   </head>
-  <body>
+  <body class="main-bg">
     <header>
       <%= render 'layouts/navigation' %>
 

@@ -1,9 +1,3 @@
-EdgeRocket = angular.module("EdgeRocket", ['ui.bootstrap', 'ngResource', 'ngGrid'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 @SystemSurveysCtrl = ($scope, $http, $resource, $modal) ->
 
 #    $scope.skills = all_prefs

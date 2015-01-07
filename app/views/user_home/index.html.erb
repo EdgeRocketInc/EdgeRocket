@@ -1,37 +1,3 @@
-<!-- Modal Survey window -->
-<script type="text/ng-template" id="userSurvey.html">
-  <div class="modal-header">
-    <small class="pull-right text-muted"> It takes less than 1 minute</small
-    <h4>Preferences</h4>
-  </div>
-  <div class="modal-body">
-    <p>Please indicate the business and technical topics that you are interested in (you can select all that apply):</p>
-    <div class="row">
-      <div class="col-xs-4" ng-repeat="col in [0,1,2]">
-        <ul class="padding-left3">
-          <li class="list-leaf" ng-repeat="thing in skills[col]">
-            <input type="checkbox" value="{{thing.key_name}}" ng-model="thing.checked" name="stuff" id="{{thing.key_name}}"/>
-              {{thing.name}}
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-4 col-xs-offset-8">
-        <input type="text" placeholder="other" class="padding-left3 input-sm" ng-model="otherSkill">
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer" ng-show="surveySaved==true">
-      <span class="text-success pull-left">* Thanks! Based on your preferences, we&#39;ll send you an email with EdgeRocket content recommendations.</span>
-      <button class="btn btn-sm btn-warning" ng-click="cancel()">Close</button>
-  </div>
-  <div class="modal-footer" ng-show="surveySaved!=true">
-      <button class="btn btn-success" ng-click="done()" ng-disabled="showSubmit==false" id="submit-survey">Submit</button>
-      <button class="btn btn-sm btn-warning" ng-click="cancel()">Skip this time</button>
-  </div>
-</script>
-
 <!-- Main content area -->
 <div class="container-fluid" ng-controller="IndexCtrl">
 

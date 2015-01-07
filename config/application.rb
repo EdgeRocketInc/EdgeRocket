@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 
 module EdgeApp
 
-  VERSION = '0.2.6'
+  VERSION = '0.3.0'
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -27,7 +27,7 @@ module EdgeApp
     # need for Twitter bootstrap and AngularJS
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.precompile += %w(yeti.js yeti.css) # Replace Bootswatch theme here
-    config.assets.precompile += %w(profile.js user_home.js angular.js angular-sanitize.js angular-resource.js angular-charts.min.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.11.0.min.js ng-grid-2.0.11.min.js ngActivityIndicator.min.js my_courses.js playlists.js teams.js employees.js products.js profile.js welcome.js company.js pending_users.js system.js recommendations.js help.js public/public_product.js)
+    config.assets.precompile += %w(profile.js user_home.js angular-charts.min.js d3.js search.js dashboards.js ui-bootstrap-tpls-0.13.0-SNAPSHOT.min.js ng-grid-2.0.11.min.js ngActivityIndicator.min.js my_courses.js playlists.js teams.js employees.js products.js profile.js welcome.js company.js pending_users.js system.js recommendations.js help.js public/public_product.js)
     config.assets.compile = true
 
     # need for Devise

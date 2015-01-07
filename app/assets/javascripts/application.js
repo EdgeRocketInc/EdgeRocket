@@ -9,14 +9,11 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
-//= require jquery
+
 //= require jquery_ujs
 
 //--- Bootswatch themes
-//--  
-// require flatly/loader
-// require flatly/bootswatch
+
 //-- Active --
 //= require yeti/loader
 //= require yeti/bootswatch
@@ -24,13 +21,12 @@
 //= require analytics
 //= require dashboards-charts
 
-//= require angular
-//= require angular-sanitize
-//= require angular-resource
-//= require ui-bootstrap-tpls-0.11.0.min
+//= require ui-bootstrap-tpls-0.13.0-SNAPSHOT.min
 //= require ng-grid-2.0.11.min
 //= require ngActivityIndicator.min
+//= require angular-charts.min
 
+//= require main-ng-module
 
 var _MS_PER_DAY = 1000 * 60 * 60 * 24 // ms in a day
 var _DAYS_OLD = 7

@@ -1,9 +1,3 @@
-EdgeRocket = angular.module('EdgeRocket', ['ui.bootstrap'])
-
-EdgeRocket.config(["$httpProvider", (provider) ->
-  provider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content')
-])
-
 @SearchCtrl = ($scope, $http, $modal, $log, $filter, $location) ->
 
   DISPLAY_ITEMS = 50 # keep in sync with back end controller
@@ -245,6 +239,7 @@ EdgeRocket.config(["$httpProvider", (provider) ->
 # ------- controller for modal window --------------
 
 @ModalInstanceCtrl = ($scope, $modalInstance, $window, $http, course) ->
+
   $scope.course = course
   $scope.alerts = []
 
