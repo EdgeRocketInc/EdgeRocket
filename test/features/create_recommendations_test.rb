@@ -105,7 +105,9 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
 
     visit "/system/recommendations"
 
+    sleep 0.5
     click_on "Marketing"
+    sleep 0.5
     first(".glyphicon-trash").click
 
     assert_no_content page, "A A Test Product One"
