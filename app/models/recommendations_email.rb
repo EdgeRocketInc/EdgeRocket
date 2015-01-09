@@ -15,6 +15,7 @@ class RecommendationsEmail < ActiveRecord::Base
     end
 
     RecommendationsEmail.create!(user_id: user.id, recommendation: recommendations_hash.to_json, survey_id: survey_id)
+    return recommendations_hash
   end
 
   def recommendations

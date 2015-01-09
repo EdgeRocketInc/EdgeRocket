@@ -25,7 +25,7 @@ class UserHomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "playlits subscription" do
+  test "playlist subscription" do
     sign_in User.find(101)
     post(:subscribe, {playlist_id: '1003', format: 'json'})
     assert_response :success
@@ -34,6 +34,27 @@ class UserHomeControllerTest < ActionController::TestCase
   test "playlist unsubscribe" do
     sign_in User.find(101)
     delete(:unsubscribe, {id: '1001', format: 'json'})
+    assert_response :success
+  end
+
+  test "create preferences without skills" do
+    sign_in User.find(101)
+
+    post(:create_preferences, format: 'json' )
+    assert_response :success
+
+    skills_empty = []
+
+    post(:create_preferences, { skills: skills_empty, format: 'json'} )
+    assert_response :success
+  end
+
+  test "create preferences set skills" do
+    sign_in User.find(101)
+
+    skills_real = [ {id: 'marketing'}, {id: 'seo'} ]
+
+    post(:create_preferences, { skills: skills_real, format: 'json'} )
     assert_response :success
   end
 

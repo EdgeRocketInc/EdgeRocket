@@ -14,7 +14,10 @@ class UserHomeController < ApplicationController
     # user has not done the survey AND does not have incomplte courses
     if current_user.survey.nil? && current_user.count_incomplete_courses() == 0
       render 'interests'
+    #else
+    #  render 'index_v2'
     end
+
   end
 
   # GET .html
@@ -119,6 +122,8 @@ class UserHomeController < ApplicationController
   # JSON: {anything}
   def create_preferences
 
+    skills_to_send = []
+
     prefs = {:skills => params[:skills]} # TODO make it real
     if !params[:skills].nil?
       preferred_skills = params[:skills].map do |skill|
@@ -126,7 +131,6 @@ class UserHomeController < ApplicationController
           Skill.find_by_key_name(skill["id"])
         end
       end.compact
-      skills_to_send = []
 
       preferred_skills.each do |skill|
         if !skill.recommendations.nil? &&  !skill.recommendations.empty?
@@ -142,8 +146,13 @@ class UserHomeController < ApplicationController
     if survey.save
       if !skills_to_send.empty? && !skills_to_send.nil?
         survey.update!( {:processed => true} )
-        RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
+        
+        recommendations_hash = RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
         Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
+
+        # assign recommended courses to the user and set a flag to indicate that user has new courses
+        assign_recommended_courses(current_user.id, recommendations_hash)
+
       end
       Notifications.survey_completed(current_user).deliver
     end
@@ -174,6 +183,20 @@ class UserHomeController < ApplicationController
         render json: json_result.as_json
       }
     end
+  end
+
+private
+
+  # the recommendations are in format: [11, [100, 201]] where 11 is a skill and [100, 201] are recommendation product ids
+  def assign_recommended_courses(user_id, recommendations)
+    recommendations.each { |recommendation|
+      #byebug
+      if !recommendation[1].nil?
+        recommendation[1].each { |product_id|
+          MyCourse.subscribe(user_id, product_id, 'wish', 'Self')
+        }
+      end
+    }
   end
 
 end
