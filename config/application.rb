@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 
 module EdgeApp
 
-  VERSION = '0.3.1'
+  VERSION = '0.3.2'
 
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
