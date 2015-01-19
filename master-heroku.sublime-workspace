@@ -523,7 +523,7 @@
 			"file": "app/views/layouts/application.html.erb",
 			"settings":
 			{
-				"buffer_size": 1237,
+				"buffer_size": 1516,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "app/assets/stylesheets/custom.css.scss",
 			"settings":
 			{
-				"buffer_size": 6739,
+				"buffer_size": 8253,
 				"line_ending": "Unix"
 			}
 		},
@@ -539,7 +539,7 @@
 			"file": "app/controllers/application_controller.rb",
 			"settings":
 			{
-				"buffer_size": 1177,
+				"buffer_size": 1770,
 				"line_ending": "Unix"
 			}
 		},
@@ -547,7 +547,7 @@
 			"file": "app/views/search/index.html.erb",
 			"settings":
 			{
-				"buffer_size": 6393,
+				"buffer_size": 6786,
 				"line_ending": "Unix"
 			}
 		},
@@ -555,7 +555,7 @@
 			"file": "app/assets/javascripts/ng/search/searchCtrl.js.coffee",
 			"settings":
 			{
-				"buffer_size": 10254,
+				"buffer_size": 10522,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,7 +563,7 @@
 			"file": "app/controllers/search_controller.rb",
 			"settings":
 			{
-				"buffer_size": 1751,
+				"buffer_size": 1741,
 				"line_ending": "Unix"
 			}
 		},
@@ -581,7 +581,7 @@
 			"file": "test/models/product_test.rb",
 			"settings":
 			{
-				"buffer_size": 1202,
+				"buffer_size": 1360,
 				"line_ending": "Unix"
 			}
 		},
@@ -589,7 +589,7 @@
 			"file": "app/models/product.rb",
 			"settings":
 			{
-				"buffer_size": 4004,
+				"buffer_size": 4508,
 				"line_ending": "Unix"
 			}
 		}
@@ -1115,15 +1115,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1237,
+						"buffer_size": 1516,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								855,
-								855
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1145,15 +1145,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6739,
+						"buffer_size": 8253,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								745,
-								745
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1175,15 +1175,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1177,
+						"buffer_size": 1770,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1108,
-								1108
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1205,15 +1205,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6393,
+						"buffer_size": 6786,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3788,
-								3788
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1235,15 +1235,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10254,
+						"buffer_size": 10522,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3434,
-								3434
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1265,15 +1265,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1751,
+						"buffer_size": 1741,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								812,
-								812
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1377,15 +1377,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1202,
+						"buffer_size": 1360,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1187,
-								1187
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1407,15 +1407,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4004,
+						"buffer_size": 4508,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3863,
-								3863
+								0,
+								0
 							]
 						],
 						"settings":
