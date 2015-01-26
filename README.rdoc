@@ -5,19 +5,20 @@ NOTE: Use master-heroku branch!
 
 Ruby version 
 ------------
-Developed and tested with 2.1.2
+Developed and tested with 2.1.4
+I use RVM to manage different versions of Ruby.
 
 System dependencies
 ---
 Developed on Mac OS X, and deployed on Heroku. 
-Using Postgre SQL 9.3
+Using PostgreSQL 9.3
 No other dependencies yet
 
 How to start:
 ----
-- go to https://github.com/admitriyev/EdgeRocket and make sure it’s available to you, copy the link to git clone
+- go to https://github.com/EdgeRocketInc/EdgeRocket and make sure it’s available to you, copy the link to git clone
 - clone the git repo to your local machine by running this command 
- > git clone https://github.com/admitriyev/EdgeRocket.git
+ > git clone https://github.com/EdgeRocketInc/EdgeRocket.git
 - install PostgreSQL 9.3
 - run bundler to install gems like this
  > bundle install --without=production
@@ -37,6 +38,7 @@ check the coverage folder after that
 Nothing yet
 
 * Deployment instructions to Heroku
+DON'T DO it without talking to Alexey
  > git push heroku heroku:master
 
 There is also deploy.sh script that pushes to git repos, deploys andrefreshes test database. 
@@ -49,4 +51,4 @@ There is an automatic build for the master-heroku brnach that runs on https://sn
 See more informaton on the project Wiki page:
 ====
 
-https://github.com/admitriyev/EdgeRocket/wiki
+https://github.com/EdgeRocketInc/EdgeRocket/wiki
