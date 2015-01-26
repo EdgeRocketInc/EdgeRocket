@@ -1,7 +1,9 @@
 README
 ======
 
-NOTE: Use master-heroku branch!
+NOTE: 
+For the latest UI, use ux-v2b branch.
+Otherwise, use master-heroku branch!
 
 Ruby version 
 ------------
@@ -18,7 +20,7 @@ How to start:
 ----
 - go to https://github.com/EdgeRocketInc/EdgeRocket and make sure it’s available to you, copy the link to git clone
 - clone the git repo to your local machine by running this command 
- > git clone https://github.com/EdgeRocketInc/EdgeRocket.git
+ > git clone -b ux-v2b https://github.com/EdgeRocketInc/EdgeRocket.git
 - install PostgreSQL 9.3
 - run bundler to install gems like this
  > bundle install --without=production
