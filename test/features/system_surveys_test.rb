@@ -63,6 +63,8 @@ class SystemSurveysTest < Capybara::Rails::TestCase
 
     click_link "Intro to Java Programming"
 
+    sleep 0.1
+
     assert_content page, "Patrick Hankinson"
 
   end

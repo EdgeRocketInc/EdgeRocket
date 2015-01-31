@@ -92,8 +92,8 @@ class MyCoursesController < ApplicationController
   def list_flat
     u = current_user
 
-    @my_courses = u.my_courses.order( \
-      "assigned_by, case when(status='reg') then 0 when(status='wish') then 1 when(status='compl') then 2 end") \
+    @my_courses = u.my_courses.joins(:product).order( \
+      "assigned_by, case when(status='reg') then 0 when(status='wish') then 1 when(status='compl') then 2 end, name") \
       .as_json( :include => {:product => {:include => :vendor}} )
 
     # adjust vendor logo images to include asset pipeline

@@ -23,6 +23,7 @@
       console.log('Successfully loaded user')
       # check if the option is enabled and it's the first login
       $scope.options_json = angular.fromJson($scope.user.account.options)
+      loadSkills()
     ).error( ->
       console.log('Error loading user')
     )
@@ -63,7 +64,7 @@
 
   # if a parameter is null, it means use currently stored value 
   applyFilters = (includeStatus, playlist) ->
-    console.log('Aply Filters')    
+    console.log('Apply Filters')    
     apply_status = if includeStatus==null then $scope.showCourses else includeStatus
     apply_playlist = if playlist==null then $scope.showPlaylist else playlist
     $scope.myCourses = []
@@ -129,7 +130,6 @@
   loadUser()
   loadMyCourses()
   loadMyPlaylists()
-  loadSkills()
 
   $scope.dismissNewCourseMessage = ->
     # reset the user flag
