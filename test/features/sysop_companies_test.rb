@@ -8,6 +8,11 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,8 +20,6 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
   end
 
   test "system can view the page and it has records" do
-
-    Capybara.current_driver = :selenium
 
     account = create_account
     @user = create_user(account)
@@ -33,8 +36,6 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
 
   test "companies can have nil values in the created_at date field" do
 
-    Capybara.current_driver = :selenium
-
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
@@ -50,8 +51,6 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
   end
 
   test "disabled companies have an x glyphicon" do
-
-    Capybara.current_driver = :selenium
 
     @account = create_account
     @other_account = create_account({disabled: true, company_name: 'Other Company'})
@@ -71,8 +70,6 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
   test "enabled companies can be disabled" do
 
     Account.destroy_all
-
-    Capybara.current_driver = :selenium
 
     @account = create_account
     @user = create_user(@account)
@@ -95,8 +92,6 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
 
     Account.destroy_all
 
-    Capybara.current_driver = :selenium
-
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
@@ -118,8 +113,6 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
   test "system adminstrator can edit company information" do
     Account.destroy_all
 
-    Capybara.current_driver = :selenium
-
     @account = create_account
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Sysop', :user_id => @user.id)
@@ -139,8 +132,6 @@ class SysopCompaniesTest < Capybara::Rails::TestCase
 
   test "company info is validated when edited by sys admin" do
     Account.destroy_all
-
-    Capybara.current_driver = :selenium
 
     @account = create_account
     @user = create_user(@account)

@@ -29,11 +29,12 @@
   loadSkills()
 
   $scope.clickInterest = (interest) ->
-    if interest == true
+    if interest.cb == true
       $scope.selectCount = if $scope.selectCount > 0 then $scope.selectCount-1 else $scope.selectCount=0
+      interest.cb = false
     else
       $scope.selectCount = $scope.selectCount+1
-    interest = !interest
+      interest.cb = true
 
   $scope.done = ->
     data = { skills: [] }

@@ -4,17 +4,17 @@
   $scope.items = []
   # for media type checkboxes
   $scope.mediaCheckboxes = [
-    { class : 'check', label : 'Courses', media_type : 'online' }
-    { class : 'check', label : 'Books', media_type : 'book' }
-    { class : 'check', label : 'Articles', media_type : 'blog' }
-    { class : 'check', label : 'Videos', media_type : 'video' }
+    { cb : true, label : 'Courses', media_type : 'online' }
+    { cb : true, label : 'Books', media_type : 'book' }
+    { cb : true, label : 'Articles', media_type : 'blog' }
+    { cb : true, label : 'Videos', media_type : 'video' }
   ]
   $scope.mediaAllSelected = true # all selected initially
   # for price type checkboxes
   $scope.priceCheckboxes = [
-    { class : 'check', label : 'Free', price_type : '0' }
-    { class : 'check', label : '< $50', price_type : 'lt50' }
-    { class : 'check', label : '$50+', price_type : 'gte50' }
+    { cb : true, label : 'Free', price_type : '0' }
+    { cb : true, label : '< $50', price_type : 'lt50' }
+    { cb : true, label : '$50+', price_type : 'gte50' }
   ]
   $scope.priceAllSelected = true # all selected initially
   # for provider checkboxes
@@ -78,7 +78,7 @@
       result = '?inmedia='
       is_first = true
       for cbox in $scope.mediaCheckboxes
-        if cbox.class == 'check'
+        if cbox.cb == true
           if is_first == true
             result += cbox.media_type
             is_first = false
@@ -90,7 +90,7 @@
       result += 'price='
       is_first = true
       for cbox in $scope.priceCheckboxes
-        if cbox.class == 'check'
+        if cbox.cb == true
           if is_first == true
             result += cbox.price_type
             is_first = false
@@ -102,7 +102,7 @@
       result += 'providers='
       is_first = true
       for cbox in $scope.providerCheckboxes
-        if cbox.class == 'check'
+        if cbox.cb == true
           if is_first == true
             result += cbox.id
             is_first = false
@@ -121,8 +121,11 @@
   loadVendors =  ->
     $http.get('/vendors.json').success( (data) ->
       $scope.vendors = data
+      top_count = 12 # we will use up to X top providers assuming they are sorted the way we want
       for v in $scope.vendors
-        $scope.providerCheckboxes.push({ class: 'check', label: v.name, id: v.id})
+        if top_count > 0
+          top_count -= 1
+          $scope.providerCheckboxes.push({ cb: true, label: v.name, id: v.id, prod_count: v.prod_count})
       console.log('Successfully loaded vendors')
     ).error( ->
       console.log('Error loading vendors')
@@ -165,20 +168,17 @@
     if turn_on == false
       $scope.mediaAllSelected = false
       for cb in $scope.mediaCheckboxes
-        cb.class = 'unchecked'
+        cb.cb = false
     else
       $scope.mediaAllSelected = true
       for cb in $scope.mediaCheckboxes
-        cb.class = 'check'
+        cb.cb = true
     $scope.searchLabel = 'Update Results'
 
   # toggle single media type check box
   $scope.toggleMediaCbox = (cbox) ->
-    if cbox.class == 'check' 
+    if cbox.cb == true
       $scope.mediaAllSelected = false
-      cbox.class = 'unchecked' 
-    else
-      cbox.class = 'check' 
     $scope.searchLabel = 'Update Results'
 
   # toggle all price type checkboxes, and filter the search result accordingly
@@ -186,20 +186,17 @@
     if turn_on == false
       $scope.priceAllSelected = false
       for cb in $scope.priceCheckboxes
-        cb.class = 'unchecked'
+        cb.cb = false
     else
       $scope.priceAllSelected = true
       for cb in $scope.priceCheckboxes
-        cb.class = 'check'
+        cb.cb = true
     $scope.searchLabel = 'Update Results'
 
   # toggle single price type check box
   $scope.togglePriceCbox = (cbox) ->
-    if cbox.class == 'check' 
+    if cbox.cb == true 
       $scope.priceAllSelected = false
-      cbox.class = 'unchecked' 
-    else
-      cbox.class = 'check' 
     $scope.searchLabel = 'Update Results'
 
   # toggle all provider type checkboxes, and filter the search result accordingly
@@ -207,20 +204,17 @@
     if turn_on == false
       $scope.providerAllSelected = false
       for cb in $scope.providerCheckboxes
-        cb.class = 'unchecked'
+        cb.cb = false
     else
       $scope.providerAllSelected = true
       for cb in $scope.providerCheckboxes
-        cb.class = 'check'
+        cb.cb = true
     $scope.searchLabel = 'Update Results'
 
   # toggle single provider type check box
   $scope.toggleProviderCbox = (cbox) ->
-    if cbox.class == 'check' 
+    if cbox.cb == true 
       $scope.providerAllSelected = false
-      cbox.class = 'unchecked' 
-    else
-      cbox.class = 'check' 
     $scope.searchLabel = 'Update Results'
     
   $scope.pageChanged = () ->

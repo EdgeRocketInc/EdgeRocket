@@ -10,6 +10,11 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -41,8 +46,6 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
   # end
 
   test "all user pages sanity" do
-
-    Capybara.current_driver = :selenium
 
     @user = create_user(@account)
     visit app_path
@@ -83,8 +86,6 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
 
   test "all admin pages sanity" do
 
-    Capybara.current_driver = :selenium
-
     @user = create_user(@account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
@@ -103,8 +104,6 @@ class CanAccessHomeTest < Capybara::Rails::TestCase
   test "users can only login if their company is active" do
 
     # skip # it fails on the last assert
-    
-    Capybara.current_driver = :selenium
 
     @other_account = FactoryGirl.create(:account, :company_name => 'other', :disabled => true, options: "{\"budget_management\":true,\"survey\":true,\"discussions\":\"gplus\",\"recommendations\":true,\"dashboard_demo\":true}")
     @user = create_user(@other_account)

@@ -79,8 +79,9 @@
               </div>
               <ul class="list-unstyled list-inline voffset1">
                 <li ng-repeat="cbox in mediaCheckboxes" class="voffset1">
-                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="toggleMediaCbox(cbox)"></span>
-                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                  <md-checkbox ng-click="toggleMediaCbox(cbox)" ng-model="cbox.cb" class="tile-checkbox" aria-label="{{cbox.label}}">
+                    {{cbox.label}}
+                  </md-checkbox>
                 </li>
               </ul>
             </div>
@@ -92,8 +93,9 @@
               </div>
               <ul class="list-unstyled list-inline voffset1">
                 <li ng-repeat="cbox in priceCheckboxes" class="voffset1">
-                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="togglePriceCbox(cbox)"></span>
-                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                  <md-checkbox class="tile-checkbox" ng-model="cbox.cb" ng-click="togglePriceCbox(cbox)" aria-label="{{cbox.label}}">
+                    {{cbox.label}}
+                  </md-checkbox>
                 </li>
               </ul>
             </div>
@@ -108,8 +110,9 @@
               </div>
               <ul class="list-unstyled list-inline voffset1">
                 <li ng-repeat="cbox in providerCheckboxes" class="voffset1">
-                  <span class="glyphicon glyphicon-{{ cbox.class }} glyph-big glyph-action-inline" ng-click="toggleProviderCbox(cbox)"></span>
-                  <span class="glyph-label-inline">{{cbox.label}}</span>
+                  <md-checkbox class="tile-checkbox" ng-model="cbox.cb" ng-click="toggleProviderCbox(cbox)" aria-label="{{cbox.label}}">
+                    {{cbox.label}} ({{cbox.prod_count}})
+                  </md-checkbox>
                 </li>
               </ul>
             </div>

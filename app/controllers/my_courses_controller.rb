@@ -11,6 +11,7 @@ class MyCoursesController < ApplicationController
   end
 
   # GET .json
+  # list of courses grouped by status
   def list
     @course_groups = Array.new
     u = current_user
@@ -81,6 +82,36 @@ class MyCoursesController < ApplicationController
         render json: json_result.as_json
       }
     end
+
+  end
+
+
+
+  # GET .json
+  # flat list of courses
+  def list_flat
+    u = current_user
+
+    @my_courses = u.my_courses.order( \
+      "assigned_by, case when(status='reg') then 0 when(status='wish') then 1 when(status='compl') then 2 end") \
+      .as_json( :include => {:product => {:include => :vendor}} )
+
+    # adjust vendor logo images to include asset pipeline
+    if !@my_courses.nil? && @my_courses.length > 0
+      @my_courses.each { |p|
+        if !p['product'].nil? && !p['product']['vendor'].nil?
+          p['product']['vendor']['logo_asset_url'] = view_context.image_path(p['product']['vendor']['logo_file_name'])
+        end
+      }
+    end
+
+    publish_keen_io(:json, :ui_actions, {
+        :user_email => current_user.email,
+        :action => controller_path,
+        :method => action_name
+    })
+
+    # uaing jbuilder
 
   end
 

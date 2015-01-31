@@ -8,6 +8,11 @@ class SelfSignUpTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,8 +20,6 @@ class SelfSignUpTest < Capybara::Rails::TestCase
   end
 
   test "user can sign up" do
-
-    Capybara.current_driver = :selenium
 
     visit sign_up_path
     fill_in "pending_user_first_name", with: 'admin'
@@ -30,7 +33,6 @@ class SelfSignUpTest < Capybara::Rails::TestCase
   end
 
   test "user sees error messages" do
-    Capybara.current_driver = :selenium
 
     visit sign_up_path
     fill_in "pending_user_first_name", with: ''

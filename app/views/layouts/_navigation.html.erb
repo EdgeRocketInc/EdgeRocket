@@ -1,5 +1,5 @@
 <% if !params[:controller].starts_with?('devise') %>
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar md-whiteframe-z1" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -11,7 +11,7 @@
       </button>
       <% 
         if @logo_filename.nil?
-          logo_filename = 'ER_final_logo-x41.png'
+          logo_filename = 'ER_final_logo-vertical-x41.png'
           logo_class = 'navbar-brand'
         else
           logo_filename = @logo_filename

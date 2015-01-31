@@ -117,6 +117,23 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # PATCH /empployees/1/field.json
+  # JSON only
+  def update_field
+    u = User.find(params[:id])
+    # TODO make it generic, get the field and value from the params
+    u.update(new_courses: false)
+
+    respond_to do |format|
+      if u.errors.empty?
+        format.json { head :no_content }
+      else
+        format.json { render json: u.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

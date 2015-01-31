@@ -13,6 +13,12 @@ class MyCoursesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get flat list json" do
+    sign_in User.find(103)
+    get :list_flat, {format: 'json'}
+    assert_response :success
+  end
+
   test "should get show json" do
     sign_in User.find(103)
     get(:show, {:product_id => 2006, :format => 'json'})

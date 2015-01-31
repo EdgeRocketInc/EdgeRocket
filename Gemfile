@@ -16,6 +16,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'factory_girl'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'simplecov', :require => false
   gem 'launchy'
@@ -64,7 +65,7 @@ end
 # gem 'capistrano', group: :development
 
 # Bootstrap 
-gem 'bootstrap-sass', '3.2'
+gem 'bootstrap-sass', '~> 3.3.3'
 
 # Bootswatch & JS engine for it
 gem 'twitter-bootswatch-rails', '~> 3.2'

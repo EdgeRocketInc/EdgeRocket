@@ -8,6 +8,11 @@ class ManageUsersTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,14 +20,13 @@ class ManageUsersTest < Capybara::Rails::TestCase
   end
 
   test "List users and add new" do
-
-    Capybara.current_driver = :selenium
-
+    
     account = create_account
     @user = create_user(account)
     @role = FactoryGirl.create(:role, :name => 'Admin', :user_id => @user.id)
 
     visit app_path
+
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: @user.password
     click_button 'Sign in'

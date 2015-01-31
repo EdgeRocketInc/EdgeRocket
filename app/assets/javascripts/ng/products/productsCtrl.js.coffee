@@ -104,7 +104,7 @@
     $window.open($scope.course.origin)
 
   $scope.backToMyCourses = ->
-    $window.location.href = "/my_courses"
+    $window.location.href = "/user_home"
 
   # When leaving the rating control, save the new rating if needed
   $scope.leavingRating = () ->

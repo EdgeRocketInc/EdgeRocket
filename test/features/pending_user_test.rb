@@ -8,6 +8,11 @@ class PendingUserTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,8 +20,6 @@ class PendingUserTest < Capybara::Rails::TestCase
   end
 
   test 'encrypt_password' do
-
-    Capybara.current_driver = :selenium
 
     account = create_account
 

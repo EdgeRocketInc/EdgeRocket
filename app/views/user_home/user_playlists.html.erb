@@ -4,11 +4,11 @@
     <h4>Subscribed to Playlist</h4>
   </div>
   <div class="modal-body">
-    You&#39;ve subscribed to "{{ thePlaylistName }}" Playlist! Access the Playlist content on <a href="/my_courses">My Courses</a> page
+    You&#39;ve subscribed to "{{ thePlaylistName }}" Playlist! Access the Playlist content on <a href="/user_home">My Courses</a> page
   </div>
   <div class="modal-footer">
-      <button class="btn btn-sm btn-success" ng-click="go_to_my()">Go to My Courses</button>
-      <button class="btn btn-sm btn-success" ng-click="cancel()">Back to Home page</button>
+      <md-button class="" ng-click="go_to_my()">Go to My Courses</md-button>
+      <md-button class="" ng-click="cancel()">Back to Home page</md-button>
   </div>
 </script>
 
@@ -22,8 +22,8 @@
     Are you sure you want to unsubscribe from "{{ thePlaylistName }}" Playlist?
   </div>
   <div class="modal-footer">
-      <button class="btn btn-sm btn-danger" ng-click="proceed()">Yes, unsubscribe</button>
-      <button class="btn btn-sm btn-warning" ng-click="cancel()">No, don&#39;t do anyting</button>
+      <md-button class="md-warn" ng-click="proceed()">Yes, unsubscribe</md-button>
+      <md-button class="" ng-click="cancel()">No, don&#39;t do anyting</md-button>
   </div>    
 </script>
 
@@ -43,14 +43,14 @@
   <div class="row">
     <div class="col-md-12">
 
-	    <div class="panel panel-info">
+	    <div class="panel panel-primary md-whiteframe-z1">
  		    <div class="panel-heading">
           <span class="glyphicon glyphicon-question-sign pull-right" 
             popover-placement="left" popover="Company Playlists are collections of courses and learning items. When you subscribe to a playlist, all courses associated with it will be visible on My Courses page." popover-title="How to use Company Playlists" popover-append-to-body="true">
           </span>
           <span class="glyphicon glyphicon-list"></span>
           Company Playlists
-          <div class="panel-subheading voffset1">Subscribe to playlists below, then go to <a href="/my_courses">My Courses</a> to view and access content.</div>
+          <div class="panel-subheading voffset1">Subscribe to playlists below, then go to <a class="color-accent" href="/user_home">My Courses</a> to view and access content.</div>
         </div>
         <div class="panel-body panel-body-scroll">
           <!-- <span ng-switch-when="false" class="label label-warning">No Playlists</span> -->
@@ -70,7 +70,7 @@
                   </a>
                 </div>
                 <div class="inline-col-center">
-                  <div class="text-warning">{{ pl.title }}</div>
+                  <div class="">{{ pl.title }}</div>
                   <div class="text-success">{{ pl.description }}</div>
                 </div>
               </div>

@@ -8,6 +8,11 @@ class SystemAccessTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,7 +20,7 @@ class SystemAccessTest < Capybara::Rails::TestCase
   end
 
   test "systems page can only be viewed while logged in as a sysop user" do
-    visit "system/surveys"
+    visit "/system/surveys"
     assert_content page, "Forgot your password?"
   end
 
@@ -29,7 +34,7 @@ class SystemAccessTest < Capybara::Rails::TestCase
     fill_in "user_password", with: '12345678'
     click_button 'Sign in'
 
-    visit "system/surveys"
+    visit "/system/surveys"
     assert_no_content page, "Sysop"
   end
 
@@ -43,7 +48,7 @@ class SystemAccessTest < Capybara::Rails::TestCase
     fill_in "user_password", with: '12345678'
     click_button 'Sign in'
 
-    visit "system/surveys"
+    visit "/system/surveys"
     assert_content page, "Sysop Survey Page"
   end
 

@@ -8,6 +8,11 @@ class SystemPendingUser < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,7 +20,6 @@ class SystemPendingUser < Capybara::Rails::TestCase
   end
 
   test "system can view the page and it has records" do
-    Capybara.current_driver = :selenium
 
     account = create_account
     @user = create_user(account)
@@ -32,7 +36,6 @@ class SystemPendingUser < Capybara::Rails::TestCase
   end
 
   test "pending user will be removed from pending users and a user will be created" do
-    Capybara.current_driver = :selenium
 
     account = create_account
     @user = create_user(account)

@@ -71,13 +71,13 @@
       })
       confirmModalInstance.result.then (ed_id) ->
         console.log('confirm ' + ed_id)
-        $window.location.href = '/my_courses'
+        $window.location.href = '/user_home'
 
 
   createSubscription = (playlistId, index) ->
     # Create data object to POST and send a request
-    data =
-      playlist_id: playlistId
+    data = 
+      playlist_ids: [playlistId]
 
     $http.post('/playlist_subscription.json', data).success( (data) ->
       console.log('Successfully subscribed to playlist')

@@ -26,6 +26,7 @@ EdgeApp::Application.routes.draw do
   get "help" => 'help#index'
   get "my_courses" => 'my_courses#index', constraints: { format: 'html' }
   get "my_courses" => 'my_courses#list', constraints: { format: 'json' }
+  get "my_courses/flat" => 'my_courses#list_flat', constraints: { format: 'json' }
   get "my_courses/:product_id" => 'my_courses#show'
   get "plans" => 'plans#index'
   get "products/curated" => 'products#curated_index' # must be before /:id
@@ -55,7 +56,7 @@ EdgeApp::Application.routes.draw do
   get "user_playlists" => 'user_home#user_playlists_json', constraints: { format: 'json' }
   get "user_discussions" => 'user_home#user_discussions', constraints: { format: 'html' }
   get "user_discussions" => 'user_home#user_discussions_json', constraints: { format: 'json' }
-  get "users/current" => 'user_home#get_user'
+  get "users/current" => 'user_home#get_user', constraints: { format: 'json' }
   get "vendors" => 'products#vendors'
   get "welcome/edit_password" => 'welcome#edit_password'
 
@@ -66,6 +67,8 @@ EdgeApp::Application.routes.draw do
   post "playlists/:id/courses/:course_id" => 'playlists#add_course', constraints: { format: 'json' }
   post "products/:product_id/reviews" => "discussions#create_review", constraints: { format: 'json' }
   post "products/:id/goto" => "products#post_goto", constraints: { format: 'json' }
+  post "profile/upload" => 'profile#upload', constraints: { format: 'json' }
+  post "profile" => 'profile#update', constraints: { format: 'json' }
   post "sign_up" => 'pending_users#create'
   post "system/recommendations" => 'recommendations#create'
   post "system/pending_users/create_users" => 'pending_users#create_user_from_pending', constraints: { format: 'json' }
@@ -81,14 +84,14 @@ EdgeApp::Application.routes.draw do
   put "playlist_items/ranks" => 'playlists#update_ranks', constraints: { format: 'json' }
   put "system/company/:id" => 'system#update_company', constraints: { format: 'json' }
 
-  post "profile/upload" => 'profile#upload', constraints: { format: 'json' }
-  post "profile" => 'profile#update', constraints: { format: 'json' }
+  patch "employees/:id/field" => 'employees#update_field', constraints: { format: 'json' }
   patch "system/surveys/undo" => 'system#undo_processing'
   patch "system/surveys" => 'system#processing'
+  patch "users/preferences" => 'user_home#patch_preferences', constraints: { format: 'json' }
 
   delete "course_subscription/:id" => 'my_courses#unsubscribe', constraints: { format: 'json' }
   delete "employees/:id" => 'employees#destroy', constraints: { format: 'json' }
-  delete "playlist_subscription/:id" => 'user_home#unsubscribe', constraints: { format: 'json' }
+  delete "playlist_subscription/:id(/:cascade)" => 'user_home#unsubscribe', constraints: { format: 'json' }, :defaults => { :cascade => true }
   delete "playlists/:id/courses/:course_id" => 'playlists#remove_course', constraints: { format: 'json' }
   delete "/system/recommendations/:id" => 'recommendations#destroy'
 

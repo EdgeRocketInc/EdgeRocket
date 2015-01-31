@@ -8,6 +8,11 @@ class ManageCoursesTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,8 +20,6 @@ class ManageCoursesTest < Capybara::Rails::TestCase
   end
 
   test "List courses and add new" do
-
-    Capybara.current_driver = :selenium
 
     @account = FactoryGirl.create(:account, :company_name => 'ABC Co.')
     @user = FactoryGirl.create(:user, :email => 'admin-test@edgerocket.co', :password => '12345678', :account_id => @account.id)
@@ -51,8 +54,6 @@ class ManageCoursesTest < Capybara::Rails::TestCase
 
 
   test "Courses in sysop mode" do
-
-    Capybara.current_driver = :selenium
 
     account = create_account
     @user = create_user(account)

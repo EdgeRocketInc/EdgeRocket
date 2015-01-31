@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
 
   # GET /vendors
   def vendors
-    @vendors = Vendor.all.order(:name)
+    @vendors = Vendor.all_count_by_product()
   end
 
   # GET /products/1

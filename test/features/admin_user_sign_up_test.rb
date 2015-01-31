@@ -8,6 +8,11 @@ class AdminUserSignUpTest < Capybara::Rails::TestCase
 
   setup do
     DatabaseCleaner.start
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.current_driver = :selenium
   end
 
   teardown do
@@ -15,8 +20,6 @@ class AdminUserSignUpTest < Capybara::Rails::TestCase
   end
 
   test "admins can sign up users manually and they recieve an email" do
-
-    Capybara.current_driver = :selenium
 
     @account = create_account
     @user = create_user(@account)

@@ -2,6 +2,15 @@
 
 $main-bg-color: #FFF;
 $v2-bg-color: #F4F4F4;
+$v2-bg-select: #F0F0F0;
+$v2-color-contrast: #4527A0; // deep-purple 800
+$v2-color-bright: #FFF;
+$v2-bg-light: #FFB74D;
+$v2-bg-header: #EF6C00; // orange 800
+$v2-bg-body: #FFF;
+$v2-bg-required: #B23A3A;
+$v2-bg-completed: $v2-color-contrast;
+$v2-bg-nav: $v2-color-contrast;
 
 html {
   overflow-y: scroll;
@@ -32,7 +41,7 @@ textarea {
 }
 
 .red {
-  color: red;
+  color: $v2-bg-required;
 }
 
 .yellow {
@@ -40,7 +49,7 @@ textarea {
 }
 
 .orange {
-  color: orange;
+  color: $v2-bg-header;
 }
 
 .blue {
@@ -57,6 +66,18 @@ textarea {
 
 .gray {
   color: #929292;
+}
+
+.white {
+  color: #FFF;
+}
+
+.black {
+  color: #000;
+}
+
+.color-accent {
+  color: $v2-color-contrast;
 }
 
 // Use for even rows in some places like lists of users
@@ -80,7 +101,7 @@ img {
 
 nav.navbar {
   font-size: 15px;
-  background-color: #003050;
+  //background-color: $v2-bg-nav;
 
   // keep default marking at the bottom unless we need more branding later
   //margin-bottom: 5px;
@@ -88,7 +109,7 @@ nav.navbar {
 
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-  background-color: #455786 !important;
+  //background-color: #455786 !important;
 }
 
 .navbar-inverse {
@@ -96,7 +117,7 @@ nav.navbar {
 }
 
 nav.navbar-default, .navbar-nav > li > .dropdown-menu {
-  background-color: #003050; // Main bg color for navbar
+  //background-color: $v2-bg-nav; // Main bg color for navbar
 }
 
 // override for the 'Home' navigation link
@@ -114,6 +135,10 @@ a.dropdown-toggle.nav-profile {
   padding-bottom: 0px;
   padding-top: 0px;
   padding-left: 0px;
+}
+
+.nav a {
+  color: black;
 }
 
 // Profile menu thumbnail
@@ -135,6 +160,10 @@ a.dropdown-toggle.nav-profile {
 .voffset8 { margin-top: 100px; }
 .voffset9 { margin-top: 150px; }
 
+.loffset, button.loffset { margin-left: 2px; }
+.loffset1, button.loffset1 { margin-left: 5px; }
+.loffset2, button.loffset2 { margin-left: 10px; }
+
 .vcenter {
     display: inline-block;
     vertical-align: middle;
@@ -142,11 +171,28 @@ a.dropdown-toggle.nav-profile {
 }
 
 // Generic paddings
+.padding-top1 { padding-top: 5px }
+.padding-top2 { padding-top: 10px }
+.padding-top3 { padding-top: 15px }
+
+.padding-left0, div.padding-left0 { padding-left: 0px }
+.padding-left1 { padding-left: 5px }
 .padding-left2 { padding-left: 10px }
 .padding-left3 { padding-left: 15px }
 
+.padding-right0, div.padding-right0 { padding-right: 0px }
+.padding-right1 { padding-right: 5px }
+.padding-right2 { padding-right: 10px }
+.padding-right3 { padding-right: 15px }
+
 .padding-bottom1 { padding-bottom: 5px }
+.padding-bottom2 { padding-bottom: 10px }
 .padding-bottom3 { padding-bottom: 15px }
+
+td.td-vspace1 { 
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
 
 // Common widths
 
@@ -206,7 +252,7 @@ div.progress {
 
 // Making wells differnt from panels
 div.panel-body .well {
-  background-color: #F5F5F5;
+  background-color: white;
   padding: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -228,9 +274,11 @@ span.glyph-big {
   font-size: 18px;
 }
 
-.glyph-action {
-  padding-left: 5px;
-  padding-right: 5px;
+span.glyph-xl {
+  font-size: 30px;
+}
+
+.glyph-action, .click-action {
   cursor: pointer;
 }
 
@@ -411,8 +459,8 @@ input.form-control-number {
 
 // General panels
 div.panel-info > div.panel-heading {
-  background-color: #EDFDFF;
-  color: #436983;
+  //background-color: #EDFDFF;
+  //color: #436983;
   font-weight: 600;
 }
 
@@ -477,7 +525,7 @@ div.inline-col-right {
 // Bages
 
 span.badge {
-  background-color: #5bc0de; // blue
+  background-color: $v2-bg-header;
   color: white;
 }
 
@@ -554,19 +602,13 @@ div.well-tile {
   background-color: $v2-bg-color;  
 }
 
-div.tile-required {
-  background-color: pink;
-}
-
-div.tile-completed {
-  background-color: #E5E5E5;
-}
-
-
 .tile-text {
-  font-weight: 300;  
-  height: 120px;
-  overflow-y: auto;
+  background-color: $v2-bg-body;
+  color: black;
+  font-weight: 300;
+  font-size: 13px;
+  height: 140px;
+  overflow-y: hidden;
 }
 
 .tile-count {
@@ -576,9 +618,10 @@ div.tile-completed {
 }
 
 .tile-name {
-  font-weight: 600;
-  height: 50px;
-  overflow-y: auto;
+  font-weight: 500;
+  font-size: 16px;
+  height: 48px;
+  overflow: hidden;
 }
 
 .tile-checkbox {
@@ -592,5 +635,75 @@ div.header-1 {
 
 div.header-2 {
   font-size: 16px;
+  font-weight: 600;
+}
+
+// --- V2 home tiles
+
+div.tile-header {
+  background-color: $v2-bg-header;  
+  padding: 15px;
+}
+
+div.tile-body {
+  background-color: $v2-bg-body;  
+}
+
+.tile-body-height {
+  height: 65px; 
+}
+
+div.tile-required {
+  background-color: $v2-bg-required;
+}
+
+div.tile-completed {
+  background-color: $v2-bg-completed;
+}
+
+div.tile-hover {
+  background-color: darken($v2-bg-color, 40%);
+}
+
+a.tile-header {
+  outline: none;
+  text-decoration: none;
+  color: $v2-color-bright;
+}
+
+a:hover.tile-header {
+  outline: none;
+  text-decoration: none;
+  color: darken($v2-color-bright, 20%);
+}
+
+div.tile-footer {
+  background-color: $v2-bg-body;
+}
+
+// --- V2 general
+
+.list-checkbox {
+  display: inline;
+  margin-right: 0;
+}
+
+.list-on {
+  font-weight: 600;
+  background-color: $v2-bg-select;
+  color: $v2-color-contrast;
+}
+
+table.font-size-inherit {
+  font-size: inherit;
+}
+
+div.div-author {
+  color: $v2-color-contrast;
+}
+
+div.div-price {
+  color: black;
+  overflow: hidden;
   font-weight: 600;
 }

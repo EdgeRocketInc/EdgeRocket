@@ -57,6 +57,7 @@ class MyCourse < ActiveRecord::Base
   end
 
   def self.subscribe(user_id, prd_id, status, assigned_by)
+    subscribed = false
     my_crs = MyCourse.find_courses(user_id, prd_id)
     # TODO handle exceptions
     if my_crs.nil? || my_crs.length == 0
@@ -66,8 +67,11 @@ class MyCourse < ActiveRecord::Base
       my_crs.status = status #params[:status]
       my_crs.assigned_by = assigned_by #params[:assigned_by]
       my_crs.percent_complete = MyCourse.calc_percent_complete(my_crs.status)
-      my_crs.save
+      if my_crs.save
+        subscribed = true
+      end
     end
+    return subscribed
   end
 
   def self.unsubscribe(user_id, prd_id)
