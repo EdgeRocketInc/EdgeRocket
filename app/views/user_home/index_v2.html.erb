@@ -33,6 +33,46 @@
   </div>    
 </script>
 
+<!-- Modal comments window -->
+<script type="text/ng-template" id="commentModal.html">
+  <form name="commentsForm">
+    <div class="modal-header">
+      <h4>Nice work completing this content!</h4>
+    </div>
+    <div class="modal-body">
+
+      Was it excellent?  Lame?  Do you recommend it?  Please add a Rating and Review to share with colleagues.
+
+      <!-- Rating -->
+      <div class="voffset3">
+        <rating class="orange" ng-model="rating.display" max="5" readonly="false" 
+          on-leave="leavingRating()">
+        </rating>
+      </div>
+
+      <div class="input-group voffset3 width-100pct">
+        <textarea name="commentText" class="form-control textarea-discussions" 
+          placeholder="Post comments or reviews" ng-model="newReview.title" required>
+        </textarea>
+      </div> <!-- /input-group -->
+      <div class="text-danger" ng-show="commentsForm.commentText.$error.required">
+        * Please enter comment text to submit
+      </div>
+      <div class="voffset1" ng-if="options_json.discussions == 'gplus'"> 
+        <md-checkbox ng-model="options_json.gbox" aria-label="Also post to Google+">Also post to Google+</md-checkbox>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <md-button class="" ng-click="save()" ng-disabled="commentsForm.commentText.$error.required">Submit</md-button>
+        <md-button class="md-warn" ng-click="cancel()">Skip</md-button>
+    </div>
+    
+  </form>
+
+</script>
+
 <!-- Main content area -->
 <div class="container-fluid" ng-controller="IndexCtrl">
 

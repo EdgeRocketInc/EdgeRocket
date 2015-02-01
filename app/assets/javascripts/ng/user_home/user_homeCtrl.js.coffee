@@ -131,6 +131,33 @@
   loadMyCourses()
   loadMyPlaylists()
 
+  # show a dialog after course is completed
+  afterComplete = (course, newStatus) -> 
+    if newStatus == 'compl'
+      params = {
+        current_my_course : course
+        options_json : $scope.options_json
+      }
+      # prompt user to submit a comment
+      modalInstance = $modal.open({
+        templateUrl: 'commentModal.html',
+        controller: CommentModalCtrl
+        resolve:
+          modal_params: () ->
+            return params
+      })
+
+      modalInstance.result.then (review) ->
+        # Create data object to POST and send a request
+        console.log('new review title=' + review.title + ' for id ' + review.product_id)
+        review.gplus = ($scope.options_json.gbox_class == 'check')
+        data = review
+        $http.post('/products/' + review.product_id + '/reviews.json', data).success( (data) ->
+          console.log('Successfully created review')
+        ).error( ->
+          console.error('Failed to create review')
+        )  
+
   $scope.dismissNewCourseMessage = ->
     # reset the user flag
     $http.patch('/employees/' + $scope.user.id + '/field.json', null).success( (data) ->
@@ -153,6 +180,7 @@
       course.status = newStatus
       course.needRefresh = true
       console.log('Successfully updated subscription')
+      afterComplete(course, newStatus)
     ).error( ->
       console.error('Failed to update subscription')
     )
@@ -354,6 +382,38 @@
   $scope.cancel = ->
     $modalInstance.dismiss('cancel')
 
+# --- controller for modal window
+@CommentModalCtrl = ($scope, $modalInstance, $window, $http, modal_params) ->
+  console.log('Comment modal ctrl')
+  $scope.newReview = { title : '', actor_name : 'me', gplus : false, product_id : modal_params.current_my_course.product_id }
+  $scope.rating = { MAX_STARS : 5, display : null }
+  $scope.current_my_course = modal_params.current_my_course
+  $scope.options_json = modal_params.options_json
+  $scope.options_json.gbox = true
+
+  # When leaving the rating control, save the new rating if needed
+  $scope.leavingRating = () ->
+    # check if rating changed
+    if $scope.rating.display != null
+      # Save the new my rating
+      console.log('rating changed ' + $scope.rating.display )
+      data =
+        my_rating : $scope.rating.display / $scope.rating.MAX_STARS
+        product_id : $scope.current_my_course.product_id
+      $http.put('/my_courses/' + $scope.current_my_course.id + '/rating.json', data).success( (data) ->
+        console.log('Successfully updated rating')
+      ).error( ->
+        console.error('Failed to update rating')
+      )
+
+  $scope.save = () ->
+    console.log('submitting comment...')
+    $modalInstance.close($scope.newReview)
+
+  $scope.cancel = ->
+    $modalInstance.dismiss('cancel')
+
+@CommentModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'modal_params'] 
 @IndexCtrl.$inject = ['$scope', '$http', '$modal', '$sce', '$window', '$filter']
 @plUnsubModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'pl']
 @plSubscribeModalCtrl.$inject = ['$scope', '$modalInstance', '$window', '$http', 'subscribePlaylists']
