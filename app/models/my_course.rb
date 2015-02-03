@@ -95,7 +95,7 @@ class MyCourse < ActiveRecord::Base
   end
 
   def completed?
-    completion_date.present?
+    return status=='compl'
   end
 
 end

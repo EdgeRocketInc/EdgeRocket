@@ -7,22 +7,27 @@ one:
   status: wip
 
 two:
+  id: 1002
   user_id: 101
   product_id: 2002
   status: compl
 
 three:
+  id: 1003
   user_id: 101
   product_id: 2003
   status: reg
 
 three:
+  id: 1004
   user_id: 101
   product_id: 2004
   status: wish
+  completion_date: 2014-01-08
 
 # these records may rely on the user records created in seed.rb
 seed_alexey_1:
+  id: 1050
   user_id: 103
   product_id: 2002
   status: compl
