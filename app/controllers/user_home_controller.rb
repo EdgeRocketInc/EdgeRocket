@@ -12,6 +12,9 @@ class UserHomeController < ApplicationController
 
     # render the interests page only if
     # user has not done the survey AND does not have incomplte courses
+    # testing - Marko
+    # render 'interests'
+
     if current_user.survey.nil? && current_user.count_incomplete_courses() == 0
       render 'interests'
     else
