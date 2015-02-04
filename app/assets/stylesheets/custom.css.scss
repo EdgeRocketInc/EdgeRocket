@@ -698,7 +698,7 @@ div.tile-text{
   background: url('../img/icon-complete.png') no-repeat left center;
   color: #595f67;
   font-family: "OpenSans", sans-serif;
-  font-size: 14px!important;
+  font-size: 13px !important;
   text-transform: uppercase;
   padding-left:24px;
 }
@@ -899,13 +899,13 @@ div.tile-header {
   background: url('../img/icon-document.png') no-repeat center center;
 }
 .icon-glyphicon-book{
-  background: url('../img/icon-document.png') no-repeat center center;
+  background: url('../img/icon-book.png') no-repeat center center;
 }
 .icon-glyphicon-facetime-video{
-  background: url('../img/icon-media.png') no-repeat center center;
+  background: url('../img/icon-video.png') no-repeat center center;
 }
 .icon-glyphicon-cloud{
-  background: url('../img/icon-sound.png') no-repeat center center;
+  background: url('../img/icon-learn.png') no-repeat center center;
 }
 span.tile-header{
 margin-top: 0;
@@ -1017,4 +1017,8 @@ div.div-price {
   color: black;
   overflow: hidden;
   font-weight: 600;
+}
+
+a:focus.tile-link {
+  outline: none;
 }

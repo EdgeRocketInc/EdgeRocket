@@ -148,71 +148,44 @@
 
           <div class="panel well-tile" ng-class="myCourses[row*3+col].css_elevate">
 
-            <div class="panel-header tile-header" ng-class="myCourses[row*3+col].css_header">
-              <div class="tile-name click-action" ng-click="tileHeaderClick(myCourses[row*3+col])"
-                  tooltip-append-to-body="true" tooltip="Toggle course view">
-                 <span class="tile-header white">
-                 <span class="title-icon padding-right1 white icon-{{myCourses[row*3+col].mediaType.glyph}}"
-                                  tooltip="{{myCourses[row*3+col].mediaType.text}}" tooltip-append-to-body="true">
-                                </span>
-                    {{myCourses[row*3+col].product.name}}
+            <div class="panel-header tile-header  click-action" ng-class="[myCourses[row*3+col].css_header, myCourses[row*3+col].css_hover]" 
+                ng-click="tileHeaderClick(myCourses[row*3+col])" ng-mouseenter="onHeaderEnter(myCourses[row*3+col])" ng-mouseleave="onHeaderLeave(myCourses[row*3+col])"
+                tooltip-append-to-body="true" tooltip="Toggle course view to see details, and update status">
+              <div class="tile-name">
+                <span class="tile-header white">
+                  <span class="title-icon padding-right1 white icon-{{myCourses[row*3+col].mediaType.glyph}}"
+                      tooltip="{{myCourses[row*3+col].mediaType.text}}" tooltip-append-to-body="true">
+                  </span>
+                  {{myCourses[row*3+col].product.name}}
                 </span>
 
               </div>
 
-            <span class=" pull-right icon-ok-sign glyph-xl" ng-if="myCourses[row*3+col].status=='compl'" tooltip-append-to-body="true" tooltip="Complete">Complete</span>
+              <span class="pull-right icon-ok-sign glyph-xl" ng-if="myCourses[row*3+col].status=='compl'" tooltip-append-to-body="true" tooltip="Course Completed">Completed</span>
               <div style="clear:both"></div>
             </div>
 
             <!-- basic tile view -->
 
-<!-- HEAD
-            <div class="panel-body tile-body" ng-if="myCourses[row*3+col].tileDetail!=true">
-              <div class="row">
-                <div class="col-xs-9 tile-body-height">
-                  <img ng-src="{{myCourses[row*3+col].product.vendor.logo_asset_url}}" 
-                    class="img-provider-logo" ng-show="myCourses[row*3+col].product.vendor.logo_asset_url" 
-                    tooltip="{{myCourses[row*3+col].product.vendor.name}}" tooltip-append-to-body="true"/>
-                  <div class="voffset2 gray">
-                    {{myCourses[row*3+col].product.school}}
-                  </div>
-                </div>
-                <div class="col-xs-3 text-right padding-left0">
-                  <div class="div-price">{{myCourses[row*3+col].price_fmt}}</div>
-                </div>
-              </div>
-              <div class="row text-right">
-                <div class="col-xs-12 padding-right2">
-                  <span class="glyphicon glyphicon-exclamation-sign glyph-xl red" ng-if="myCourses[row*3+col].assigned_by=='Manager'"
-                    tooltip-append-to-body="true" tooltip="This course is required"></span>
-                  <span class="glyphicon glyphicon-ok-sign glyph-xl" ng-if="myCourses[row*3+col].status=='compl'"
-                    tooltip-append-to-body="true" tooltip="Complete"></span>
-                  <a href="{{myCourses[row*3+col].product.origin}}" class="orange" target="_blank" ng-if="myCourses[row*3+col].status!='compl'">
-                    <span class="glyphicon glyphicon-play-circle glyph-action glyph-xl" 
-                      tooltip-append-to-body="true" tooltip="Go to a course in a new browser window/tab"></span>
-                  </a>
-                </div>
-              </div>
-              -->
             <div class="panel-body empty-body tile-body" ng-if="myCourses[row*3+col].tileDetail!=true">
             </div>
-            <div class="panel-panel-footer tile-footer text-right" ng-if="myCourses[row*3+col].tileDetail!=true">
-            <strong class="price-position">{{myCourses[row*3+col].price_fmt}}</strong>
-            <span class="exclamation-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Manager'" tooltip-append-to-body="true" tooltip="This course is required">REQUIRED</span>
-<span class="not-required-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Self'" tooltip-append-to-body="true" tooltip="This course is not required"></span>
-<span class="rating-holder" tooltip-append-to-body="true" tooltip="This is just rating plugin holder. You need to implement some rating script"></span>
-                  <img ng-src="{{myCourses[row*3+col].product.vendor.logo_asset_url}}"
-                                  class="img-provider-logo" ng-show="myCourses[row*3+col].product.vendor.logo_asset_url"
-                                  tooltip="{{myCourses[row*3+col].product.vendor.name}}" tooltip-append-to-body="true"/>
 
-                <span class="play-holder-height">
+            <div class="panel-panel-footer tile-footer text-right" ng-if="myCourses[row*3+col].tileDetail!=true">
+              <strong class="price-position">{{myCourses[row*3+col].price_fmt}}</strong>
+              <span class="exclamation-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Manager'" tooltip-append-to-body="true" tooltip="This course is required">REQUIRED</span>
+              <span class="not-required-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Self'" tooltip-append-to-body="true" tooltip="This course is not required"></span>
+              <!--
+              <span class="rating-holder" tooltip-append-to-body="true" tooltip="TODO></span>
+              -->
+              <img ng-src="{{myCourses[row*3+col].product.vendor.logo_asset_url}}"
+                  class="img-provider-logo" ng-show="myCourses[row*3+col].product.vendor.logo_asset_url"
+                  tooltip="{{myCourses[row*3+col].product.vendor.name}}" tooltip-append-to-body="true"/>
+
+              <span class="play-holder-height">
                 <a href="{{myCourses[row*3+col].product.origin}}" class="orange" target="_blank" ng-if="myCourses[row*3+col].status!='compl'">
-                  <!--<span class="glyphicon glyphicon-play-circle glyph-action glyph-xl"
-                    tooltip-append-to-body="true" tooltip="Go to a course in a new browser window/tab"></span>
-                    <img src="assets/playbtn.png" class="playbutton"/>-->
-                    <span class="play-button"><img src="assets/play-icon-part.png"/></span>
+                  <span class="play-button"><img src="assets/play-icon-part.png"/></span>
                 </a>
-                </span>
+              </span>
             </div>
 
             <!-- detailed tile view -->
@@ -224,57 +197,30 @@
             </div>
 
             <div class="panel-panel-footer expanded-footer tile-footer text-right padding-top1 black" ng-if="myCourses[row*3+col].tileDetail==true">
-                <a class="more-details-link" ng-href="/products/{{myCourses[row*3+col].product_id}}"
-                  tooltip-append-to-body="true" tooltip="View all course details">More details <span class="more-arrow"></span></a>
+              <a class="more-details-link" ng-href="/products/{{myCourses[row*3+col].product_id}}"
+                tooltip-append-to-body="true" tooltip="View all course details">More details <span class="more-arrow"></span>
+              </a>
               <span class="pull-left buttons-holder" ng-if="myCourses[row*3+col].needRefresh!=true">
                 <md-button ng-if="myCourses[row*3+col].status!='reg'" class="" 
+                  tooltip-append-to-body="true" tooltip="Move to Learning"
                   ng-click="changeStatus(myCourses[row*3+col],'reg')">Learning <span class="arrow-down"></span></md-button>
                 <md-button ng-if="myCourses[row*3+col].status!='wish'" class="" 
+                  tooltip-append-to-body="true" tooltip="Move to Wishlist"
                   ng-click="changeStatus(myCourses[row*3+col],'wish')">Wishlist <span class="arrow-down"></span></md-button>
                 <md-button ng-if="myCourses[row*3+col].status!='compl'" class="" 
+                  tooltip-append-to-body="true" tooltip="Mark as Completed"
                   ng-click="changeStatus(myCourses[row*3+col],'compl')">Completed <span class="arrow-down"></span></md-button>
               </span>
               <small ng-if="myCourses[row*3+col].needRefresh==true">
-              <span class="pull-left buttons-holder">
-                <a href="#" ng-click="reloadCards(myCourses[row*3+col])" class='text-success'>Changed successfully, click to refresh</a>
+                <span class="pull-left buttons-holder">
+                  <a href="#" ng-click="reloadCards(myCourses[row*3+col])" class='text-success'>Changed successfully, click to refresh</a>
                 </span>
               </small>
             </div>
 
-        <div class="col-md-4" ng-repeat="col in [0]">
-          <div class="well well-sm well-tile tile-completed">
-            <div class="row">
-              <div class="col-xs-1">
-                <span class="glyphicon glyphicon-facetime-video"></span>
-              </div>
-              <div class="col-xs-9">
-                <div class="tile-name">
-                  1 Hour Video Workshop - Build a CSS Web Page in Dreamweaver
-                </div>
-              </div>
-              <div class="col-xs-2 text-right">
-                <span class="glyphicon glyphicon-resize-full"></span>
-              </div>
-            </div>
-            <div class="row voffset1">
-              <div class="col-xs-12">
-                <div class="tile-text">
-                  A step-by-step 1 hour video intensive shows the total beginner how build a modern CSS web page from start to finish.
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-6 voffset2">
-                <div class="tile-count">&#9656; 12 comments</div>
-              </div>
-              <div class="col-xs-6 text-right voffset3">
-                <span class="glyphicon glyphicon-ok-sign glyph-big darkgreen"></span>
-                <span class="glyphicon glyphicon-play-circle glyph-action glyph-big"></span>
-              </div>
-            </div>
           </div>
-        </div>
 
+        </div>
       </div>
 
     </div>
@@ -285,20 +231,19 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="header-2">
-            Playlist Subscriptions
+            <a href="/user_playlists">Playlists</a>
           </div>
           <div ng-if="!subsciptionsEditMode" class="padding-left1">
             <table class="table-hover voffset3 font-size-inherit">
               <tr ng-repeat="pl in filteredPlaylists = (myPlaylists | filter:{subscribed:true})" 
                   ng-class="pl.css_class">
-<td width="99%" class="click-action" ng-click="clickPlaylist(pl)"
-                                  tooltip-append-to-body="true" tooltip="Show playlist courses only">
-                                    {{pl.title}}
-                                </td>
                 <td class="td-vspace1">
-                  <span class="glyphicon glyphicon-trash glyph-action glyph-big red" ng-click="playlistUnsubscribe(pl)" />
+                  <span class="image-trash" ng-click="playlistUnsubscribe(pl)"/>
                 </td>
-
+                <td width="99%" class="click-action" ng-click="clickPlaylist(pl)"
+                    tooltip-append-to-body="true" tooltip="Show playlist courses only">
+                  {{pl.title}}
+                </td>
               </tr>
             </table>
             <div class="text-warning" ng-if="filteredPlaylists.length<=0">
@@ -328,7 +273,7 @@
               <md-button class="md-warn" ng-click="cancelEditSubscriptions()">
                 Cancel
               </md-button>
-              <md-button class="" ng-disabled="checkedPlaylistsCount<=0" ng-click="doneSubscriptions()">
+              <md-button class="md-default" ng-disabled="checkedPlaylistsCount<=0" ng-click="doneSubscriptions()">
                 Done
               </md-button>
             </div>
@@ -345,11 +290,9 @@
             <table class="voffset3 font-size-inherit">
               <tr ng-repeat="skill in filteredInterests = (myInterests | filter:{subscribed:true})">
                 <td class="td-vspace1">
-                 <!-- <span class="glyphicon glyphicon-trash glyph-action glyph-big red" ng-click="interestUnsubscribe(skill)"/>-->
                   <span class="image-trash" ng-click="interestUnsubscribe(skill)"/>
                 </td>
                 <td width="99%">{{skill.name}}</td>
-
               </tr>
             </table>
             <div class="text-warning" ng-if="filteredInterests.length<=0">
@@ -379,7 +322,7 @@
               <md-button class="md-warn" ng-click="cancelEditInterests()">
                 Cancel
               </md-button>
-              <md-button class="md-primary" ng-disabled="checkedInterestsCount<=0" ng-click="doneInterests()">
+              <md-button class="md-default" ng-disabled="checkedInterestsCount<=0" ng-click="doneInterests()">
                 Done
               </md-button>
             </div>
