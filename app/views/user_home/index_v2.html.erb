@@ -161,7 +161,8 @@
 
               </div>
 
-              <span class="pull-right icon-ok-sign glyph-xl" ng-if="myCourses[row*3+col].status=='compl'" tooltip-append-to-body="true" tooltip="Course Completed">Completed</span>
+              <span class="pull-right icon-ok-sign glyph-xl" ng-if="myCourses[row*3+col].status=='compl'" 
+                tooltip-append-to-body="true" tooltip="Course Completed">Completed</span>
               <div style="clear:both"></div>
             </div>
 
@@ -172,9 +173,11 @@
 
             <div class="panel-panel-footer tile-footer text-right" ng-if="myCourses[row*3+col].tileDetail!=true">
               <strong class="price-position">{{myCourses[row*3+col].price_fmt}}</strong>
-              <span class="exclamation-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Manager'" tooltip-append-to-body="true" tooltip="This course is required">REQUIRED</span>
-              <span class="not-required-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Self'" tooltip-append-to-body="true" tooltip="This course is not required"></span>
+              <span class="exclamation-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Manager'" 
+                tooltip-append-to-body="true" tooltip="This course is required">REQUIRED</span>
               <!--
+              <span class="not-required-sign pull-left" ng-if="myCourses[row*3+col].assigned_by=='Self'" 
+                tooltip-append-to-body="true" tooltip="This course is not required"></span>
               <span class="rating-holder" tooltip-append-to-body="true" tooltip="TODO></span>
               -->
               <img ng-src="{{myCourses[row*3+col].product.vendor.logo_asset_url}}"
@@ -182,7 +185,8 @@
                   tooltip="{{myCourses[row*3+col].product.vendor.name}}" tooltip-append-to-body="true"/>
 
               <span class="play-holder-height">
-                <a href="{{myCourses[row*3+col].product.origin}}" class="orange" target="_blank" ng-if="myCourses[row*3+col].status!='compl'">
+                <a href="{{myCourses[row*3+col].product.origin}}" class="orange" target="_blank" ng-if="myCourses[row*3+col].status!='compl'"
+                  tooltip-append-to-body="true" tooltip="Go to a course in a new browser window/tab">
                   <span class="play-button"><img src="/img/play-icon-part.png"/></span>
                 </a>
               </span>
