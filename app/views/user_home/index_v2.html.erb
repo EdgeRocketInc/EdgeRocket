@@ -161,6 +161,8 @@
 
               </div>
 
+              <span class="pull-right icon-wish-sign glyph-xl" ng-if="myCourses[row*3+col].status=='wish'" 
+                tooltip-append-to-body="true" tooltip="Course in Wishlist">Wishlist</span>              
               <span class="pull-right icon-ok-sign glyph-xl" ng-if="myCourses[row*3+col].status=='compl'" 
                 tooltip-append-to-body="true" tooltip="Course Completed">Completed</span>
               <div style="clear:both"></div>

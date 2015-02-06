@@ -692,11 +692,19 @@ div.tile-text{
 }
 .icon-ok-sign{
   display:inline-block;
-  width:50%;
-  max-width:100px;
   height:12px;
   background: url('../img/icon-complete.png') no-repeat left center;
   color: #595f67;
+  font-family: "OpenSans", sans-serif;
+  font-size: 13px !important;
+  text-transform: uppercase;
+  padding-left:24px;
+}
+.icon-wish-sign{
+  display:inline-block;
+  height:12px;
+  background: url('../img/icon-wishlist.png') no-repeat left center;
+  color: #fff;
   font-family: "OpenSans", sans-serif;
   font-size: 13px !important;
   text-transform: uppercase;
