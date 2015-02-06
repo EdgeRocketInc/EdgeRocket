@@ -9,18 +9,16 @@ class ApplicationController < ActionController::Base
   # Moved to config/unicorn.rb 
   #Thread.new { EventMachine.run }
 
-  # not needed because it's included in other layouts
-  # layout 'superhero'
-
 	# Publish an event to the external Keen IO collector
 	def publish_keen_io(request_format, collection, data_hash)
     if (Rails.env.production? || Rails.env.stage?) && request.format.symbol == request_format
       data_hash[:request_format] = request_format
       begin
+        ensure_em
         Keen.publish_async(collection, data_hash)
       rescue Keen::Error => e
-        # it may fail when EventMachine stops running for some reason
-        # TODO: add a restart machnism
+        # it should not fail, because ensure_em is called before
+        # but it's for safety if EventMachine stops running for some reason
         puts e.message 
       end
     end
@@ -55,6 +53,13 @@ private
 
   def after_sign_in_path_for(resource_or_scope)
     stored_location_for(resource_or_scope) || app_path
+  end
+
+  def ensure_em
+    unless EventMachine.reactor_running? && EventMachine.reactor_thread.alive?
+      Thread.new { EventMachine.run }
+      sleep 1
+    end
   end
 
 end
