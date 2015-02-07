@@ -38,8 +38,12 @@
 						</div>
 						<div class="text-right voffset5">
       						<md-button ng-if="enrolled==false" class="md-raised" ng-click="enroll()">Add to Wishlist</md-button>
-							<md-button class="md-primary md-raised" ng-click="goto()">Go to course</md-button>
-							<md-button class="md-raised loffset2" ng-click="backToMyCourses()">My Courses</md-button>
+							<md-button class="md-primary md-raised" ng-click="goto()"
+									tooltip-append-to-body="true" tooltip="Course content">
+								Go to course</md-button>
+							<md-button class="md-raised loffset2" ng-click="backToMyCourses()"
+									tooltip-append-to-body="true" tooltip="Home page with list of courses">
+								Home</md-button>
 						</div>
 					</div>
 				</div>

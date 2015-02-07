@@ -17,7 +17,6 @@ html {
 }
 
 main {
-/*  background-color: $main-bg-color;*/
   background-color: $main-bg-color;
   background-image:url('../img/bg.png');
   background-repeat: repeat;
@@ -26,7 +25,7 @@ main {
   padding-top:15px;
   float:left;
   width:100%;
- margin-bottom:20px;
+  margin-bottom:20px;
   background-color: rgba(255,255,255,.5);
   -moz-box-shadow: 0 1px 3px rgba(211,217,220,.35);
   -webkit-box-shadow: 0 1px 3px rgba(211,217,220,.35);
@@ -122,24 +121,10 @@ nav.navbar {
   -moz-box-shadow: 0 1px 0 rgba(211,217,220,.75);
   -webkit-box-shadow: 0 1px 0 rgba(211,217,220,.75);
   box-shadow: 0 1px 0 rgba(211,217,220,.75);
- margin-bottom:0;
-  //background-color: $v2-bg-nav;
+  margin-bottom:0;
 
   // keep default marking at the bottom unless we need more branding later
   //margin-bottom: 5px;
-}
-
-
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-  //background-color: #455786 !important;
-}
-
-.navbar-inverse {
-  //  background-color: #005F7E;
-}
-
-nav.navbar-default, .navbar-nav > li > .dropdown-menu {
-  //background-color: $v2-bg-nav; // Main bg color for navbar
 }
 
 // override for the 'Home' navigation link
@@ -670,20 +655,11 @@ md-checkbox.md-orange-theme.md-checked .md-icon:after{
   line-height: 11px;
 }
 div.well-tile {
-  /*background-color: $v2-bg-color;*/
   background-color:#fff;  
   color:#000;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-}
-div.well-tile:hover{
-/*	background-color:#ea8425;
-	color:#fff;*/
-}
-div.well-tile:hover div.tile-footer,div.well-tile:hover div.tile-body{
-/*background-color:#ea8425;
-color:#fff;*/
 }
 div.tile-text{
   color: #595f67;
@@ -763,8 +739,6 @@ div.tile-text{
   color: black;
   font-weight: 300;
   font-size: 13px;
-/*  height: 140px;*/
-/*  overflow-y: hidden;*/
 }
 .more-details-link{
   position: absolute;
@@ -990,11 +964,8 @@ span.image-trash{
   cursor: pointer;
 }
 div.tile-footer span.glyphicon-exclamation-sign{
-/*  position:relative;
-  top:11px;*/
 }
 .well-tile:hover div.tile-footer a{
-  /*color:#fff;*/
 }
 // --- V2 general
 
@@ -1015,7 +986,6 @@ table.font-size-inherit {
 }
 
 div.div-author {
-/*  color: $v2-color-contrast;*/
   color: #ff6100;
   font-family: "OpenSans", sans-serif;
   font-size: 12px;
