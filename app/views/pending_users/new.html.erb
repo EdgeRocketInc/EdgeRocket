@@ -6,10 +6,13 @@
   </div>
   <div class="row">
     <div class="col-md-4 col-md-offset-4 center voffset3">
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          Sign Up for <%= params["type"] %> account.
-        </div>
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <% if params["type"]=='growth' %>
+              User Acquisition Judo - 
+            <% end %>
+            Registration
+          </div>
         <%= form_for(@pending_user, url: sign_up_path) do |f| %>
           <div class="panel-body">
             <%= f.hidden_field :user_type, :value => params["type"] %>
