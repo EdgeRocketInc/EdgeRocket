@@ -21,6 +21,10 @@
   loadSkills = ->
     $http.get('/surveys/skills.json').success( (data) ->
       $scope.interests = data.skills
+      for skill in $scope.interests
+        skill.cb = skill.preselected
+        if skill.cb == true 
+          $scope.selectCount += 1
       console.log('Successfully loaded skills')
     ).error( ->
       console.log('Error loading skills')

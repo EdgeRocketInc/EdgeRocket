@@ -18,4 +18,14 @@ class MyCoursesTest < ActiveSupport::TestCase
      	assert !mc.completed?
     end
 
+  	test "subscribe to courses" do
+ 		result = MyCourse.subscribe(101, 1004, 'reg', 'Self')
+     	assert result==true
+
+     	# try duplicate record
+ 		result = MyCourse.subscribe(101, 1004, 'reg', 'Self')
+     	assert result==false
+    end
+
+
 end
