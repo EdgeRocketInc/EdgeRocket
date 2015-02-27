@@ -12,6 +12,13 @@ class Public::PublicProductController < ApplicationController
 	    if !@product['vendor'].nil?
 	      @product['vendor']['logo_asset_url'] = view_context.image_path(@product['vendor']['logo_file_name'])
 	    end
+
+	    publish_keen_io(:json, :ui_actions, {
+	        :action => controller_path,
+	        :method => action_name,
+	        :product_id => params[:id]
+	    })
+
 	end
 
 end
