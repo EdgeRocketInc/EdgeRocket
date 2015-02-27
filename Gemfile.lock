@@ -180,7 +180,7 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
-    pg (0.17.1)
+    pg (0.18.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -315,7 +315,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth (~> 1.2)
   omniauth-google-oauth2 (~> 0.2)
-  pg (= 0.17.1)
+  pg (~> 0.18)
   pry-byebug
   rack-cors
   rack-timeout (~> 0.0.4)

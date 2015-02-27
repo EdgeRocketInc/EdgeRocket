@@ -26,7 +26,7 @@ gem 'unicorn', group: [:production, :stage]
 gem 'rails_12factor', group: [:production, :stage]
 gem 'newrelic_rpm', group: [:production, :stage]
 
-gem 'pg', '0.17.1'
+gem 'pg', '~> 0.18'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0'

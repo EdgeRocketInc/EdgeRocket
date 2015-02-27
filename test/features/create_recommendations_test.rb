@@ -77,6 +77,7 @@ class CreateRecommendationsTest < Capybara::Rails::TestCase
     first(".product-recommendation").click
 
     click_on "Add to Recommended"
+    sleep(0.2)
 
     assert_content page, "A A Test Product One"
 
