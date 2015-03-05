@@ -15,13 +15,18 @@
 							<%= f.submit "Sign in with Email", class: 'btn btn-primary form-control' %>
 						</div>
 						<div class="voffset2">
+							<%= link_to "Sign in with LinkedIn", 
+								user_omniauth_authorize_path(:linkedin), class: 'btn btn-primary form-control voffset1' %>
+						</div>
+						<div class="voffset2">
 							<%= render "devise/shared/links" %>
 						</div>
 						<div class="voffset4">
 							<div class="text-warning small">
 								If your company enabled Single Sign In with Google,
 							</div>
-							<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-primary form-control voffset1' %>
+							<%= link_to "Sign in with Google", 
+								user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-primary form-control voffset1' %>
 						</div>
 					</div>
 				<% end %>

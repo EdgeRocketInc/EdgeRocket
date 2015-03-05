@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219225149) do
+ActiveRecord::Schema.define(version: 20150305014712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,7 +161,8 @@ ActiveRecord::Schema.define(version: 20150219225149) do
     t.datetime "updated_at"
     t.string   "key_name"
     t.string   "image"
-    t.boolean  "preselected", default: false, null: false
+    t.boolean  "preselected",   default: false, null: false
+    t.text     "synonyms_json"
   end
 
   create_table "surveys", force: true do |t|
@@ -191,6 +192,7 @@ ActiveRecord::Schema.define(version: 20150219225149) do
     t.string   "uid"
     t.boolean  "new_courses"
     t.string   "email_preference",       limit: 20, default: "all"
+    t.string   "access_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

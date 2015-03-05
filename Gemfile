@@ -22,7 +22,9 @@ group :test do
   gem 'launchy'
 end
 
+# Use unicorn as the app server
 gem 'unicorn', group: [:production, :stage]
+
 gem 'rails_12factor', group: [:production, :stage]
 gem 'newrelic_rpm', group: [:production, :stage]
 
@@ -58,9 +60,6 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
@@ -77,6 +76,7 @@ gem 'devise', '~> 3.4.1'
 gem 'cancancan', '~> 1.9'
 gem 'omniauth', '~> 1.2'
 gem 'omniauth-google-oauth2', '~> 0.2'
+gem 'omniauth-linkedin-oauth2', '~> 0.1'
 
 # Logging and analytics
 #gem 'em-http-request', '~> 1.1' #for async Keen IO events
@@ -98,3 +98,4 @@ gem 'rack-timeout', '~> 0.0.4'
 
 gem 'chartkick', '1.3.2'
 
+gem 'rest-client', '~> 1.7'

@@ -10,10 +10,15 @@ class UserHomeController < ApplicationController
       :user_agent => request.env['HTTP_USER_AGENT'] # TODO: use UserAgent gem
     })
 
+    #byebug
+
+    # if this is a linkedin user, try to use her profile to get interest
+    if current_user.provider == 'linkedin' && current_user.sign_in_count <= 1
+      survey_linkedin_skills()
+    end
+    
     # render the interests page only if
     # user has not done the survey AND does not have incomplte courses
-    # testing - Marko
-    # render 'interests'
 
     if current_user.survey.nil? && current_user.count_incomplete_courses() == 0
       render 'interests'
@@ -140,24 +145,9 @@ class UserHomeController < ApplicationController
   # JSON: {anything}
   def create_preferences
   
-    skills_to_send, prefs = make_skills()
+    skills_to_send, prefs = make_skills(params[:skills])
 
-    survey = Survey.new(
-      user_id: current_user.id,
-      preferences: prefs.to_json)
-    
-    current_user.survey = survey
-    if !skills_to_send.empty? && !skills_to_send.nil?
-      survey.update!( {:processed => true} )
-      
-      recommendations_hash = RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
-      Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
-
-      # assign recommended courses to the user and set a flag to indicate that user has new courses
-      assign_recommended_courses(current_user, recommendations_hash)
-
-    end
-    Notifications.survey_completed(current_user).deliver
+    create_preferences_impl skills_to_send, prefs
 
     result = {'user_id' => current_user.id}
 
@@ -172,7 +162,7 @@ class UserHomeController < ApplicationController
 
     # if survey exists, updated it, else create a new one
     if current_user.survey
-      skills_to_send, prefs = make_skills()
+      skills_to_send, prefs = make_skills(params[:skills])
       current_user.survey.update(preferences: prefs.to_json)
       recommendations_hash = RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, current_user.survey.id)
       # assign recommended courses to the user and set a flag to indicate that user has new courses
@@ -227,15 +217,15 @@ private
 
   end
 
-  def make_skills()
+  def make_skills(skills_source)
 
     skills_to_send = []
 
-    prefs = {:skills => params[:skills]} # TODO make it real
-    if !params[:skills].nil?
-      preferred_skills = params[:skills].map do |skill|
+    prefs = {:skills => skills_source} # TODO make it real
+    if !skills_source.nil?
+      preferred_skills = skills_source.map do |skill|
         if skill["id"] != "other_skill"
-          Skill.find_by_key_name(skill["id"])
+          Skill.find_a_match(skill["id"])
         end
       end.compact
 
@@ -247,6 +237,53 @@ private
     end
 
     return skills_to_send, prefs
+  end
+
+  def create_preferences_impl(skills_to_send, prefs)
+    survey = Survey.new(
+      user_id: current_user.id,
+      preferences: prefs.to_json)
+    
+    current_user.survey = survey
+    if !skills_to_send.empty? && !skills_to_send.nil?
+      survey.update!( {:processed => true} )
+      
+      recommendations_hash = RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, survey.id)
+      Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
+
+      # assign recommended courses to the user and set a flag to indicate that user has new courses
+      assign_recommended_courses(current_user, recommendations_hash)
+
+    end
+    Notifications.survey_completed(current_user).deliver
+  end
+
+  # analyze linkedin skills of the user and save them in leu of survey
+  def survey_linkedin_skills()
+    skills_survey = [] 
+    skills_data = RestClient.get(
+      "https://api.linkedin.com/v1/people/~:(skills)?format=json", 
+      { 'Authorization' => "Bearer #{current_user.access_token}" } )
+    skills_json = JSON.parse(skills_data)
+    # LinkedIn skills top section contains 10 elements, 
+    # therefore use last 3 of that or last 3 if there are fewer than 10
+    skills_bottom = skills_json['skills']['_total'] > 10 ? 9 : skills_json['skills']['_total']
+    if skills_bottom > 0
+      skills_count =  skills_bottom > 1 ? 3 : skills_bottom
+      for i in (skills_bottom-skills_count+1)..skills_bottom
+        skill_name = skills_json['skills']['values'][i]['skill']['name']
+        if !skill_name.blank?
+          # try to match this linkedin skill to the list of internal skills we have
+          matching_er_skill = Skill.find_a_match(skill_name.downcase)
+          if !matching_er_skill.nil?
+            skills_survey.push( { :id => matching_er_skill.key_name } ) 
+          end
+        end
+      end
+    end
+    #byebug
+    skills_to_send, prefs = make_skills skills_survey
+    create_preferences_impl skills_to_send, prefs
   end
 
 end

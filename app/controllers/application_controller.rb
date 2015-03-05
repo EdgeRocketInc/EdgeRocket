@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
 private
 
-  # This methods is ised to confgire co-bradning logos and other options
+  # This methods is ised to confgire co-branding logos and other options
   def provided_by
     if !current_user.nil? && !current_user.account.nil? && !current_user.account.logo_filename.blank?
       @provided_by = false
