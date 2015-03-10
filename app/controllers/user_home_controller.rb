@@ -13,7 +13,7 @@ class UserHomeController < ApplicationController
     #byebug
 
     # if this is a linkedin user, try to use her profile to get interest
-    if current_user.provider == 'linkedin' && current_user.sign_in_count <= 1
+    if current_user.provider == 'linkedin' && current_user.survey.nil?
       survey_linkedin_skills()
     end
     
@@ -260,30 +260,41 @@ private
 
   # analyze linkedin skills of the user and save them in leu of survey
   def survey_linkedin_skills()
-    skills_survey = [] 
-    skills_data = RestClient.get(
-      "https://api.linkedin.com/v1/people/~:(skills)?format=json", 
-      { 'Authorization' => "Bearer #{current_user.access_token}" } )
-    skills_json = JSON.parse(skills_data)
-    # LinkedIn skills top section contains 10 elements, 
-    # therefore use last 3 of that or last 3 if there are fewer than 10
-    skills_bottom = skills_json['skills']['_total'] > 10 ? 9 : skills_json['skills']['_total']
-    if skills_bottom > 0
-      skills_count =  skills_bottom > 1 ? 3 : skills_bottom
-      for i in (skills_bottom-skills_count+1)..skills_bottom
-        skill_name = skills_json['skills']['values'][i]['skill']['name']
-        if !skill_name.blank?
-          # try to match this linkedin skill to the list of internal skills we have
-          matching_er_skill = Skill.find_a_match(skill_name.downcase)
-          if !matching_er_skill.nil?
-            skills_survey.push( { 'id' => matching_er_skill.key_name } ) 
+    skills_survey = []
+    skills_data = nil
+    
+    begin
+      skills_data = RestClient.get(
+        "https://api.linkedin.com/v1/people/~:(skills)?format=json", 
+        { 'Authorization' => "Bearer #{current_user.access_token}" } )
+    rescue RestClient::Unauthorized => e
+      # not much we can do here
+    end
+
+    if !skills_data.nil?
+      skills_json = JSON.parse(skills_data)
+      # LinkedIn skills top section contains 10 elements, 
+      # therefore use last 3 of that or last 3 if there are fewer than 10
+      if !skills_json['skills'].nil?
+        skills_bottom = skills_json['skills']['_total'] > 10 ? 9 : skills_json['skills']['_total']
+        if skills_bottom > 0
+          skills_count =  skills_bottom > 1 ? 3 : skills_bottom
+          for i in (skills_bottom-skills_count+1)..skills_bottom
+            skill_name = skills_json['skills']['values'][i]['skill']['name']
+            if !skill_name.blank?
+              # try to match this linkedin skill to the list of internal skills we have
+              matching_er_skill = Skill.find_a_match(skill_name.downcase)
+              if !matching_er_skill.nil?
+                skills_survey.push( { 'id' => matching_er_skill.key_name } ) 
+              end
+            end
           end
         end
+        #byebug
+        skills_to_send, prefs = make_skills skills_survey
+        create_preferences_impl skills_to_send, prefs
       end
     end
-    #byebug
-    skills_to_send, prefs = make_skills skills_survey
-    create_preferences_impl skills_to_send, prefs
   end
 
 end
