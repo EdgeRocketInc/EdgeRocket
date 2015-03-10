@@ -224,8 +224,8 @@ private
     prefs = {:skills => skills_source} # TODO make it real
     if !skills_source.nil?
       preferred_skills = skills_source.map do |skill|
-        if skill["id"] != "other_skill"
-          Skill.find_a_match(skill["id"])
+        if skill['id'] != 'other_skill'
+          Skill.find_a_match(skill['id'])
         end
       end.compact
 
@@ -236,7 +236,7 @@ private
       end
     end
 
-    return skills_to_send, prefs
+    return skills_to_send.uniq, prefs
   end
 
   def create_preferences_impl(skills_to_send, prefs)
@@ -276,7 +276,7 @@ private
           # try to match this linkedin skill to the list of internal skills we have
           matching_er_skill = Skill.find_a_match(skill_name.downcase)
           if !matching_er_skill.nil?
-            skills_survey.push( { :id => matching_er_skill.key_name } ) 
+            skills_survey.push( { 'id' => matching_er_skill.key_name } ) 
           end
         end
       end

@@ -4,10 +4,13 @@ class Skill < ActiveRecord::Base
 
   # find the closest skill that matches the parameter
   def self.find_a_match(skill_name)
-  	skill = Skill.find_by_key_name(skill_name)
-  	if skill.nil?
-  		skill = Skill.where("synonyms_json like ?", "%#{skill_name}%").first
-  	end
+    skill = nil
+    if !skill_name.blank?
+    	skill = Skill.find_by_key_name(skill_name)
+    	if skill.nil?
+    		skill = Skill.where("synonyms_json like ?", "%#{skill_name}%").first
+    	end
+    end
   	return skill
   end
 end
