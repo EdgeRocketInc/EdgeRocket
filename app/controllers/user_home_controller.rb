@@ -208,7 +208,10 @@ private
       #byebug
       if !recommendation[1].nil?
         recommendation[1].each { |product_id|
-          new_courses = MyCourse.subscribe(user.id, product_id, 'wish', 'Self')
+          is_subscribed = MyCourse.subscribe(user.id, product_id, 'wish', 'Self')
+          if new_courses == false
+            new_courses = is_subscribed
+          end
         }
       end
     }
