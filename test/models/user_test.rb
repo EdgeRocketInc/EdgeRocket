@@ -1,6 +1,28 @@
 require 'test_helper'
 
+
 class UserTest < ActiveSupport::TestCase
+
+  class OA
+    
+    class Info
+      def email
+      end
+    end
+
+    def info
+      Info.new
+    end
+
+    def provider
+    end
+
+    def uid
+      #'random$$$%#%#^#'
+    end
+  end
+
+
   test "user role joined" do
     u = User.find(101)
     assert u.roles.length > 0
@@ -19,5 +41,18 @@ class UserTest < ActiveSupport::TestCase
     u = User.find(101)
     assert u.count_incomplete_courses() > 0
   end
+
+  test "find google auth" do
+    oa = OA.new
+    u = User.find_for_google_oauth2(oa)
+    assert !u.nil?
+  end
+
+  test "find linkedin auth" do
+    oa = OA.new
+    u = User.find_for_linkedin(oa)
+    assert !u.nil?
+  end
+
 
 end

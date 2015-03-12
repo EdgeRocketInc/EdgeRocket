@@ -103,7 +103,7 @@ class UserHomeController < ApplicationController
 
     # set user flag to indicate new courses
     if new_courses
-      u.update(new_courses: true)
+      u.update(new_courses: true, ui_message_id: UiMessage::MSG_NEW_COURSE_SUB)
     end
 
     result = {'user_id' => u.id, 'playlist_ids' => params[:playlist_ids]}
@@ -141,13 +141,13 @@ class UserHomeController < ApplicationController
   end
 
   # POST
-  # create new set of user preferences for current user
+  # create a new set of user preferences for current user
   # JSON: {anything}
   def create_preferences
   
     skills_to_send, prefs = make_skills(params[:skills])
 
-    create_preferences_impl skills_to_send, prefs
+    create_preferences_impl skills_to_send, prefs, UiMessage::MSG_NEW_COURSE_RECOMMEND
 
     result = {'user_id' => current_user.id}
 
@@ -166,7 +166,10 @@ class UserHomeController < ApplicationController
       current_user.survey.update(preferences: prefs.to_json)
       recommendations_hash = RecommendationsEmail.save_recommendations_email(current_user, skills_to_send, current_user.survey.id)
       # assign recommended courses to the user and set a flag to indicate that user has new courses
-      assign_recommended_courses(current_user, recommendations_hash)
+      assign_recommended_courses(
+        current_user, 
+        recommendations_hash, 
+        UiMessage::MSG_NEW_COURSE_RECOMMEND)
       result = {'user_id' => current_user.id}
       render json: result.as_json
     else
@@ -184,7 +187,7 @@ class UserHomeController < ApplicationController
     respond_to do |format|
       format.json {
         # combine all objects into one JSON result
-        json_result = u.as_json
+        json_result = u.as_json(:include => :ui_message)
         json_result['account'] = @account.as_json(methods: :options)
         json_result['sign_in_count'] = u.sign_in_count #ugly but works
         unless u.survey == nil
@@ -199,7 +202,7 @@ class UserHomeController < ApplicationController
 private
 
   # the recommendations are in format: [11, [100, 201]] where 11 is a skill and [100, 201] are recommendation product ids
-  def assign_recommended_courses(user, recommendations)
+  def assign_recommended_courses(user, recommendations, ui_message_id)
     new_courses = false
     recommendations.each { |recommendation|
       #byebug
@@ -212,7 +215,7 @@ private
 
     # set user flag to indicate new courses
     if new_courses
-      user.update(new_courses: true)
+      user.update(new_courses: true, ui_message_id: ui_message_id)
     end
 
   end
@@ -239,7 +242,7 @@ private
     return skills_to_send.uniq, prefs
   end
 
-  def create_preferences_impl(skills_to_send, prefs)
+  def create_preferences_impl(skills_to_send, prefs, ui_message_id)
     survey = Survey.new(
       user_id: current_user.id,
       preferences: prefs.to_json)
@@ -252,7 +255,7 @@ private
       Notifications.send_recommendations(current_user, request.protocol + request.host_with_port, skills_to_send).deliver
 
       # assign recommended courses to the user and set a flag to indicate that user has new courses
-      assign_recommended_courses(current_user, recommendations_hash)
+      assign_recommended_courses(current_user, recommendations_hash, ui_message_id)
 
     end
     Notifications.survey_completed(current_user).deliver
@@ -292,7 +295,8 @@ private
         end
         #byebug
         skills_to_send, prefs = make_skills skills_survey
-        create_preferences_impl skills_to_send, prefs
+        create_preferences_impl(
+          skills_to_send, prefs, UiMessage::MSG_NEW_LI_RECOMMEND )
       end
     end
   end

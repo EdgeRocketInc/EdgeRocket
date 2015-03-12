@@ -122,7 +122,7 @@ class EmployeesController < ApplicationController
   def update_field
     u = User.find(params[:id])
     # TODO make it generic, get the field and value from the params
-    u.update(new_courses: false)
+    u.update(new_courses: false, ui_message_id: nil)
 
     respond_to do |format|
       if u.errors.empty?

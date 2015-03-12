@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :discussions
   has_one :profile
   has_one :survey, dependent: :destroy
+  belongs_to :ui_message
 
   # returns the role with the highest level of access
   def best_role
