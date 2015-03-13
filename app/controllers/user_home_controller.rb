@@ -209,8 +209,8 @@ private
       if !recommendation[1].nil?
         recommendation[1].each { |product_id|
           is_subscribed = MyCourse.subscribe(user.id, product_id, 'wish', 'Self')
-          if new_courses == false
-            new_courses = is_subscribed
+          if is_subscribed == true
+            new_courses = true
           end
         }
       end
