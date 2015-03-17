@@ -33,7 +33,7 @@ class UserAccount
 
     @user.encrypted_password = @pending_user.encrypted_password
     if @user.save
-      Notifications.account_confirmation_email(@user, @hostname, generated_password).deliver
+      Notifications.account_confirmation_email(@user, @hostname, generated_password, @pending_user.user_type).deliver
       # Add SA role to new users with new accounts only!
       if !account_exists
         @role = Role.new(name:'SA', user_id: @user.id)

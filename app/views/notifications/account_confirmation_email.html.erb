@@ -1,5 +1,5 @@
 <p>Welcome to EdgeRocket!</p>
-<p>Log in here: <%= link_to @hostname + '/users/sign_in', @hostname + '/users/sign_in' %></p>
+<p>Log in here: <%= link_to @hostname + @sign_in_path, @hostname + @sign_in_path %></p>
 <p>Use the username (<%= @user.email %>) 
 and password
 <% if @generated_password.blank? %>that you designated when requesting your account.

@@ -1,6 +1,6 @@
 Welcome to EdgeRocket!
 
-Log in here: <%= link_to @hostname + '/users/sign_in', @hostname + '/users/sign_in' %>
+Log in here: <%= @hostname + @sign_in_path %>
 
 Use the username (<%= @user.email %>) and password <% if @generated_password.blank? %> that you designated when requesting your account <% else %> <%= @generated_password %> that you can change later<% end %>.
 
