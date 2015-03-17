@@ -1,4 +1,4 @@
-<% if !params[:controller].starts_with?('devise') %>
+<% if !params[:controller].starts_with?('devise') && !params[:controller].starts_with?('users') %>
 <nav class="navbar md-whiteframe-z1" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,7 +29,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="<%= 'active' if params[:controller]=='user_home' || params[:controller]=='my_courses' %>">
-          <%= link_to("Home", controller: "user_home", action: "index") %>
+          <%= link_to("Home", "/user_home") %>
         </li>
         <%  
           if !current_user.account.nil? && !current_user.account.options.blank?
@@ -86,7 +86,7 @@
             </a>
             <ul class="dropdown-menu">
               <li>
-                  <%= link_to("Log out", {controller: "devise/sessions", action: "destroy"}, method: :delete) %>
+                  <%= link_to("Log out", {controller: "users/sessions", action: "destroy"}, method: :delete) %>
               </li>
               <li>
                   <%= link_to("Change Password", {controller: "welcome", action: "edit_password" }) %>

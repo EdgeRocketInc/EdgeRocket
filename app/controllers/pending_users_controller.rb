@@ -8,10 +8,12 @@ class PendingUsersController < ApplicationController
 
   # IMPORTANT: Short-cucruiting user creation to streamline the process
   def create
-    #byebug
 
     if params[:pending_user][:user_type] == "member" || params[:pending_user][:user_type] == "enterprise" || params[:pending_user][:user_type] == "team"
       @account_type = params[:pending_user][:user_type]
+    elsif params[:pending_user][:user_type] == "common"
+      @account_type = "common"
+      redirect_param = "common"
     else
       @account_type = "free"
     end
@@ -31,7 +33,8 @@ class PendingUsersController < ApplicationController
       
       flash[:notice] = "Thank you for signing up, please check your email and log in."
 
-      redirect_to app_path
+      #byebug
+      redirect_to app_path({:type => redirect_param})
     else
       render_error_messages(@pending_user)
       render :new

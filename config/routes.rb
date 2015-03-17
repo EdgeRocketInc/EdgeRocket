@@ -1,7 +1,7 @@
 EdgeApp::Application.routes.draw do
 
   # Don't allow users to sign up themselves, but allow changing passwords
-  devise_for :users, :skip => [:registrations], :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :skip => [:registrations], :controllers => { sessions: 'users/sessions', :omniauth_callbacks => "users/omniauth_callbacks" }
     as :user do
       #get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'    
       #put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            

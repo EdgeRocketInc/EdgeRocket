@@ -1,5 +1,4 @@
-class OmniauthCallbacksController < Devise::OmniauthCallbacksController   
-
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def google_oauth2
      
 		#byebug

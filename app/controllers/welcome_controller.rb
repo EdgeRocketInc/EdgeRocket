@@ -22,7 +22,9 @@ class WelcomeController < ApplicationController
           :action => controller_path,
           :method => action_name
       })
-      redirect_to controller: 'devise/sessions', action: 'new'
+      #byebug
+      redirect_param = params['type']=='common' ? 'common' : nil
+      redirect_to controller: 'users/sessions', action: 'new', :type => redirect_param
     end
 
   end

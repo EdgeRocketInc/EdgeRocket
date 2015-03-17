@@ -17,10 +17,12 @@
 						<div class="voffset2">
 							<%= render "devise/shared/links" %>
 						</div>
-						<div class="voffset5">
-							<%= link_to( image_tag('Sign-in-Large---Active.png'), 
-									user_omniauth_authorize_path(:linkedin), class: 'voffset1' ) %>
-						</div>
+						<% if @sign_in_type != 'common' %>
+							<div class="voffset5">
+								<%= link_to( image_tag('Sign-in-Large---Active.png'), 
+										user_omniauth_authorize_path(:linkedin), class: 'voffset1' ) %>
+							</div>
+						<% end %>
 						<!--
 						<div class="voffset4">
 							<div class="text-warning small">
@@ -38,7 +40,12 @@
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4 center voffset2">
 			<div class="padding-bottom3">
-				Don't have an account yet? Please <a style="color: blue" href="/sign_up/">sign up for a free account</a>
+				Don't have an account yet?
+				<% if @sign_in_type == 'common' %>
+					Please <a style="color: blue" href="/sign_up?type=common">sign up for a free account</a>
+				<% else %>
+					Please <a style="color: blue" href="/sign_up/">sign up for an account</a>
+				<% end %>
 			</div>
 		</div>
 	</div>

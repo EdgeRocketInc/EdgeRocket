@@ -20,7 +20,11 @@
               <%= f.text_field :first_name, autofocus: true, class: 'form-control voffset1', placeholder: 'First Name (required)' %>
               <%= f.text_field :last_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Last Name (required)' %>
             </div>
-            <%= f.text_field :company_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Company Name (optional)' %>
+            <% if params["type"] == 'common' %>
+              <%= f.hidden_field :company_name, value: 'Startup' %>
+            <% else %>
+              <%= f.text_field :company_name, autofocus: true, class: 'form-control voffset1', placeholder: 'Company Name (optional)' %>
+            <% end %>
             <div class="has-warning">
               <%= f.email_field :email, autofocus: true, class: 'form-control voffset1', placeholder: 'Email (required)' %>
             </div>
