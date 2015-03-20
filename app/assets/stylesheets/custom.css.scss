@@ -427,7 +427,8 @@ div.btn-toolbar > .btn-xs {
   padding: 5px;
   color: #5cb85c;
 }
-.alert-info{
+
+.alert-info {
   background: #4c22a5!important;
 }
 .alert-info .header-2{
@@ -442,7 +443,9 @@ div.alert.alert-danger {
   }
 }
 
-
+div.alert.alert-info {
+  font-size: 14px;
+}
 
 // Text for cells to align with big glyphs
 

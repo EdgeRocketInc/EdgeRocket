@@ -38,12 +38,6 @@
             <li class="<%= 'active' if params[:controller] == 'search' %>">
               <%= link_to("Search", controller: "search", action: "index") %>
             </li>
-
-        <%  end
-           if opt['disable_plans'].blank? || opt['disable_plans'] == false %>
-          <li class="<%= 'active' if params[:controller] == 'plans' %>">
-            <%= link_to("Plan", controller: "plans", action: "index") %>
-          </li>
         <%  end
            end %>
 	<% if can? :manage, :all %>
