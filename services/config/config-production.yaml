@@ -5,5 +5,5 @@ database:
     port: 5432
     host: ec2-107-21-118-56.compute-1.amazonaws.com
     username: ztkqeuzjboyeit
-    password: EquJEwLTIDp6zwXAVv51nSQE--
+    password: xxx
     timeout: 1500
