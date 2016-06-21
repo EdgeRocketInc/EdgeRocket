@@ -55,6 +55,7 @@ builder = Nokogiri::XML::Builder.new do |xml|
 			#logger.info('Product ID ' + p.id.to_s)	
 			xml.url {
 				xml.loc 'https://edgerocket.co/public/products/' + p.id.to_s + '/'
+				xml.lastmod '2015-02-16'
 			}
   		}
 	}

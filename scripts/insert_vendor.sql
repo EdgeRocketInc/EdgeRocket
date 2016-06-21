@@ -13,3 +13,8 @@ insert into vendors(name, logo_file_name) values('creativelive','vendor_logo_cre
 insert into vendors(name, logo_file_name) values('O''Reilly','vendor_logo_oreilly.gif');
 insert into vendors(name, logo_file_name) values('GoSkills','vendor_logo_goskills.png');
 insert into vendors(name, logo_file_name) values('pluralsight','vendor_logo_pluralsight.png');
+insert into vendors(name, logo_file_name) values('TechCrunch','vendor_logo_tc.png');
+insert into vendors(name, logo_file_name) values('Jason Calacanis','vendor_logo_jason.jpeg');
+insert into vendors(name, logo_file_name) values('Venture Beat','vendor_logo_vb.png');
+insert into vendors(name, logo_file_name) values('Business Insider','vendor_logo_bi.png');
+insert into vendors(name, logo_file_name) values('Venture Hacks','vendor_logo_vhack.png');
