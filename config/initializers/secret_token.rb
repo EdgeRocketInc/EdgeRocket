@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-EdgeApp::Application.config.secret_key_base = '9940a3d8fe434e11b49cf85dff2861dc7612f2177e98a787166e986aedb08082828556cf58afd3d44faadce4104e5be9d5e9e2b8c6311ddd48c58d412b36832f'
+EdgeApp::Application.config.secret_key_base = 'xxx'

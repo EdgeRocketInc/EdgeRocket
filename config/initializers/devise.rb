@@ -233,10 +233,10 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
   require 'omniauth-google-oauth2'
-  config.omniauth :google_oauth2, "185907991513-q0084vjasrouvbsoimrt3ut5u8itkuf1.apps.googleusercontent.com", "5h6wz-Fz_-Q9iVuDtqfqO9Bc", { access_type: "offline", approval_prompt: "" }
+  config.omniauth :google_oauth2, "xxxx.apps.googleusercontent.com", "xxx", { access_type: "offline", approval_prompt: "" }
 
   require 'omniauth-linkedin-oauth2'
-  config.omniauth :linkedin, "750lxk9x2fvf6c", "AO1J3Ba1hpZINxXN", { :scope => 'r_fullprofile r_emailaddress' }
+  config.omniauth :linkedin, "xxx", "xxx", { :scope => 'r_fullprofile r_emailaddress' }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -30,7 +30,7 @@ stage:
     port: 5432
     host: ec2-54-197-241-78.compute-1.amazonaws.com
     username: adtcwvvmiwtgiq
-    password: h7BT7clwWVB0oZSRnxxf0LpmoV
+    password: xxx
 
 # hosted on heroku
 production:
@@ -40,4 +40,4 @@ production:
     port: 5432
     host: ec2-107-21-118-56.compute-1.amazonaws.com
     username: ztkqeuzjboyeit
-    password: EquJEwLTIDp6zwXAVv51nSQE--
+    password: xxx
